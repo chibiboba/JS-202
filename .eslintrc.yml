@@ -40,8 +40,8 @@ rules:
   consistent-return: error
   constructor-super: error
   eqeqeq: error
-  html/html-extensions: [error, '.html'] # require .html file extensions for HTML files
-  html/valid-html-tag: error # validate HTML tag names
+  html/indent: [2, 2, { "indentClosingTags": false }]
+  html/require-lang: [2, {"enforceLang": true}]
   id-length:
     - error
     - exceptions:
