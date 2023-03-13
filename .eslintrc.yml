@@ -40,8 +40,32 @@ rules:
   consistent-return: error
   constructor-super: error
   eqeqeq: error
+  html/html-extensions:
+    - error
+    - ".html"
+  html/indent:
+    - error
+    - 2
+  html/report-bad-indent: error
+  html/no-duplicate-attributes: error
+  html/no-unused-vars: error
+  html/quotes: [error, "double"]
   html/indent: [2, 2, { "indentClosingTags": false }]
   html/require-lang: [2, {"enforceLang": true}]
+  html/max-len: [2, {
+      "code": 80,
+      "tabWidth": 2,
+      "ignoreUrls": true
+  }]
+  html/self-closing: [2, {
+      "html": {
+          "void": "always",
+          "normal": "always",
+          "component": "always"
+      },
+      "svg": "always",
+      "math": "always"
+  }]
   id-length:
     - error
     - exceptions:
