@@ -1,90 +1,3 @@
-
-
-# Q: 
-
-- Why my styles conference didnt change even with the Eric Meyer Reset?
-
-# Topics to focus on
-
-Understanding HTML and CSS, and being proficient enough to construct attractive web pages, either from scratch or a provided design, is a fundamental skill for web developers of all kinds. However, not everybody must be an expert; in fact, few are. Thus, our goal is to provide a solid foundation to get you started, not to make you an expert.
-
-Use the following guidelines to focus your study and practice as you move through this lesson:
-
-### Vocabulary
-
-As with everything else in the developer's world, there's a wealth of specialized terminology you must learn to converse with other developers and designers. The vocabulary you need here, though, is small compared to most languages, and most terms are easy to learn. In particular, you should become comfortable with:
-
-- element and tag
-- self-closing tag
-- document type definition (DOCTYPE, DTD)
-- attribute
-- selector
-- property
-- id, class, and name
-
-### The Difference Between HTML and CSS
-
-These two technologies are so intertwined in contemporary Web pages that it seems like they do the same thing, and that they are dependent on each other. However, they are distinct and independent with different purposes. 
-
-- HTML provides the structure and content of a web page; CSS describes the appearance, or presentation, of the page. 
-
-There is a bit of overlap that can lead to some confusion: CSS can dictate the apparent structure, while HTML can inform the browser of some presentation elements.
-
-### HTML and CSS Syntax
-
-HTML and CSS both have simple syntax; you can learn nearly all you need for each language in a few minutes. Take the time you need to learn it well, and both HTML and CSS will become routine in no time.
-
-For the most part, you shouldn't worry about the specific tags, attributes, selectors, and properties yet. Instead, focus on how to put these items together to create well-formed HTML and CSS. The rest will come with time and practice.
-
-### Structure of a Web Page
-
-All web pages start with some routine code that defines the basic layout of the document. It includes a DOCTYPE (we'll explain this later), an `<html>`, `<head>`, and `<body>` element, and a few other tags in the `<head>` section. Learn what this **boilerplate** code does, and how to use it in your web pages.
-
-### Basic HTML Elements
-
-The best way to learn HTML is to use it. The more you use it, the less often you'll need to refer to the documentation; however, you'll probably never learn it all, so don't try.
-
-Start by learning to use the `<p>` (paragraph), `<a>` (anchor), and `<h1>`-`<h6>` elements. 
-
-- Paragraphs are the primary organizational construct for text on web pages.
-- anchors represent links to other pages.
-- headings occur on most pages. 
-
-These elements are so common that you want to learn them as soon as possible, so go ahead and memorize them.
-
-You should also become familiar with these elements:
-
-- `<em>`, `<strong>`
-- `<header>`, `<main>`
-- `<article>`, `<section>`, `<aside>`
-- `<div>` and `<span>`
-
-You don't have to know them by heart; you will remember them through repeated use.
-
-### Using CSS With HTML
-
-Become familiar with the three ways to use CSS in an HTML document: inline, internal, and external. For now, you should learn to use the `<style>` tag to provide internal CSS.
-
-### Basic CSS Selectors
-
-CSS has three primary types of selectors (tag, id, and class) that select elements based on the tag name, `id` attribute, or `class` attribute. Learn the syntax for these three selectors, but don't get bogged down trying to memorize how you can combine them. For now, rely on the documentation.
-
-### CSS Properties
-
-Stick to the documentation as you start out; don't try to memorize CSS properties until you've used them a few times and seen how they work and interact with your HTML. This way, you'll learn the features you need most often without spending a lot of time absorbing material that you may never use.
-
-- The most important properties introduced in this lesson are `color`, `background-color`, `font-family`, and `font-size`; we recommend memorizing these. 
-
-The other properties you see in this lesson will become familiar with time and practice.
-
-### Use Your Browser's Inspector
-
-Much of your work in this course involves looking at the structure and styling of web pages: sometimes in your web pages, sometimes from another site. Either way, the best way to examine these features and determine how the HTML and CSS work is with your browser's Inspector software (this may be an add-on in some browsers).
-
-### Study From The Summary
-
-Spend time with the Summary at the end of this lesson. It reviews the topics and terminology you should master before moving on.
-
 # Tutorial 1: 
 
 [Building Your First Web Page](https://learn.shayhowe.com/html-css/building-your-first-web-page/) introduces the vocabulary of HTML and CSS and demonstrates a few of the most common tags and rules.
@@ -419,10 +332,22 @@ In all there are a handful of things to be on the lookout for when writing CSS. 
 #### Block vs. Inline Elements
 
 - Most elements are either block- or inline-level elements. What’s the difference?
+- **Block-level elements begin on a new line, stacking one on top of the other, and occupy any available width.** 
+  - Block-level elements may be nested inside one another and may wrap inline-level elements. 
+  - We’ll most commonly see block-level elements used for larger pieces of content (to create larger structures like paragraphs, headings, and lists.)
 
-- **Block-level elements begin on a new line, stacking one on top of the other, and occupy any available width.** Block-level elements may be nested inside one another and may wrap inline-level elements. We’ll most commonly see block-level elements used for larger pieces of content, such as paragraphs.
+- **Inline-level elements do not begin on a new line.** 
+  - They fall into the normal flow of a document, lining up one after the other, and only maintain the width of their content. Inline-level elements may be nested inside one another; however, they cannot wrap block-level elements. 
+  - Inline-level elements are typically used to add emphasis or to provide additional information within a sentence or paragraph.
+  - We’ll usually see inline-level elements with smaller pieces of content, such as a few words.
+  - Some common inline-level elements include:
+    - `<a>` - hyperlink
+    - `<span>` - generic inline container
+    - `<em>` - emphasis
+    - `<strong>` - strong importance
+    - `<img>` - image
+    - `<input>` - input field
 
-- **Inline-level elements do not begin on a new line.** They fall into the normal flow of a document, lining up one after the other, and only maintain the width of their content. Inline-level elements may be nested inside one another; however, they cannot wrap block-level elements. We’ll usually see inline-level elements with smaller pieces of content, such as a few words.
 
 #### Comments within HTML & CSS
 
@@ -552,7 +477,7 @@ One possible example of HTML5 structural elements giving meaning to the organiza
 
 - The `<head>` element is not displayed on a page and is used to outline metadata, including the document title, and links to external files. It falls directly within the `<html>` element.
 
-- Heading elements, `<h1>` through `<h6>`, are used to designate multiple levels of text headings throughout a page.
+- **Heading** elements, `<h1>` through `<h6>`, are used to designate multiple levels of text headings throughout a page.
 
 #### Navigation
 
@@ -636,7 +561,11 @@ With structural elements and text-based elements under our belts, our HTML knowl
 
 ## Creating Hyperlinks
 
-Along with text, one of the core components of the Internet is the hyperlink, which provides the ability to link from one web page or resource to another. Hyperlinks are established using the anchor, `<a>`, inline-level element. In order to create a link from one page (or resource) to another, the `href` attribute, known as a hyperlink reference, is required. The `href` attribute value identifies the destination of the link.
+Along with text, one of the core components of the Internet is the hyperlink
+
+- Hyperlink provides the ability to link from one web page or resource to another.
+- Hyperlinks are established using the **anchor**, `<a>`, inline-level element. 
+- In order to create a link from one page (or resource) to another, the `href` attribute, known as a hyperlink reference, is required. The `href` attribute value identifies the destination of the link.
 
 For example, clicking the text “Shay,” which is wrapped inside the anchor element with the `href` attribute value of `http://shayhowe.com`, will take users to my website.
 
@@ -646,23 +575,29 @@ For example, clicking the text “Shay,” which is wrapped inside the anchor el
 
 #### Creating Hyperlinks Demo
 
-...
+<img src="C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230314144941968.png" alt="image-20230314144941968" style="zoom:33%;" />
 
 #### Wrapping Block-Level Elements with Anchors
 
-By nature the anchor element, `<a>`, is an inline element, and, according to web standards, inline-level elements may not wrap block-level elements. With the introduction of HTML5, however, anchor elements specifically have permission to wrap either block-, inline-, or any other level elements. This is a break from the standard convention, but it’s permissible in order to enable entire blocks of content on a page to become links.
+- By nature the anchor element, `<a>`, is an inline element, and, according to web standards, inline-level elements may not wrap block-level elements. 
+
+- With the introduction of HTML5, however, anchor elements specifically have permission to wrap either block-, inline-, or any other level elements. This is a break from the standard convention, but it’s permissible in order to enable entire blocks of content on a page to become links.
 
 #### Relative & Absolute Paths
 
-The two most common types of links are links to *other pages* of the same website and links to *other websites*. These links are identified by their `href` attribute values, also known as their paths.
+- The two most common types of links are links to *other pages* of the same website and links to *other websites*. These links are identified by their `href` attribute values, also known as their paths.
 
-Links pointing to other pages of the same website will have a *relative path*, which does not include the domain (.com, .org, .edu, etc.) in the `href` attribute value. Because the link is pointing to another page on the same website, the `href` attribute value needs to include only the filename of the page being linked to: `about.html`, for example.
+Relative path
 
-Should the page being linked to reside within a different directory, or folder, the `href` attribute value needs to reflect this as well. Say the `about.html` page resides within the `pages` directory; the relative path would then be `pages/about.html`.
+- Links pointing to other pages of the same website will have a **relative path**, which does not include the domain (.com, .org, .edu, etc.) in the `href` attribute value. Because the link is pointing to another page on the same website, the `href` attribute value needs to include only the filename of the page being linked to: `about.html`, for example.
 
-Linking to other websites outside of the current one requires an *absolute path*, where the `href` attribute value must include the full domain. A link to Google would need the `href` attribute value of `http://google.com`, starting with http and including the domain, `.com` in this case.
+- Should the page being linked to reside within a different directory, or folder, the `href` attribute value needs to reflect this as well. Say the `about.html` page resides within the `pages` directory; the relative path would then be `pages/about.html`.
 
-Here clicking on the text “About” will open the `about.html` page inside our browser. Clicking the text “Google,” on the other hand, will open `http://google.com/` within our browser.
+Absolute Path
+
+- Linking to other websites outside of the current one requires an *absolute path*, where the `href` attribute value must include the full domain. A link to Google would need the `href` attribute value of `http://google.com`, starting with http and including the domain, `.com` in this case.
+
+- Here clicking on the text “About” will open the `about.html` page inside our browser. Clicking the text “Google,” on the other hand, will open `http://google.com/` within our browser.
 
 ```html
 <!-- Relative Path -->
