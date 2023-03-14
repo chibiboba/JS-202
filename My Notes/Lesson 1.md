@@ -173,3 +173,104 @@ Download plugin extension for html
 
 Create a `.eslintrc` file and put code in it.
 
+# Getting Started
+
+In this assignment, you'll read the first part of a tutorial that introduces you to the vocabulary and fundamental concepts you need when working with HTML and CSS. The tutorial shows you how to build simple HTML pages and style them with CSS.
+
+## Before You Start
+
+The primary takeaways from the first three sections of the tutorial include:
+
+- The vocabulary
+- The syntax of HTML and CSS
+- The HTML elements discussed
+- The CSS selectors and properties covered
+- The `class` and `id` attributes, and the corresponding class and ID selectors (`.class-name`, `#id-name`).
+
+Of lesser importance, but still important enough to study, pay attention to the following:
+
+- How to write comments in HTML and CSS
+- The difference between `<header>`, `<head>`, and `<h1>` through `<h6>`
+- Relative & absolute paths
+- The CSS cascade and specificity
+
+While you read the tutorial, you may want to browse the associated MDN documentation for each HTML tag or CSS property you encounter. To find the documentation for the `<a>` tag, for instance, search Google for `mdn html a`; to locate the documentation for the `color` property, search for `mdn css color`. Get in the habit of reading MDN as you learn each new element or property, but don't worry if you don't understand everything in each section.
+
+We will revisit most of the topics discussed in the tutorial later, so don't waste time trying to memorize everything. It's more important to know what's available, and how to look up information when you need it.
+
+## Read the Tutorial
+
+Learn to Code: HTML & CSS by Shay Howe is an extensive free tutorial that introduces most HTML and CSS concepts. To begin this lesson, please read the **first three sections** of the tutorial:
+
+- [Building Your First Web Page](https://learn.shayhowe.com/html-css/building-your-first-web-page/) introduces the vocabulary of HTML and CSS and demonstrates a few of the most common tags and rules.
+
+- [Getting to Know HTML](https://learn.shayhowe.com/html-css/getting-to-know-html/) discusses some basic HTML concepts, notably semantics, headings, paragraphs, simple HTML-based styling, and the general structure of an HTML document. It also examines hyperlinks and URLs.
+
+- [Getting to Know CSS](https://learn.shayhowe.com/html-css/getting-to-know-css/) brings CSS into the mix, introducing the cascade, specificity, selectors, and an assortment of properties.
+
+Be sure to try the CODEPEN demos while you read through the tutorial. You can modify the demo code to see what various changes accomplish; that will help you understand those features. Don't be afraid of breaking anything.
+
+If you're unfamiliar with HTML and CSS, we recommend working through the "In Practice" sections. You may skip them if you're already comfortable with both languages, but please look them over to ensure you don't miss anything.
+
+## Afterthoughts
+
+It's common to see **element** and **tag** used interchangeably; there is a difference, though:
+
+- An HTML tag begins with
+
+   
+
+  ```
+  <
+  ```
+
+   
+
+  and ends with
+
+   
+
+  ```
+  >
+  ```
+
+   
+
+  and contains an element name inside the angle brackets. There are three types of tags:
+
+  - An opening tag (`<p>`)
+  - A closing tag (`</p>`) -- defined for most, but not all, elements
+  - A self-closing tag (`<br>` or, incorrectly, `<br />`) -- most tags are not self-closing
+
+- An HTML element includes either:
+
+  - A self-closing tag
+  - An opening tag and its corresponding closing tag, including everything between the two. The content may contain nested elements.
+
+We may refer to tags and elements with or without angle brackets, so long as the usage is unambiguous. For instance, we may talk of the `<p>` tag as the `p` tag, but we may also say `p` element instead of `<p>...</p>` element. We may sometimes abbreviate that even further and say `p` without saying whether we are talking about a tag or element. This writing style is merely a convenience, though: you must use the angle brackets when coding HTML.
+
+We expect you to use the correct term, but keep in mind that you may encounter less precise material. We'll even slip from time to time ourselves -- let us know via Feedback if you spot a misuse.
+
+One more item to consider is attributes. For instance:
+
+```html
+<a href="another_page.html">Next page</a>
+```
+
+In this code, `href` is an attribute of the `<a>` tag, and it has the value `another_page.html`. You may use either double quotes, as shown above, or single quotes:
+
+```html
+<a href='another_page.html'>Next page</a>
+```
+
+You may even omit the quotes in some cases, which is handy in machine-generated HTML, but most style guides don't recommend this. You should use double quotes when possible.
+
+Later, we'll introduce boolean attributes; they don't need an `=` or a value.
+
+Every HTML element may contain one or more attributes or none at all. Some, such as `class`, which we'll talk about soon, are global; you can use them anywhere. However, most are specific to individual tags.
+
+Note that browsers do not check whether your attributes are valid: they ignore them, which can make debugging difficult.
+
+## The Rest of the Tutorial
+
+We won't cover the rest of this tutorial since it doesn't quite fit into the structure of this course. It gets into some topics in far more depth than you need to know right now. If you want to learn more, you should complete the tutorial after you've completed the course. Later still, you can check out the [Advanced HTML and CSS Tutorial](https://learn.shayhowe.com/advanced-html-css/).

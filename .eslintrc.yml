@@ -56,7 +56,7 @@ rules:
       "code": 80,
       "tabWidth": 2,
       "ignoreUrls": true
-  }]
+  }] 
   html/self-closing: [2, {
       "html": {
           "void": "always",
