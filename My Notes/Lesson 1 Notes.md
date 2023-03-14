@@ -85,7 +85,7 @@ Much of your work in this course involves looking at the structure and styling o
 
 Spend time with the Summary at the end of this lesson. It reviews the topics and terminology you should master before moving on.
 
-# Tutorial Notes
+# Tutorial 1: 
 
 [Building Your First Web Page](https://learn.shayhowe.com/html-css/building-your-first-web-page/) introduces the vocabulary of HTML and CSS and demonstrates a few of the most common tags and rules.
 
@@ -161,7 +161,7 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
 - Two of the more popular plain text editors for writing HTML and CSS are Dreamweaver and Sublime Text. Free alternatives also include Notepad++ for Windows and TextWrangler for Mac.
 - All HTML documents have a required structure that includes the following declaration and elements: `<!DOCTYPE html>`, `<html>`, `<head>`, and `<body>`.
 
-Declaration and Elements
+#### Declaration and Elements
 
 - The document type declaration, or `<!DOCTYPE html>`, informs web browsers which version of HTML is being used and is placed at the very beginning of the HTML document. 
   - Because we’ll be using the latest version of HTML, our document type declaration is simply `<!DOCTYPE html>`. 
@@ -329,7 +329,7 @@ p {
 }
 ```
 
-#### Referencing CSS
+## Referencing CSS
 
 - In order to get our CSS talking to our HTML, we need to reference our CSS file within our HTML. 
 - The best practice for referencing our CSS is to include all of our styles in a single external style sheet, which is referenced from within the `<head>` element of our HTML document. Using a single external style sheet allows us to use the same styles across an entire website and quickly make changes sitewide.
@@ -358,7 +358,7 @@ p {
 
 - At this point our pages are starting to come to life, slowly but surely. We haven’t delved into CSS too much, but you may have noticed that some elements have default styles we haven’t declared within our CSS. That is the browser imposing its own preferred CSS styles for those elements. Fortunately we can overwrite these styles fairly easily, which is what we’ll do next using CSS resets.
 
-#### Using CSS Resets
+## Using CSS Resets
 
 - Every web browser has its own default styles for different elements. How Google Chrome renders headings, paragraphs, lists, and so forth may be different from how Internet Explorer does. 
   - To ensure cross-browser compatibility, CSS resets have become widely used.
@@ -376,3 +376,35 @@ Cross-Browser Compatibility & Testing
 - As previously mentioned, different browsers render elements in different ways. It’s important to recognize the value in cross-browser compatibility and testing. Websites don’t need to look exactly the same in every browser, but they should be close. Which browsers you wish to support, and to what degree, is a decision you will need to make based on what is best for your website.
 
 In all there are a handful of things to be on the lookout for when writing CSS. The good news is that anything is possible, and with a little patience we’ll figure it all out.
+
+# Tutorial 2: HTML semantics
+
+- So what exactly are semantics?
+  - [Semantics within HTML](http://boagworld.com/dev/semantic-code-what-why-how/) is the practice of giving content on the page meaning and structure by using the proper element. Semantic code describes the *value* of content on a page, regardless of the style or appearance of that content. 
+  - There are several benefits to using semantic elements, including enabling computers, screen readers, search engines, and other devices to adequately read and understand the content on a web page. Additionally, semantic HTML is easier to manage and work with, as it shows clearly what each piece of content is about.
+- Moving forward, as new elements are introduced, we’ll talk about what those elements actually mean and the type of content they best represent. Before we do that, though, let’s look at two elements—`<div>`s and `<span>`s—that actually don’t hold any semantic value. They exist for styling purposes only.
+
+## Identifying Divisions and Spans
+
+- Block vs. Inline Elements
+
+  - Most elements are either block- or inline-level elements. What’s the difference?
+
+  - **Block-level elements begin on a new line, stacking one on top of the other, and occupy any available width.** Block-level elements may be nested inside one another and may wrap inline-level elements. We’ll most commonly see block-level elements used for larger pieces of content, such as paragraphs.
+
+  - **Inline-level elements do not begin on a new line.** They fall into the normal flow of a document, lining up one after the other, and only maintain the width of their content. Inline-level elements may be nested inside one another; however, they cannot wrap block-level elements. We’ll usually see inline-level elements with smaller pieces of content, such as a few words.
+
+- Divisions or `<div>`s and `<span>`s are two HTML elements that act as generic containers for sytyling purposes only. They don't hold any semantic value. ly.
+
+  - As **generic containers**, they do not come with any overarching meaning or semantic value. 
+  - Paragraphs are **semantic** in that content wrapped within a `<p>` element is known and understood as a paragraph. `<div>`s and `<span>`s do not hold any such meaning and are simply containers.
+
+- Both `<div>`s and `<span>`s, however, are extremely valuable when building a website in that they give us the ability to apply targeted styles to a contained set of content.
+
+  - A `<div>` is a block-level element that is commonly used to identify large groupings of content, and which helps to build a web page’s layout and design. 
+
+  - A `<span>`, on the other hand, is an inline-level element commonly used to identify smaller groupings of text within a block-level element.
+
+- We’ll commonly see `<div>`s and `<span>`s with `class` or `id` attributes for styling purposes. Choosing a `class` or `id` attribute value, or name, requires a bit of care. We want to choose a value that refers to the content of an element, not necessarily the appearance of an element.
+
+For example, if we have a `<div>` with an orange background that contains social media links, our first thought might be to give the `<div>` a `class` value of `orange`. What happens if that orange background is later changed to blue? Having a `class` value of `orange` no longer makes sense. A more sensible choice for a `class` value would be `social`, as it pertains to the contents of the `<div>`, not the style.
