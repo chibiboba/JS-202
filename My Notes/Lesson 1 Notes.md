@@ -1,5 +1,9 @@
 
 
+# Q: 
+
+- Why my styles conference didnt change even with the Eric Meyer Reset?
+
 # Topics to focus on
 
 Understanding HTML and CSS, and being proficient enough to construct attractive web pages, either from scratch or a provided design, is a fundamental skill for web developers of all kinds. However, not everybody must be an expert; in fact, few are. Thus, our goal is to provide a solid foundation to get you started, not to make you an expert.
@@ -143,7 +147,7 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
   <a href="http://shayhowe.com/">Shay Howe</a>
   ```
 
-Example of anchor link
+#### Example of anchor link
 
 - This is an example of an anchor link. The element is an anchor. 
 - The anchor element is declared with the opening `<a>` and closing `</a>` tags encompassing the text, and the hyperlink reference attribute and value are declared with `href="http://shayhowe.com"` in the opening tag.
@@ -186,7 +190,8 @@ Declaration and Elements
 
 #### Self closing elements
 
-- **Self closing elements**: In the previous example, the `<meta>` element had only one tag and didn’t include a closing tag. Fear not, this was intentional. Not all elements consist of opening and closing tags. Some elements simply receive their content or behavior from attributes within a single tag. The `<meta>` element is one of these elements. The content of the previous `<meta>` element is assigned with the use of the charset attribute and value. 
+- **Self closing elements**: Not all elements consist of opening and closing tags. Some elements simply receive their content or behavior from attributes within a single tag. 
+- The `<meta>` element is one of these elements: The content of the previous `<meta>` element is assigned with the use of the charset attribute and value. 
 - Other common selfclosing elements include
   - `<br>`
   - `<embed>`
@@ -214,9 +219,8 @@ Declaration and Elements
 
 #### Selectors
 
-- As elements are added to a web page, they may be styled using CSS. 
-- A ***selector*** is used to target one or more HTML elements to apply styles to. (Styles such as color, size, or position). 
-- Selectors may include a combination of different qualifiers to select unique elements, all depending on how specific we wish to be. 
+- As elements are added to a web page, they may be styled using CSS. A **selector** is used to target one or more HTML elements to apply styles to. (Styles such as color, size, or position). 
+  - Selectors may include a combination of different qualifiers to select unique elements, all depending on how specific we wish to be. 
   - For example, we may want to select every paragraph on a page, or we may want to select only one specific paragraph on a page.
 
 - Selectors generally target an attribute value, such as an `id` or `class` value, or target the type of element, such as `<h1>` or `<p>`.
@@ -224,9 +228,78 @@ Declaration and Elements
 - Within CSS, selectors are followed with curly brackets, `{}`, which encompass the styles to be applied to the selected element. 
 - The selector here is targeting all `<p>` elements.
 
+CSS
+
 ```css
 p { ... }
 ```
+
+##### Type Selectors
+
+- Type selectors target elements by their element type. 
+- For example, should we wish to target all division elements, `<div>`, we would use a type selector of `div`. 
+
+- The following code shows a type selector for division elements as well as the corresponding HTML it selects.
+
+CSS
+
+```cs
+div { ... }
+```
+
+The HTMl it selects.
+
+```html
+<div>...</div>          
+<div>...</div>
+```
+
+##### Class Selectors
+
+- **Class selectors** allow us to select an element based on the element’s `class` attribute value. Class selectors are a little more specific than type selectors, as they select a particular group of elements rather than all elements of one type.
+
+- Class selectors allow us to apply the same styles to different elements at once by using the same `class` attribute value across multiple elements.
+
+- Within CSS, classes are denoted by a leading period, `.`, followed by the `class` attribute value. Here the class selector will select any element containing the `class` attribute value of `awesome`, including both division and paragraph elements.
+
+CSS
+
+```css
+.awesome { ... }
+```
+
+The HTML it selects.
+
+```html
+<div class="awesome">...</div>
+<p class="awesome">...</p>
+```
+
+ID Selectors
+
+- **ID selectors** are even more precise than class selectors, as they target only one unique element at a time. Just as class selectors use an element’s `class` attribute value as the selector, ID selectors use an element’s `id` attribute value as a selector.
+
+- Regardless of which type of element they appear on, `id` attribute values can only be used once per page. If used they should be reserved for significant elements.
+
+- Within CSS, ID selectors are denoted by a leading hash sign, `#`, followed by the `id` attribute value. Here the ID selector will only select the element containing the `id` attribute value of `shayhowe`.
+
+CSS
+
+```css
+#shayhowe { ... }
+```
+
+the HTML it selects
+
+```HTML
+<div id="shayhowe">...</div>
+```
+
+##### Additional Selectors
+
+- Selectors are extremely powerful, and the selectors outlined here are the most common selectors we’ll come across. These selectors are also only the beginning. Many more [advanced selectors](https://learn.shayhowe.com/advanced-html-css/complex-selectors/) exist and are readily available. When you feel comfortable with these selectors, don’t be afraid to look into some of the more advanced selectors.
+
+- All right, everything is starting to come together. We add elements to a page inside our HTML, and we can then select those elements and apply styles to them using CSS. Now let’s connect the dots between our HTML and CSS, and get these two languages working together.
 
 #### Properties
 
@@ -256,15 +329,50 @@ p {
 }
 ```
 
-##### Type Selectors
-
-##### Class Selectors
-
-ID Selectors
-
-##### Additional Selectors
-
 #### Referencing CSS
+
+- In order to get our CSS talking to our HTML, we need to reference our CSS file within our HTML. 
+- The best practice for referencing our CSS is to include all of our styles in a single external style sheet, which is referenced from within the `<head>` element of our HTML document. Using a single external style sheet allows us to use the same styles across an entire website and quickly make changes sitewide.
+- Other Options for Adding CSS
+  - Other options for referencing CSS include using internal and inline styles. You may come across these options in the wild, but they are generally frowned upon, as they make updating websites cumbersome and unwieldy.
+
+<u>Create external CSS style sheet</u>
+
+- To create our external CSS style sheet, we’ll want to use our text editor of choice again to create a new plain text file with a `.css` file extension. 
+  - Our CSS file should be saved within the same folder, or a subfolder, where our HTML file is located.
+- Within the `<head>` element of the HTML document, the `<link>` element is used to define the relationship between the HTML file and the CSS file. 
+  - Because we are linking to CSS, we use the `rel` attribute with a value of `stylesheet` to specify their relationship. `rel` attribute specifies the relationship between the current document and the linked document.
+  - Furthermore, the `href` (or hyperlink reference) attribute is used to identify the location, or path, of the CSS file.
+
+- Consider the following example of an HTML document `<head>` element that references a single external style sheet.
+
+```html
+<head>
+  <link rel="stylesheet" href="main.css">
+</head>  
+```
+
+- In order for the CSS to render correctly, the path of the `href` attribute value must directly correlate to where our CSS file is saved. In the preceding example, the `main.css` file is stored within the same location as the HTML file, also known as the root directory.
+
+- If our CSS file is within a subdirectory or subfolder, the `href` attribute value needs to correlate to this path accordingly. For example, if our `main.css` file were stored within a subdirectory named `stylesheets`, the `href` attribute value would be `stylesheets/main.css`, using a forward slash to indicate moving into a subdirectory.
+
+- At this point our pages are starting to come to life, slowly but surely. We haven’t delved into CSS too much, but you may have noticed that some elements have default styles we haven’t declared within our CSS. That is the browser imposing its own preferred CSS styles for those elements. Fortunately we can overwrite these styles fairly easily, which is what we’ll do next using CSS resets.
 
 #### Using CSS Resets
 
+- Every web browser has its own default styles for different elements. How Google Chrome renders headings, paragraphs, lists, and so forth may be different from how Internet Explorer does. 
+  - To ensure cross-browser compatibility, CSS resets have become widely used.
+
+- CSS resets take every common HTML element with a predefined style and provide one unified style for all browsers. 
+  - These resets generally involve removing any sizing, margins, paddings, or additional styles and toning these values down. 
+  - Because CSS cascades from top to bottom—more on that soon—our reset needs to be at the very top of our style sheet. Doing so ensures that those styles are read first and that all of the different web browsers are working from a common baseline.
+
+- There are a bunch of different resets available to use, all of which have their own fortes. One of the most popular resets is [Eric Meyer’s reset](http://meyerweb.com/eric/tools/css/reset/), which has been adapted to include styles for the new HTML5 elements.
+
+- If you are feeling a bit more adventurous, there is also [Normalize.css](http://necolas.github.io/normalize.css/), created by Nicolas Gallagher. Normalize.css focuses not on using a hard reset for all common elements, but instead on setting common styles for these elements. It requires a stronger understanding of CSS, as well as awareness of what you’d like your styles to be.
+
+Cross-Browser Compatibility & Testing
+
+- As previously mentioned, different browsers render elements in different ways. It’s important to recognize the value in cross-browser compatibility and testing. Websites don’t need to look exactly the same in every browser, but they should be close. Which browsers you wish to support, and to what degree, is a decision you will need to make based on what is best for your website.
+
+In all there are a handful of things to be on the lookout for when writing CSS. The good news is that anything is possible, and with a little patience we’ll figure it all out.

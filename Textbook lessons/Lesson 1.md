@@ -1,3 +1,5 @@
+# Lesson 1
+
 # Welcome
 
 Welcome to the first Front-end course at Launch School! This course introduces you to the basics of HTML and CSS. Along the way, we'll explore the tools and technologies you will use throughout the front-end section of the curriculum.
@@ -65,7 +67,11 @@ As with everything else in the developer's world, there's a wealth of specialize
 
 ### The Difference Between HTML and CSS
 
-These two technologies are so intertwined in contemporary Web pages that it seems like they do the same thing, and that they are dependent on each other. However, they are distinct and independent with different purposes. HTML provides the structure and content of a web page; CSS describes the appearance, or presentation, of the page. There is a bit of overlap that can lead to some confusion: CSS can dictate the apparent structure, while HTML can inform the browser of some presentation elements.
+These two technologies are so intertwined in contemporary Web pages that it seems like they do the same thing, and that they are dependent on each other. However, they are distinct and independent with different purposes. 
+
+- HTML provides the structure and content of a web page; CSS describes the appearance, or presentation, of the page. 
+
+There is a bit of overlap that can lead to some confusion: CSS can dictate the apparent structure, while HTML can inform the browser of some presentation elements.
 
 ### HTML and CSS Syntax
 
@@ -75,13 +81,19 @@ For the most part, you shouldn't worry about the specific tags, attributes, sele
 
 ### Structure of a Web Page
 
-All web pages start with some routine code that defines the basic layout of the document. It includes a DOCTYPE (we'll explain this later), an `<html>`, `<head>`, and `<body>` element, and a few other tags in the `<head>` section. Learn what this boilerplate code does, and how to use it in your web pages.
+All web pages start with some routine code that defines the basic layout of the document. It includes a DOCTYPE (we'll explain this later), an `<html>`, `<head>`, and `<body>` element, and a few other tags in the `<head>` section. Learn what this **boilerplate** code does, and how to use it in your web pages.
 
 ### Basic HTML Elements
 
 The best way to learn HTML is to use it. The more you use it, the less often you'll need to refer to the documentation; however, you'll probably never learn it all, so don't try.
 
-Start by learning to use the `<p>` (paragraph), `<a>` (anchor), and `<h1>`-`<h6>` elements. Paragraphs are the primary organizational construct for text on web pages, and anchors represent links to other pages, while headings occur on most pages. These elements are so common that you want to learn them as soon as possible, so go ahead and memorize them.
+Start by learning to use the `<p>` (paragraph), `<a>` (anchor), and `<h1>`-`<h6>` elements. 
+
+- Paragraphs are the primary organizational construct for text on web pages.
+- anchors represent links to other pages.
+- headings occur on most pages. 
+
+These elements are so common that you want to learn them as soon as possible, so go ahead and memorize them.
 
 You should also become familiar with these elements:
 
@@ -104,7 +116,9 @@ CSS has three primary types of selectors (tag, id, and class) that select elemen
 
 Stick to the documentation as you start out; don't try to memorize CSS properties until you've used them a few times and seen how they work and interact with your HTML. This way, you'll learn the features you need most often without spending a lot of time absorbing material that you may never use.
 
-The most important properties introduced in this lesson are `color`, `background-color`, `font-family`, and `font-size`; we recommend memorizing these. The other properties you see in this lesson will become familiar with time and practice.
+- The most important properties introduced in this lesson are `color`, `background-color`, `font-family`, and `font-size`; we recommend memorizing these. 
+
+The other properties you see in this lesson will become familiar with time and practice.
 
 ### Use Your Browser's Inspector
 
@@ -149,6 +163,16 @@ You can find linters for most development languages, and HTML is no exception. H
 
 CSS also has linters, though good ones are a bit difficult to find. Unfortunately, we are no longer able to find one we like. If you find one you like, suggest it via the Feedback button!
 
+## ESLINT (my notes)
+
+Download node.js and npm on WSL
+
+Download eslint
+
+Download plugin extension for html
+
+Create a `.eslintrc` file and put code in it.
+
 # Getting Started
 
 In this assignment, you'll read the first part of a tutorial that introduces you to the vocabulary and fundamental concepts you need when working with HTML and CSS. The tutorial shows you how to build simple HTML pages and style them with CSS.
@@ -179,7 +203,9 @@ We will revisit most of the topics discussed in the tutorial later, so don't was
 Learn to Code: HTML & CSS by Shay Howe is an extensive free tutorial that introduces most HTML and CSS concepts. To begin this lesson, please read the **first three sections** of the tutorial:
 
 - [Building Your First Web Page](https://learn.shayhowe.com/html-css/building-your-first-web-page/) introduces the vocabulary of HTML and CSS and demonstrates a few of the most common tags and rules.
+
 - [Getting to Know HTML](https://learn.shayhowe.com/html-css/getting-to-know-html/) discusses some basic HTML concepts, notably semantics, headings, paragraphs, simple HTML-based styling, and the general structure of an HTML document. It also examines hyperlinks and URLs.
+
 - [Getting to Know CSS](https://learn.shayhowe.com/html-css/getting-to-know-css/) brings CSS into the mix, introducing the cascade, specificity, selectors, and an assortment of properties.
 
 Be sure to try the CODEPEN demos while you read through the tutorial. You can modify the demo code to see what various changes accomplish; that will help you understand those features. Don't be afraid of breaking anything.
@@ -227,15 +253,11 @@ We expect you to use the correct term, but keep in mind that you may encounter l
 
 One more item to consider is attributes. For instance:
 
-Copy Code
-
 ```html
 <a href="another_page.html">Next page</a>
 ```
 
 In this code, `href` is an attribute of the `<a>` tag, and it has the value `another_page.html`. You may use either double quotes, as shown above, or single quotes:
-
-Copy Code
 
 ```html
 <a href='another_page.html'>Next page</a>
@@ -263,8 +285,6 @@ Here's a typical HTML skeleton, based on the simple document you worked on in th
 
 skeleton.html
 
-Copy Code
-
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -289,17 +309,17 @@ We saw a similar file in the Shay Howe tutorial. This file isn't identical, but 
 
   The DOCTYPE *must* be the first item in an HTML document; not even whitespace can precede it.
 
-  Some developers use lowercase instead (`<!doctype ...>`); you must use uppercase when defining versions of HTML before HTML5 or non-HTML languages such as XML. HTML5 doesn't care whether you use uppercase or lowercase, so some developers are moving to the lowercase form. You may use either style at Launch School.
+  > Some developers use lowercase instead (`<!doctype ...>`); you must use uppercase when defining versions of HTML before HTML5 or non-HTML languages such as XML. HTML5 doesn't care whether you use uppercase or lowercase, so some developers are moving to the lowercase form. You may use either style at Launch School.
 
-  Technically, HTML5 does not have something called the DTD, though HTML3 and HTML4 do. The HTML5 standards documentation refers to the document type items as a DOCTYPE. Few people will argue with you if you call it a DTD though.
+  > Technically, HTML5 does not have something called the DTD, though HTML3 and HTML4 do. The HTML5 standards documentation refers to the document type items as a DOCTYPE. Few people will argue with you if you call it a DTD though.
 
 - The `html` element encloses the entire HTML document. The `lang="en"` attribute informs the user's browser that the web page uses the English language for text. Everything else about the page, both its content and related meta-information, must be between the opening and closing `html` tags.
 
 - The `head` element encloses the document header, which consists of elements that provide additional information (sometimes called meta-information) to the browser; the browser ordinarily does not display meta-information in the page content area. Here, the `title` gives the page a title, while `<meta charset="utf-8">` tells the browser to expect the UTF-8 character encoding (most web pages use this encoding). Most browsers display the title in the title bar or tab, so be sure you always provide a `title` element for a web page.
 
-  The `<meta>` tag uses a self-closing tag: it doesn't have a closing tag, e.g., `</meta>`. Instead, the tag ends with `/>` instead of a lone closing `>` symbol. You may also see the terms "self-closing element", "self-contained element", "empty element", or "void element" to describe self-closing tags.
+  > The `<meta>` tag uses a self-closing tag: it doesn't have a closing tag, e.g., `</meta>`. Instead, the tag ends with `/>` instead of a lone closing `>` symbol. You may also see the terms "self-closing element", "self-contained element", "empty element", or "void element" to describe self-closing tags.
 
-  **NOTE**: The use of `/>` at the end of a self-closing tag is now seen as incorrect HTML, and using the W3C HTML validator on code that contains self-closing tags may result in warnings. Thus, instead of `<meta />`, you should now just use `<meta>`. As a result, we have removed the `/>` from most code in this course. However, you may still encounter it, both in downloadable code, and in code on non-Launch School sites.
+  > **NOTE**: The use of `/>` at the end of a self-closing tag is now seen as incorrect HTML, and using the W3C HTML validator on code that contains self-closing tags may result in warnings. Thus, instead of `<meta />`, you should now just use `<meta>`. As a result, we have removed the `/>` from most code in this course. However, you may still encounter it, both in downloadable code, and in code on non-Launch School sites.
 
 - The `body` element is the content area of the page. The browser renders the HTML inside the `body` in the browser content area. In this case, we have no content, so this page renders as a blank page. Try viewing the file in your browser.
 
@@ -312,8 +332,6 @@ Technically, HTML pages require all four of the above items. In practice, you ca
 Note that we add two spaces of indentation after each open tag, then remove two when closing it. Developers often use this style when writing HTML from scratch - the indentation helps show the structure of your document and makes it easier to read and edit. Self-closing tags (like `<meta>`) do not alter the indentation. It's also common to omit the indentation for the `head` and `body` elements; align them both with the `html` element if you prefer:
 
 skeleton.html
-
-Copy Code
 
 ```html
 <!DOCTYPE html>
@@ -447,8 +465,6 @@ The browser won't tell you when you use the same ID on more than one element. In
 
 We won't use the `name` attribute until much later in this course. For now, all you must know about the `name` attribute is that it ties form elements to data on the server - it typically doesn't play a role in styling. You can use the `[name="field-name"]` selector to select elements by name, but you should use a class or ID selector instead. When you submit a form, the browser sends the form data to the server using name/value pairs in which each name comes from the associated `name` attribute. For instance:
 
-Copy Code
-
 ```html
 <form method="get" action="#">
   <label for="first-name-field">First name:</label>
@@ -463,8 +479,6 @@ Copy Code
 
 When you submit this form, the browser constructs a query string that looks like this:
 
-Copy Code
-
 ```plaintext
 first-name=Joe&last-name=Jones
 ```
@@ -472,8 +486,6 @@ first-name=Joe&last-name=Jones
 Note that the browser does not send the `id` attribute value to the server.
 
 Since the `for` attribute references an ID (as we'll see later), it's accepted practice to use both a `name` and an `id` on form elements and to use the same value for both:
-
-Copy Code
 
 ```html
 <form method="get" action="#">
@@ -637,7 +649,7 @@ While working on these problems and dealing with semantics in HTML, you may want
 
    Once again, consider the context and intent when trying to choose a semantic tag.
 
-If you're feeling a little fuzzy about these answers, that's okay. It's normal, in fact. It isn't always easy to pick the right semantic tag, and there can be more than one correct answer as we saw in several questions. Sometimes, you may even need to nest them, as in item 3. Avoid the non-semantic tags and try not to misuse the semantic ones and you should be okay.
+> If you're feeling a little fuzzy about these answers, that's okay. It's normal, in fact. It isn't always easy to pick the right semantic tag, and there can be more than one correct answer as we saw in several questions. Sometimes, you may even need to nest them, as in item 3. Avoid the non-semantic tags and try not to misuse the semantic ones and you should be okay.
 
 # Walkthrough Project: A Simple Web Page
 
@@ -1332,7 +1344,7 @@ You should now understand how to construct a web page and should be able to buil
 
 Remember: the videos may differ from the written instructions and the completed example. The written instructions take precedence.
 
-<video id="video_43078ba209dc_html5_api" class="vjs-tech" poster="https://launchschool.com/assets/tealeaf_markup/video_poster.jpg" preload="none" src="https://d3jtzah944tvom.cloudfront.net/videos/output/overview_your_first_web_page_8c2d9c_s42/overview_your_first_web_page_8c2d9c_s42.mp4" style="box-sizing: inherit; display: inline-block; top: 0px; left: 0px; width: 966.667px; height: 543.75px;"></video>
+<video id="video_aacb480cd27c_html5_api" class="vjs-tech" poster="https://launchschool.com/assets/tealeaf_markup/video_poster.jpg" preload="none" src="https://d3jtzah944tvom.cloudfront.net/videos/output/overview_your_first_web_page_8c2d9c_s42/overview_your_first_web_page_8c2d9c_s42.mp4" style="box-sizing: inherit; display: inline-block; top: 0px; left: 0px; width: 818.944px; height: 460.647px;"></video>
 
 Play Video
 
@@ -1490,8 +1502,6 @@ Given this approach, complete the following steps:
 
    Hint
 
-   See [this MDN page](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family) for information on font families. The best place to put the `font-family` property is in a CSS selector that applies to the `<body>` tag.
-
    Browsers use a serif typeface by default. Serif fonts have flared end-points on most characters; sans-serif do not:
 
    
@@ -1583,7 +1593,7 @@ Copy Code
 
 Even if your page came out perfect, take some time to watch our video walkthrough for this project:
 
-<video id="video_211c5a5d4310_html5_api" class="vjs-tech" poster="https://launchschool.com/assets/tealeaf_markup/video_poster.jpg" preload="none" src="https://d3jtzah944tvom.cloudfront.net/videos/output/your_first_web_page_4847b5_s783/your_first_web_page_4847b5_s783.mp4" style="box-sizing: inherit; display: inline-block; top: 0px; left: 0px; width: 966.667px; height: 543.75px;"></video>
+<video id="video_619c23bc237c_html5_api" class="vjs-tech" poster="https://launchschool.com/assets/tealeaf_markup/video_poster.jpg" preload="none" src="https://d3jtzah944tvom.cloudfront.net/videos/output/your_first_web_page_4847b5_s783/your_first_web_page_4847b5_s783.mp4" style="box-sizing: inherit; display: inline-block; top: 0px; left: 0px; width: 818.944px; height: 460.647px;"></video>
 
 Play Video
 
@@ -1638,6 +1648,15 @@ These practice problems focus on HTML and CSS that deal with text, like the font
 3. Change the CSS for the previous problem to give the browser a choice of one of three fonts (Tahoma, Trebuchet MS, Verdana), depending on what is available, before it uses the default sans-serif font.
 
    Solution
+
+   Copy Code
+
+   ```css
+   body {
+     font-family: Verdana, "Trebuchet MS", Tahoma, sans-serif;
+     font-size: 20px;
+   }
+   ```
 
 4. Change the text from the previous problem to italic.
 
@@ -1899,6 +1918,8 @@ These practice problems focus on HTML and CSS that deal with text, like the font
       text-decoration: none;
     }
     ```
+
+You marked this topic or exercise as completed.
 
 # On Your Own: Creating a Simple Page
 
@@ -2367,7 +2388,7 @@ The documentation talks about **DOM Nodes** or **nodes**. For the time being, yo
 
 At this stage, you should begin using the Inspector as you move through the course, primarily as a debugging and experimentation tool. For instance, if you are having problems with the box model (discussed in the next lesson), the Inspector is where you will find the information you need to diagnose the issue. You can even use it to experiment with several different settings to see if they fix the problem you're having. A great way to practice using the inspector is to find web pages that do something like what you want to do and see how they handled the problem.
 
-If you wish to use another browser for development, it's your responsibility to learn how to use the corresponding tools in that browser. Using another browser platform shouldn't be difficult: most look and act similarly, so once you learn one, it's easy to learn another.
+> If you wish to use another browser for development, it's your responsibility to learn how to use the corresponding tools in that browser. Using another browser platform shouldn't be difficult: most look and act similarly, so once you learn one, it's easy to learn another.
 
 Most developers prefer to undock the Tools or to dock them on the left or right side of the browser window. The default configuration docks the Tools on the bottom of the screen. See the [Chrome Devtools Documentation](https://developer.chrome.com/docs/devtools/) for information on how to configure the docking state of the Tools.
 
