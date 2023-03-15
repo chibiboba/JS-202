@@ -216,32 +216,12 @@ If you're unfamiliar with HTML and CSS, we recommend working through the "In Pra
 
 It's common to see **element** and **tag** used interchangeably; there is a difference, though:
 
-- An HTML tag begins with
-
-   
-
-  ```
-  <
-  ```
-
-   
-
-  and ends with
-
-   
-
-  ```
-  >
-  ```
-
-   
-
-  and contains an element name inside the angle brackets. There are three types of tags:
+- An HTML tag begins with `<` and ends with `>` and contains an element name inside the angle brackets. There are three types of tags:
 
   - An opening tag (`<p>`)
   - A closing tag (`</p>`) -- defined for most, but not all, elements
   - A self-closing tag (`<br>` or, incorrectly, `<br />`) -- most tags are not self-closing
-
+  
 - An HTML element includes either:
 
   - A self-closing tag
