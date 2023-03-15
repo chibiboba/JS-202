@@ -54,7 +54,7 @@
 
 - Attributes are defined within the opening tag, after an element’s name. Generally attributes include a name and a value. The format for these attributes consists of the attribute name followed by an equals sign and then a quoted attribute value. 
 
-  - For example, an `<a>` element including an `href` attribute would look like the following:
+  - For example, an `<a>` anchor element including an `href` attribute would look like the following:
 
   ```html
   <a href="http://shayhowe.com/">Shay Howe</a>
@@ -67,6 +67,18 @@
 - HTML syntax outline including an element, attribute, and tag:
 
 ![image-20230313153739933](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230313153739933.png)
+
+#### Void element
+
+Empty/ void element
+
+Chatgpt: Anchor elements in HTML are defined using the `<a>` tag, which is an example of an empty element or a void element. This means that the `<a>` tag doesn't have a closing tag, and it doesn't contain any content or child elements.
+
+In HTML, the `>` character is used to denote the end of a tag, so it's not necessary to include it after the opening `<a>` tag. For example, the correct syntax for creating a hyperlink using an anchor element is:
+
+```html
+<a href="something.com">Click here</a>
+```
 
 ## Setting up HTML document structure
 
@@ -595,7 +607,8 @@ Relative path
 
 Absolute Path
 
-- Linking to other websites outside of the current one requires an *absolute path*, where the `href` attribute value must include the full domain. A link to Google would need the `href` attribute value of `http://google.com`, starting with http and including the domain, `.com` in this case.
+- Linking to other websites outside of the current one requires an *absolute path*, where the `href` attribute value must include the full domain. 
+  - A link to Google would need the `href` attribute value of `http://google.com`, starting with http and including the domain, `.com` in this case.
 
 - Here clicking on the text “About” will open the `about.html` page inside our browser. Clicking the text “Google,” on the other hand, will open `http://google.com/` within our browser.
 
@@ -609,15 +622,19 @@ Absolute Path
 
 #### Linking to an Email Address
 
-Occasionally we may want to create a hyperlink to our email address—for example, hyperlink text that says “Email Me,” which when clicked opens a user’s default email client and pre-populates part of an email. At a minimum the email address to which the email is being sent is populated; other information such as a subject line and body text may also be included.
+Occasionally we may want to create a hyperlink to our email address—for example, hyperlink text that says “Email Me,” which when clicked opens a user’s default email client and pre-populates part of an email. 
 
-To create an [email link](https://developer.yoast.com/blog/guide-mailto-links/), the `href` attribute value needs to start with `mailto:` followed by the email address to which the email should be sent. To create an email link to `shay@awesome.com`, for example, the `href` attribute value would be `mailto:shay@awesome.com`.
+- At a minimum the email address to which the email is being sent is populated; other information such as a subject line and body text may also be included.
 
-Additionally, subject, body text, and other information for the email may be populated. To add a subject line, we’ll include the `subject=` parameter after the email address. The first parameter following the email address must begin with a question mark, `?`, to bind it to the hyperlink path. Multiple words within a subject line require that spaces be encoded using `%20`.
+- To create an [email link](https://developer.yoast.com/blog/guide-mailto-links/), the `href` attribute value needs to start with `mailto:` followed by the email address to which the email should be sent. To create an email link to `shay@awesome.com`, for example, the `href` attribute value would be `mailto:shay@awesome.com`.
 
-Adding body text works in the same way as adding the subject, this time using the `body=` parameter in the `href` attribute value. Because we are binding one parameter to another we need to use the ampersand, `&`, to separate the two. As with the subject, spaces must be encoded using `%20`, and line breaks must be encoded using `%0A`.
+- Additionally, subject, body text, and other information for the email may be populated. 
 
-Altogether, a link to `shay@awesome.com` with the subject of “Reaching Out” and body text of “How are you” would require an `href` attribute value of `mailto:shay@awesome.com?subject=Reaching%20Out&body=How%20are%20you`.
+  - To add a subject line, we’ll include the `subject=` parameter after the email address. The first parameter following the email address must begin with a question mark, `?`, to bind it to the hyperlink path. Multiple words within a subject line require that spaces be encoded using `%20`.
+
+  - Adding body text works in the same way as adding the subject, this time using the `body=` parameter in the `href` attribute value. Because we are binding one parameter to another we need to use the ampersand, `&`, to separate the two. As with the subject, spaces must be encoded using `%20`, and line breaks must be encoded using `%0A`.
+
+- Altogether, a link to `shay@awesome.com` with the subject of “Reaching Out” and body text of “How are you” would require an `href` attribute value of `mailto:shay@awesome.com?subject=Reaching%20Out&body=How%20are%20you`.
 
 Here’s the full breakdown:
 
@@ -629,7 +646,7 @@ Here’s the full breakdown:
 
 One feature available with hyperlinks is the ability to determine where a link opens when clicked. Typically, links open in the same window from which they are clicked; however, links may also be opened in new windows.
 
-To trigger the action of opening a link in a new window, use the `target` attribute with a value of `_blank`. The `target` attribute determines exactly where the link will be displayed, and the `_blank` value specifies a new window.
+- To trigger the action of opening a link in a new window, use the `target` attribute with a value of `_blank`. The `target` attribute determines exactly where the link will be displayed, and the `_blank` value specifies a new window.
 
 To open `http://shayhowe.com/` in a new window, the code would look like this:
 
@@ -639,11 +656,13 @@ To open `http://shayhowe.com/` in a new window, the code would look like this:
 
 #### Linking to Parts of the Same Page
 
-Periodically we’ll see hyperlinks that link to part of the same page the link appears on. A common example of these same-page links are “Back to top” links that return a user to the top of a page.
+Periodically we’ll see hyperlinks that link to part of the same page the link appears on. 
 
-We can create an on-page link by first setting an `id` attribute on the element we wish to link to, then using the value of that `id` attribute within an anchor element’s `href` attribute.
+- A common example of these same-page links are “Back to top” links that return a user to the top of a page.
 
-Using the “Back to top” link as an example, we can place an `id` attribute value of top on the `<body>` element. Now we can create an anchor element with an `href` attribute value of `#top`, pound sign and all, to link to the beginning of the `<body>` element.
+- We can create an on-page link by first setting an `id` attribute on the element we wish to link to, then using the value of that `id` attribute within an anchor element’s `href` attribute.
+
+- Using the “Back to top” link as an example, we can place an `id` attribute value of top on the `<body>` element. Now we can create an anchor element with an `href` attribute value of `#top`, pound sign and all, to link to the beginning of the `<body>` element.
 
 Our code for this same-page link would look like the following:
 
@@ -670,3 +689,6 @@ Once again, in this lesson we covered the following:
 - How to use hyperlinks to navigate between web pages or websites
 
 Hopefully you’re starting to feel pretty good about HTML. There is still quite a bit to learn, but the foundation is in place. Next up, we’ll take a deeper look into CSS.
+
+# Tutorial 3: Getting to Know CSS
+
