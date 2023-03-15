@@ -2404,8 +2404,6 @@ We have some other rules you may want to consider.
 
 - Avoid cramming more than two elements on a single line.
 
-  Copy Code
-
   ```html
   <!-- Legal but hard to read -->
   <nav><ul><li>Home</li><li>Sign Up</li><li>Log In</li><li>Log Out</li></ul></nav>
@@ -2424,7 +2422,7 @@ We have some other rules you may want to consider.
   <li><a href="home.html">Home</a></li>
   <a href="home.html"><img src="home.gif"></a>
   ```
-
+  
 - Indent nested tags by two spaces, four spaces, or hard tabs. (Be consistent.)
 
   Copy Code
@@ -2652,7 +2650,7 @@ In this lesson, you learned the bare basics of HTML and CSS:
 
 ## HTML
 
-- HTML is an acronym for HyperText Markup Language.
+- HTML is an acronym for Hypertext Markup Language.
 - HTML uses markup to organize your content and give it semantic meaning.
 - Elements are the basic building blocks of HTML.
 - We use tags in HTML to represent elements.
