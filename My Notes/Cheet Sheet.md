@@ -110,6 +110,7 @@ Anchor Link
 ##### Classes
 
 - The `class` attribute identifies a set of page elements that you wish to style consistently. 
+  - The `class` attribute identifies a group of elements that have something in common. Elements that have the same name in the `class` attribute belong to the same class. Any tag can belong to one or more classes, and each class may apply to multiple tags.
 - For instance, if you want to display a list of students, but highlight students who serve as Teaching Assistants, you can apply a class of `teaching-assistant` to each TA's data:
 
 html
@@ -200,19 +201,24 @@ You can now give the headline some styling that is unique to it:
 <u>Rules regarding `id` attribute</u>
 
 - Use the `id` attribute to assign an ID to an element.
-- Each ID on a page must be unique.
+- `id` attributes **must be unique on the page**: no two elements can have an `id` attribute with the same value.
 - Each element can have one ID or none.
 - Use semantic ID names; they should provide meaning. For instance, use an ID name of `headline` rather than `big-font`.
 - Use CSS ID selectors (`#idname`) to select elements by ID, e.g., `#headline`.
 - ID selectors have higher CSS specificity than class selectors (an ID selector can override a class selector).
 
-Debugging: ID duplication
+<u>Debugging: ID duplication</u>
 
 - The browser won't tell you when you use the same ID on more than one element. 
 
 - In fact, it may even apply your styles to several tags with the same ID. You will run into problems with JavaScript, though, if you try to take advantage of this behavior. 
 
 - Use the W3C HTML validator to catch accidental ID duplication.
+
+<u>Recommendation</u>
+
+- Some developers argue that you should never use ID selectors in your CSS, and there are good arguments for this. However, the arguments on the other side balance them out.
+- Feel free to use ID selectors here at Launch School. However, we recommend using them sparingly - that will help avoid specificity issues in your CSS.
 
 ##### Names
 
@@ -430,6 +436,8 @@ We'll talk a bit more about HTML style later in this lesson.
   - In HTML5, all content tags except `<div>` and `<span>` have semantic meaning. In particular, both `<b>` and `<i>` have [semantic meaning](http://html5doctor.com/i-b-em-strong-element/). 
   - Some developers may tell you otherwise, but that's a holdover from HTML4, in which both elements are non-semantic. 
   - Note, though, that the semantic meanings of `<b>` and `<i>` in HTML5 are somewhat subtle. Avoid using them solely for stylistic purposes, and be sure you understand when they are appropriate.
+- Using elements/tags semantically
+  - Use HTML tags semantically - each tag name should describe the type of information you intend to display. A header needs an `h1`, `h2`, etc. tag; a paragraph needs a `p` tag; a link needs an `a` tag. Don't use a `p` tag to render a small header; use one of the `h#` headers instead, and adjust the appearance as needed with CSS.
 
 ## Identifying Divisions and Spans
 
@@ -885,6 +893,16 @@ Once again, in this lesson we covered the following:
 
 Hopefully you’re starting to feel pretty good about HTML. There is still quite a bit to learn, but the foundation is in place. Next up, we’ll take a deeper look into CSS.
 
+# Applying CSS
+
+- There are three main ways to use CSS in a web page: inline, internal, and external:
+
+  - **Inline** CSS uses the `style` attribute on individual HTML tags.
+
+  - **Internal** CSS uses the `style` element to store all of the CSS in one place in the file.
+
+  - **External** CSS stores the CSS in a file that is separate from the HTML file.
+
 # Common CSS Terms
 
 ### Summary
@@ -1008,10 +1026,61 @@ p {
 }
 ```
 
-### Referencing CSS
+# Referencing CSS
 
-- In order to get our CSS talking to our HTML, we need to reference our CSS file within our HTML. 
-- The best practice for referencing our CSS is to include all of our styles in a single external style sheet, which is referenced from within the `<head>` element of our HTML document. Using a single external style sheet allows us to use the same styles across an entire website and quickly make changes sitewide.
+### Inline CSS
+
+- Adding a `style` attribute applies some CSS styling to the single element identified by the tag. 
+  - However, defining styles one at a time is tedious, error-prone, and difficult maintenance, and it mixes the presentation information with the content. Internal and external CSS are better ways to handle styling
+  - You will see inline styles in production code sometimes, but principally in conjunction with dynamically generated web pages.
+- The `style` attribute lists all the CSS properties you want to use together as a single string. 
+  - We use a colon (`:`) to separate each property name from its associated value; we separate the property name/value pairs from each other with a semicolon (`;`). 
+  - The whitespace after each colon and semicolon is optional but recommended for readability.
+
+### Internal CSS
+
+- Instead of scattering your style information all over the page with `style` attributes, you can list it all in the `style` element, which belongs inside the `head` element. 
+
+  - The `style` element is easy to use, and it puts everything together in one place, which makes it most convenient when you need the CSS for a single page.
+
+  - We'll use internal CSS often in this course: placing the HTML and CSS together in a simple project is convenient for both teaching and learning.
+
+- Example
+
+  ```html
+  <head>
+    <title>Welcome!</title>
+    <meta charset="utf-8">
+    <style>
+      strong {
+        color: blue;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  ```
+
+  - The code between the open and closing `style` tags is CSS. 
+
+  - The structure and syntax of CSS are straightforward and consistent. 
+
+  - The first part, `strong`, is a **selector**, which tells the browser that it should select and style all `strong` elements in the document as a group. 
+
+  - The braces (`{}`) enclose information that the browser can use to style those elements. 
+    - In this case, the `color` property sets the text color, while the `text-decoration` property tells the browser to underline the text. Colons (`:`) separate each property name ( `color`) from its value  `blue`), while semi-colons (`;`) mark the end of each property/value pair. 
+    - Most developers include 2-4 spaces of indentation within the braces.
+
+We can apply styles to other elements. All we need do is specify the appropriate tag name in the selector. For instance, we can make `h1` header orange and the `em` elements red with this code:
+
+### External CSS
+
+In order to get our CSS talking to our HTML, we need to reference our CSS file within our HTML. 
+
+- The best practice for referencing our CSS is to include all of our styles in a single **external style sheet**, which is referenced from within the `<head>` element of our HTML document. Using a single external style sheet allows us to use the same styles across an entire website and quickly make changes sitewide.
+- Placing CSS in a separate file and identifying that file as a `stylesheet` with a `<link>` tag tells the browser that it should load CSS style information from an external file located on the server. The `link` tag belongs inside the `<head>...</head>` element.
+- External CSS is the preferred way to include CSS in most web pages because
+  - It lets you share CSS between multiple pages, and makes maintenance of the CSS code separate from that of the HTML. Browsers can also cache external CSS files, which can reduce page load times. 
+  - For most of this course, though, we'll stick with the internal technique; feel free to use external files if you wish.
 - Other Options for Adding CSS
   - Other options for referencing CSS include using internal and inline styles. You may come across these options in the wild, but they are generally frowned upon, as they make updating websites cumbersome and unwieldy.
 
@@ -1037,7 +1106,7 @@ p {
 
 - At this point our pages are starting to come to life, slowly but surely. We haven’t delved into CSS too much, but you may have noticed that some elements have default styles we haven’t declared within our CSS. That is the browser imposing its own preferred CSS styles for those elements. Fortunately we can overwrite these styles fairly easily, which is what we’ll do next using CSS resets.
 
-### Using CSS Resets
+# Using CSS Resets
 
 - Every web browser has its own default styles for different elements. How Google Chrome renders headings, paragraphs, lists, and so forth may be different from how Internet Explorer does. 
   - To ensure cross-browser compatibility, CSS resets have become widely used.
