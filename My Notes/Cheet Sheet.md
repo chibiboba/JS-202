@@ -31,13 +31,15 @@ Of lesser importance, but still important enough to study, pay attention to the 
 - An HTML element includes either:
   - A self-closing tag
   - An opening tag and its corresponding closing tab, including everything between the two. The content may need nested elements.
-- Common elements: 
-  - **Paragraphs** are the primary organizational construct for text on web pages. (identified as the `<p>` element)
-  - **Anchors** represent links to other pages. `<a>`
-  - **Headings** occur on most pages. (identified as `<h1>` through `<h6>` elements)
-  - The list goes on to include the `<a>`, `<div>`, `<span>`, `<strong>`, and `<em>` elements, and many more. `<a>`
 
-#### Void element
+Common elements: 
+- **Paragraphs** are the primary organizational construct for text on web pages. (identified as the `<p>` element):
+  - The `p` element provides the ability to define paragraphs; it wraps a single paragraph and displays it in a separate area below the previous content, along with a bit of vertical spacing above and below it for visual distinctiveness:
+- **Anchors** represent links to other pages. `<a>`
+- **Headings** occur on most pages. (identified as `<h1>` through `<h6>` elements)
+- The list goes on to include the `<a>`, `<div>`, `<span>`, `<strong>`, and `<em>` elements, and many more. `<a>`
+
+##### Void element
 
 Empty/ void element
 
@@ -103,7 +105,9 @@ Anchor Link
   <a href="http://shayhowe.com/">Shay Howe</a>
   ```
 
-#### Classes
+- Note: when defining attribute for an element don't "close the first tag." 
+
+##### Classes
 
 - The `class` attribute identifies a set of page elements that you wish to style consistently. 
 - For instance, if you want to display a list of students, but highlight students who serve as Teaching Assistants, you can apply a class of `teaching-assistant` to each TA's data:
@@ -171,7 +175,7 @@ Here you can see that each row has a background color: `lime` for most rows, and
 - Use CSS class selectors (`.classname`) to select elements by class, e.g., `.teaching-assistant`.
 - Class selectors have lower CSS specificity than ID selectors, but higher than tag name selectors. Thus, the `.teaching-assistant` selector overrides the `tr` selector. See [Getting to Know CSS](https://learn.shayhowe.com/html-css/getting-to-know-css/#cascade).
 
-#### IDs
+##### IDs
 
 - The `id` attribute applies a unique identification string to a single element, such as a headline; no other `id` attributes on the page should have the same ID.
 
@@ -202,13 +206,22 @@ You can now give the headline some styling that is unique to it:
 - Use CSS ID selectors (`#idname`) to select elements by ID, e.g., `#headline`.
 - ID selectors have higher CSS specificity than class selectors (an ID selector can override a class selector).
 
-The browser won't tell you when you use the same ID on more than one element. In fact, it may even apply your styles to several tags with the same ID. You will run into problems with JavaScript, though, if you try to take advantage of this behavior. Use the W3C HTML validator to catch accidental ID duplication.
+Debugging: ID duplication
 
-#### Names
+- The browser won't tell you when you use the same ID on more than one element. 
 
-- The `name` attribute is that it ties form elements to data on the server - it typically doesn't play a role in styling. You can use the `[name="field-name"]` selector to select elements by name, but you should use a class or ID selector instead. 
+- In fact, it may even apply your styles to several tags with the same ID. You will run into problems with JavaScript, though, if you try to take advantage of this behavior. 
 
-When you submit a form, the browser sends the form data to the server using name/value pairs in which each name comes from the associated `name` attribute. For instance:
+- Use the W3C HTML validator to catch accidental ID duplication.
+
+##### Names
+
+- The `name` attribute is that it ties **form** elements to data on the server - it typically doesn't play a role in styling. 
+- You can use the `[name="field-name"]` selector to select elements by name, but you should use a class or ID selector instead. 
+
+When you submit a form, the browser sends the form data to the server using name/value pairs in which each name comes from the associated `name` attribute. 
+
+For instance:
 
 ```html
 <form method="get" action="#">
@@ -244,6 +257,8 @@ Since the `for` attribute references an ID (as we'll see later), it's accepted p
 </form>
 ```
 
+`name` attribute rules
+
 - Use the `name` attribute to assign a name to a form data element that the server can use to obtain the value.
 - Not all tags accept the `name` attribute; it applies to input controls in forms. Some other elements have a `name` attribute, too, but with a different meaning.
 - Always use a `name` attribute on form elements that accept it.
@@ -261,12 +276,12 @@ Since the `for` attribute references an ID (as we'll see later), it's accepted p
 
 ### Ambiguity
 
-#### Tags vs Elements
+##### Tags vs Elements
 
 - We may refer to tags and elements with or without angle brackets, so long as the usage is unambiguous. For instance, we may talk of the `<p>` tag as the `p` tag, but we may also say `p` elemnt instead of `<p>...<p>` element. 
 - We may sometimes abbreviate that even further and say `p` without saying whether we are talking about a tag or element. The writing style is merely convenience, though: you must use angle brackets when coding HTML.
 
-#### Attributes
+##### Attributes
 
 For instance:
 
@@ -296,7 +311,7 @@ Debugging difficulty
 - Two of the more popular plain text editors for writing HTML and CSS are Dreamweaver and Sublime Text. Free alternatives also include Notepad++ for Windows and TextWrangler for Mac.
 - All HTML documents have a required structure that includes the following declaration and elements: `<!DOCTYPE html>`, `<html>`, `<head>`, and `<body>`.
 
-#### HTML Skeleton
+### HTML Skeleton
 
 skeleton.html
 
@@ -312,7 +327,7 @@ skeleton.html
 </html>
 ```
 
-#### Declaration and Elements
+### Declaration and Elements
 
 - HTML pages typically require these 4 items. 
 
@@ -322,10 +337,10 @@ skeleton.html
 - This is a **Document Type Definition**, aka, **DTD**, or **DOCTYPE**. Oficially the DOCTYPE isn't part of HTML; it isn't a tag or element. It's a message that tells browser what specific markup language to expect -- for example, XML.
 - Because we’ll be using the latest version of HTML, our document type declaration is simply `<!DOCTYPE html>`, which uses HTML5. We will use this version the most often unless we're writing for older browsers or an XML or XHTML application.
 
-> Side notes
->
-> - Casing: Some developers use lowercase instead (`<!doctype ...>`); you must use uppercase when defining versions of HTML before HTML5 or non-HTML languages such as XML. HTML5 doesn't care whether you use uppercase or lowercase, so some developers are moving to the lowercase form. You may use either style at Launch School.
-> - HTML5 doesn't have DTD but rather refers to document type items as a DOCTYPE. HTML3 and HTML4 do though.
+Side notes
+
+- Casing: Some developers use lowercase instead (`<!doctype ...>`); you must use uppercase when defining versions of HTML before HTML5 or non-HTML languages such as XML. HTML5 doesn't care whether you use uppercase or lowercase, so some developers are moving to the lowercase form. You may use either style at Launch School.
+- HTML5 doesn't have DTD but rather refers to document type items as a DOCTYPE. HTML3 and HTML4 do though.
 
 `<html>` element
 
@@ -340,11 +355,14 @@ skeleton.html
   - Here, the `title` gives the page a title, while `<meta charset="utf-8">` tells the browser to expect the UTF-8 character encoding (most web pages use this encoding). 
   - Most browsers display the title in the title bar or tab, so be sure you always provide a `title` element for a web page.
   - There may be links to any external files, or any other beneficial metadata.
+
+`<body>` element
+
 - All of the visible content within the web page will fall within the `<body>` element. 
   - The `body` element is the content area of the page. The browser renders the HTML inside the `body` in the browser content area.
   - Most editors have a shortcut to display a file in a browser, and most browsers provide a File, Open File menu item that does the same.
 
-#### Indentation
+### Indentation
 
 - Note that we add two spaces of indentation after each open tag, then remove two when closing it. Developers often use this style when writing HTML from scratch - the indentation helps show the structure of your document and makes it easier to read and edit. 
 
@@ -367,7 +385,7 @@ skeleton.html
 
 We'll talk a bit more about HTML style later in this lesson.
 
-#### Self closing elements
+### Self closing elements
 
 - **Self closing elements**: Not all elements consist of opening and closing tags. Some elements simply receive their content or behavior from attributes within a single tag. 
 - The `<meta>` element is one of these elements: The content of the previous `<meta>` element is assigned with the use of the charset attribute and value. 
@@ -383,11 +401,11 @@ We'll talk a bit more about HTML style later in this lesson.
   - `<source>`
   - `<wbr>`
 
-#### Code Validation
+### Code Validation
 
 - No matter how careful we are when writing our code, we will inevitably make mistakes. Thankfully, when writing HTML and CSS we have validators to check our work. The W3C has built both [HTML](http://validator.w3.org/) and [CSS](http://jigsaw.w3.org/css-validator/) validators that will scan code for mistakes. Validating our code not only helps it render properly across all browsers, but also helps teach us the best practices for writing code.
 
-#### Tutorial: typical html structure
+### Tutorial: typical html structure
 
 
 
@@ -397,14 +415,22 @@ We'll talk a bit more about HTML style later in this lesson.
 
 ## What are semantics
 
+- How to choose a semantic tag
+  - Flow chart to help with HTML semantics: [excellent flowchart](http://html5doctor.com/downloads/h5d-sectioning-flowchart.pdf)
+  - Consider the context and intent when trying to choose a semantic tag.
+
 - So what exactly are semantics?
   - [Semantics within HTML](http://boagworld.com/dev/semantic-code-what-why-how/) is the practice of giving content on the page meaning and structure by using the proper element. Semantic code describes the **value** of content on a page, regardless of the style or appearance of that content. 
   - There are several benefits to using semantic elements, including enabling computers, screen readers, search engines, and other devices to adequately read and understand the content on a web page. Additionally, semantic HTML is easier to manage and work with, as it shows clearly what each piece of content is about.
-- Moving forward, as new elements are introduced, we’ll talk about what those elements actually mean and the type of content they best represent. Before we do that, though, let’s look at two elements—`<div>`s and `<span>`s—that actually don’t hold any semantic value. They exist for styling purposes only.
+
+- Which elements are semantic?
+  - In HTML5, all content tags except `<div>` and `<span>` have semantic meaning. In particular, both `<b>` and `<i>` have [semantic meaning](http://html5doctor.com/i-b-em-strong-element/). 
+  - Some developers may tell you otherwise, but that's a holdover from HTML4, in which both elements are non-semantic. 
+  - Note, though, that the semantic meanings of `<b>` and `<i>` in HTML5 are somewhat subtle. Avoid using them solely for stylistic purposes, and be sure you understand when they are appropriate.
 
 ## Identifying Divisions and Spans
 
-- Divisions or `<div>`s and `<span>`s are two HTML elements that act as generic containers for sytyling purposes only. They don't hold any semantic value.
+- Divisions or `<div>`s and `<span>`s are two HTML elements that act as generic containers for styling purposes only. They don't hold any semantic value.
   - As **generic containers**, they do not come with any overarching meaning or semantic value. 
   - Paragraphs are **semantic** in that content wrapped within a `<p>` element is known and understood as a paragraph. `<div>`s and `<span>`s do not hold any such meaning and are simply containers.
 
@@ -464,11 +490,20 @@ Many different forms of media and content exist online; however, text is predomi
 
 ### Headings
 
-- Headings are block-level elements, and they come in six different rankings, `<h1>` through `<h6>`. Headings help to quickly break up content and establish hierarchy, and they are key identifiers for users reading a page. They also help search engines to index and determine the content on a page.
+- Headings are block-level elements, and they come in six different rankings, `<h1>` through `<h6>`, representing different fonts for the headings. 
+  - Headings help to quickly break up content and establish hierarchy, and they are key identifiers for users reading a page. 
 
-- Headings should be used in an order that is relevant to the content of a page. The primary heading of a page or section should be marked up with an `<h1>` element, and subsequent headings should use `<h2>`, `<h3>`, `<h4>`, `<h5>`, and `<h6>` elements as necessary.
+  - They also help search engines to index and determine the content on a page.
 
-- Each heading level should be used where it is semantically valued, and should not be used to make text bold or big—there are other, better ways to do that.
+  - Each heading has some vertical spacing above and below to separate it from the surrounding content.
+
+- Headings should be used in an order that is relevant to the content of a page. 
+  - The primary heading of a page or section should be marked up with an `<h1>` element, and subsequent headings should use `<h2>`, `<h3>`, `<h4>`, `<h5>`, and `<h6>` elements as necessary.
+
+- Use heading levels semantically. 
+  - Don't use `h1`, `h2`, etc. solely because you want to change font sizes. 
+  - The numbered heading elements have semantic meaning; using them for their font sizes makes it harder for search engines and assistive technologies to understand your code and present it in a useful format. Misusing HTML for its stylistic effects also makes it hard for other developers to understand your code.
+
 
 Here is an example of HTML for all the different heading levels and the resulting display on a web page.
 
@@ -495,6 +530,19 @@ Here is an example of HTML for all the different heading levels and the resultin
 ```
 
 <img src="C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230313200005228.png" alt="image-20230313200005228" style="zoom:50%;" />
+
+### Formatting Text
+
+- Elements we can use to format text. 
+  - Most change how the content looks and also change the semantic meaning. 
+  - Here are useful formatting elements to use inside "container" elements like paragraph and heading elements. 
+
+| Element | Description                                                  |
+| :------ | :----------------------------------------------------------- |
+| strong  | The text has greater importance than the surrounding text; most browsers use boldface. Example: You **must** remember to turn the light off. |
+| em      | Adds emphasis to the text; most browsers use italics. Example: We do them because they are *hard*! |
+| b       | Stylistically offset text, such as keywords. Example: ES6 adds the keywords **const** and **let**. |
+| i       | Alternate voice text. Example: I said "Hello." She said *"Goodbye."* |
 
 ### Bold Text with Strong
 
@@ -606,6 +654,10 @@ One possible example of HTML5 structural elements giving meaning to the organiza
 
 ### Section
 
+- `<section>` is also a block level element. 
+
+- The `<section>` is part of the main document flow to identify a group of content, but is not a standalone block like an `article`. 
+
 - The `<section>` element is used to identify a thematic grouping of content, which generally, but not always, includes a heading. The grouping of content within the `<section>` element may be generic in nature, but it’s useful to identify all of the content as related.
 
 - The `<section>` element is commonly used to break up and provide hierarchy to a page.
@@ -652,13 +704,56 @@ With structural elements and text-based elements under our belts, our HTML knowl
 
 ### Encoding Special Characters
 
-- The `<h3>` element within our `<header>` element, as well as the `<small>` element within our `<footer>` element, has some interesting things going on. Specifically, a few special characters within these elements are being encoded.
-
 - Special characters include various punctuation marks, accented letters, and symbols. When typed directly into HTML, they can be misunderstood or mistaken for the wrong character; thus they need to be encoded.
+- All **character entities** (encoded character) follow the pattern of an ampersand (`&`) followed by one or more alphanumeric characters terminated by a semicolon (`;`). 
+  - All have numeric versions, and most have alphanumeric names, e.g., `&#38` also represents an ampersand (`&amp`); you should use the alphanumeric name when you can, though.
 
-- Each encoded character will begin with an ampersand, `&`, and end with a semicolon, `;`. What falls between the ampersand and semicolon is a character’s unique encoding, be it a name or numeric encoding.
+Debug
+
+- Your browser won't complain if you leave a bare `<`, `>`, or `&` in your HTML. Neither will W3C validator. You won't know that you forgot to use an entity until it causes a problem on your page. 
+
+Examples
 
 - For example, we would encode the word “resumé” as `resumé`. Within our header we have encoded both en and em dashes, and within our footer we have encoded the copyright symbol. For reference, a long list of character encodings may be found at [Copy Paste Character](http://copypastecharacter.com/).
+
+- For example `<`'s character entity is `&lt;` and `>`'s character entity is `&gt;`. 
+
+Replacing Ampersand with special entity
+
+- HTML5 handles ampersands as regular characters in most cases, but if that `&` includes some non-whitespace characters between it and the next semicolon (`;`), the browser may try to interpret it as an entity. 
+- For safety, most developers replace `&` with `&amp` even when they don't need to do so:
+
+Entities for other special characters
+
+- You must use `&quot` if you need to embed a double quote inside a double-quoted attribute value. 
+
+```html
+<img src="hello-world.jpg" alt="Greetings: &quot;Hello, World&quot;">
+```
+
+- It's also common practice to replace `"` with `&quot;` when using an external source of strings inside your HTML; since you can't know in advance which strings will need `&quot;` and which won't, you use `&quot;` everywhere.
+
+### Other elements for building structure
+
+#### `<blockquote>`
+
+- Extended quotations should use `<blockquote>`
+  - Wrap the entire `<blockquote>` in an article `<article>`. 
+
+```html
+<article>
+  <blockquote>
+    <h1>Lincoln's Gettysburg Address</h1>
+    <p>Four score and seven years ago ...</p>
+    <p>Now we are engaged in a great civil war...</p>
+    <p>But, in a larger sense, we can not dedicate...</p>
+  </blockquote>
+</article>
+```
+
+#### `<address>`
+
+
 
 # Creating Hyperlinks
 
@@ -781,14 +876,14 @@ Hopefully you’re starting to feel pretty good about HTML. There is still quite
 
 # Common CSS Terms
 
-## Summary
+### Summary
 
 - In CSS our rule set begins with the **selector**, which is immediately followed by curly brackets. Within these curly brackets are declarations consisting of property and value pairs. Each declaration begins with a **property**, which is followed by a colon, the **property value**, and finally a semicolon.
 - It is a common practice to indent property and value pairs within the curly brackets. As with HTML, these indentations help keep our code organized and legible.
 
 ![CSS Syntax Outline](https://learn.shayhowe.com/assets/images/courses/html-css/building-your-first-web-page/css-syntax-outline.png)
 
-## Selectors
+### Selectors
 
 - As elements are added to a web page, they may be styled using CSS. A **selector** is used to target one or more HTML elements to apply styles to. (Styles such as color, size, or position). 
   - Selectors may include a combination of different qualifiers to select unique elements, all depending on how specific we wish to be. 
@@ -868,13 +963,13 @@ the HTML it selects
 <div id="shayhowe">...</div>
 ```
 
-## Additional Selectors
+### Additional Selectors
 
 - Selectors are extremely powerful, and the selectors outlined here are the most common selectors we’ll come across. These selectors are also only the beginning. Many more [advanced selectors](https://learn.shayhowe.com/advanced-html-css/complex-selectors/) exist and are readily available. When you feel comfortable with these selectors, don’t be afraid to look into some of the more advanced selectors.
 
 - All right, everything is starting to come together. We add elements to a page inside our HTML, and we can then select those elements and apply styles to them using CSS. Now let’s connect the dots between our HTML and CSS, and get these two languages working together.
 
-## Properties
+### Properties
 
 - Once an element is selected, a **property** determines the styles that will be applied to that element. 
   - Property names fall after a selector, within the curly brackets, `{}`, and immediately preceding a colon, `:`. 
@@ -888,7 +983,7 @@ p {
 }
 ```
 
-## Values
+### Values
 
 - A value determines the behavior of that property. 
   - Values can be identified as the text between the colon, `:`, and semicolon, `;`.
@@ -902,7 +997,7 @@ p {
 }
 ```
 
-## Referencing CSS
+### Referencing CSS
 
 - In order to get our CSS talking to our HTML, we need to reference our CSS file within our HTML. 
 - The best practice for referencing our CSS is to include all of our styles in a single external style sheet, which is referenced from within the `<head>` element of our HTML document. Using a single external style sheet allows us to use the same styles across an entire website and quickly make changes sitewide.
@@ -931,7 +1026,7 @@ p {
 
 - At this point our pages are starting to come to life, slowly but surely. We haven’t delved into CSS too much, but you may have noticed that some elements have default styles we haven’t declared within our CSS. That is the browser imposing its own preferred CSS styles for those elements. Fortunately we can overwrite these styles fairly easily, which is what we’ll do next using CSS resets.
 
-## Using CSS Resets
+### Using CSS Resets
 
 - Every web browser has its own default styles for different elements. How Google Chrome renders headings, paragraphs, lists, and so forth may be different from how Internet Explorer does. 
   - To ensure cross-browser compatibility, CSS resets have become widely used.

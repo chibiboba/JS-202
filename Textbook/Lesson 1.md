@@ -510,10 +510,8 @@ While working on these problems and dealing with semantics in HTML, you may want
 
 2. Given the following HTML, would `<section>`, `<aside>`, `<article>`, or `<div>` be the most appropriate element for the tag shown as `<sometag>`?
 
-   Copy Code
-
    ```html
-   <sometag>
+<sometag>
      <h1>Lincoln's Gettysburg Address</h1>
      <p>
        Four score and seven years ago our fathers brought forth on this
@@ -546,7 +544,7 @@ While working on these problems and dealing with semantics in HTML, you may want
      </p>
    </sometag>
    ```
-
+   
    Solution
 
    Based on what we see here, an `<article>` may be the best choice since Abraham Lincoln's Gettysburg Address would make sense if we extracted it from the page and put it elsewhere. That is, it's self-contained and reusable.
@@ -559,10 +557,8 @@ While working on these problems and dealing with semantics in HTML, you may want
 
    Extended quotations like this should use `<blockquote>`. This quotation is also a standalone item, though, so `<article>` is also appropriate. The best solution may be to replace `sometag` with `blockquote`, then wrap the entire `<blockquote>` in an `<article>`:
 
-   Copy Code
-
    ```html
-   <article>
+<article>
      <blockquote>
        <h1>Lincoln's Gettysburg Address</h1>
        <p>Four score and seven years ago ...</p>
@@ -571,7 +567,7 @@ While working on these problems and dealing with semantics in HTML, you may want
      </blockquote>
    </article>
    ```
-
+   
    `<address>`, of course, is inappropriate; it identifies contact information, not speeches.
 
 4. Given the following HTML, would `<section>`, `<aside>`, `<article>`, or `<div>` be the most appropriate element for the tag shown as `<sometag>`?
@@ -651,8 +647,6 @@ All web content goes inside the `body` element, but most web pages need at least
 
 hello.html
 
-Copy Code
-
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -672,8 +666,6 @@ Your browser should display this HTML as a blank page, but you should see the ti
 Next, let's put some content on the page. As mentioned earlier, all content must be inside the `body` element, so lets put it there:
 
 hello.html
-
-Copy Code
 
 ```html
 <!DOCTYPE html>
@@ -695,8 +687,6 @@ Reload the page in your browser; this time, the browser should **render** (displ
 Let's see if we can modify our page. Right now, we have a single welcome sentence, but nothing else. Let's provide some additional content:
 
 hello.html
-
-Copy Code
 
 ```html
 <body>
@@ -735,8 +725,6 @@ Let's fix the paragraph problem. The `p` element provides the ability to define 
 
 hello.html
 
-Copy Code
-
 ```html
 <body>
   <p>Hello, Internet!</p>
@@ -766,8 +754,6 @@ We'll discuss the `class` and `id` attributes in the next assignment. For now, t
 
 When you reload the page this time, it will look pretty close to what we want. However, that `<p>` embedded in the second paragraph is still a problem. The browser interpreted it as HTML and started a new paragraph. To fix this problem, we need to replace the `<` and `>` characters in `<p>` with special HTML **character entities**:
 
-Copy Code
-
 ```html
 the "class" attribute on the two &lt;p&gt; tags
 ```
@@ -782,11 +768,9 @@ When you reload the page now, it should display the way you intended, with blank
 
 
 
-Though this page looks good, there is one more character that you should replace with an entity: the ampersand (`&`)). HTML5 handles ampersands as regular characters in most cases, but if that `&` includes some non-whitespace characters between it and the next semicolon (`;`), the browser may try to interpret it as an entity. For safety, most developers replace `&` with `&` even when they don't need to do so:
+Though this page looks good, there is one more character that you should replace with an entity: the ampersand (`&`)). HTML5 handles ampersands as regular characters in most cases, but if that `&` includes some non-whitespace characters between it and the next semicolon (`;`), the browser may try to interpret it as an entity. For safety, most developers replace `&` with `&amp` even when they don't need to do so:
 
 hello.html
-
-Copy Code
 
 ```html
 <p class="more-text">
@@ -798,8 +782,6 @@ Copy Code
 ```
 
 You may need entities for several other special characters. For instance, you must use `"` if you need to embed a double quote inside a double-quoted attribute value.
-
-Copy Code
 
 ```html
 <img src="hello-world.jpg" alt="Greetings: &quot;Hello, World&quot;">
