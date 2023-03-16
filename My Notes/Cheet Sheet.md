@@ -266,22 +266,25 @@ Since the `for` attribute references an ID (as we'll see later), it's accepted p
 - Use descriptive `name` values, not semantic. For instance, use `name="last-name"` instead of `name="input-field"`.
 - Avoid trying to select elements in CSS by using the `name` attribute.
 
-### Example of anchor link
+### Anchor is Hyperlink
 
-- This is an example of an anchor link. The element is an anchor. 
-- The anchor element is declared with the opening `<a>` and closing `</a>` tags encompassing the text, and the hyperlink reference attribute and value are declared with `href="http://shayhowe.com"` in the opening tag.
-- HTML syntax outline including an element, attribute, and tag:
+- HTML uses the term **anchor** to refer to hyperlinks, and it uses the `a` element to code anchors. The `a` element requires a URL for the link, and some content that the browser can display as a clickable item. The `<a>` tag uses the `href` attribute to designate the link URL, and the link description goes between the open and close tags:
+
+- This is an example of an anchor link.
+  - The anchor element is declared with the opening `<a>` and closing `</a>` tags encompassing the text, and the hyperlink reference attribute and value are declared with `href="http://shayhowe.com"` in the opening tag.
+  - HTML syntax outline including an element, attribute, and tag:
+
 
 ![image-20230313153739933](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230313153739933.png)
 
-### Ambiguity
+# Ambiguity
 
-##### Tags vs Elements
+### Tags vs Elements
 
 - We may refer to tags and elements with or without angle brackets, so long as the usage is unambiguous. For instance, we may talk of the `<p>` tag as the `p` tag, but we may also say `p` elemnt instead of `<p>...<p>` element. 
 - We may sometimes abbreviate that even further and say `p` without saying whether we are talking about a tag or element. The writing style is merely convenience, though: you must use angle brackets when coding HTML.
 
-##### Attributes
+### Attributes
 
 For instance:
 
@@ -544,6 +547,10 @@ Here is an example of HTML for all the different heading levels and the resultin
 | b       | Stylistically offset text, such as keywords. Example: ES6 adds the keywords **const** and **let**. |
 | i       | Alternate voice text. Example: I said "Hello." She said *"Goodbye."* |
 
+- Before HTML5, the `b` and `i` elements were non-semantic elements that provided boldface and italic text, respectively. As of HTML5, `b` and `i` are semantic elements, and the meaning has changed. 
+  - If you intend to use boldface for important text, use `<strong>` instead of `<b>`
+  - if you wish to use italics for emphasis, use `<em>` instead of `<i>`.
+
 ### Bold Text with Strong
 
 - To make text bold and place a strong importance on it, we’ll use the `<strong>` inline-level element. There are two elements that will bold text for us: the `<strong>` and `<b>` elements. 
@@ -756,6 +763,10 @@ Entities for other special characters
 
 
 # Creating Hyperlinks
+
+- HTML uses the term **anchor** to refer to hyperlinks, and it uses the `a` element to code anchors. The `a` element requires a URL for the link, and some content that the browser can display as a clickable item. The `<a>` tag uses the `href` attribute to designate the link URL, and the link description goes between the open and close tags:
+
+------
 
 Along with text, one of the core components of the Internet is the hyperlink
 
