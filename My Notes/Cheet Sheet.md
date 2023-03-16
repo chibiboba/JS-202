@@ -68,7 +68,10 @@ There are 3 types of tags
 
   - The closing tag is defined for most, but not all, elements.
 
-- A **self closing tag** (`<br>` or, incorrectly, `<br />`) -- most tags are not self closing. 
+- A **self closing tag**  -- tags that don't have content. Most tags are not self closing. 
+  - Chatgpt: ``<br>` or, incorrectly, `<br />`` tag is an empty tag that creates a line break in the content, but doesn't have any content of its own, so it is self closing. 
+  - `<link>` is another example of a self closing tag that is used to link external stylesheets.
+
 
 Anchor Link
 
@@ -178,7 +181,8 @@ Here you can see that each row has a background color: `lime` for most rows, and
 
 ##### IDs
 
-- The `id` attribute applies a unique identification string to a single element, such as a headline; no other `id` attributes on the page should have the same ID.
+- The `id` attribute applies a unique identification string to a single element, such as a headline. 
+- `id` attributes **must be unique on the page**: no two elements can have an `id` attribute with the same value.
 
 ```html
 <h1>This is a plain h1 heading</h1>
@@ -205,7 +209,7 @@ You can now give the headline some styling that is unique to it:
 - Each element can have one ID or none.
 - Use semantic ID names; they should provide meaning. For instance, use an ID name of `headline` rather than `big-font`.
 - Use CSS ID selectors (`#idname`) to select elements by ID, e.g., `#headline`.
-- ID selectors have higher CSS specificity than class selectors (an ID selector can override a class selector).
+- ID selectors have higher CSS specificity than class selectors (an ID selector can override a class selector). 
 
 <u>Debugging: ID duplication</u>
 
@@ -214,6 +218,8 @@ You can now give the headline some styling that is unique to it:
 - In fact, it may even apply your styles to several tags with the same ID. You will run into problems with JavaScript, though, if you try to take advantage of this behavior. 
 
 - Use the W3C HTML validator to catch accidental ID duplication.
+
+- Note: Use CSS ID selectors sparingly, this will help avoid issues in the CSS. 
 
 <u>Recommendation</u>
 
@@ -963,6 +969,8 @@ The HTML it selects.
 
 #### ID Selectors
 
+- Note: Use ID selectors sparingly, this will help avoid issues like duplicate IDs in the CSS. 
+
 - **ID selectors** are even more precise than class selectors, as they target only one unique element at a time. 
 
 - ID selectors use an element’s `id` attribute value as a selector, just like how class selectors use an element’s `class` attribute value as the selector. 
@@ -1094,17 +1102,51 @@ There are three main ways to use CSS in a web page: inline, internal, and extern
   }
   ```
 
+- Use ID selectors sparingly to avoid specificity issues like duplicate IDs in our CSS.
+
+  ```css
+  #final-paragraph {
+    text-decoration: underline;
+  }
+  ```
+
   
 
 ### External CSS
 
-In order to get our CSS talking to our HTML, we need to reference our CSS file within our HTML. 
+- In order to get our CSS talking to our HTML, we need to reference our CSS file within our HTML. 
 
-- The best practice for referencing our CSS is to include all of our styles in a single **external style sheet**, which is referenced from within the `<head>` element of our HTML document. Using a single external style sheet allows us to use the same styles across an entire website and quickly make changes sitewide.
-- Placing CSS in a separate file and identifying that file as a `stylesheet` with a `<link>` tag tells the browser that it should load CSS style information from an external file located on the server. The `link` tag belongs inside the `<head>...</head>` element.
+- The best practice for referencing our CSS is to include all of our styles in a single **external style sheet**, which is referenced from within the `<head>` element of our HTML document.
+
+  - The external style sheet `stylesheet` is identified with a `<link>` tag which tells the browser it should load CSS style information from an external file located on the server. The `link` tag belongs inside the `<head>...</head>` element.
+  - Using a single external style sheet allows us to use the same styles across an entire website and quickly make changes sitewide.
+
 - External CSS is the preferred way to include CSS in most web pages because
+
   - It lets you share CSS between multiple pages, and makes maintenance of the CSS code separate from that of the HTML. Browsers can also cache external CSS files, which can reduce page load times. 
   - For most of this course, though, we'll stick with the internal technique; feel free to use external files if you wish.
+
+- The `<link>` tag is used in the head section of an HTML document to link to external resources such as stylesheets, scripts, or icons. 
+
+  - It is an empty tag that doesn't have a closing tag, and it includes attributes such as `href` (the URL of the resource), `rel` (the relationship between the current document and the linked resource), and `type` (the MIME type of the linked resource).
+
+- Example
+
+  ```js
+  <!DOCTYPE html>
+  <html lang="en-US">
+    <head>
+      <title>Welcome!</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="my.css">
+    </head>
+    <body>
+    </body>
+  </html>
+  ```
+
+  Here, the browser will request the file `my.css` from the server, and use its content to provide the CSS for the page. You can specify multiple files if needed; use one `link` tag for each CSS file.  
+
 - Other Options for Adding CSS
   - Other options for referencing CSS include using internal and inline styles. You may come across these options in the wild, but they are generally frowned upon, as they make updating websites cumbersome and unwieldy.
 
