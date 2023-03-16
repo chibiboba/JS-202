@@ -105,7 +105,7 @@ Anchor Link
   <a href="http://shayhowe.com/">Shay Howe</a>
   ```
 
-- Note: when defining attribute for an element don't "close the first tag." 
+- Note: when defining attribute for an element don't "close the first tag" right away.  
 
 ##### Classes
 
@@ -555,6 +555,7 @@ Here is an example of HTML for all the different heading levels and the resultin
 | b       | Stylistically offset text, such as keywords. Example: ES6 adds the keywords **const** and **let**. |
 | i       | Alternate voice text. Example: I said "Hello." She said *"Goodbye."* |
 
+- Note: all of the above are semantic elements.
 - Before HTML5, the `b` and `i` elements were non-semantic elements that provided boldface and italic text, respectively. As of HTML5, `b` and `i` are semantic elements, and the meaning has changed. 
   - If you intend to use boldface for important text, use `<strong>` instead of `<b>`
   - if you wish to use italics for emphasis, use `<em>` instead of `<i>`.
@@ -893,16 +894,6 @@ Once again, in this lesson we covered the following:
 
 Hopefully you’re starting to feel pretty good about HTML. There is still quite a bit to learn, but the foundation is in place. Next up, we’ll take a deeper look into CSS.
 
-# Applying CSS
-
-- There are three main ways to use CSS in a web page: inline, internal, and external:
-
-  - **Inline** CSS uses the `style` attribute on individual HTML tags.
-
-  - **Internal** CSS uses the `style` element to store all of the CSS in one place in the file.
-
-  - **External** CSS stores the CSS in a file that is separate from the HTML file.
-
 # Common CSS Terms
 
 ### Summary
@@ -1012,6 +1003,11 @@ p {
 }
 ```
 
+- `text-align` property align text: `left`, `right`, `center`, and `justified` are the main alignment values.
+  - [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align): The **`text-align`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the horizontal alignment of the inline-level content inside a block element or table-cell box. This means it works like [`vertical-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align) but in the horizontal direction.
+  - For example `text-align: center`: the inline contents are **center-justified** within the line box. 
+- `background-color` property
+
 ### Values
 
 - A value determines the behavior of that property. 
@@ -1028,14 +1024,31 @@ p {
 
 # Referencing CSS
 
+There are three main ways to use CSS in a web page: inline, internal, and external:
+
+- **Inline** CSS uses the `style` attribute on individual HTML tags.
+
+- **Internal** CSS uses the `style` element to store all of the CSS in one place in the file.
+
+- **External** CSS stores the CSS in a file that is separate from the HTML file.
+
 ### Inline CSS
 
-- Adding a `style` attribute applies some CSS styling to the single element identified by the tag. 
-  - However, defining styles one at a time is tedious, error-prone, and difficult maintenance, and it mixes the presentation information with the content. Internal and external CSS are better ways to handle styling
-  - You will see inline styles in production code sometimes, but principally in conjunction with dynamically generated web pages.
+- Adding a `style` attribute applies some CSS styling to the single HTML element identified by the tag. 
+  
+  - Chatgpt: It allows you to specify styles for an individual element directly within the element itself, rather than in a separate CSS file or in the `head` section of the HTML document.
+  - However, defining styles one at a time is tedious, error-prone, and difficult maintenance, and it mixes the presentation information with the content. You will see inline styles in production code sometimes, but principally in conjunction with dynamically generated web pages.
+  - Internal and external CSS are better ways to handle styling. 
+  
 - The `style` attribute lists all the CSS properties you want to use together as a single string. 
   - We use a colon (`:`) to separate each property name from its associated value; we separate the property name/value pairs from each other with a semicolon (`;`). 
   - The whitespace after each colon and semicolon is optional but recommended for readability.
+
+- Example
+
+  ```html
+  <strong style="color: blue; text-decoration: underline;">HTML</strong>
+  ```
 
 ### Internal CSS
 
@@ -1070,7 +1083,18 @@ p {
     - In this case, the `color` property sets the text color, while the `text-decoration` property tells the browser to underline the text. Colons (`:`) separate each property name ( `color`) from its value  `blue`), while semi-colons (`;`) mark the end of each property/value pair. 
     - Most developers include 2-4 spaces of indentation within the braces.
 
-We can apply styles to other elements. All we need do is specify the appropriate tag name in the selector. For instance, we can make `h1` header orange and the `em` elements red with this code:
+- Use HTML tags semantically - each tag name should describe the type of information you intend to display. 
+
+  - A header needs an `h1`, `h2`, etc. tag. A paragraph needs a `p` tag. A link needs an `a` tag. Don't use a `p` tag to render a small header; use one of the `h#` headers instead, and adjust the appearance as needed with CSS.
+  - For example 
+
+  ```css
+  p {
+    font-size: 24px; /* the font is 24 pixels high */
+  }
+  ```
+
+  
 
 ### External CSS
 
@@ -1143,7 +1167,7 @@ Let’s look under the hood of CSS to see exactly what is going on.
 
 We’ll begin breaking down exactly how styles are rendered by looking at what is known as the cascade and studying a few examples of the cascade in action. 
 
-- Within CSS, all styles **cascade** from the top of a style sheet to the bottom, allowing different styles to be **added or overwritten** as the style sheet progresses.
+- Within CSS, all styles **cascade** from the top of a style sheet to the bottom, allowing different styles to be **added or overwritten** as the style sheet progresses. Styles later in the cascade takes precedence over earlier ones.
 
 - For example, 
 
