@@ -1053,6 +1053,8 @@ the HTML it selects
   </style>
   ```
 
+- The order of the values for each property in the **`font` shorthand property** is flexible, but it is important to specify the `font-size` and `font-family` values, as they are required. Additionally, it is common to include a fallback font family that comes after the preferred font family in case the preferred font is not available.
+
 Example properties
 
 - In the following code, we are defining the `color` and `font-size` properties to be applied to all `<p>` elements.
