@@ -1440,6 +1440,19 @@ CSS
 
 ------
 
+Example: combining link and list selectors
+
+```css
+li a {
+  color: purple;
+}
+```
+
+- Browsers give links a different color in their default settings, so changing the text color elsewhere doesn't affect the link color. 
+- Hovered and active links still turn a different color when you do this, but that's what you want, probably.
+
+------
+
 ##### Spaces Within Selectors
 
 Within the previous combined selector, `.hotdog p.mustard`, there is a space between the `hotdog` class selector and the paragraph type selector but not between the paragraph type selector and the `mustard` class selector. The use, and omission, of spaces makes a large difference in selectors.
