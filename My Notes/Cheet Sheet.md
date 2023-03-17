@@ -1427,9 +1427,10 @@ CSS
 ```
 
 - When selectors are combined they should be **read from right to left**. 
+  - In general, it is best to write CSS selectors from right to left, **starting with the most specific selector and ending with the least specific one**.
   - The selector farthest to the right, directly before the opening curly bracket, is known as the **key selector**. The key selector identifies exactly which element the styles will be applied to. 
   - Any selector to the left of the key selector will serve as a **prequalifier**.
-
+  
 - The first combined selector above, `.hotdog p`, includes two selectors: a class and a type selector. These two selectors are separated by a single space. 
   - The **key selector** (`<p>`)is a type selector targeting paragraph elements. 
   - And because this type selector is **prequalified** with a class selector of `hotdog`, the full combined selector will only select paragraph elements that reside within an element with a class attribute value of `hotdog`.
@@ -1450,6 +1451,7 @@ li a {
 
 - Browsers give links a different color in their default settings, so changing the text color elsewhere doesn't affect the link color. 
 - Hovered and active links still turn a different color when you do this, but that's what you want, probably.
+- On the other hand, browsers don't change the default `font-family` property for links, so when we change it for `li`, the links inside each list item inherit the `font-family`.
 
 ------
 
