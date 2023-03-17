@@ -24,7 +24,7 @@ Of lesser importance, but still important enough to study, pay attention to the 
 
 # Common HTML Terms
 
-### Elements
+## Elements
 
 - **Elements** are designators that define the structure and content of objects within a page. 
   - Elements are identified by the use of less-than and greater-than angle brackets, `< >`, surrounding the element name. Thus, an element will look like the following: `<a>`
@@ -32,32 +32,40 @@ Of lesser importance, but still important enough to study, pay attention to the 
   - A self-closing tag
   - An opening tag and its corresponding closing tab, including everything between the two. The content may need nested elements.
 
-Common elements: 
+##### Common elements
+
 - **Paragraphs** are the primary organizational construct for text on web pages. (identified as the `<p>` element):
   - The `p` element provides the ability to define paragraphs; it wraps a single paragraph and displays it in a separate area below the previous content, along with a bit of vertical spacing above and below it for visual distinctiveness:
 - **Anchors** represent links to other pages. `<a>`
 - **Headings** occur on most pages. (identified as `<h1>` through `<h6>` elements)
 - The list goes on to include the `<a>`, `<div>`, `<span>`, `<strong>`, and `<em>` elements, and many more. `<a>`
 
-##### Void element
+##### Other Elements
 
-Empty/ void element
+- Void element
 
-Chatgpt: Anchor elements in HTML are defined using the `<a>` tag, which is an example of an empty element or a void element. This means that the `<a>` tag doesn't have a closing tag, and it doesn't contain any content or child elements.
+  - Empty/ void element
 
-In HTML, the `>` character is used to denote the end of a tag, so it's not necessary to include it after the opening `<a>` tag. For example, the correct syntax for creating a hyperlink using an anchor element is:
+  - Chatgpt: Anchor elements in HTML are defined using the `<a>` tag, which is an example of an empty element or a void element. This means that the `<a>` tag doesn't have a closing tag, and it doesn't contain any content or child elements.
+
+  - In HTML, the `>` character is used to denote the end of a tag, so it's not necessary to include it after the opening `<a>` tag. For example, the correct syntax for creating a hyperlink using an anchor element is:
 
 ```html
 <a href="something.com">Click here</a>
 ```
 
-### Tags
+- `<ol`: ordered list element
+  - The [**`<ol>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol) HTML element represents an ordered list of items — typically rendered as a numbered list.
+
+<img src="C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230316171019050.png" alt="image-20230316171019050" style="zoom:50%;" />
+
+## Tags
 
 - An HTML tag begins with `<` and ends with `>` and contains an element name inside the angle brackets.
 
 - The use of less-than and greater-than angle brackets surrounding an element creates what is known as a *tag*. Tags most commonly occur in pairs of opening and closing tags.
 
-There are 3 types of tags
+##### There are 3 types of tags
 
 - An **opening tag** marks the beginning of an element. It consists of a less-than sign followed by an element’s name, and then ends with a greater-than sign;
   - for example, `<p>` or `<a>` 
@@ -83,7 +91,7 @@ Anchor Link
   <a>...</a>
   ```
 
-### Attributes
+## Attributes
 
 - **Attributes** are properties used to provide additional information about an element. They are ways to identify certain elements. 
 
@@ -327,6 +335,8 @@ Debugging difficulty
 - All HTML documents have a required structure that includes the following declaration and elements: `<!DOCTYPE html>`, `<html>`, `<head>`, and `<body>`.
 
 ### HTML Skeleton
+
+- In vs code, type !, then hit `tab` key for a skeleton. 
 
 skeleton.html
 
