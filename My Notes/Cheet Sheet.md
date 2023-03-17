@@ -74,6 +74,17 @@ Of lesser importance, but still important enough to study, pay attention to the 
 
 <img src="C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230316171019050.png" alt="image-20230316171019050" style="zoom:50%;" />
 
+- `<ul>` unordered list element
+
+  No bullets
+
+  ```css
+  ul {
+  	list-style: none;
+  	padding-left: 0;
+  }
+  ```
+
 ## Tags
 
 - An HTML tag begins with `<` and ends with `>` and contains an element name inside the angle brackets.
@@ -233,6 +244,10 @@ You can now give the headline some styling that is unique to it:
 - Use semantic ID names; they should provide meaning. For instance, use an ID name of `headline` rather than `big-font`.
 - Use CSS ID selectors (`#idname`) to select elements by ID, e.g., `#headline`.
 - ID selectors have higher CSS specificity than class selectors (an ID selector can override a class selector). 
+
+<u>ID vs Class attribute</u>
+
+- In general, you should use the `class` attribute when you want to group elements together based on their shared characteristics or styles, and use the `id` attribute when you want to target a specific element for styling or manipulation with JavaScript.
 
 <u>Debugging: ID duplication</u>
 
