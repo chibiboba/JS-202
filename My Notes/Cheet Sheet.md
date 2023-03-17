@@ -1,3 +1,17 @@
+# Note
+
+- learn about CSS inheritance when you're ready to learn more.
+
+  - CSS inheritance isn't like class inheritance in an OOP language like Ruby, and, for the most part, is beyond the scope of this course. Don't let the vocabulary confuse you, though. Make a note to read about CSS inheritance when you're ready to learn more.
+
+- Browsers use a serif typeface by default. Serif fonts have flared end-points on most characters; sans-serif do not:
+
+  ![Serif and Non-Serif Fonts](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_1/serifs-01.png)
+
+  The font you choose is mainly a matter of preference, or rather, the preferences of your designer. Mainstream use today seems to favor serif fonts for headlines and other attention-grabbing items and sans-serif for paragraph-based text.
+
+  [This short but helpful guide](http://web.mit.edu/jmorzins/www/fonts.html) includes information on Web-safe fonts and displays examples of each. You don't have to read it right now, but bookmark it for reference.
+
 # Topics
 
 The primary takeaways from the first three sections of the tutorial include:
@@ -31,6 +45,7 @@ Of lesser importance, but still important enough to study, pay attention to the 
 - An HTML element includes either:
   - A self-closing tag
   - An opening tag and its corresponding closing tab, including everything between the two. The content may need nested elements.
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Element
 
 ##### Common elements
 
@@ -386,6 +401,7 @@ Side notes
 - All of the visible content within the web page will fall within the `<body>` element. 
   - The `body` element is the content area of the page. The browser renders the HTML inside the `body` in the browser content area.
   - Most editors have a shortcut to display a file in a browser, and most browsers provide a File, Open File menu item that does the same.
+- `<article>` `<section>` `<header>` should all be here
 
 ### Indentation
 
@@ -491,6 +507,7 @@ We'll talk a bit more about HTML style later in this lesson.
   - We’ll most commonly see block-level elements used for larger pieces of content (to create larger structures like paragraphs, headings, and lists.)
 
 - **Inline-level elements do not begin on a new line.** 
+  - **Spacing**: Remember that with in-line elements just like `<strong>` and `<a>` does, they respects white spaces around the character and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character.
   - They fall into the normal flow of a document, lining up one after the other, and only maintain the width of their content. Inline-level elements may be nested inside one another; however, they cannot wrap block-level elements. 
   - Inline-level elements are typically used to add emphasis or to provide additional information within a sentence or paragraph.
   - We’ll usually see inline-level elements with smaller pieces of content, such as a few words.
@@ -501,6 +518,7 @@ We'll talk a bit more about HTML style later in this lesson.
     - `<strong>` - strong importance
     - `<img>` - image
     - `<input>` - input field
+  
 
 
 #### Comments within HTML & CSS
@@ -605,6 +623,8 @@ Here are the two HTML options for creating bold text in action
   - The other option, the `<i>` element, is used semantically to convey text in an *a**lternative voice or tone***, almost as if it were placed in quotation marks. 
 
 - Again, we will need to gauge the significance of the text we want to italicize and choose an element accordingly.
+
+- Note: (chatgpt) Both "font-style: italic" and "<em>" in HTML can be used to indicate emphasized text and display it in italics. However, it is generally recommended to use the semantic HTML tag "<em>" to indicate emphasis, as it carries meaning beyond just changing the font style. Using semantic HTML helps improve the accessibility and structure of the document for both humans and machines.
 
 Here’s the HTML code for italicizing:
 
@@ -919,7 +939,7 @@ Hopefully you’re starting to feel pretty good about HTML. There is still quite
 
 ![CSS Syntax Outline](https://learn.shayhowe.com/assets/images/courses/html-css/building-your-first-web-page/css-syntax-outline.png)
 
-### Selectors
+## Selectors
 
 - As elements are added to a web page, they may be styled using CSS. A **selector** is used to target one or more HTML elements to apply styles to. (Styles such as color, size, or position). 
   - Selectors may include a combination of different qualifiers to select unique elements, all depending on how specific we wish to be. 
@@ -939,6 +959,9 @@ p { ... }
 #### Type Selectors
 
 - Type selectors target elements by their element type. 
+
+Example
+
 - For example, should we wish to target all division elements, `<div>`, we would use a type selector of `div`. 
 
 - The following code shows a type selector for division elements as well as the corresponding HTML it selects.
@@ -955,6 +978,8 @@ The HTMl it selects.
 <div>...</div>          
 <div>...</div>
 ```
+
+- We use the `body` selector to apply the CSS to most elements on the page.
 
 #### Class Selectors
 
@@ -1001,17 +1026,35 @@ the HTML it selects
 <div id="shayhowe">...</div>
 ```
 
-### Additional Selectors
+#### Additional Selectors
 
 - Selectors are extremely powerful, and the selectors outlined here are the most common selectors we’ll come across. These selectors are also only the beginning. Many more [advanced selectors](https://learn.shayhowe.com/advanced-html-css/complex-selectors/) exist and are readily available. When you feel comfortable with these selectors, don’t be afraid to look into some of the more advanced selectors.
 
 - All right, everything is starting to come together. We add elements to a page inside our HTML, and we can then select those elements and apply styles to them using CSS. Now let’s connect the dots between our HTML and CSS, and get these two languages working together.
 
-### Properties
+## Properties
 
 - Once an element is selected, a **property** determines the styles that will be applied to that element. 
   - Property names fall after a selector, within the curly brackets, `{}`, and immediately preceding a colon, `:`. 
   - There are numerous properties we can use, such as `background`, `color`, `font-size`, `height`, and `width`, and new properties are often added. 
+
+[Shorthand Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties)
+
+- ```html
+  <style>
+  	body {
+  		/* font-size: 20px;
+  		font-family: Tahoma, "Trebuchet MS", Verdana, sans-serif;
+  		font-style: italic;
+      font-weight: bold;
+      line-height: 2.5; */
+      font: italic bold 20px/2.5 Verdana, "TrebuchetMS", Tahoma, sans-serif;
+  	}
+  </style>
+  ```
+
+Example properties
+
 - In the following code, we are defining the `color` and `font-size` properties to be applied to all `<p>` elements.
 
 ```cs
@@ -1023,10 +1066,22 @@ p {
 
 - `text-align` property align text: `left`, `right`, `center`, and `justified` are the main alignment values.
   - [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align): The **`text-align`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the horizontal alignment of the inline-level content inside a block element or table-cell box. This means it works like [`vertical-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align) but in the horizontal direction.
-  - For example `text-align: center`: the inline contents are **center-justified** within the line box. 
-- `background-color` property
+  - For example `text-align: center`: the inline contents are **center-justified** within the line box.
+  - `justify` :The inline contents are justified. Text should be spaced to line up its left and right edges to the left and right edges of the line box, except for the last line.
+- `background-color` property. 
+  - **Most** elements use a transparent background color by default, so the background color for the body applies to most page elements. Here, everything uses the same background.
+- **foreground color**: the color of text. 
+  - The **`color`** CSS property sets the foreground [color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) of an element's text and [text decorations](https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration), and sets the [`currentcolor`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword) value. 
+  - The `color` property is **inheritable**, which means that applying `color` to an element also applies it to every descendant of that element. There are exceptions, though. For instance, your links didn't inherit the text color. This seeming failure occurs since the browser sets separate colors for links, which prevents them from inheriting the primary text color.
+- [`font-family`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family)
+  - The **`font-family`** CSS property specifies a prioritized **list** of one or more font family names and/or generic family names for the selected element.
+  - The best place to put the `font-family` property is in a CSS selector that applies to the `<body>` tag.
+  - The font you choose is mainly a matter of preference, or rather, the preferences of your designer. Mainstream use today seems to favor serif fonts for headlines and other attention-grabbing items and sans-serif for paragraph-based text. --> read [Web-safe](http://web.mit.edu/jmorzins/www/fonts.html) fonts.
+- font-style: italics
+- The **`margin`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) shorthand property sets the [margin area](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model#margin_area) on all four sides of an element.(in px)
+  - The **`margin-bottom`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the [margin area](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model#margin_area) on the bottom of an element. A positive value places it farther from its neighbors, while a negative value places it closer.
 
-### Values
+## Values
 
 - A value determines the behavior of that property. 
   - Values can be identified as the text between the colon, `:`, and semicolon, `;`.
@@ -1050,7 +1105,7 @@ There are three main ways to use CSS in a web page: inline, internal, and extern
 
 - **External** CSS stores the CSS in a file that is separate from the HTML file.
 
-### Inline CSS
+## Inline CSS
 
 - Adding a `style` attribute applies some CSS styling to the single HTML element identified by the tag. 
   
@@ -1068,7 +1123,7 @@ There are three main ways to use CSS in a web page: inline, internal, and extern
   <strong style="color: blue; text-decoration: underline;">HTML</strong>
   ```
 
-### Internal CSS
+## Internal CSS
 
 - Instead of scattering your style information all over the page with `style` attributes, you can list it all in the `style` element, which belongs inside the `head` element. 
 
@@ -1122,7 +1177,7 @@ There are three main ways to use CSS in a web page: inline, internal, and extern
 
   
 
-### External CSS
+## External CSS
 
 - In order to get our CSS talking to our HTML, we need to reference our CSS file within our HTML. 
 
@@ -1411,17 +1466,23 @@ In general we want to always keep an eye on the specificity weights of our selec
 
 ## Layering Styles with Multiple Classes
 
+- We should layer cascading downwards, with the upper layers being more general.
+  - This means that styles that apply to all elements should be defined first, followed by more specific styles for individual elements or groups of elements. 
+
+------
+
 - One way to keep the specificity weights of our selectors low is to be as **modular** as possible, sharing similar styles from element to element. 
 
   - And one way to be as modular as possible is to layer on different styles by using multiple classes.
 
+
   - Elements within HTML can have **multiple class attribute values** so long as each value is **space separated**. 
+
   - With that, we can place certain styles on all elements of one sort while placing other styles only on specific elements of that sort.
 
 - **We can tie styles we want to continually reuse to one class and layer on additional styles from another class.**
   - Using multiple classes, we can layer on as many styles as we wish, keeping our code lean and our specificity weights low.
   - Chatgpt says it's better to layer classes than combine selectors.
-
 - Let’s take a look at buttons, for example. 
   - Say we want all of our buttons to have a font size of `16` pixels, but we want the background color of our buttons to vary depending on where the buttons are used. 
   - We can create a few classes and layer them on an element as necessary to apply the desired styles.
@@ -1460,7 +1521,7 @@ We’ve used a handful of common CSS property values already, such as the keywor
 
 Specifically, we’ll look at property values that relate to colors and length measurements.
 
-### Colors
+## Colors
 
 - All color values within CSS are defined on an sRGB (or standard red, green, and blue) color space. 
   - Colors within this space are formed by mixing red, green, and blue color channels together, mirroring the way that televisions and monitors generate all the different colors they display. 
@@ -1653,7 +1714,7 @@ Popularity
 - The HSL color value is the newest color value available within CSS. Due to its age and support within browsers, though, it isn’t as widely used as the other values.
 - For the time being, hexadecimal color values remain the most popular as they are widely supported; though when an alpha channel for transparency is needed, RGBa color values are preferred. These preferences may change in the future, but for now we’ll use hexadecimal and RGBa color values.
 
-### Lengths
+## Lengths
 
 Length values within CSS are similar to colors in that there are a handful of different types of values for [length](https://developer.mozilla.org/en-US/docs/Web/CSS/length), all of which serve distinct purposes. Length values come in two different forms, absolute and relative, each of which uses different units of measurement.
 
@@ -1721,6 +1782,27 @@ The em unit is also a very popular relative value.
 - The em unit is often used for styling text, including font sizes, as well as spacing around text, including margins and paddings. We’ll explore text a bit more in Lesson 6, “[Working with Typography](https://learn.shayhowe.com/html-css/working-with-typography/).”
 
 There are a lot more absolute and relative units of measurement than those mentioned here. However, these three—pixels, percentages, and em units—are the most popular and the ones we’re going to primarily use.
+
+# CSS to HTML
+
+```html
+<style>
+	body {
+    font-size: 20px;
+    font-family: Tahoma, "Trebuchet MS", Verdana, sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    line-height: 2.5;
+	}
+</style>
+```
+
+HTML version
+
+```html
+```
+
+
 
 ## Summary
 
