@@ -956,6 +956,8 @@ Hopefully you’re starting to feel pretty good about HTML. There is still quite
 
 ## Selectors
 
+- Practice: https://flukeout.github.io/
+  
 - As elements are added to a web page, they may be styled using CSS. A **selector** is used to target one or more HTML elements to apply styles to. (Styles such as color, size, or position). 
   - Selectors may include a combination of different qualifiers to select unique elements, all depending on how specific we wish to be. 
   - For example, we may want to select every paragraph on a page, or we may want to select only one specific paragraph on a page.
@@ -1044,8 +1046,14 @@ the HTML it selects
 #### Additional Selectors
 
 - Selectors are extremely powerful, and the selectors outlined here are the most common selectors we’ll come across. These selectors are also only the beginning. Many more [advanced selectors](https://learn.shayhowe.com/advanced-html-css/complex-selectors/) exist and are readily available. When you feel comfortable with these selectors, don’t be afraid to look into some of the more advanced selectors.
-
 - All right, everything is starting to come together. We add elements to a page inside our HTML, and we can then select those elements and apply styles to them using CSS. Now let’s connect the dots between our HTML and CSS, and get these two languages working together.
+
+#### Child Selectors
+
+| Example       | Classification        | Explanation                                                  |
+| :------------ | :-------------------- | :----------------------------------------------------------- |
+| `article h2`  | Descendant Selector   | Selects an element that resides anywhere within an identified ancestor element |
+| `article > p` | Direct Child Selector | Selects an element that resides immediately inside an identified parent element |
 
 - **Child Combinator** / **child selector**(`>`) is placed between two CSS selectors. It matches only those elements matched by the second selector that are direct children of elements matched by the first.
 
@@ -1069,24 +1077,26 @@ the HTML it selects
   - The last li element is not a direct child of the ol.
   - `ul li` tells the browser to select all `li` elements that are a **descendant** of a `ul`, no matter how deeply nested the `li` elements are. By changing that to `ul > li`, we tell the browser that we want direct children of `ul`; nothing else.
 
-- Adjacent sibling selector
+#### Sibling Selectors
 
+- Adjacent sibling selector
   - Elements that follow one another are called siblings. They're on the same level, or depth. The **adjacent sibling combinator** (`+`) separates two selectors and matches the second element only if it *immediately* follows the first element, and both are children of the same parent [`element`](https://developer.mozilla.org/en-US/docs/Web/API/Element).
 
 - Universal Selector
-
   - `A *` : all elements in A.
   - `*`
 
 - Comma Combinator. 
-
   - You can combine any selectors this way, and you can specify more than two.
   - p, .fun selects all p elements as well as all elements with class="fun"
 
 
 - General Sibling Selector `A ~ B`
-
   - You can select all siblings of an element that follow it. This is like the Adjacent Selector (A + B) except it gets all of the following elements instead of one.
+
+#### Pseudo-class
+
+- A **pseudo-class** is a keyword added to a selector that specifies a special state of the selected element(s). 
 
 - `:first-child`
 
@@ -1107,8 +1117,96 @@ the HTML it selects
     parent-element > :only-child
     ```
 
-- `:last-child`
+- `:last-child` pseudo-class
+
   - Select an element that is the last child element inside of another element.
+
+  - ```css
+    .table > #fancy > .small,
+    .table > .small:last-child {
+      /* CSS styles for small apple and pickle */
+    }
+    ```
+
+  - In this example, `.table` selects the `table` element, `> #fancy` selects the element with the ID `fancy` that is a direct child of the `table` element
+
+  - `> .small` selects any element with the class `small` that is a direct child of the element with the ID `fancy`, and `:last-child` selects the last child element with the class `small` that is a direct child of the `table` element.
+
+- Nth Child Pseudo-selector `:nth-child(A)`
+
+  - Selects the nth (Ex: 1st, 3rd, 12th etc.) child element in another element.
+
+  - :nth-child(8) selects every element that is the 8th child of another element.
+
+  - For example
+
+    ```css
+    .table > :nth-child(3)
+    ```
+
+    In this example, `.table` selects the `table` element, `> :nth-child(3)` selects the 3rd child element that is a direct child of the `table` element. The `:nth-child` pseudo-class selects elements based on their position among their siblings, with the specified value indicating the index of the child element to select.
+
+    Note that the `:nth-child` pseudo-class is 1-indexed, meaning that the first child has an index of 1, not 0. Also note that this selector would only select the 3rd plate element and not any other elements. If there are no 3rd plate elements, the selector would not select anything.
+
+- Nth Last Child Selector `:nth-last-child`
+
+  - Selects the children from the bottom of the parent. This is like nth-child, but counting from the back!
+  - :nth-last-child(2) selects all second-to-last child elements.
+
+- `:first-of-type` selector
+
+  - Selects the first element of that type within another element.
+
+- `nth-of-type` Selects a specific element based on its type and order in another element - or even or odd instances of that element.
+
+  - div:nth-of-type(2) selects the second instance of a div.
+  - .example:nth-of-type(odd) selects all odd instances of a the example class.
+
+- Nth-of-type Selector with Formula `:nth-of-type(An+B)`
+
+  - The nth-of-type formula selects every nth element, starting the count at a specific instance of that element.
+  - For example: span:nth-of-type(6n+2) selects every 6th instance of a span, starting from (and including) the second instance.
+
+- `only-of-type` Selects the only element of its type within another element.
+
+- `last-of-type` Selects each last element of that type within another element. Remember type refers the kind of tag, so p and span are different types.
+- `empty` selector: Selects elements that don't have any other elements inside of them.
+- `Negation Pseudo-class`: Select all elements that don't match the negation selector:not(X)
+  - You can use this to select all elements that do not match selector "X".
+
+#### Attribute Selector
+
+- Select all elements that have a specific attribute
+
+- `[attribute]`
+
+- Attributes appear inside the opening tag of an element, like this: span attribute="value". An attribute does not always have a value, it can be blank!
+
+- Examples
+
+  - [class] is not a specific attribute.
+
+  - a[href] selects all a elements that have a href="anything" attribute
+
+  - [type] selects all elements that have a type="anything". attribute
+
+- Combine the attribute selector with another selector (like the tag name selector) by adding it to the end.
+
+  - a[href] selects all a elements that have a href="anything" attribute.
+
+- Attribute Value Selector
+  - Select all elements that have a specific attribute value `[attribute = "value"]`
+  - Attribute selectors are case sensitive, each character must match exactly.
+  - input[type="checkbox"] selects all checkbox input elements.
+- Attribute starts with selector 
+  - `[attribute^="value"]`
+  - Select all elements with an attribute value that starts with specific characters
+- Attribute Ends with Selector 
+  - `[attribute$="value"]`
+  - Select all elements with an attribute value that ends with specific characters
+- Attribute Wildcard Selector
+  - `[attribute*="value"]`
+  - A useful selector if you can identify a common pattern in things like `class`, `href` or `src` attributes.
 
 ## Properties
 
@@ -1915,3 +2013,11 @@ To briefly recap, within this lesson we’ve discussed the following:
 - The different length values available to use within CSS, including pixels, percentages, and em units
 
 We still have a lot to cover, but the fundamentals are starting to fall into place. Within the next few lessons we’ll continue to dive in to CSS, and our website will really begin to take shape.
+
+# Using the Chrome Inspector
+
+- You'll sometimes want to determine what styles an element on a web page uses, and how it got those styles. The complex rules of the cascade, specificity, inheritance, and importance sometimes make this determination hard. In modern browsers, a tool called the **Inspector** provides you with all the information the browser has for each element. It lets you look at each element's current CSS settings, determine how it received those styles, and even permits changing their values temporarily.
+
+- The Inspector is part of a larger and more powerful tool often called the **Developer Tools**, such as that found in Google Chrome. Since we're using Chrome as our primary development browser, we'll take some time now to learn how to use these tools in Chrome.
+
+- Use Command-Option-I (on Macs) or Control-Shift-I (other systems).
