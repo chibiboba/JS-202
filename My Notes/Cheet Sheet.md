@@ -987,7 +987,7 @@ CSS
 div { ... }
 ```
 
-The HTMl it selects.
+The HTML it selects.
 
 ```html
 <div>...</div>          
@@ -1046,6 +1046,69 @@ the HTML it selects
 - Selectors are extremely powerful, and the selectors outlined here are the most common selectors we’ll come across. These selectors are also only the beginning. Many more [advanced selectors](https://learn.shayhowe.com/advanced-html-css/complex-selectors/) exist and are readily available. When you feel comfortable with these selectors, don’t be afraid to look into some of the more advanced selectors.
 
 - All right, everything is starting to come together. We add elements to a page inside our HTML, and we can then select those elements and apply styles to them using CSS. Now let’s connect the dots between our HTML and CSS, and get these two languages working together.
+
+- **Child Combinator** / **child selector**(`>`) is placed between two CSS selectors. It matches only those elements matched by the second selector that are direct children of elements matched by the first.
+
+  - Every element except the html element is a direct child of precisely one other element. For example:
+
+  ```html
+  <main>
+    <p>content 1<p>           <!-- direct child of `main` -->
+    <p>content 2<p>           <!-- direct child of `main` -->
+    <ol>                      <!-- direct child of `main` -->
+      <li>content 3</li>      <!-- direct child of `ol` -->
+      <li>                    <!-- direct child of `ol` -->
+        <ul>                  <!-- direct child of `li` -->
+          <li>content 4</li>  <!-- direct child of `ul` -->
+        </ul>
+      </li>
+    </ol>
+  </main>
+  ```
+
+  - The last li element is not a direct child of the ol.
+  - `ul li` tells the browser to select all `li` elements that are a **descendant** of a `ul`, no matter how deeply nested the `li` elements are. By changing that to `ul > li`, we tell the browser that we want direct children of `ul`; nothing else.
+
+- Adjacent sibling selector
+
+  - Elements that follow one another are called siblings. They're on the same level, or depth. The **adjacent sibling combinator** (`+`) separates two selectors and matches the second element only if it *immediately* follows the first element, and both are children of the same parent [`element`](https://developer.mozilla.org/en-US/docs/Web/API/Element).
+
+- Universal Selector
+
+  - `A *` : all elements in A.
+  - `*`
+
+- Comma Combinator. 
+
+  - You can combine any selectors this way, and you can specify more than two.
+  - p, .fun selects all p elements as well as all elements with class="fun"
+
+
+- General Sibling Selector `A ~ B`
+
+  - You can select all siblings of an element that follow it. This is like the Adjacent Selector (A + B) except it gets all of the following elements instead of one.
+
+- `:first-child`
+
+  - The **`:first-child`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) [pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) represents the first element among a group of sibling elements.
+
+  - To select the first child element inside of another element using CSS, you can use the `:first-child` pseudo-class along with the parent element's selector. Here's an example:
+
+    ```css
+    cssCopy code.parent-element > :first-child {
+    }
+    ```
+
+- Only Child Pseudo-selector `:only-child`
+
+  - You can select any element that is the only element inside of another one.
+
+    ```css
+    parent-element > :only-child
+    ```
+
+- `:last-child`
+  - Select an element that is the last child element inside of another element.
 
 ## Properties
 
