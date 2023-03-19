@@ -2021,3 +2021,15 @@ We still have a lot to cover, but the fundamentals are starting to fall into pla
 - The Inspector is part of a larger and more powerful tool often called the **Developer Tools**, such as that found in Google Chrome. Since we're using Chrome as our primary development browser, we'll take some time now to learn how to use these tools in Chrome.
 
 - Use Command-Option-I (on Macs) or Control-Shift-I (other systems).
+
+Since the Developer Tools change often, we will refer you to the official documentation rather than try to teach you how to use it. Going directly to the source ensures that you're learning how to use the most recent version of the tools. Please take some time to read a small part of [the documentation](https://developers.google.com/web/tools/chrome-devtools/) now. There's a lot of material there; for now, you should read the [Get Started With Viewing And Changing The DOM](https://developer.chrome.com/docs/devtools/dom/), [View the properties of DOM objects](https://developer.chrome.com/docs/devtools/dom/properties/), and the [View and change CSS](https://developer.chrome.com/docs/devtools/css/) sections.
+
+The remaining documentation focuses primarily on matters you won't encounter until you start working with JavaScript and other tools, so it's way too soon to spend much time reading about the Tools.
+
+- The documentation talks about **DOM Nodes** or **nodes**. For the time being, you can assume that nodes are another way to refer to HTML elements. You'll learn more about nodes in another course.
+
+- At this stage, you should begin using the Inspector as you move through the course, primarily as a debugging and experimentation tool. For instance, if you are having problems with the box model (discussed in the next lesson), the Inspector is where you will find the information you need to diagnose the issue. You can even use it to experiment with several different settings to see if they fix the problem you're having. A great way to practice using the inspector is to find web pages that do something like what you want to do and see how they handled the problem.
+
+- If you wish to use another browser for development, it's your responsibility to learn how to use the corresponding tools in that browser. Using another browser platform shouldn't be difficult: most look and act similarly, so once you learn one, it's easy to learn another.
+
+Most developers prefer to undock the Tools or to dock them on the left or right side of the browser window. The default configuration docks the Tools on the bottom of the screen. See the [Chrome Devtools Documentation](https://developer.chrome.com/docs/devtools/) for information on how to configure the docking state of the Tools.
