@@ -631,6 +631,8 @@ Debugging difficulty
 
 ### HTML Skeleton
 
+- **boilerplate code** or just **boilerplate** are sections of code that are repeated in multiple places with little to no variation.
+- A **boilerplate** in HTML is a template you will add at the start of your project. You should add this boilerplate to all of your HTML pages.
 - In vs code, type !, then hit `tab` key for a skeleton. 
 
 skeleton.html
