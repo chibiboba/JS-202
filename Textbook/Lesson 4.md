@@ -1,3 +1,5 @@
+# Lesson 4 : Lists and Tables
+
 # Introduction
 
 People are list-makers. We all use lists to track the groceries we want to buy, the little jobs and errands we need to get done, who to invite to a party, and more. Even our writing system and mathematics got their starts because of our desire to write lists. It's no surprise then that HTML provides list capabilities, and that the web is awash in them. What's unusual about HTML lists is how much power and flexibility you can access with a handful of HTML tags and list-centric CSS properties.

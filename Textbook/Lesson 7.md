@@ -1,3 +1,5 @@
+# Lesson 7: Design Files
+
 # Introduction
 
 This final lesson discusses the process of converting a design to a finished web page. We also cover CSS resets and watch a video that may help you improve your HTML and CSS by using semantic markup and roles.

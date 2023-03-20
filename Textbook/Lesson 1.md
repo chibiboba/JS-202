@@ -1,4 +1,4 @@
-# Lesson 1
+# Lesson 1 Your First Web Pages
 
 # Welcome
 
@@ -2468,8 +2468,6 @@ We have some other rules you may want to consider.
 
 - An exception to the above rule occurs when using **fallbacks**. To support older browsers, CSS developers must sometimes provide two or more different values for a property; one that applies to contemporary browsers, and another for older browsers. You can list fallbacks on the same line to show when you are using one:
 
-  Copy Code
-
   ```css
   p {
     background-color: yellow;
@@ -2477,7 +2475,7 @@ We have some other rules you may want to consider.
     width: 50%; width: 50vw; /* fallback to 50% if 50vw not recognized */
   }
   ```
-
+  
 - Indent property names and values by two spaces, four spaces, or hard tabs. (Be consistent.)
 
   Copy Code

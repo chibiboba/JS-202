@@ -1,6 +1,63 @@
-# Todo
+# References
+
+[HTML5 Element FLowchart](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://html5doctor.com/downloads/h5d-sectioning-flowchart.pdf)
+
+[HTML Validator](https://validator.w3.org/#validate_by_input)
+
+[CSS Validator](https://jigsaw.w3.org/css-validator/)
+
+[HTML Standard](https://html.spec.whatwg.org/multipage/)
+
+[Dom Standard](https://dom.spec.whatwg.org/)
+
+[Web-safe fonts](http://web.mit.edu/jmorzins/www/fonts.html) 
+
+# Extra to read 
+
+- The article about selectors https://learn.shayhowe.com/advanced-html-css/complex-selectors/
+
+- learn about CSS inheritance when you're ready to learn more.
+
+  - CSS inheritance isn't like class inheritance in an OOP language like Ruby, and, for the most part, is beyond the scope of this course. Don't let the vocabulary confuse you, though. Make a note to read about CSS inheritance when you're ready to learn more.
+
+- Browsers use a serif typeface by default. Serif fonts have flared end-points on most characters; sans-serif do not:
+
+  ![Serif and Non-Serif Fonts](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_1/serifs-01.png)
+
+  The font you choose is mainly a matter of preference, or rather, the preferences of your designer. Mainstream use today seems to favor serif fonts for headlines and other attention-grabbing items and sans-serif for paragraph-based text.
+
+  [This short but helpful guide](http://web.mit.edu/jmorzins/www/fonts.html) includes information on Web-safe fonts and displays examples of each. You don't have to read it right now, but bookmark it for reference.
+
+# HTML and CSS Validators
+
+Always check your HTML with [W3C's HTML Validator](https://validator.w3.org/#validate_by_input). The validator ensures that your HTML is valid and helps catch potential issues before they become mystifying bugs. You can tell W3C to link directly to a page if you have it online, upload the HTML file from your local filesystem, or copy and paste the HTML to the direct input tab. Most students find that copy and paste is a good solution for this course.
+
+Validate your HTML often:
+
+- after the first draft of your HTML
+- after any significant changes to your HTML
+- when you're having problems with the way your page renders
+- before submitting your HTML for a code review
+- before deploying your HTML
+
+[W3C's CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) provides similar functionality for validating CSS. Check your CSS when you validate your HTML, and also when you make significant changes to your CSS.
+
+Don't underestimate the value of validation. It may seem like a pain at times, but validation **will** save you much grief. Small errors in your HTML and CSS can cause confusing and subtle bugs; the validators help you find and fix problems before they become bugs.
+
+# Linters
+
+- **Linters** check computer code for errors, misuse, and style issues. Unlike the W3C validators, linters look at style and usage rather than conformance to standards. The validators find uses of deprecated elements, poor element nesting, and non-standard attributes and properties; linters detect poor indentation and formatting as well as failures to follow best practices.
+
+- You can find linters for most development languages, and HTML is no exception. 
+
+- CSS also has linters, though good ones are a bit difficult to find. Unfortunately, we are no longer able to find one we like. If you find one you like, suggest it via the Feedback button!
+
+CSS liter
 
 - download stylelint locally `npm install stylelint --save-dev`
+
+HTML linter
+
 - install eslint with HTML lint plugin (for git bash)
 
 ```yml
@@ -203,36 +260,6 @@ extends:
   - plugin:html/recommended
 ```
 
-
-
-# References
-
-[HTML5 Element FLowchart](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://html5doctor.com/downloads/h5d-sectioning-flowchart.pdf)
-
-[HTML Validator](https://validator.w3.org/#validate_by_input)
-
-[CSS Validator](https://jigsaw.w3.org/css-validator/)
-
-[HTML Standard](https://html.spec.whatwg.org/multipage/)
-
-[Dom Standard](https://dom.spec.whatwg.org/)
-
-[This short but helpful guide](http://web.mit.edu/jmorzins/www/fonts.html) includes information on Web-safe fonts and displays examples of each. You don't have to read it right now, but bookmark it for reference.
-
-# Note
-
-- learn about CSS inheritance when you're ready to learn more.
-
-  - CSS inheritance isn't like class inheritance in an OOP language like Ruby, and, for the most part, is beyond the scope of this course. Don't let the vocabulary confuse you, though. Make a note to read about CSS inheritance when you're ready to learn more.
-
-- Browsers use a serif typeface by default. Serif fonts have flared end-points on most characters; sans-serif do not:
-
-  ![Serif and Non-Serif Fonts](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_1/serifs-01.png)
-
-  The font you choose is mainly a matter of preference, or rather, the preferences of your designer. Mainstream use today seems to favor serif fonts for headlines and other attention-grabbing items and sans-serif for paragraph-based text.
-
-  [This short but helpful guide](http://web.mit.edu/jmorzins/www/fonts.html) includes information on Web-safe fonts and displays examples of each. You don't have to read it right now, but bookmark it for reference.
-
 # Topics
 
 The primary takeaways from the first three sections of the tutorial include:
@@ -268,7 +295,7 @@ Of lesser importance, but still important enough to study, pay attention to the 
   - An opening tag and its corresponding closing tab, including everything between the two. The content may need nested elements.
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Element
 
-##### Common elements
+#### Common elements
 
 - **Paragraphs** are the primary organizational construct for text on web pages. (identified as the `<p>` element):
   - The `p` element provides the ability to define paragraphs; it wraps a single paragraph and displays it in a separate area below the previous content, along with a bit of vertical spacing above and below it for visual distinctiveness:
@@ -276,7 +303,12 @@ Of lesser importance, but still important enough to study, pay attention to the 
 - **Headings** occur on most pages. (identified as `<h1>` through `<h6>` elements)
 - The list goes on to include the `<a>`, `<div>`, `<span>`, `<strong>`, and `<em>` elements, and many more. `<a>`
 
-##### Other Elements
+#### Other Elements
+
+- The external style sheet `stylesheet` is identified with a `<link>` tag which tells the browser it should load CSS style information from an external file located on the server. The `link` tag belongs inside the `<head>...</head>` element.
+
+- Text-based elements & elements for building structure.
+- `<div` and `<span>` are generic containers.
 
 - Void element
 
@@ -312,7 +344,7 @@ Of lesser importance, but still important enough to study, pay attention to the 
 
 - The use of less-than and greater-than angle brackets surrounding an element creates what is known as a *tag*. Tags most commonly occur in pairs of opening and closing tags.
 
-##### There are 3 types of tags
+#### There are 3 types of tags
 
 - An **opening tag** marks the beginning of an element. It consists of a less-than sign followed by an element’s name, and then ends with a greater-than sign;
   - for example, `<p>` or `<a>` 
@@ -341,19 +373,18 @@ Anchor Link
 ## Attributes
 
 - **Attributes** are properties used to provide additional information about an element. They are ways to identify certain elements. 
-
 - Launch school focuses on these 3 attributes: 
 
   - `classes`
   - `id`
   - `name`
-  
 - The most common attributes include 
 
-  - `id` attribute, which identifies an element
-  - `class` attribute, which classifies an element
-  - `src` attribute, which specifies a source for embeddable content
-  - `href` attribute, which provides a hyperlink reference to a linked resource.
+  - `id` attribute: which identifies an element
+  - `class` attribute: which classifies an element
+  - `src` attribute: which specifies a source for embeddable content
+  - `href` attribute: which provides a hyperlink reference to a linked resource.
+  - `rel` attribute: defines the relationship between a linked resource and the current document. 
 
 - Attributes are defined within the opening tag, after an element’s name. Generally attributes include a name and a value. The format for these attributes consists of the attribute name followed by an equals sign and then a quoted attribute value. 
 
@@ -365,7 +396,7 @@ Anchor Link
 
 - Note: when defining attribute for an element don't "close the first tag" right away.  
 
-##### Classes
+#### Classes
 
 - The `class` attribute identifies a set of page elements that you wish to style consistently. 
   - The `class` attribute identifies a group of elements that have something in common. Elements that have the same name in the `class` attribute belong to the same class. Any tag can belong to one or more classes, and each class may apply to multiple tags.
@@ -434,7 +465,7 @@ Here you can see that each row has a background color: `lime` for most rows, and
 - Use CSS class selectors (`.classname`) to select elements by class, e.g., `.teaching-assistant`.
 - Class selectors have lower CSS specificity than ID selectors, but higher than tag name selectors. Thus, the `.teaching-assistant` selector overrides the `tr` selector. See [Getting to Know CSS](https://learn.shayhowe.com/html-css/getting-to-know-css/#cascade).
 
-##### IDs
+#### IDs
 
 - The `id` attribute applies a unique identification string to a single element, such as a headline. 
 - `id` attributes **must be unique on the page**: no two elements can have an `id` attribute with the same value.
@@ -485,7 +516,7 @@ You can now give the headline some styling that is unique to it:
 - Some developers argue that you should never use ID selectors in your CSS, and there are good arguments for this. However, the arguments on the other side balance them out.
 - Feel free to use ID selectors here at Launch School. However, we recommend using them sparingly - that will help avoid specificity issues in your CSS.
 
-##### Names
+#### Names
 
 - The `name` attribute is that it ties **form** elements to data on the server - it typically doesn't play a role in styling. 
 - You can use the `[name="field-name"]` selector to select elements by name, but you should use a class or ID selector instead. 
@@ -537,7 +568,20 @@ Since the `for` attribute references an ID (as we'll see later), it's accepted p
 - Use descriptive `name` values, not semantic. For instance, use `name="last-name"` instead of `name="input-field"`.
 - Avoid trying to select elements in CSS by using the `name` attribute.
 
-### Anchor is Hyperlink
+#### Referencing css
+
+- `<link>` is used to specify the relationship between the current document and external resource, most commonly used to link to external stylesheets.
+
+  - elements work with the attributes `href` (the URL of the resource), `rel` (the relationship between the current document and the linked resource), and `type` (the MIME type of the linked resource).
+
+- `target` attribute: used when there are multiple possible targets for the ending resource, such as when the parent document is embedded within an HTML document.
+
+  | Value         | `_self` | `_parent` | `_top` | `_blank` | `<XML-Name>` |
+  | :------------ | ------------------------------------------------------ |
+  | Default value | `_self`                                                |
+  | Animatable    | Yes                                                    |
+
+#### Anchor is Hyperlink
 
 - HTML uses the term **anchor** to refer to hyperlinks, and it uses the `a` element to code anchors. The `a` element requires a URL for the link, and some content that the browser can display as a clickable item. The `<a>` tag uses the `href` attribute to designate the link URL, and the link description goes between the open and close tags:
 
@@ -609,8 +653,9 @@ skeleton.html
 
 `<!DOCTYPE html>`
 
-- The document type declaration, or `<!DOCTYPE html>`, informs web browsers which version of HTML is being used and is placed at the very beginning of the HTML document. 
-- This is a **Document Type Definition**, aka, **DTD**, or **DOCTYPE**. Oficially the DOCTYPE isn't part of HTML; it isn't a tag or element. It's a message that tells browser what specific markup language to expect -- for example, XML.
+- The document type declaration, or `<!DOCTYPE html>`, informs web browsers which version of HTML is being used and is placed at the very beginning of the HTML document.
+- Requirement: It is required at the very beginning of an html file, otherwise the browser won't see the file as a doctype. 
+- This is a **Document Type Definition**, aka, **DTD**, or **DOCTYPE**. Officially the DOCTYPE isn't part of HTML so it isn't a tag or element. It's a message that tells browser what specific markup language to expect -- for example, XML.
 - Because we’ll be using the latest version of HTML, our document type declaration is simply `<!DOCTYPE html>`, which uses HTML5. We will use this version the most often unless we're writing for older browsers or an XML or XHTML application.
 
 Side notes
@@ -631,6 +676,7 @@ Side notes
   - Here, the `title` gives the page a title, while `<meta charset="utf-8">` tells the browser to expect the UTF-8 character encoding (most web pages use this encoding). 
   - Most browsers display the title in the title bar or tab, so be sure you always provide a `title` element for a web page.
   - There may be links to any external files, or any other beneficial metadata.
+- Requirement: The standards allow the developer to omit the `<head>` and `<meta charset="utf-8">` elements, but you *should* use both as a matter of best practice.
 
 `<body>` element
 
@@ -1122,13 +1168,20 @@ Here’s the full breakdown:
 
 One feature available with hyperlinks is the ability to determine where a link opens when clicked. Typically, links open in the same window from which they are clicked; however, links may also be opened in new windows.
 
-- To trigger the action of opening a link in a new window, use the `target` attribute with a value of `_blank`. The `target` attribute determines exactly where the link will be displayed, and the `_blank` value specifies a new window.
+- `target` attribute: used when there are multiple possible targets for the ending resource, such as when the parent document is embedded within an HTML document.
 
-To open `http://shayhowe.com/` in a new window, the code would look like this:
+  - Value `_blank` means a new un-named window or tab is requested for the display of the linked content.
+  - For example this causes the link to open in a new tab or window.
 
-```html
-<a href="http://shayhowe.com/" target="_blank">Shay Howe</a>
-```
+  ```html
+  <a href="https://example.com" target="_blank">Example</a>
+  ```
+
+  - Where as this allows the browser to replace the current page with the linked page.
+
+  ```html
+  <a href="https://example.com">Example</a>
+  ```
 
 ### Linking to Parts of the Same Page
 
@@ -1264,10 +1317,9 @@ the HTML it selects
 <div id="shayhowe">...</div>
 ```
 
-#### Additional Selectors
+## Additional Selectors
 
 - Selectors are extremely powerful, and the selectors outlined here are the most common selectors we’ll come across. These selectors are also only the beginning. Many more [advanced selectors](https://learn.shayhowe.com/advanced-html-css/complex-selectors/) exist and are readily available. When you feel comfortable with these selectors, don’t be afraid to look into some of the more advanced selectors.
-- All right, everything is starting to come together. We add elements to a page inside our HTML, and we can then select those elements and apply styles to them using CSS. Now let’s connect the dots between our HTML and CSS, and get these two languages working together.
 
 #### Child Selectors
 
@@ -1276,9 +1328,9 @@ the HTML it selects
 | `article h2`  | Descendant Selector   | Selects an element that resides anywhere within an identified ancestor element |
 | `article > p` | Direct Child Selector | Selects an element that resides immediately inside an identified parent element |
 
-- **Child Combinator** / **child selector**(`>`) is placed between two CSS selectors. It matches only those elements matched by the second selector that are direct children of elements matched by the first.
+- **Child Combinator** / **child selector**(`>`) is placed between two CSS selectors. It matches only those elements matched by the second selector that are **direct children** of elements matched by the first.
 
-  - Every element except the html element is a direct child of precisely one other element. For example:
+  - Every element except the html element is a **direct child** of precisely one other element. For example:
 
   ```html
   <main>
@@ -1474,10 +1526,14 @@ There are three main ways to use CSS in a web page: inline, internal, and extern
 
 - Adding a `style` attribute applies some CSS styling to the single HTML element identified by the tag. 
   
+  - you can't use selectors with inline styles. 
+  
+- Drawbacks
+
   - Chatgpt: It allows you to specify styles for an individual element directly within the element itself, rather than in a separate CSS file or in the `head` section of the HTML document.
   - However, defining styles one at a time is tedious, error-prone, and difficult maintenance, and it mixes the presentation information with the content. You will see inline styles in production code sometimes, but principally in conjunction with dynamically generated web pages.
   - Internal and external CSS are better ways to handle styling. 
-  
+
 - The `style` attribute lists all the CSS properties you want to use together as a single string. 
   - We use a colon (`:`) to separate each property name from its associated value; we separate the property name/value pairs from each other with a semicolon (`;`). 
   - The whitespace after each colon and semicolon is optional but recommended for readability.
@@ -1548,17 +1604,21 @@ There are three main ways to use CSS in a web page: inline, internal, and extern
 
 - The best practice for referencing our CSS is to include all of our styles in a single **external style sheet**, which is referenced from within the `<head>` element of our HTML document.
 
-  - The external style sheet `stylesheet` is identified with a `<link>` tag which tells the browser it should load CSS style information from an external file located on the server. The `link` tag belongs inside the `<head>...</head>` element.
+- The `<link>` tag is used in the head section of an HTML document to link to external resources such as stylesheets, scripts, or icons. 
+
+  - It is an empty tag that doesn't have a closing tag, and it includes attributes such as 
+
+    - `href`: identify the URL of the resource.
+
+    - `rel`: identify the relationship between the current document and the linked resource.
+    - `type`: the MIME type of the linked resource.
+
   - Using a single external style sheet allows us to use the same styles across an entire website and quickly make changes sitewide.
 
 - External CSS is the preferred way to include CSS in most web pages because
 
   - It lets you share CSS between multiple pages, and makes maintenance of the CSS code separate from that of the HTML. Browsers can also cache external CSS files, which can reduce page load times. 
   - For most of this course, though, we'll stick with the internal technique; feel free to use external files if you wish.
-
-- The `<link>` tag is used in the head section of an HTML document to link to external resources such as stylesheets, scripts, or icons. 
-
-  - It is an empty tag that doesn't have a closing tag, and it includes attributes such as `href` (the URL of the resource), `rel` (the relationship between the current document and the linked resource), and `type` (the MIME type of the linked resource).
 
 - Example
 
@@ -1578,6 +1638,7 @@ There are three main ways to use CSS in a web page: inline, internal, and extern
   Here, the browser will request the file `my.css` from the server, and use its content to provide the CSS for the page. You can specify multiple files if needed; use one `link` tag for each CSS file.  
 
 - Other Options for Adding CSS
+
   - Other options for referencing CSS include using internal and inline styles. You may come across these options in the wild, but they are generally frowned upon, as they make updating websites cumbersome and unwieldy.
 
 <u>Create external CSS style sheet</u>
@@ -1683,6 +1744,10 @@ p {
 - Because the `green` background color declaration comes after the `orange` background color declaration, it will overrule the `orange` background, and, as before, our paragraphs will appear with a `green` background.
 
 - All styles will cascade from the top of our style sheet to the bottom of our style sheet. 
+
+## CSS Specificity
+
+- The order of the rules is significant but depends upon the **cascade, specificity, and inheritance rules**. 
 
 ## Calculating Specificity
 
@@ -2268,6 +2333,10 @@ We still have a lot to cover, but the fundamentals are starting to fall into pla
 https://developer.chrome.com/docs/devtools/dom/#scroll2
 
 - The **DOM ** is a tree of objects that represents the page's content.
+- How to determine font-size
+  - To determine this value with Chrome's Developer Tools, you must first locate the underlined element in the Elements tab. The easiest way to do this is to right-click on the desired text, then select Inspect. 
+  - Chrome will open the Elements tab of the inspector with the appropriate element selected on the left. If you look to the right under Styles, you'll see several rules, one of which (the `.xyz` rule) has an enabled font-size, and a value of 1.3rem. Since you want the size in pixels, you must look at the Computed sub-tab on the right side. There you will find that the font size is 26px.
+
 
 ## View Properties of DOM objects
 
@@ -2302,6 +2371,16 @@ https://developer.chrome.com/docs/devtools/dom/properties/
 https://developer.chrome.com/docs/devtools/css/
 
 - `.cls` is used for adding classes to the selected element.
+
+# HTML5 Syntax Rules
+
+- Correct nesting
+
+  ```html
+  b><i>Bold and Italic</i></b>i>
+  ```
+
+  
 
 # HTML and CSS Style Guide
 

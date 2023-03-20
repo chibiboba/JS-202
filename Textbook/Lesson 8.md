@@ -1,3 +1,5 @@
+# Lesson 8: Practice Projects
+
 # Introduction
 
 LS202 no longer has an assessment. However, you can still complete the project we used to give in the assessment, along with the practice project we used to prepare students for the assessment. Those projects are presented in this lesson.

@@ -1,3 +1,5 @@
+# Lesson 2: The Box Model
+
 # Introduction
 
 In this lesson, we'll discuss some fundamental CSS concepts, namely the different types of display objects, dimensions and spacing, and, most importantly, the Box Model. Without a solid understanding of these concepts, CSS may seem like a game of [Whac-A-Mole](https://en.wikipedia.org/wiki/Whac-A-Mole):

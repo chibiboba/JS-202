@@ -1,3 +1,5 @@
+# Lesson 6 : Advanced Layout
+
 # Introduction
 
 Thus far, we've stuck to the CSS Box Model and used it to get a little control over the page flow. We haven't worried much, though, about where the browser places content, other than using the `display` property to control whether two adjacent elements will appear on the same line. The material flows down the page naturally, left-to-right and top-to-bottom, with line breaks inserted where needed. This simple "mental model" of how browsers work is useful as you're starting out, but, sooner or later you will run into more complicated layouts.

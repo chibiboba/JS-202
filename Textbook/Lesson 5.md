@@ -1,3 +1,5 @@
+# Lesson 5: Forms
+
 # Introduction
 
 Forms are the principal way that users interact with Web applications. HTML5 provides more than a dozen different form-related tags and more than two dozen different input types. That's a lot of material to cover, but you don't need to memorize it all -- you can use forms effectively with about a half dozen tags and around a dozen data types. We'll briefly discuss (and use) the most common in this lesson; you can learn more by reading the [MDN HTML Forms Guide](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms).

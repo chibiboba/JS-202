@@ -1,3 +1,5 @@
+# Lesson 3 : Images
+
 # Introduction
 
 ## What to Focus On
