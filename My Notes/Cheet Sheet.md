@@ -1,3 +1,7 @@
+# Todo
+
+- download stylelint
+
 # Note
 
 - learn about CSS inheritance when you're ready to learn more.
@@ -2140,9 +2144,9 @@ https://developer.chrome.com/docs/devtools/css/
 
 - When using Flex or Grid (we'll talk about these later), consider placing the most significant content blocks near the top of the file, and the least important at the bottom.
 
-https://learn.shayhowe.com/html-css/writing-your-best-code/
-
 ## HTML Coding Practices
+
+https://learn.shayhowe.com/html-css/writing-your-best-code/
 
 The guidelines described here provide a brief introduction to HTML coding practices; this is by no means an exhaustive list.
 
@@ -2152,7 +2156,7 @@ The guidelines described here provide a brief introduction to HTML coding practi
 
 - We have to pay close attention when writing HTML and be sure to nest and close all elements correctly, to use IDs and classes appropriately, and to always validate our code.
 
-- The code that follows has multiple errors, including using the `intro` ID attribute value multiple times when it should be a unique value, closing the `<p>` and `<strong>` elements in the wrong order within the first paragraph, and not closing the `<p>` element at all in the second paragraph.
+The code that follows has multiple errors, including using the `intro` ID attribute value multiple times when it should be a unique value, closing the `<p>` and `<strong>` elements in the wrong order within the first paragraph, and not closing the `<p>` element at all in the second paragraph.
 
 Bad Code
 
@@ -2170,7 +2174,8 @@ Good code
 
 ### Make Use of Semantic Elements
 
-The library of elements in HTML is fairly large, with well over 100 elements available for use. Deciding which elements to use to describe different content may be difficult, but these elements are the backbone of semantics. We need to research and double-check our code to ensure we are using the proper semantic elements. Users will thank us in the long run for building a more accessible website, and your HTML will arguably be easier to style. If you are ever unsure of your code, find a friend to help out and perform routine code reviews.
+- The library of elements in HTML is fairly large, with well over 100 elements available for use. Deciding which elements to use to describe different content may be difficult, but these elements are the backbone of semantics. We need to research and double-check our code to ensure we are using the proper semantic elements. 
+- Users will thank us in the long run for building a more accessible website, and your HTML will arguably be easier to style. If you are ever unsure of your code, find a friend to help out and perform routine code reviews.
 
 Here the HTML doesn’t use the proper heading and paragraph elements; instead, it uses meaningless elements to style and group content.
 
@@ -2192,9 +2197,9 @@ Good Code
 
 ### Use the Proper Document Structure
 
-As previously mentioned, HTML is a forgiving language and, therefore, pages will render without the use of the `<!DOCTYPE html>` doctype or `<html>`, `<head>`, and `<body>` elements. Without a doctype and these structural elements, pages will not render properly in every browser.
+- As previously mentioned, HTML is a forgiving language and, therefore, pages will render without the use of the `<!DOCTYPE html>` doctype or `<html>`, `<head>`, and `<body>` elements. Without a doctype and these structural elements, pages will not render properly in every browser.
 
-We must always be sure to the use proper document structure, including the `<!DOCTYPE html>` doctype, and the `<html>`, `<head>`, and `<body>` elements. Doing so keeps our pages standards compliant and fully semantic, and helps guarantee they will be rendered as we wish.
+- We must always be sure to the use proper document structure, including the `<!DOCTYPE html>` doctype, and the `<html>`, `<head>`, and `<body>` elements. Doing so keeps our pages standards compliant and fully semantic, and helps guarantee they will be rendered as we wish.
 
 Bad Code
 
@@ -2262,7 +2267,8 @@ Good Code
 
 ### Use Practical ID & Class Values
 
-Creating ID and class values can be one of the more difficult parts of writing HTML. These values need to be practical, relating to the content itself, not the style of the content. Using a value of `red` to describe red text isn’t ideal, as it describes the presentation of the content. Should the style of the text ever need to be changed to blue, not only does the CSS have to be changed, but so does the HTML in every instance where the class `red` exists.
+- Creating ID and class values can be one of the more difficult parts of writing HTML. These values need to be practical, relating to the content itself, not the style of the content. 
+- Using a value of `red` to describe red text isn’t ideal, as it describes the presentation of the content. Should the style of the text ever need to be changed to blue, not only does the CSS have to be changed, but so does the HTML in every instance where the class `red` exists.
 
 The HTML here assumes that the alert message will be red. However, should the style of the alert change to orange the class name of `red` will no longer make sense and will likely cause confusion.
 
@@ -2280,9 +2286,9 @@ Good Code
 
 ### Use the Alternative Text Attribute on Images
 
-Images should always include the `alt` attribute. Screen readers and other accessibility software rely on the `alt` attribute to provide context for images.
+- Images should always include the `alt` attribute. Screen readers and other accessibility software rely on the `alt` attribute to provide context for images.
 
-The `alt` attribute value should be very descriptive of what the image contains. If the image doesn’t contain anything of relevance, the `alt` attribute should still be included; however, the value should be left blank so that screen readers will ignore it rather than read the name of the image file.
+- The `alt` attribute value should be very descriptive of what the image contains. If the image doesn’t contain anything of relevance, the `alt` attribute should still be included; however, the value should be left blank so that screen readers will ignore it rather than read the name of the image file.
 
 Additionally, if an image doesn’t have a meaningful value—perhaps it is part of the user interface, for example—it should be included as a CSS background image if at all possible, not as an `<img>` element.
 
@@ -2300,7 +2306,8 @@ Good Code
 
 ### Separate Content from Style
 
-Never, ever, use inline styles within HTML. Doing so creates pages that take longer to load, are difficult to maintain, and cause headaches for designers and developers. Instead, use external style sheets, using classes to target elements and apply styles as necessary.
+- Never, ever, use inline styles within HTML. Doing so creates pages that take longer to load, are difficult to maintain, and cause headaches for designers and developers. 
+- Instead, use external style sheets, using classes to target elements and apply styles as necessary.
 
 Here, any desired changes to styles within the bad code must be made in the HTML. Consequently, these styles cannot be reused, and the consistency of the styles will likely suffer.
 
@@ -2318,9 +2325,9 @@ Good Code
 
 ### Avoid a Case of “Divitis”
 
-When writing HTML, it is easy to get carried away adding a `<div>` element here and a `<div>` element there to build out any necessary styles. While this works, it can add quite a bit of bloat to a page, and before too long we’re not sure what each `<div>` element does.
+- When writing HTML, it is easy to get carried away adding a `<div>` element here and a `<div>` element there to build out any necessary styles. While this works, it can add quite a bit of bloat to a page, and before too long we’re not sure what each `<div>` element does.
 
-We need to do our best to keep our code lean and to reduce markup, tying multiple styles to a single element where possible. Additionally, we should use the HTML5 structural elements where suitable.
+- We need to do our best to keep our code lean and to reduce markup, tying multiple styles to a single element where possible. Additionally, we should use the HTML5 structural elements where suitable.
 
 Bad Code
 
@@ -2470,9 +2477,14 @@ Over time websites and code bases continue to evolve and grow, leaving behind qu
 
   We order our properties alphabetically to make them easy to find, but you don't have to.
 
-- The order of the rules is significant but depends upon the tricky cascade, specificity, and inheritance rules. List your selectors in functional groups. For instance, put all of the header-specific selectors together, all of the article-specific selectors, etc.--try to keep things grouped by function, and you will probably do fine. If one or more selectors don't seem to work, start looking at the cascade, specificity, and inheritance rules. Linters like stylelint can detect potential problems and save you a great deal of debugging time.
+- The order of the rules is significant but depends upon the tricky **cascade, specificity, and inheritance rules**. 
 
-- Avoid using tag selectors (`h1`, `p`, etc.) and ID selectors (`#title`) as much as possible. Note that the specificity rules give tag selectors the lowest priority and ID selectors the highest. Therefore, if you have the following code:
+  - List your selectors in functional groups. For instance, put all of the header-specific selectors together, all of the article-specific selectors, etc.--try to keep things grouped by function, and you will probably do fine. 
+  - If one or more selectors don't seem to work, start looking at the cascade, specificity, and inheritance rules. Linters like stylelint can detect potential problems and save you a great deal of debugging time.
+
+- Avoid using tag/type selectors (`h1`, `p`, etc.) and ID selectors (`#title`) as much as possible. Note that the specificity rules give tag selectors the lowest priority and ID selectors the highest. 
+
+  - Therefore, if you have the following code:
 
   ```html
   <h1 class="heading" id="my-heading">Hello</h1>
@@ -2484,7 +2496,9 @@ Over time websites and code bases continue to evolve and grow, leaving behind qu
   .heading { color: green; }
   ```
 
-  then the `#my-heading` selector will win out, and the heading will be blue. If you use class selectors as much as possible, you will have fewer specificity issues to worry about.
+  then the `#my-heading` selector will win out, and the heading will be blue. 
+
+  - If you use class selectors as much as possible, you will have fewer specificity issues to worry about.
 
 ## CSS Coding Practices
 
@@ -2492,9 +2506,10 @@ Similar to those for HTML, the coding practices for CSS focus on keeping code le
 
 ### Organize Code with Comments
 
-CSS files can become quite extensive, spanning hundreds of lines. These large files can make finding and editing our styles nearly impossible. Let’s keep our styles organized in logical groups. Then, before each group, let’s provide a comment noting what the following styles pertain to.
+- CSS files can become quite extensive, spanning hundreds of lines. These large files can make finding and editing our styles nearly impossible. Let’s keep our styles organized in logical groups. 
+- Then, before each group, let’s provide a comment noting what the following styles pertain to.
 
-Should we wish, we can also use comments to build a table of contents at the top of our file. Doing so reminds us—and others—exactly what is contained within the file and where the styles are located.
+- Should we wish, we can also use comments to build a table of contents at the top of our file. Doing so reminds us—and others—exactly what is contained within the file and where the styles are located.
 
 Bad Code
 
@@ -2519,9 +2534,9 @@ article { ... }
 
 ### Write CSS Using Multiple Lines & Spaces
 
-When writing CSS, it is important to place each selector and declaration on a new line. Then, within each selector we’ll want to indent our declarations.
+- When writing CSS, it is important to place each selector and declaration on a new line. Then, within each selector we’ll want to indent our declarations.
 
-After a selector and before the first declaration comes the opening curly bracket, `{`, which should have a space before it. Within a declaration, we need to put a space after the colon, `:`, that follows a property and end each declaration with a semicolon, `;`.
+- After a selector and before the first declaration comes the opening curly bracket, `{`, which should have a space before it. Within a declaration, we need to put a space after the colon, `:`, that follows a property and end each declaration with a semicolon, `;`.
 
 Doing so makes the code easy to read as well as edit. When all of the code is piled into a single line without spaces, it’s hard to scan and to make changes.
 
@@ -2531,7 +2546,7 @@ Bad Code
 a,.btn{background:#aaa;color:#f60;font-size:18px;padding:6px;}
 ```
 
-GOOD CODE
+Good Code
 
 ```css
 a,
@@ -2547,13 +2562,15 @@ a,
 
 #### Comments & Spacing
 
-These two recommendations, organizing code with comments and using multiple lines and spaces, are not only applicable to CSS, but also to HTML or any other language. Overall we need to keep our code organized and well documented. If a specific part of our code is more complex, let’s explain how it works and what it applies to within comments. Doing so helps others working on the same code base, as well as ourselves when we revisit our own code down the road.
+- These two recommendations, organizing code with comments and using multiple lines and spaces, are not only applicable to CSS, but also to HTML or any other language. 
+- Overall we need to keep our code organized and well documented. If a specific part of our code is more complex, let’s explain how it works and what it applies to within comments. Doing so helps others working on the same code base, as well as ourselves when we revisit our own code down the road.
 
 ------
 
 ### Use Proper Class Names
 
-Class names (or values) should be modular and should pertain to content within an element, not appearance, as much as possible. These values should be written in such a way that they resemble the syntax of the CSS language. Accordingly, class names should be all lowercase and should use hyphen delimiters.
+- Class names (or values) should be **modular** and should pertain to content within an element, not appearance, as much as possible. These values should be written in such a way that they resemble the syntax of the CSS language. 
+- Accordingly, class names should be all lowercase and should use hyphen delimiters.
 
 Bad Code
 
@@ -2571,11 +2588,11 @@ Good Code
 
 CSS selectors can get out of control if they are not carefully maintained. They can easily become too long and too location specific.
 
-The longer a selector is and the more prequalifiers it includes, the higher specificity it will contain. And the higher the specificity the more likely a selector is to break the CSS cascade and cause undesirable issues.
+- The longer a selector is and the more prequalifies it includes, the higher specificity it will contain. And the higher the specificity the more likely a selector is to break the CSS cascade and cause undesirable issues.
 
-Also in line with keeping the specificity of our selectors as low as possible, let’s not use IDs within our selectors. IDs are overly specific, quickly raise the specificity of a selector, and quite often break the cascade within our CSS files. The cons far outweigh the pros with IDs, and we are wise to avoid them.
+- Also in line with keeping the specificity of our selectors as low as possible, let’s not use IDs within our selectors. IDs are overly specific, quickly raise the specificity of a selector, and quite often break the cascade within our CSS files. The cons far outweigh the pros with IDs, and we are wise to avoid them.
 
-Let’s use shorter and primarily direct selectors. Nest them only two to three levels deep, and remove as many location-based qualifying selectors as possible.
+- Let’s use shorter and primarily direct selectors. Nest them only two to three levels deep, and remove as many location-based qualifying selectors as possible.
 
 Bad Code
 
@@ -2593,9 +2610,9 @@ Good Code
 
 ### Use Specific Classes When Necessary
 
-There are times when a CSS selector is so long and specific that it no longer makes sense. It creates a performance lag and is strenuous to manage. In this case, using a class alone is advised. While applying a class to the targeted element may create more code within HTML, it will allow the code to render faster and will remove any managing obstacles.
+- There are times when a CSS selector is so long and specific that it no longer makes sense. It creates a performance lag and is strenuous to manage. In this case, using a class alone is advised. While applying a class to the targeted element may create more code within HTML, it will allow the code to render faster and will remove any managing obstacles.
 
-For example, if an `<em>` element is nested within an `<h1>` element inside of an `<aside>` element, and all of that is nested within a `<section>` element, the selector might look something like aside h1 em. Should the `<em>` element ever be moved out of the `<h1>` element the styles will no longer apply. A better, more flexible selector would use a class, such as text-offset, to target the `<em>` element.
+- For example, if an `<em>` element is nested within an `<h1>` element inside of an `<aside>` element, and all of that is nested within a `<section>` element, the selector might look something like aside h1 em. Should the `<em>` element ever be moved out of the `<h1>` element the styles will no longer apply. A better, more flexible selector would use a class, such as text-offset, to target the `<em>` element.
 
 Bad Code
 
@@ -2611,9 +2628,12 @@ Good Code
 
 ### Use Shorthand Properties & Values
 
-One feature of CSS is the ability to use shorthand properties and values. Most properties and values have acceptable shorthand alternatives. As an example, rather than using four different `margin`-based property and value declarations to set the margins around all four sides of an element, use one single `margin` property and value declaration that sets the values for all four sides at once. Using the shorthand alternative allows us to quickly set and identify styles.
+- One feature of CSS is the ability to use shorthand properties and values. Most properties and values have acceptable shorthand alternatives. 
+  - As an example, rather than using four different `margin`-based property and value declarations to set the margins around all four sides of an element, use one single `margin` property and value declaration that sets the values for all four sides at once. 
+  - Using the shorthand alternative allows us to quickly set and identify styles.
 
-When we’re only setting one value, though, shorthand alternatives should not be used. If a box only needs a bottom `margin`, use the `margin-bottom` property alone. Doing so ensures that other margin values will not be overwritten, and we can easily identify which side the `margin` is being applied to without much cognitive effort.
+- When we’re only setting one value, though, shorthand alternatives should not be used. 
+  - If a box only needs a bottom `margin`, use the `margin-bottom` property alone. Doing so ensures that other margin values will not be overwritten, and we can easily identify which side the `margin` is being applied to without much cognitive effort.
 
 Bad Code
 
@@ -2642,7 +2662,8 @@ button {
 
 ### Use Shorthand Hexadecimal Color Values
 
-When available, use the three-character shorthand hexadecimal color value, and always use lowercase characters within any hexadecimal color value. The idea, again, is to remain consistent, prevent confusion, and embrace the syntax of the language the code is being written in.
+- When available, use the three-character shorthand hexadecimal color value, and always use lowercase characters within any hexadecimal color value. 
+- The idea, again, is to remain consistent, prevent confusion, and embrace the syntax of the language the code is being written in.
 
 Bad Code
 
@@ -2688,9 +2709,13 @@ div {
 
 ### Group & Align Vendor Prefixes
 
-With CSS3, vendor prefixes gained some popularity, adding quite a bit of code to CSS files. The added work of using vendor prefixes is often worth the generated styles; however, they have to be kept organized. In keeping with the goal of writing code that is easy to read and modify, it’s best to group and indent individual vendor prefixes so that the property names stack vertically, as do their values.
+With CSS3, vendor prefixes gained some popularity, adding quite a bit of code to CSS files. The added work of using vendor prefixes is often worth the generated styles; however, they have to be kept organized. In keeping with the goal of writing code that is easy to read and modify, 
 
-Depending on where the vendor prefix is placed, on the property or the value, the alignment may vary. For example, the following good code keeps the `background` property aligned to the left, while the prefixed `linear-gradient()` functions are indented to keep their values vertically stacked. Then, the prefixed `box-sizing` property is indented as necessary to keep the `box-sizing` properties and values vertically stacked.
+- it’s best to group and indent individual vendor prefixes so that the property names stack vertically, as do their values.
+
+- Depending on where the vendor prefix is placed, on the property or the value, the alignment may vary. 
+
+For example, the following good code keeps the `background` property aligned to the left, while the prefixed `linear-gradient()` functions are indented to keep their values vertically stacked. Then, the prefixed `box-sizing` property is indented as necessary to keep the `box-sizing` properties and values vertically stacked.
 
 As always, the objective is to make the styles easier to read and to edit.
 
@@ -2724,15 +2749,18 @@ background:         linear-gradient(#a1d3b0, #f6f1d3);
 
 #### Vendor Prefixes
 
-When using vendor prefixes we need to make sure to place an unprefixed version of our property and value last, after any prefixed versions. Doing so ensures that browsers that support the unprefixed version will render that style according to its placement within the cascade, reading styles from the top of the file to the bottom.
+- When using vendor prefixes we need to make sure to place an unprefixed version of our property and value last, after any prefixed versions. 
+  - Doing so ensures that browsers that support the unprefixed version will render that style according to its placement within the cascade, reading styles from the top of the file to the bottom.
 
-The good news is that browsers are largely moving away from using vendor prefixes. Over time this will become less of a concern; however, for now we’re well advised to double-check which styles require a vendor prefix and to keep those prefixes organized.
+- The good news is that browsers are largely moving away from using vendor prefixes. Over time this will become less of a concern; however, for now we’re well advised to double-check which styles require a vendor prefix and to keep those prefixes organized.
 
 ------
 
 ### Modularize Styles for Reuse
 
-CSS is built to allow styles to be reused, specifically with the use of classes. For this reason, styles assigned to a class should be modular and available to share across elements as necessary.
+- CSS is built to allow styles to be reused, specifically with the use of classes. For this reason, styles assigned to a class should be modular and available to share across elements as necessary.
+
+> **modular** in css means the practice of breaking down the styles for a website or application into smaller, reusable parts or modules.
 
 If a section of news is presented within a box that includes a border, background color, and other styles, the class of `news` might seem like a good option. However, those same styles may also need to be applied to a section of upcoming events. The class of `news` doesn’t fit in this case. A class of `feat-box` would make more sense and may be widely used across the entire website.
 
@@ -2754,7 +2782,7 @@ Bad Code
 Good Code
 
 ```css
-.feat-box {
+.feat-box { /* feature box*/
   background: #eee;
   border: 1px solid #ccc;
   border-radius: 6px;
