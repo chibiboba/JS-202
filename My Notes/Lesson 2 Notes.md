@@ -115,15 +115,9 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
   - Every character of text content also needs a boxed portion of the page.
   - **Box model**: The browser calculates the dimensions of that box by using the browser defaults and CSS.
 
-# Box Properties
-
-- Every box has a width, height, padding, border, and margins; know the differences.
-- Padding, borders, and margins have separate properties to set the left, right, top, and bottom of each element. You can use shortcut properties to specify all four sides at once.
-- How does the visual display model interact with margins, borders, and padding?
-
 ------
 
-### Summary
+## Summary
 
 Every element box has the following properties (the browser may ignore some of them):
 
@@ -150,11 +144,17 @@ This diagram shows an element that has a content area that:
 
 You can see this diagram, or one like it, in the element inspector for your browser. The width, height, padding, border, and margin attributes can all take values of 0 - the box model allows this and collapses the box around the zeroed item.
 
-### width and height
+## Box Properties
+
+- Every box has a width, height, padding, border, and margins; know the differences.
+- Padding, borders, and margins have separate properties to set the left, right, top, and bottom of each element. You can use shortcut properties to specify all four sides at once.
+- How does the visual display model interact with margins, borders, and padding?
+
+#### width and height
 
 - The **width** and **height** define how much horizontal and vertical space it needs for the *content area* of the box, which may or may not include the padding and borders. In most cases, the browser can determine the width and height automatically.
 
-#### Example
+##### Example
 
 To begin, let's assume that the box model treats elements as having a height and width and no other characteristics. Assume we have five elements with the following dimensions:
 
@@ -181,7 +181,7 @@ Figure 1 illustrates how this process works when the browser viewport (the part 
 
 The vertical positioning of side-by-side boxes varies. Figures 1 and 2 show them aligned at the top, but the actual alignment varies based on the content and the CSS settings for each rectangle.
 
-### padding
+#### padding
 
 - The **padding** is an area that surrounds the content area of the box and separates the content from its border. It is typically opaque and hides anything that it overlays.
 
@@ -192,7 +192,7 @@ Syntax
 - When **three** values are specified, the first padding applies to the **top**, the second to the **right and left**, the third to the **bottom**.
 - When **four** values are specified, the paddings apply to the **top**, **right**, **bottom**, and **left** in that order (clockwise).
 
-### margins
+#### margins
 
 - The **margin** is a transparent area that lies outside the border and supplies separation between elements.
 
@@ -203,7 +203,7 @@ Syntax
 - When **three** values are specified, the first margin applies to the **top**, the second to the **right and left**, the third to the **bottom**.
 - When **four** values are specified, the margins apply to the **top**, **right**, **bottom**, and **left** in that order (clockwise).
 
-### borders
+#### borders
 
 - The **border** is a boundary that surrounds the padding.
 
@@ -214,6 +214,21 @@ Values
   ```
 
   Sets the thickness of the border. Defaults to `medium` if absent. See [`border-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-width).
+
+## Relationship btwn visual display models & box sizing models
+
+- Visual display models and box-sizing models are two concepts related to the layout and rendering of HTML elements on web pages.
+
+- Visual display models define how HTML elements should be displayed on the screen, and they include inline, block, inline-block, table, and flex display modes. Each of these modes has different default rendering properties, such as how they flow with other elements and how they respond to size changes.
+
+- Box-sizing models, on the other hand, define how the total width and height of an HTML element is calculated, including any padding, border, or margin that surrounds the content. There are two box-sizing models: content-box and border-box. In the content-box model, the total width and height of an element exclude any padding, border, or margin. In the border-box model, the total width and height of an element include any padding and border, but not margin.
+
+How does visual display models relate to box sizing models?
+
+- The relationship between visual display models and box-sizing models is that the default box-sizing value is different for different display modes. 
+- For example, the default box-sizing for the block display mode is content-box, which means that the width and height of a block element exclude any padding, border, or margin. However, the default box-sizing for the flex display mode is border-box, which means that the width and height of a flex item include any padding and border, but not margin.
+
+- Understanding both visual display models and box-sizing models is important for creating well-designed and responsive web pages. By setting the appropriate display mode and box-sizing value for each HTML element, you can control how it is rendered on the screen and how it interacts with other elements on the page.
 
 # Visual Display Models
 
