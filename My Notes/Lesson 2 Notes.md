@@ -144,15 +144,26 @@ This diagram shows an element that has a content area that:
 
 You can see this diagram, or one like it, in the element inspector for your browser. The width, height, padding, border, and margin attributes can all take values of 0 - the box model allows this and collapses the box around the zeroed item.
 
-## Box Properties
+# Box Properties
 
 - Every box has a width, height, padding, border, and margins; know the differences.
 - Padding, borders, and margins have separate properties to set the left, right, top, and bottom of each element. You can use shortcut properties to specify all four sides at once.
 - How does the visual display model interact with margins, borders, and padding?
 
-#### width and height
+------
+
+## width and height
 
 - The **width** and **height** define how much horizontal and vertical space it needs for the *content area* of the box, which may or may not include the padding and borders. In most cases, the browser can determine the width and height automatically.
+
+Width values
+
+- `<length>` : Defines the width as an absolute value.
+- `<percentage>` : Defines the width as a percentage of the containing block's width.
+- `auto` : The browser will calculate and select a width for the specified element.
+- `max-content` : The intrinsic preferred width.
+- `min-content`: The intrinsic minimum width.
+- `fit-content(<length-percentage>)` : Uses the fit-content formula with the available space replaced by the specified argument, i.e. `min(max-content, max(min-content, <length-percentage>))`.
 
 ##### Example
 
@@ -181,7 +192,7 @@ Figure 1 illustrates how this process works when the browser viewport (the part 
 
 The vertical positioning of side-by-side boxes varies. Figures 1 and 2 show them aligned at the top, but the actual alignment varies based on the content and the CSS settings for each rectangle.
 
-#### padding
+## padding
 
 - The **padding** is an area that surrounds the content area of the box and separates the content from its border. It is typically opaque and hides anything that it overlays.
 
@@ -192,7 +203,7 @@ Syntax
 - When **three** values are specified, the first padding applies to the **top**, the second to the **right and left**, the third to the **bottom**.
 - When **four** values are specified, the paddings apply to the **top**, **right**, **bottom**, and **left** in that order (clockwise).
 
-#### margins
+## margins
 
 - The **margin** is a transparent area that lies outside the border and supplies separation between elements.
 
@@ -203,7 +214,7 @@ Syntax
 - When **three** values are specified, the first margin applies to the **top**, the second to the **right and left**, the third to the **bottom**.
 - When **four** values are specified, the margins apply to the **top**, **right**, **bottom**, and **left** in that order (clockwise).
 
-#### borders
+## borders
 
 - The **border** is a boundary that surrounds the padding.
 
@@ -214,34 +225,6 @@ Values
   ```
 
   Sets the thickness of the border. Defaults to `medium` if absent. See [`border-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-width).
-
-## Relationship btwn visual display models & box sizing models
-
-- Visual display models and box-sizing models are two concepts related to the layout and rendering of HTML elements on web pages.
-
-- Visual display models define how HTML elements should be displayed on the screen, and they include inline, block, inline-block, table, and flex display modes. Each of these modes has different default rendering properties, such as how they flow with other elements and how they respond to size changes.
-
-- Box-sizing models, on the other hand, define how the total width and height of an HTML element is calculated, including any padding, border, or margin that surrounds the content. There are two box-sizing models: content-box and border-box. In the content-box model, the total width and height of an element exclude any padding, border, or margin. In the border-box model, the total width and height of an element include any padding and border, but not margin.
-
-How does visual display models relate to box sizing models?
-
-- The relationship between visual display models and box-sizing models is that the default box-sizing value is different for different display modes. 
-- For example, the default box-sizing for the block display mode is content-box, which means that the width and height of a block element exclude any padding, border, or margin. However, the default box-sizing for the flex display mode is border-box, which means that the width and height of a flex item include any padding and border, but not margin.
-
-- Understanding both visual display models and box-sizing models is important for creating well-designed and responsive web pages. By setting the appropriate display mode and box-sizing value for each HTML element, you can control how it is rendered on the screen and how it interacts with other elements on the page.
-
-## How to calculate horizontal and vertical dimensions
-
-- Calculate the dimensions of the (contained) element.
-  - Use the `display` property to determine which properties are used by the browser and included in calculating dimensions.
-  - Use the `box-sizing` property to determine which properties are included in calculating the dimensions. 
-    - For example if the element uses`border-box`, this means that properties like `padding` and `border` is already calculated in the content area, so do not include those values to determine the total horizontal or vertical dimensions.  
-    - If the element uses `content-box`, include `padding`, `border` along with other values to determine dimensions. 
-- Calculate dimensions that a container element needs to contain another element. 
-  - First calculate total dimensions of contained element ( see above).
-  - Then based on the `box-sizing` property 
-    - If `border-box` is used, we must include container element's the width and height as well as borders, paddings, and margins. 
-    - If `content-box` is used, we do not include the container element's paddings, borders, or margins, just the contained element's content. 
 
 # Visual Display Models
 
@@ -261,7 +244,7 @@ How does visual display models relate to box sizing models?
 
 <u>Definition</u>
 
-- A **`block` element** takes up the full width available and starts on a new line, regardless of the width of the content inside it. 
+- A **`block` element** takes up the full width of its container element and starts on a new line, regardless of its actual content width.
   - Examples of block-level elements include `<div>`, `<p>`, and `<h1>`.
 - [Block elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements) appear on almost all web pages: headings, paragraphs, sections, tables, forms, lists, and more are `block` elements.
 
@@ -294,7 +277,7 @@ How does visual display models relate to box sizing models?
   - `form` and `fieldset`
   - See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements#Elements) for a complete list of block elements.
 
-<u>Spacing / Flow</u>
+#### Spacing / Flow
 
 - Block-level elements begin on a new line, stacking one on top of the other, and occupy any available width. 
 - By default, a `block` element occupies all horizontal space available within its container, with nothing to the left or right of the `block`. 
@@ -350,10 +333,11 @@ How does visual display models relate to box sizing models?
 
 - Browsers perform vertical alignment for adjacent  `inline` elements. 
 
-<u>Flow</u>
+#### Flow
 
 - `inline` elements flow from one line to the next, which lets you place `inline`  elements side by side with other `inline` or `inline-block` elements.
 - The main idea is that the left/right factors affect the **flow**, while the top and bottom do not.
+- **Spacing**: Remember that in code, inline elements respect white spaces around the character and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character. 
 
 ![Box layout at 800 pixels width](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_2/everything-a-box-1.png)
 
@@ -365,9 +349,12 @@ How does visual display models relate to box sizing models?
 
 #### `inline` Layout properties
 
-- Inline is tricky. 
-  - Keep in mind which properties are ignored by the browser for `inline` elements: width, height, top & bottom margins.
-  - Overlap: Also keep in mind how the top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area, to overlap with content above or below the text. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided.
+<u>Summary of `inline` 's trickiness</u> 
+
+- The `width` and `height` properties is ignored by the browser and does not determine the **actual content area**. The actual content area is determined by the browser.
+- **Properties ignored by the browser** for `inline` elements: `width`, `height`, `margins`. Since browser ignores these CSS properties, we can't calculate the space this contained element would take unless we know the actual width and height of the content. 
+- **Properties not ignored by browser**: left and right `margins`, top and bottom `padding`. Borders. `inline` element. 
+- **Overlap**: Also keep in mind how the top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided.
 
 <u>Which dimension properties not ignored by browser for `inline elements`</u>
 
@@ -453,7 +440,7 @@ This example demonstrates how browsers handle borders, padding, and margins with
 
 - An **`inline-block` element** behaves like an inline element in terms of not starting on a new line, but like block element, it allows you to set a width and height, as well as margins and padding. 
   - This makes it useful for creating horizontal lists or for aligning elements next to each other. 
-  - Examples of inline-block elements include `<button>`, `<input>`, and `<label>`.
+- Examples of inline-block elements include `<button>`, `<input>`, and `<label>`.
 
 > Legacy Model
 >
@@ -463,19 +450,20 @@ This example demonstrates how browsers handle borders, padding, and margins with
 
 - `inline-block` elements are a mixture of both previous types. They act like `block` elements, except for one significant detail: `inline-block` elements do not take up an entire row when the `width` property is less than the available width. 
 
-<u>Flow</u>
+#### Flow
 
 - Inline-block elements can have a set width and height, but they still flow inline, making them useful for creating more complex layouts.
 
 - Similar to `inline` elements : flow in the same way that text and `inline` elements flow from one line to the next (see Figures 1 and 2 on the previous page), which lets you place `inline-block` elements side by side with other `inline` or `inline-block` elements.
 
+- **Spacing**: Remember that in code, inline elements respect white spaces around the character and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character.
+
 #### `inline-block` layout properties
 
-- `display: inline-block` meaning that is an `inline-block` element, we can compute dimensions directly from CSS properties. 
+- `display: inline-block` meaning that is an `inline-block` element. 
 
-- Similar to block elements but different from `inline` elements: 
-  - `inline-block` elements set `width` and `height` properties. 
-  - The padding, borders, and margin are used to determine the size of the element. 
+- Similar to block elements but different from `inline` elements: we can compute dimensions directly from CSS properties. 
+-  `width`, `height`, `padding`, `border`, `margin` are all used to determine the size of the element.
 
 <u>Vertical Alignment</u>
 
@@ -598,7 +586,7 @@ Main Takeaway
 
 - The `content-box` setting is the default setting for the `box-sizing` property for all elements in all modern browsers. 
 - In this model, the `width` and `height` properties specify the size of the **actual content area**. You need to add padding and borders to get the size of the **visible box**.
-  - `width` x `height` = **actual content area**
+  - `width` x `height` = **content area**
   - `width` x `height` + padding + borders = **visible box**. 
   - Margin not included in content-box.
 - `content-box` applies to `inline` elements only.
@@ -612,13 +600,14 @@ Top represents content-box, bottom represents border-box.
 - The `border-box` setting causes the browser to interpret the `width` and `height` properties as the total width and height of the box excluding the margins. 
 - The width and height include the **content area** as well as the padding and borders.
   - `width` x `height` = **visible box** 
-  - content area + padding + borders = **Width and height**
+  - content area + padding + borders = **actual Width and height**
   - Margin not included in content-box
 
 <u>Why border-box is best</u>
 
 - The `border-box` setting is "best" since it simplifies the math a front-end developer must do. 
-- For example, if we have a box with a width of 50% and padding of 12px; `border-box` ensures that it's precisely 50% of the container width, not 50% plus 24 pixels.
+- `border-box` is made for responsive design. 
+- For example, if we have a box with a width of 50% and padding of 12px; `border-box` ensures that it's precisely 50% of the container width, not 50% plus 24 pixels. 
 
 <u>Box reset: Universal Box Sizing with Inheritance</u>
 
@@ -767,6 +756,56 @@ html {
 #### physical pixels
 
 #### CSS reference pixels
+
+# My notes
+
+
+
+## How to calculate horizontal and vertical dimensions
+
+Q: Calculate the minimum dimensions that a **container element** needs to contain another element (including the container element's margins). 
+
+1. Calculate the total dimensions of the **contained** element.
+
+- First use the `display` property to determine which properties are used by the browser and included in calculating dimensions.
+
+  - `block` element:`width`, `height`, `padding`, `border`, `margin`
+
+  - `inline-block` element: `width`, `height`, `padding`, `border`, `margin`
+
+  - `inline` element: Browser ignores `width`, `height`, top and bottom `margin` specified in CSS, so we can't calculate the space this contained element would take unless we know the **actual width and height** of the **content area**. The content area and the actual width and height is determined by the browser. 
+
+    Keep in mind that top and bottom borders and padding may extend beyond the boundaries of the content area, so if there is content above or below the contained element, it will overlap.
+
+- Then use the `box-sizing` property to determine which properties are included in calculating the dimensions. 
+
+  -  `content-box`: include `padding`, `border` along with other values to determine dimensions. 
+  - `border-box`: Do not include `padding` and `border` to determine total horizontal or vertical dimensions, because these two properties are already calculated in the content area. 
+
+2. Calculate dimension of container element.
+
+- Use `box-sizing` property of container element.
+
+  - If `border-box` is used, we must include *container* element's the width and height as well as borders, paddings, and margins. 
+
+  - If `content-box` is used, we do not include the *container* element's paddings, borders, or margins, just the *contained* element's dimensions. 
+
+- Use dimensions of contained element as well as container element to determine the total dimensions needed. 
+
+## Relationship btwn visual display models & box sizing models
+
+- Visual display models and box-sizing models are two concepts related to the layout and rendering of HTML elements on web pages.
+
+- Visual display models define how HTML elements should be displayed on the screen, and they include inline, block, inline-block, table, and flex display modes. Each of these modes has different default rendering properties, such as how they flow with other elements and how they respond to size changes.
+
+- Box-sizing models, on the other hand, define how the total width and height of an HTML element is calculated, including any padding, border, or margin that surrounds the content. There are two box-sizing models: content-box and border-box. In the content-box model, the total width and height of an element exclude any padding, border, or margin. In the border-box model, the total width and height of an element include any padding and border, but not margin.
+
+How does visual display models relate to box sizing models?
+
+- The relationship between visual display models and box-sizing models is that the default box-sizing value is different for different display modes. 
+- For example, the default box-sizing for the block display mode is content-box, which means that the width and height of a block element exclude any padding, border, or margin. However, the default box-sizing for the flex display mode is border-box, which means that the width and height of a flex item include any padding and border, but not margin.
+
+- Understanding both visual display models and box-sizing models is important for creating well-designed and responsive web pages. By setting the appropriate display mode and box-sizing value for each HTML element, you can control how it is rendered on the screen and how it interacts with other elements on the page.
 
 # CSS Properties
 

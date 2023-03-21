@@ -30,7 +30,7 @@ img {
 
 Answer 
 
-- Since `img` has `display: inline-block` meaning that is an `inline-block` element, we can compute dimensions directly from CSS properties. 
+- Since `img` has `display: inline-block` meaning that is an `inline-block` element, we can compute dimensions directly from CSS properties. Since `img` uses `content-box` sizing, we calculate the total dimensions (the visible area) by `width`, `height`, `margin`, `padding`, and `border`. 
 
 - Since `div` uses `border-box` sizing, we include the dimensions of `img` as well as `div`'s borders, padding, and margin. Though we don't typically count margins in determining an element's width and height, we need to include them here when calculating how much space we need in the `div`. 
 
@@ -78,8 +78,8 @@ section {
 
 Solution
 
-- The difference here is that `section` is a block element, so it will always appear on a line by itself within it's container `div` no matter its width. And because it is a block element, the browser will use all the CSS properties to compute the dimensions  for `section` including : `width` `height` `margin` `border` and `padding`. 
-- Since `div` uses `border-box` sizing, the padding, border, and margin of `div` are included in calculating the space needed. Although margins are typically not included in `box sizing`, we will need to include it our calculations for how much space `div` needs to contain `section`.  
+- The difference here is that `section` is a block element, so it will always appear on a line by itself within it's container `div` no matter its width. And because it is a block element, the browser will use all the CSS properties to compute the dimensions  for `section` including : `width` `height` `margin` `border` and `padding`. Since `section` is uses `content-box` sizing, we include the border and padding in calculating the total dimension of `section`. 
+- Since `div` uses `border-box` sizing, the padding, border, and margin of `div` are included in calculating the total space needed. Although margins are typically not included in `box sizing`, we will need to include it our calculations for how much space `div` needs to contain `section`.  
 - The width and height will be 580 pixels horizontally and 360 pixels vertically. 
 
 3. Given the code below, what is the minimum width and height (in pixels) that the `div` needs to entirely contain the `em` element (including its margins)?
@@ -231,6 +231,8 @@ Which of the following element pairs will display side by side in the `<div>`? S
 
 You may assume that any `inline` element has a **content width** of no more than 360 pixels. Remember, the `width` property doesn't affect `inline` elements, so this "content width" is the actual width of the content area as determined by your browser.
 
+2, 3, 6 will all appear side by side. The other three combinations have `block` elements which never appear side by side with anything. 
+
 Solution
 
 6. Will the following code display the two article boxes side by side? If not, why not? How would you fix it so that it places the boxes side by side?
@@ -265,6 +267,23 @@ article {
 
 Show
 
+No because `article` is a block element so it always appears on its own line and takes up the whole width of its container element. 
+
+We can convert the `article` elements into an `inline-block` element by adding this code `display: inline-block` in the CSS selector. We need to set the actual width (including padding and border) to 50% of the container's space, and also add `box-sizing: border-box` to the `article` CSS selector.
+
+```css
+article {
+  background-color: lime;
+  border: 1px solid blue;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100%;
+  margin: 0;
+  padding: 10px;
+  width: 50%;
+}
+```
+
 7. **Challenge.** Given our solution to the previous question, what will happen if we put the `article` tags on separate lines?
 
 ```html
@@ -277,3 +296,7 @@ Show
 Try to figure out the answer without peeking. Why do you think this is?
 
 Solution
+
+Because `article` is now an `inline-block` element, the browser sees the spaces between the two `article ` elements will collapse them into one whitespace character and uses the result as content between the two `article` elements. Since the total width of the container is only 900 pixels and now the white space takes a few pixels to account for the single space character, the two `article`s no longer fit in the same line.  
+
+This kind of problem often occurs when one of the elements is an inline-block; the rest of the time, the extra space typically doesn't matter. Aside from placing the two tags up against each other to eliminate the whitespace, there are several other techniques you will see later that let you remove the space or make it invisible.
