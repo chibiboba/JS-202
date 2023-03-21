@@ -230,6 +230,19 @@ How does visual display models relate to box sizing models?
 
 - Understanding both visual display models and box-sizing models is important for creating well-designed and responsive web pages. By setting the appropriate display mode and box-sizing value for each HTML element, you can control how it is rendered on the screen and how it interacts with other elements on the page.
 
+## How to calculate horizontal and vertical dimensions
+
+- Calculate the dimensions of the (contained) element.
+  - Use the `display` property to determine which properties are used by the browser and included in calculating dimensions.
+  - Use the `box-sizing` property to determine which properties are included in calculating the dimensions. 
+    - For example if the element uses`border-box`, this means that properties like `padding` and `border` is already calculated in the content area, so do not include those values to determine the total horizontal or vertical dimensions.  
+    - If the element uses `content-box`, include `padding`, `border` along with other values to determine dimensions. 
+- Calculate dimensions that a container element needs to contain another element. 
+  - First calculate total dimensions of contained element ( see above).
+  - Then based on the `box-sizing` property 
+    - If `border-box` is used, we must include container element's the width and height as well as borders, paddings, and margins. 
+    - If `content-box` is used, we do not include the container element's paddings, borders, or margins, just the contained element's content. 
+
 # Visual Display Models
 
 - Understand the differences between `inline`, `block`, and `inline-block`.
@@ -599,7 +612,7 @@ Top represents content-box, bottom represents border-box.
 - The `border-box` setting causes the browser to interpret the `width` and `height` properties as the total width and height of the box excluding the margins. 
 - The width and height include the **content area** as well as the padding and borders.
   - `width` x `height` = **visible box** 
-  - Visible box = content area + padding + borders. 
+  - content area + padding + borders = **Width and height**
   - Margin not included in content-box
 
 <u>Why border-box is best</u>

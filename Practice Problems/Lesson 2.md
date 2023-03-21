@@ -32,7 +32,7 @@ Answer
 
 - Since `img` has `display: inline-block` meaning that is an `inline-block` element, we can compute dimensions directly from CSS properties. 
 
-- Since `div` uses `border-box` sizing, it must include have a width and height of at least 580 px and 360 pixels. Though we don't typically count margins in determining an element's width and height, we need to include them here when calculating how much space we need in the `div`. 
+- Since `div` uses `border-box` sizing, we include the dimensions of `img` as well as `div`'s borders, padding, and margin. Though we don't typically count margins in determining an element's width and height, we need to include them here when calculating how much space we need in the `div`. 
 
 - Horizontally, the `div` element needs 580 pixels.
   - border: 4 pixels left, 4 pixels right
@@ -79,7 +79,8 @@ section {
 Solution
 
 - The difference here is that `section` is a block element, so it will always appear on a line by itself within it's container `div` no matter its width. And because it is a block element, the browser will use all the CSS properties to compute the dimensions  for `section` including : `width` `height` `margin` `border` and `padding`. 
-- Since `div` uses `border-box` sizing, the padding and borders are included in calculating the space needed. Although margins are typically not included in `box sizing`, we will need to include it our calculations for how much space `div` needs to contain `section`.  The width and height will be 580 pixels horizontally and 360 pixels vertically. 
+- Since `div` uses `border-box` sizing, the padding, border, and margin of `div` are included in calculating the space needed. Although margins are typically not included in `box sizing`, we will need to include it our calculations for how much space `div` needs to contain `section`.  
+- The width and height will be 580 pixels horizontally and 360 pixels vertically. 
 
 3. Given the code below, what is the minimum width and height (in pixels) that the `div` needs to entirely contain the `em` element (including its margins)?
 
@@ -131,7 +132,7 @@ Solution
   - 0 pixels for top and bottom margins (because it's `em` is `inline`)
   - 1 px for top 1 px bottom borders of `div`.
 
-- Since `div` uses `border-box sizing`,  minimum width and height `div` needs to contain `em` is 130px width and 50 px height which includes the assumed width, height, border, padding, and as well as the top and bottom borders for `div`. We also include margins in our calculations.
+- Since `div` uses `border-box sizing`,  minimum width and height `div` needs to contain `em` is 130px width and 50 px height. This includes the dimensions of `em` including the assumed width and height & margins, as well as any borders, padding, or margins of `div`. 
 - We need to keep in mind that the top and bottom padding and borders of `em` may intersect with content above and below the `em` element. 
   - This is because `em` has an assumed fixed height of 20 pixels and `div` height has a minimum height of 50 pixels, so any content above or below the `em` element may overlap with the padding and border of `em`. 
 
@@ -166,9 +167,22 @@ article {
 
 Solution
 
-- Horizontally
-- Veritically
-- 
+First we calculate the dimensions of `article`. `article` is `inline-block` so we can use CSS dimensions to calculate it. But because `article ` uses `border-box` sizing, we must ignore the padding and border to calculate the actual dimensions. Aside from margins, the actual dimensions of `article` is determined in its width and height already. 
+
+Because `div` use `box-sizing` `border-box`, we include its margins, padding, and border of `div` too. 
+
+- Horizontally - total is 532 pixels.
+  - width: 500 px
+  - padding: 0 pixels for left and right. 
+  - margin: 19 px right 11 px left
+  - border: 0 px for left and right. 
+  - border of `div` : 2 px for left and right
+- Vertically - total is 332 pixels.
+  - 300 px height
+  - padding: 0 pixels top and bottom
+  - margin: 20 px top 10 px bottom
+  - border: 0 pixels top and bottom
+  - Border of `div` : 2 px for top and bottom
 
 5. Given the code below:
 
