@@ -229,7 +229,7 @@ Values
 - How a browser lays out its elements is determined by the `display` property. The `display` property has more than two dozen values, but most CSS uses the values `block`, `inline`, and `inline-block`. We call this property the visual formatting model.
 - Assumption: When we discussed how the browser lays out elements, our stated assumption was that all boxes have a `display` property of `inline-block`. We chose that property value since it's easy to understand, and best demonstrates how page layout works in a browser. 
 
-### `block`
+## Block
 
 <u>Definition</u>
 
@@ -293,11 +293,11 @@ Values
 
 - Another item of note is that the height and width values never include the margins. Technically, margins provide spacing between elements but are not part of them. However, you do need to account for the margins when determining whether an item will fit in a given space.
 
-<u>Convert element to `block`</u>
+#### <u>Convert element to `block`</u>
 
 - You can convert any element to a `block` element with the `display: block` CSS property. It's common to render links (`a`) and images (`img`) as `block` elements.
 
-### `inline`
+## Inline
 
 - **An `inline` element** only takes up as much width as its content requires and does not start on a new line. 
   - Examples of inline elements include `<span>`, `<a>`, and `<img>`.
@@ -324,7 +324,7 @@ Values
 
 <u>Flow</u>
 
-- `inline` elements flow from one line to the next, which lets you place `inline-block` elements side by side with other `inline` or `inline-block` elements.
+- `inline` elements flow from one line to the next, which lets you place `inline`  elements side by side with other `inline` or `inline-block` elements.
 - The main idea is that the left/right factors affect the **flow**, while the top and bottom do not.
 
 ![Box layout at 800 pixels width](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_2/everything-a-box-1.png)
@@ -337,7 +337,9 @@ Values
 
 #### `inline` Layout properties
 
-- inline is tricky.
+- Inline is tricky. 
+  - Keep in mind which properties are ignored by the browser for `inline` elements: width, height, top & bottom margins.
+  - Overlap: Also keep in mind how the top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area, to overlap with content above or below the text. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided.
 
 <u>Which dimension properties not ignored by browser for `inline elements`</u>
 
@@ -359,7 +361,7 @@ Values
 
 - Browsers handle *left* and *right* margins and padding for `inline` elements in the same way as for `block` elements, but they process other box model properties differently. 
 
-<u>Convert element to `inline` element</u>
+#### Convert element to `inline` element
 
 - You can convert any element to an `inline` element with the `display: inline` CSS property. The most common reason to do so is to override a prior declaration.
 
@@ -403,7 +405,7 @@ This example demonstrates how browsers handle borders, padding, and margins with
 - The presence of the orange and yellow areas shows that the `em` element has padding and a border on all four sides, but the text above and below the element ignores them. 
   - In fact, through the magic of CSS opacity (transparency), we can see the `em` border and padding overlay the text above it, while the content below it overlays the border and padding.
 
-Top & bottom borders extend beyond boundaries
+<u>Top & bottom borders and padding extend beyond boundaries</u>
 
 - One more item to note here is that the top and bottom borders extend beyond the boundaries of the `p` element. The padding would do that as well if we increased it by a few more pixels.
 
@@ -411,7 +413,15 @@ Top & bottom borders extend beyond boundaries
 
 - The main idea is that the left/right factors affect the **flow**, while the top and bottom do not.
 
-### `inline-block`
+#### `inline` interaction with `border-box`
+
+- Technically, it is possible to apply `border-box` sizing to an inline element using CSS, but it may not always work as expected due to the nature of inline elements. 
+- When you apply `border-box` sizing to an inline element, the element's total width and height will include its content area, padding, and border. 
+- However, because inline elements are designed to flow with the text and not disrupt the layout, adding padding and border to an inline element can cause the element to "break out" of the text flow, resulting in unexpected, overlapping layout issues.
+  - This means that the element may be wider and taller than its actual content, and any padding or border added to the element will be included in its dimensions.
+  - To avoid this issue, avoid adding padding and border to inline elements. 
+
+## Inline-block
 
 - An **`inline-block` element** behaves like an inline element in terms of not starting on a new line, but like block element, it allows you to set a width and height, as well as margins and padding. 
   - This makes it useful for creating horizontal lists or for aligning elements next to each other. 
@@ -508,7 +518,7 @@ input, textarea {
 
 - It's a common misbelief that images (`img`) are `inline-block` elements; in fact, they are `inline` elements.
 
-<u>Convert element to `inline-block`</u>
+#### Convert element to `inline-block`
 
 - You can convert any element to an `inline-block` element with the `display: inline-block` CSS property. 
 - A useful application for this is to arrange the contents of a list horizontally instead of vertically; horizontal navigation bars often use list elements defined as `inline-block`.
@@ -563,6 +573,7 @@ Main Takeaway
   - `width` x `height` = **actual content area**
   - `width` x `height` + padding + borders = **visible box**. 
   - Margin not included in content-box.
+- `content-box` applies to `inline` elements only.
 
 ![image-20230320185240802](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230320185240802.png)
 

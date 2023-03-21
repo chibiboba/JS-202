@@ -30,7 +30,7 @@ img {
 
 Answer 
 
-- Since `img` has `display: inline-block` meaning that is an `inline-block` element, we can compute dmensions directly from CSS properties. 
+- Since `img` has `display: inline-block` meaning that is an `inline-block` element, we can compute dimensions directly from CSS properties. 
 
 - Since `div` uses `border-box` sizing, it must include have a width and height of at least 580 px and 360 pixels. Though we don't typically count margins in determining an element's width and height, we need to include them here when calculating how much space we need in the `div`. 
 
@@ -78,7 +78,7 @@ section {
 
 Solution
 
-- The difference here is that `section` is a block element, so it will always appear on a line by itself within it's container `div` no matter its width. And because it is a block element, the browser will use all the CSS propeties to compute the dimensions  for `section` including : `width` `height` `margin` `border` and `padding`. 
+- The difference here is that `section` is a block element, so it will always appear on a line by itself within it's container `div` no matter its width. And because it is a block element, the browser will use all the CSS properties to compute the dimensions  for `section` including : `width` `height` `margin` `border` and `padding`. 
 - Since `div` uses `border-box` sizing, the padding and borders are included in calculating the space needed. Although margins are typically not included in `box sizing`, we will need to include it our calculations for how much space `div` needs to contain `section`.  The width and height will be 580 pixels horizontally and 360 pixels vertically. 
 
 3. Given the code below, what is the minimum width and height (in pixels) that the `div` needs to entirely contain the `em` element (including its margins)?
@@ -112,7 +112,28 @@ em {
 
 Solution
 
-Since `em` element is `inline` element, the browser ignores the width, height, top and bottom margins specified in the CSS.  The minimum width and height `div` needs to contain `em` is 
+- Since `em` element is `inline` element, the browser ignores the width, height, top and bottom margins specified in the CSS. For this reason, we can't calculate the amount of space that any given `em` would take unless we know the actual width and height of the content. 
+
+- Just as an example, if we assume that `em` requires 50px width, then the `div` element would need 130 pixels horizontally. 
+
+  - 50 pixels for assumed width
+
+  - 4 px left border 4 px right border
+
+  - 19 px right margin 11 px left margin
+
+  - 2 pixels for left and right borders of the `div`. 
+
+- If we assume that the `em` requires a 20px height, then the `div` needs 50 pixels vertically.
+  - 20 pixels for assumed height.
+  - 4 px top border 4 px bottom border
+  - 10 px top padding 10 px bottom padding
+  - 0 pixels for top and bottom margins (because it's `em` is `inline`)
+  - 1 px for top 1 px bottom borders of `div`.
+
+- Since `div` uses `border-box sizing`,  minimum width and height `div` needs to contain `em` is 130px width and 50 px height which includes the assumed width, height, border, padding, and as well as the top and bottom borders for `div`. We also include margins in our calculations.
+- We need to keep in mind that the top and bottom padding and borders of `em` may intersect with content above and below the `em` element. 
+  - This is because `em` has an assumed fixed height of 20 pixels and `div` height has a minimum height of 50 pixels, so any content above or below the `em` element may overlap with the padding and border of `em`. 
 
 4. Given the code below, what is the minimum width and height (in pixels) that the `div` needs to be to entirely contain the `article` element (including its margins)?
 
@@ -144,6 +165,10 @@ article {
 ```
 
 Solution
+
+- Horizontally
+- Veritically
+- 
 
 5. Given the code below:
 
