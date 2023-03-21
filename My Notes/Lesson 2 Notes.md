@@ -95,8 +95,6 @@ Sometimes we'll give you a hint, and sometimes we won't. It's up to you to find 
 
 Spend time with the Summary at the end of this lesson. It reviews the topics and terminology you should master before moving on.
 
-# My notes
-
 # The Box Model
 
 - new line
@@ -194,25 +192,20 @@ The vertical positioning of side-by-side boxes varies. Figures 1 and 2 show them
 
 ## padding
 
-- The **padding** is an area that surrounds the content area of the box and separates the content from its border. It is typically opaque and hides anything that it overlays.
+- The **padding** is an area that surrounds the content area of the box and separates the content from its border. 
+  - It is typically opaque and hides anything that it overlays.
+  - Put another way, padding is part of the visible and clickable bounds of an element.
+  - Padding does not collapse.
 
 Syntax
 
 - When **one** value is specified, it applies the same padding to **all four sides**.
+
 - When **two** values are specified, the first padding applies to the **top and bottom**, the second to the **left and right**.
+
 - When **three** values are specified, the first padding applies to the **top**, the second to the **right and left**, the third to the **bottom**.
+
 - When **four** values are specified, the paddings apply to the **top**, **right**, **bottom**, and **left** in that order (clockwise).
-
-## margins
-
-- The **margin** is a transparent area that lies outside the border and supplies separation between elements.
-
-Syntax
-
-- When **one** value is specified, it applies the same margin to **all four sides**.
-- When **two** values are specified, the first margin applies to the **top and bottom**, the second to the **left and right**.
-- When **three** values are specified, the first margin applies to the **top**, the second to the **right and left**, the third to the **bottom**.
-- When **four** values are specified, the margins apply to the **top**, **right**, **bottom**, and **left** in that order (clockwise).
 
 ## borders
 
@@ -225,6 +218,166 @@ Values
   ```
 
   Sets the thickness of the border. Defaults to `medium` if absent. See [`border-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-width).
+
+## margins
+
+- The **margin** is a typically transparent area that lies outside the border and supplies spacing between adjacent elements.
+- It is not "clickable".
+- Margin collapse: In adjacent elements, margin collapses to the larger of the two margins in question.
+
+Syntax
+
+- When **one** value is specified, it applies the same margin to **all four sides**.
+- When **two** values are specified, the first margin applies to the **top and bottom**, the second to the **left and right**.
+- When **three** values are specified, the first margin applies to the **top**, the second to the **right and left**, the third to the **bottom**.
+- When **four** values are specified, the margins apply to the **top**, **right**, **bottom**, and **left** in that order (clockwise).
+
+# Padding and Margins
+
+Beginners often get confused by padding and margins. After all, both provide whitespace that surrounds an element. In this assignment, we'll learn the differences and how and when you should use each.
+
+## What is the Difference Between Padding and Margins?
+
+- Border separates the margin and padding.
+  - Both padding and margins surround elements with whitespace. Padding lies inside the border, while margins lie outside it. What if you don't have a border? You do - it has zero-width, so it's an invisible border, but the browser knows it's there and uses it in the box model.
+
+- Margins are typically transparent, while the padding is opaque.
+- Put another way, padding is part of the visible and clickable bounds of an element, while a margin is spacing between adjacent elements. 
+  - It's easy to see this with clickable elements. If you click on the content area or anywhere in the padding or border, the browser will process the click. If you click on the margin, nothing happens. Consider this example:
+
+```html
+<!--
+Don't worry about contents of this <script> tag: it is JavaScript. We need it to
+implement the color toggle, but you don't need to understand it right now.
+You'll learn all about JavaScript in future courses.
+-->
+<script>
+  var article = {
+    toggleColor: function() {
+      document.querySelector('article').classList.toggle('toggled');
+    }
+  };
+</script>
+
+<!--
+The onclick attribute on the article tag causes the browser to run the
+JavaScript above when the user clicks the <article> element. Don't bother
+memorizing this right now.
+-->
+<section>
+  <article onclick="article.toggleColor();">
+    Click here
+  </article>
+</section> 
+```
+
+```css
+section {
+  background-color: #ffc0c0;
+  border: 1px solid black;
+  height: 300px;
+  margin: 0;
+  padding: 0;
+  width: 300px;
+}
+
+article {
+  background-color: #c0c0ff;
+  border: 30px solid blue;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 200px;
+  margin: 40px;
+  padding: 50px;
+  width: 200px;
+}
+
+/* The JavaScript code above turns this class on and off in the <article> */
+.toggled {
+  background-color: #c0ffc0;
+  border: 30px solid green;
+}
+```
+
+Click here
+
+
+
+If you click anywhere inside the inner (blue) box, the box turns green; click again, and it becomes blue once again. Click elsewhere on the page (including on the light red area of the outer box -- the margin of the inner box), and nothing happens. This behavior shows that the padding is part of the element, but the margin is not. (If you click on the blue or green border directly, you'll see that it's also clickable.)
+
+### Background color interaction
+
+- The `background-color` of a contained element appears in the padding area, while the `background-color` of the container shows through the contained element's margins. 
+  - Note: the `background-color` of the container will only show through the contained element's margins if the margins are transparent. 
+  - Note: If the contained element has a background color that is opaque, it will completely cover any background color or image of the container element beneath it, regardless of whether the margins are transparent or not. 
+- The inner box's background color: interior of the inner box is light blue or green. 
+- The outer box's background: the surrounding area is pale red.
+
+![](C:\Users\jenny\Downloads\download (11).png)
+
+### Top and Bottom Margins and Padding on Inline Elements
+
+- As we learned earlier, the browser doesn't use the top and bottom margins and padding for `inline` elements for spacing. New developers often forget this, which leads to headaches as they try to figure out why the margins or padding aren't working the way they expect. 
+- No matter how big the top and bottom margins are on an `inline` element, they do not affect the placement of the element's content nor the content surrounding it. 
+- See the example under *Borders, Padding, and Inline Elements* in *The Visual Formatting Model* assignment.
+
+### Margin Collapse
+
+- An even bigger difference between margins and padding is that top and bottom margins "collapse" between `block` elements. 
+- If you position two adjacent `block`'s one above the other, the margin between them isn't the sum of the bottom margin of the first and the top margin of the second. Instead, the margin collapses to the larger of the two margins in question. For instance, assume that we have the following HTML:
+
+```html
+<p>This is the first sentence</p>
+<p>This is the second sentence</p>
+```
+
+We also have the following CSS:
+
+```css
+p {
+  margin-bottom: 15px;
+  margin-top: 32px;
+}
+```
+
+The spacing between the two paragraphs won't be 47 pixels - it'll be 32 pixels.
+
+- Margin collapse occurs with top and bottom margins, not with left and right margins. 
+- Padding does not collapse.
+
+## Should I Use Padding or Margins?
+
+Strategy 1
+
+- Use margins for spacing between elements, and padding for the visible or clickable area of one. 
+
+- Within a container, use padding for horizontal separation between its edges and content, and margins for the vertical distance.
+
+This approach works well but sometimes leaves you wondering about the correct choice. 
+
+Strategy 2
+
+- Another technique is to use margins everywhere except when you need padding.
+
+- This approach is a simple mechanical process: ask yourself whether any of the below options apply to the element. If any do, use padding to provide those features. Otherwise, use margins. 
+
+- You probably need to use padding when:
+
+  - You want to change the height or width of a border.
+
+  - You want to adjust how much background is visible around an element.
+
+  - You want to alter the amount of clickable area.
+
+  - You want to avoid margin collapse.
+
+  - You want some horizontal spacing to the left or right of an `inline` element.
+
+  - As before, use padding to separate the left and right sides of a container from its content. Use margins for the vertical gap.
+
+- This strategy doesn't guarantee that you will make the correct choice between padding and margins in every situation. However, it should help you choose the right property most of the time. 
+
+As you go through this course, you will see code that doesn't follow the padding vs. margins guidelines above. That's fine; they help you decide which to use, but they are not absolute laws. Not all developers must follow the same rules.
 
 # Visual Display Models
 
@@ -296,6 +449,8 @@ Values
   - If you want an element that is 928 pixels wide, 168 pixels high, with 20 pixels of left and right padding, 10 pixels of padding at the top and bottom, a 1-pixel border, and a 28-pixel bottom margin, all those properties will play a part in the overall dimensions of the element. 
   - Thus, the overall dimensions will be 970 x 218 pixels. (As we'll see later, it's possible to change the way the browser calculates the dimensions. This example assumes that you're using the browser defaults)
 
+#### Other notes about `block` elements
+
 <u>Width and height may include padding and border</u>
 
 - As we'll see later, the `width` and `height` of an element may include the `padding` and `border` in addition to the content area. By default, `width` and `height` exclude the `padding` and `border` from the measured content area. We'll learn more about this fact in the next assignment when we learn about box sizing.
@@ -304,7 +459,12 @@ Values
 
 - Another item of note is that the height and width values never include the margins. Technically, margins provide spacing between elements but are not part of them. However, you do need to account for the margins when determining whether an item will fit in a given space.
 
-#### <u>Convert element to `block`</u>
+<u>Margin Collapse</u>
+
+- Top and bottom margins "collapse" between `block` elements. 
+- If you position two adjacent `block`'s one above the other, the margin between them isn't the sum of the bottom margin of the first and the top margin of the second. Instead, the margin collapses to the larger of the two margins in question. 
+
+#### Convert element to `block`
 
 - You can convert any element to a `block` element with the `display: block` CSS property. It's common to render links (`a`) and images (`img`) as `block` elements.
 
@@ -758,8 +918,6 @@ html {
 #### CSS reference pixels
 
 # My notes
-
-
 
 ## How to calculate horizontal and vertical dimensions
 

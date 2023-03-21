@@ -791,7 +791,7 @@ We'll talk a bit more about HTML style later in this lesson.
   - We’ll most commonly see block-level elements used for larger pieces of content (to create larger structures like paragraphs, headings, and lists.)
 
 - **Inline-level elements do not begin on a new line.** 
-  - **Spacing**: Remember that with in-line elements just like `<strong>` and `<a>` does, they respects white spaces around the character and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character.
+  - **Spacing**: Remember that with in-line elements just like `<strong>` and `<a>` does, they respect white spaces around the character and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character.
   - They fall into the normal flow of a document, lining up one after the other, and only maintain the width of their content. Inline-level elements may be nested inside one another; however, they cannot wrap block-level elements. 
   - Inline-level elements are typically used to add emphasis or to provide additional information within a sentence or paragraph.
   - We’ll usually see inline-level elements with smaller pieces of content, such as a few words.
