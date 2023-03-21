@@ -905,6 +905,14 @@ html {
 
 ------
 
+# Dimensions
+
+- Know the differences between `px`, `em`, `rem`, `%`, and `auto`.
+- Understand why we need to talk about CSS reference pixels and physical pixels. Don't try to memorize the details, but understand the topic well enough that you won't be too surprised the first time you encounter the differences in the wild.
+- Use `auto` margins to center block elements horizontally.
+
+------
+
 ## absolute units
 
 ## relative units
