@@ -241,8 +241,6 @@ You can convert any element to an `inline` element with the `display: inline` CS
 
 Consider the following HTML and CSS and the associated output:
 
-Copy Code
-
 ```html
 <p>
   Deserunt ad eu dolor in nostrud eu. Aliqua ad veniam magna et nostrud. Non ea
