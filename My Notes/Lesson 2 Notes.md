@@ -107,9 +107,9 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
   - There may be more than one way to determine 
 
 - Box model:
+  -  **CSS box model** or **box model** describes how the browser calculates the box size for any given element using browser defaults and css.
   -  The **box size** is how much horizontal and vertical space -- a rectangle or **box** -- it needs to draw the item. There's more than one way to determine this size.
-  - **CSS box model** or **box model**  describes how the browser calculates the box size for any given element using browser defaults and css.
-  - Details: As the browser renders a document, it processes one element at a time. The browser determines the box size it needs to draw the item. It uses the browser defaults and your CSS to calculate the required dimensions. If there's enough horizontal space remaining on the current line, the browser places the element there; otherwise, it starts a new line. Each line uses enough vertical space to contain all its rectangles. This process repeats for every box on the page.
+  -  Details: As the browser renders a document, it processes one element at a time. The browser determines the box size it needs to draw the item. It uses the browser defaults and your CSS to calculate the required dimensions. If there's enough horizontal space remaining on the current line, the browser places the element there; otherwise, it starts a new line. Each line uses enough vertical space to contain all its rectangles. This process repeats for every box on the page.
 - Summary
   - Every element requires a box-shaped segment of the page.
   - Every character of text content also needs a boxed portion of the page.
@@ -181,14 +181,39 @@ Figure 1 illustrates how this process works when the browser viewport (the part 
 
 The vertical positioning of side-by-side boxes varies. Figures 1 and 2 show them aligned at the top, but the actual alignment varies based on the content and the CSS settings for each rectangle.
 
-### padding and margins
+### padding
 
 - The **padding** is an area that surrounds the content area of the box and separates the content from its border. It is typically opaque and hides anything that it overlays.
+
+Syntax
+
+- When **one** value is specified, it applies the same padding to **all four sides**.
+- When **two** values are specified, the first padding applies to the **top and bottom**, the second to the **left and right**.
+- When **three** values are specified, the first padding applies to the **top**, the second to the **right and left**, the third to the **bottom**.
+- When **four** values are specified, the paddings apply to the **top**, **right**, **bottom**, and **left** in that order (clockwise).
+
+### margins
+
 - The **margin** is a transparent area that lies outside the border and supplies separation between elements.
+
+Syntax
+
+- When **one** value is specified, it applies the same margin to **all four sides**.
+- When **two** values are specified, the first margin applies to the **top and bottom**, the second to the **left and right**.
+- When **three** values are specified, the first margin applies to the **top**, the second to the **right and left**, the third to the **bottom**.
+- When **four** values are specified, the margins apply to the **top**, **right**, **bottom**, and **left** in that order (clockwise).
 
 ### borders
 
 - The **border** is a boundary that surrounds the padding.
+
+Values
+
+- ```
+  <line-width>
+  ```
+
+  Sets the thickness of the border. Defaults to `medium` if absent. See [`border-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-width).
 
 # Visual Display Models
 
@@ -215,7 +240,7 @@ The vertical positioning of side-by-side boxes varies. Figures 1 and 2 show them
 - Most `block` elements group one or more elements - some of which may themselves be `block`s - into areas of the page. 
 
   - For instance, `header` elements group together elements into a page header. 
-  - **Containers** are  `block` elements such as a `header` that contain one ore more elements. The master container (the outermost) is the `body`; every other element belongs to a container.
+  - **Containers** are `block` elements such as a `header` that contain one ore more elements. The master container (the outermost) is the `body`; every other element belongs to a container.
 
   - We sometimes use the term **parent** to refer to a container, and use **child** to describe an element contained within a container. These relationship terms also let us talk about grandparents, ancestors, descendants, siblings, cousins, etc..
 
@@ -250,12 +275,15 @@ The vertical positioning of side-by-side boxes varies. Figures 1 and 2 show them
 
 ####  `block` layout properties
 
+- With `block elements` we can compute dimensions directly from CSS properties. 
+
 - `block` elements use the **box properties** (`width`, `height`, `padding`, `border`, `margin`) to determine the size of the element. The browser reserves a box of the right size on the page, and this is where it draws the content. 
+- A block element will always appear on a line by itself within it's container `div` no matter its width. 
+- Though a `block` element takes up an entire row in a container, this does not alter the width of the element. The browser renders the `block` element on a line by itself, but the element has the specified (or computed) width. 
+  - For example, if you have a 500-pixel wide `blockquote` in a 900-pixel wide `section`, the `blockquote` element uses 500 pixels, but the browser will leave the remaining 400 pixels of the `section` empty.
 - Example
   - If you want an element that is 928 pixels wide, 168 pixels high, with 20 pixels of left and right padding, 10 pixels of padding at the top and bottom, a 1-pixel border, and a 28-pixel bottom margin, all those properties will play a part in the overall dimensions of the element. 
   - Thus, the overall dimensions will be 970 x 218 pixels. (As we'll see later, it's possible to change the way the browser calculates the dimensions. This example assumes that you're using the browser defaults)
-- Though a `block` element takes up an entire row in a container, this does not alter the width of the element. The browser renders the `block` element on a line by itself, but the element has the specified (or computed) width. 
-  - For example, if you have a 500-pixel wide `blockquote` in a 900-pixel wide `section`, the `blockquote` element uses 500 pixels, but the browser will leave the remaining 400 pixels of the `section` empty.
 
 <u>Width and height may include padding and border</u>
 
@@ -308,6 +336,8 @@ The vertical positioning of side-by-side boxes varies. Figures 1 and 2 show them
 *Figure 2*: Element flow at 700 pixels
 
 #### `inline` Layout properties
+
+- inline is tricky.
 
 <u>Which dimension properties not ignored by browser for `inline elements`</u>
 
@@ -402,6 +432,8 @@ Top & bottom borders extend beyond boundaries
 - Similar to `inline` elements : flow in the same way that text and `inline` elements flow from one line to the next (see Figures 1 and 2 on the previous page), which lets you place `inline-block` elements side by side with other `inline` or `inline-block` elements.
 
 #### `inline-block` layout properties
+
+- `display: inline-block` meaning that is an `inline-block` element, we can compute dimensions directly from CSS properties. 
 
 - Similar to block elements but different from `inline` elements: 
   - `inline-block` elements set `width` and `height` properties. 
@@ -529,7 +561,8 @@ Main Takeaway
 - The `content-box` setting is the default setting for the `box-sizing` property for all elements in all modern browsers. 
 - In this model, the `width` and `height` properties specify the size of the **actual content area**. You need to add padding and borders to get the size of the **visible box**.
   - `width` x `height` = **actual content area**
-  - `width` x `height` + padding + borders = **visible box**.
+  - `width` x `height` + padding + borders = **visible box**. 
+  - Margin not included in content-box.
 
 ![image-20230320185240802](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230320185240802.png)
 
@@ -541,6 +574,7 @@ Top represents content-box, bottom represents border-box.
 - The width and height include the **content area** as well as the padding and borders.
   - `width` x `height` = **visible box** 
   - Visible box = content area + padding + borders. 
+  - Margin not included in content-box
 
 <u>Why border-box is best</u>
 
@@ -676,8 +710,6 @@ html {
 - `box-sizing: border-box;` is supported in the current versions of all major browsers. The less-commonly used `padding-box` is only supported in Firefox at the moment. There’s more comprehensive information about browser support in our `box-sizing` almanac entry.
 
 - There are a few issues with older versions of Internet Explorer (8 and older). IE 8 doesn’t recognize `border-box` on elements with `min/max-width` or `min/max-height` (this used to affect Firefox too, but it was [fixed in 2012](https://bugzilla.mozilla.org/show_bug.cgi?id=308801)). IE 7 and below do not recognize `box-sizing` at all, but there’s a [polyfill that can help](https://github.com/Schepp/box-sizing-polyfill).
-
-# Dimensions
 
 - Know the differences between `px`, `em`, `rem`, `%`, and `auto`.
 - Understand why we need to talk about CSS reference pixels and physical pixels. Don't try to memorize the details, but understand the topic well enough that you won't be too surprised the first time you encounter the differences in the wild.
