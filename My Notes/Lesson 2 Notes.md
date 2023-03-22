@@ -992,36 +992,6 @@ html {
 - Understand why we need to talk about CSS reference pixels and physical pixels. Don't try to memorize the details, but understand the topic well enough that you won't be too surprised the first time you encounter the differences in the wild.
 - Use `auto` margins to center block elements horizontally.
 
-------
-
-# container element
-
-- In HTML and CSS, a container is an element that is used to hold and organize other elements. In HTML, a container can be any element that has child elements nested within it. 
-  - For example, a `<div>` element can be used as a container to group and organize other elements on a web page, such as text, images, forms, and other HTML elements.
-- An element's `display` property and `box-sizing` can both impact the layout and flow of content within a container element. In other words, the layout and flow of content is impacted by the visual display model and box-sizing model. 
-
-## `display` interaction with flow 
-
-- Depending on the element's `display` property / visual display model, the contained element flows differently within a container.
-- `inline`
-  - For `inline` elements, if descendant element's padding, border, or margin is bigger than the container's width, then it will simply overlap with the container's content area, rather than the `inline` element going to a new line like `inline-block` elements would. 
-  - **Overlap**: The top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided. 
-- `inline-block`
-  - For `inline-block` elements, if padding, border, or margin is bigger than container's width, then the contained element it will go to a new line, making the container bigger. This is assuming the container doesn't have fixed dimensions. 
-  - If a container element has smaller dimensions than a contained element, the contained element will overflow the container and be partially or completely hidden from view.
-- `block`
-  - By default, a `block` element occupies all horizontal space available within its container, with nothing to the left or right of the `block`. 
-    - If your page contains 3 `block` elements directly inside the `body` element and nothing else, then all three elements will display one above the other like a stack of blocks. 
-    - This behavior makes `block` elements predictable and easy to use.
-  - Though a `block` element takes up an entire row in a container, this does not alter the width of the element. The browser renders the `block` element on a line by itself, but the element has the specified (or computed) width. 
-    - For example, if you have a 500-pixel wide `blockquote` in a 900-pixel wide `section`, the `blockquote` element uses 500 pixels, but the browser will leave the remaining 400 pixels of the `section` empty.
-
-## `box-sizing` interaction with flow
-
-- The `box-sizing` property also controls how an element's total width or height is calculated. 
-- For `box-sizing: content box`, an element's width and height are calculated based on content within it and any paddings, borders, or margins are added to the total width and height. This can cause the element to expand beyond the size of its container if the padding, borders, or margins are large enough.
-- When `box-sizing: border-box` is used, an element's width and height are calculated based on the content within it, as well as any padding and borders, but margins are still added to the total width and height. This can make it easier to control the layout of elements within a container, as the total width and height of the element will always include its borders and padding.
-
 # Dimensions
 
 - Know the differences between `px`, `em`, `rem`, `%`, and `auto`.
@@ -1474,6 +1444,34 @@ Trying to decide which dimensional units you should use is sometimes difficult. 
 You can ignore or break any of these rules when appropriate. We violate them often in this course.
 
 # My notes
+
+## container element
+
+- In HTML and CSS, a container is an element that is used to hold and organize other elements. In HTML, a container can be any element that has child elements nested within it. 
+  - For example, a `<div>` element can be used as a container to group and organize other elements on a web page, such as text, images, forms, and other HTML elements.
+- An element's `display` property and `box-sizing` can both impact the layout and flow of content within a container element. In other words, the layout and flow of content is impacted by the visual display model and box-sizing model. 
+
+#### `display` interaction with flow 
+
+- Depending on the element's `display` property / visual display model, the contained element flows differently within a container.
+- `inline`
+  - For `inline` elements, if descendant element's padding, border, or margin is bigger than the container's width, then it will simply overlap with the container's content area, rather than the `inline` element going to a new line like `inline-block` elements would. 
+  - **Overlap**: The top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided. 
+- `inline-block`
+  - For `inline-block` elements, if padding, border, or margin is bigger than container's width, then the contained element it will go to a new line, making the container bigger. This is assuming the container doesn't have fixed dimensions. 
+  - If a container element has smaller dimensions than a contained element, the contained element will overflow the container and be partially or completely hidden from view.
+- `block`
+  - By default, a `block` element occupies all horizontal space available within its container, with nothing to the left or right of the `block`. 
+    - If your page contains 3 `block` elements directly inside the `body` element and nothing else, then all three elements will display one above the other like a stack of blocks. 
+    - This behavior makes `block` elements predictable and easy to use.
+  - Though a `block` element takes up an entire row in a container, this does not alter the width of the element. The browser renders the `block` element on a line by itself, but the element has the specified (or computed) width. 
+    - For example, if you have a 500-pixel wide `blockquote` in a 900-pixel wide `section`, the `blockquote` element uses 500 pixels, but the browser will leave the remaining 400 pixels of the `section` empty.
+
+#### `box-sizing` interaction with flow
+
+- The `box-sizing` property also controls how an element's total width or height is calculated. 
+- For `box-sizing: content box`, an element's width and height are calculated based on content within it and any paddings, borders, or margins are added to the total width and height. This can cause the element to expand beyond the size of its container if the padding, borders, or margins are large enough.
+- When `box-sizing: border-box` is used, an element's width and height are calculated based on the content within it, as well as any padding and borders, but margins are still added to the total width and height. This can make it easier to control the layout of elements within a container, as the total width and height of the element will always include its borders and padding.
 
 ## How to calculate horizontal and vertical dimensions
 
