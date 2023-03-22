@@ -1330,6 +1330,10 @@ the HTML it selects
 | `article h2`  | Descendant Selector   | Selects an element that resides anywhere within an identified ancestor element |
 | `article > p` | Direct Child Selector | Selects an element that resides immediately inside an identified parent element |
 
+- **Descendant selector** matches every element that follows an identified ancestor. The descendant element does not have to come directly after the ancestor element inside the document tree but may fall anywhere within the ancestor element. 
+
+  - The `article h2` selector is a descendant selector, only selecting `h2` elements that fall inside of an `article` element. 
+
 - **Child Combinator** / **child selector**(`>`) is placed between two CSS selectors. It matches only those elements matched by the second selector that are **direct children** of elements matched by the first.
 
   - Every element except the html element is a **direct child** of precisely one other element. For example:
@@ -1354,24 +1358,97 @@ the HTML it selects
 
 #### Sibling Selectors
 
-- Adjacent sibling selector
+| Example  | Classification            | Explanation                                                  |
+| :------- | :------------------------ | :----------------------------------------------------------- |
+| `h2 ~ p` | General Sibling Selector  | Selects an element that follows anywhere after the prior element, in which both elements share the same parent |
+| `h2 + p` | Adjacent Sibling Selector | Selects an element that follows directly after the prior element, in which both elements share the same parent |
+
+- **General Sibling Selector `A ~ B`**
+  - You can select all siblings of an element that follow it. This is like the Adjacent Selector (A + B) except it gets all of the following elements instead of one.
+
+- **Adjacent sibling selector**
   - Elements that follow one another are called siblings. They're on the same level, or depth. The **adjacent sibling combinator** (`+`) separates two selectors and matches the second element only if it *immediately* follows the first element, and both are children of the same parent [`element`](https://developer.mozilla.org/en-US/docs/Web/API/Element).
 
-- Universal Selector
+- **Universal Selector**
   - `A *` : all elements in A.
   - `*`
 
-- Comma Combinator. 
+- **Comma Combinator.** 
   - You can combine any selectors this way, and you can specify more than two.
   - p, .fun selects all p elements as well as all elements with class="fun"
 
+#### Attribute Selector
 
-- General Sibling Selector `A ~ B`
-  - You can select all siblings of an element that follow it. This is like the Adjacent Selector (A + B) except it gets all of the following elements instead of one.
+- Select all elements that have a specific attribute
 
-#### Pseudo-class
+- `[attribute]`
 
-- A **pseudo-class** is a keyword added to a selector that specifies a special state of the selected element(s). 
+- Attributes appear inside the opening tag of an element, like this: span attribute="value". An attribute does not always have a value, it can be blank!
+
+- Examples
+
+  - [class] is not a specific attribute.
+
+  - a[href] selects all a elements that have a href="anything" attribute
+
+  - [type] selects all elements that have a type="anything". attribute
+
+- Combine the attribute selector with another selector (like the tag name selector) by adding it to the end.
+
+  - a[href] selects all a elements that have a href="anything" attribute.
+
+| Example                        | Classification                 | Explanation                                                  |
+| :----------------------------- | :----------------------------- | :----------------------------------------------------------- |
+| `a[target]`                    | Attribute Present Selector     | Selects an element if the given attribute is present         |
+| `a[href="http://google.com/"]` | Attribute Equals Selector      | Selects an element if the given attribute value exactly matches the value stated |
+| `a[href*="login"]`             | Attribute Contains Selector    | Selects an element if the given attribute value contains at least once instance of the value stated |
+| `a[href^="https://"]`          | Attribute Begins With Selector | Selects an element if the given attribute value begins with the value stated |
+| `a[href$=".pdf"]`              | Attribute Ends With Selector   | Selects an element if the given attribute value ends with the value stated |
+| `a[rel~="tag"]`                | Attribute Spaced Selector      | Selects an element if the given attribute value is whitespace-separated with one word being exactly as stated |
+| `a[lang|="en"]`                | Attribute Hyphenated Selector  | Selects an element if the given attribute value is hyphen-separated and begins with the word stated |
+
+- **Attribute Value Selector**
+  - Select all elements that have a specific attribute value `[attribute = "value"]`
+  - Attribute selectors are case sensitive, each character must match exactly.
+  - input[type="checkbox"] selects all checkbox input elements.
+- **Attribute begins with selector** 
+  - `[attribute^="value"]`
+  - Select all elements with an attribute value that starts with specific characters
+- **Attribute Ends with Selector** 
+  - `[attribute$="value"]`
+  - Select all elements with an attribute value that ends with specific characters
+- **Attribute Wildcard Selector**
+  - `[attribute*="value"]`
+  - A useful selector if you can identify a common pattern in things like `class`, `href` or `src` attributes.
+
+#### Pseudo-elements
+
+- A CSS **pseudo-element** is a keyword added to a selector that lets you style a specific part of the selected element(s). 
+
+| Example                    | Classification          | Explanation                                                  |
+| :------------------------- | :---------------------- | :----------------------------------------------------------- |
+| `a:link`                   | Link Pseudo-class       | Selects a link that has not been visited by a user           |
+| `a:visited`                | Link Pseudo-class       | Selects a link that has been visited by a user               |
+| `a:hover`                  | Action Pseudo-class     | Selects an element when a user has hovered their cursor over it |
+| `a:active`                 | Action Pseudo-class     | Selects an element when a user has engaged it                |
+| `a:focus`                  | Action Pseudo-class     | Selects an element when a user has made it their focus point |
+| `input:enabled`            | State Pseudo-class      | Selects an element in the default enabled state              |
+| `input:disabled`           | State Pseudo-class      | Selects an element in the disabled state, by way of the disabled attribute |
+| `input:checked`            | State Pseudo-class      | Selects a checkbox or radio button that has been checked     |
+| `input:indeterminate`      | State Pseudo-class      | Selects a checkbox or radio button that neither been checked or unchecked, leaving it in an indeterminate state |
+| `li:first-child`           | Structural Pseudo-class | Selects an element that is the first within a parent         |
+| `li:last-child`            | Structural Pseudo-class | Selects an element that is the last within a parent          |
+| `div:only-child`           | Structural Pseudo-class | Selects an element that is the only element within a parent  |
+| `p:first-of-type`          | Structural Pseudo-class | Selects an element that is the first of its type within a parent |
+| `p:last-of-type`           | Structural Pseudo-class | Selects an element that is the last of its type within a parent |
+| `img:only-of-type`         | Structural Pseudo-class | Selects an element that is the only of its type within a parent |
+| `li:nth-child(2n+3)`       | Structural Pseudo-class | Selects an element that matches the given number or expression, counting all elements from the beginning of the document tree |
+| `li:nth-last-child(3n+2)`  | Structural Pseudo-class | Selects an element that matches the given number or expression, counting all elements from the end of the document tree |
+| `p:nth-of-type(3n)`        | Structural Pseudo-class | Selects an element that matches the given number or expression, counting only elements of its type from the beginning of the document tree |
+| `p:nth-last-of-type(2n+1)` | Structural Pseudo-class | Selects an element that matches the given number or expression, counting only elements of its type from the end of the document tree |
+| `section:target`           | Target Pseudo-class     | Selects an element whose ID attribute value matches that of the URI fragment identifier |
+| `div:empty`                | Empty Pseudo-class      | Selects an element that does not contain any children or text nodes |
+| `div:not(.awesome)`        | Negation Pseudo-class   | Selects an element not represented by the stated argument    |
 
 - `:first-child`
 
@@ -1445,43 +1522,22 @@ the HTML it selects
 - `only-of-type` Selects the only element of its type within another element.
 
 - `last-of-type` Selects each last element of that type within another element. Remember type refers the kind of tag, so p and span are different types.
+
 - `empty` selector: Selects elements that don't have any other elements inside of them.
+
 - `Negation Pseudo-class`: Select all elements that don't match the negation selector:not(X)
+
   - You can use this to select all elements that do not match selector "X".
 
-#### Attribute Selector
+#### Textual pseudo-elements
 
-- Select all elements that have a specific attribute
-
-- `[attribute]`
-
-- Attributes appear inside the opening tag of an element, like this: span attribute="value". An attribute does not always have a value, it can be blank!
-
-- Examples
-
-  - [class] is not a specific attribute.
-
-  - a[href] selects all a elements that have a href="anything" attribute
-
-  - [type] selects all elements that have a type="anything". attribute
-
-- Combine the attribute selector with another selector (like the tag name selector) by adding it to the end.
-
-  - a[href] selects all a elements that have a href="anything" attribute.
-
-- Attribute Value Selector
-  - Select all elements that have a specific attribute value `[attribute = "value"]`
-  - Attribute selectors are case sensitive, each character must match exactly.
-  - input[type="checkbox"] selects all checkbox input elements.
-- Attribute starts with selector 
-  - `[attribute^="value"]`
-  - Select all elements with an attribute value that starts with specific characters
-- Attribute Ends with Selector 
-  - `[attribute$="value"]`
-  - Select all elements with an attribute value that ends with specific characters
-- Attribute Wildcard Selector
-  - `[attribute*="value"]`
-  - A useful selector if you can identify a common pattern in things like `class`, `href` or `src` attributes.
+| Example               | Classification          | Explanation                                                  |
+| :-------------------- | :---------------------- | :----------------------------------------------------------- |
+| `.alpha:first-letter` | Textual Pseudo-elements | Selects the first letter of text within an element           |
+| `.bravo:first-line`   | Textual Pseudo-elements | Selects the first line of text within an element             |
+| `div:before`          | Generated Content       | Creates a pseudo-element inside the selected element at the beginning |
+| `a:after`             | Generated Content       | Creates a pseudo-element inside the selected element at the end |
+| `::selection`         | Fragment Pseudo-element | Selects the part of a document which has been selected, or highlighted, by a users’ actions |
 
 ## Properties
 

@@ -388,7 +388,7 @@ As you go through this course, you will see code that doesn't follow the padding
 
 ------
 
-## **Visual formatting model**
+## **Visual formatting model** (`display` style)
 
 - How a browser lays out its elements is determined by the `display` property. The `display` property has more than two dozen values, but most CSS uses the values `block`, `inline`, and `inline-block`. We call this property the visual formatting model.
 - Assumption: When we discussed how the browser lays out elements, our stated assumption was that all boxes have a `display` property of `inline-block`. We chose that property value since it's easy to understand, and best demonstrates how page layout works in a browser. 
@@ -411,24 +411,17 @@ As you go through this course, you will see code that doesn't follow the padding
 <u>Common Block Elements</u>
 
 - [Block elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements) appear on almost all web pages: headings, paragraphs, sections, tables, forms, lists, and more are `block` elements.
-
 - Most elements are `block` elements by default. Here are some of the most common:
-
+- `<div>`
   - `section`, `article`, `aside`, `header`, `footer`
-
-  - `p`
-
+- `p`
   - `h1` through `h6`
-  - `<div>`
-
-  - `blockquote`
-
+- `blockquote`
   - `ul`, `ol`, `dl`
-
   - `figure` and `figcaption`
-
-  - `form` and `fieldset`
+- `form` and `fieldset`
   - See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements#Elements) for a complete list of block elements.
+
 
 #### Spacing / Flow
 
@@ -916,6 +909,11 @@ html {
 - CSS properties like `width`, `height`, `margin`, `padding`, and `border` specify the characteristics of element boxes and their attributes. We've also seen a few instances of using `font-size` to specify the text size.
 - Each CSS property includes a length specification called **measurements** or **dimensions** such as `12px`, `3rem`, or `50%`. 
 - `px`, `rem`, `em`, `%` are **measurement units** or **units**.
+- [lengths](https://developer.mozilla.org/en-US/docs/Web/CSS/length) 
+  - The **`<length>`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) [data type](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Types) represents a distance value. Lengths can be used in numerous CSS properties, such as [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width), [`height`](https://developer.mozilla.org/en-US/docs/Web/CSS/height), [`margin`](https://developer.mozilla.org/en-US/docs/Web/CSS/margin), [`padding`](https://developer.mozilla.org/en-US/docs/Web/CSS/padding), [`border-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-width), [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size), and [`text-shadow`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow).
+  - The `<length>` units can be relative or absolute. Relative lengths represent a measurement in terms of some other distance. Depending on the unit, this distance can be the size of a specific character, the [line height](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height), or the size of the [viewport](https://developer.mozilla.org/en-US/docs/Glossary/Viewport). Style sheets that use relative length units can more easily scale from one output environment to another.
+- [percentages](https://developer.mozilla.org/en-US/docs/Web/CSS/percentage)
+  - The **`<percentage>`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) [data type](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Types) represents a percentage value. It is often used to define a size as relative to an element's parent object. Numerous properties can use percentages, such as [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width), [`height`](https://developer.mozilla.org/en-US/docs/Web/CSS/height), [`margin`](https://developer.mozilla.org/en-US/docs/Web/CSS/margin), [`padding`](https://developer.mozilla.org/en-US/docs/Web/CSS/padding), and [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size).
 
 ## Absolute Units
 
@@ -937,6 +935,37 @@ html {
   }
   ```
 
+#### Physical vs. Reference Pixels
+
+- A **CSS reference pixel** (or **CSS pixel** or **reference pixel**) is a theoretical pixel used in CSS visual rendering to define a baseline pixel size for devices with different pixel densities.
+  - One reference pixel corresponds to a visual angle of one pixel with a pixel density of 96 dots per inch (dpi). 
+  - Other pixel densities are then scaled relative to this reference dpi. 
+
+- A **physical pixel** (also **device pixel** or **display pixel**)  is an actual, physical dot on a screen or display that is a fixed, absolute unit of measurement that represents the smallest unit of display on a device. 
+
+  --
+
+Problem: 
+
+- There's a problem with using pixels as an absolute unit: a pixel on a desktop computer and a pixel on a cell phone aren't the same size.
+- Worse yet, the pixel density of displays causes variations in size as well: a pixel on a high-resolution screen (such as Apple's Retina displays) is much smaller than a pixel on a standard- or low-resolution display. That doesn't sound much like an absolute unit, and it isn't.
+- To get around the pixel size problem, CSS distinguishes between a **physical pixel** (also **device pixel** or **display pixel**) and what we call the **CSS reference pixel** (or **CSS pixel** or **reference pixel**). 
+
+Problem: Images that look okay on a low-resolution screen appear much smaller when viewed on a high-resolution display of the same physical size. 
+
+- Solution: The size of a **reference pixel** is increased for higher resolution displays, using more **physical physical** pixels per each CSS pixel. Browsers use CSS pixels so that the image seems to be about the same size on both low and high-resolution screens.
+
+- Details: The size of a reference pixel is the size of a pixel on a display that has 96 pixels per inch. However, if you're working on a high-resolution display, you might have 192 pixels per inch. To account for this, CSS will use a total of four physical pixels on that high-resolution display for each CSS pixel. (Remember that pixels are 2-dimensional, so we need four high-resolution pixels to equal one low-resolution pixel.)
+
+Problem:  If you place a larger display and a small display side by side and view the same 200-pixel by 200-pixel images on both devices, the image will not appear to be the same size. 
+
+- Detail: If you place a 27-inch desktop display and a 5-inch phone side by side and view the same 200-pixel by 200-pixel images on both devices, the images will not appear to be the same size.
+- Solution: To account for this, CSS defines the r**eference pixel** based on the **angular** diameter of a CSS pixel **as viewed from the typical viewing distance (TVD) for the display**. The TVD for a phone (around 14 inches) is less than the TVD for a 27-inch desktop display (about 33 inches), so if we place both screens at the appropriate TVD, that 200x200 pixel image appears to be the same size (or close to it, anyway).
+
+In the end, this means that CSS pixels are as close to an absolute unit as you can get with CSS, provided you take the TVD into account.
+
+The difference between CSS reference pixels and physical pixels can pose a problem when using a design document to build a web page. If you have a high-resolution screen (like Apple's Retina displays) and view an image in Photoshop at 100% of its size, then look at it in your browser, the Photoshop version may appear smaller. If you're aware of this, you can account for the differences.
+
 #### Other Absolute units
 
 - CSS supports other absolute units, including inches and millimeters, but you won't use these units often. 
@@ -954,7 +983,8 @@ html {
   - The calculated font size is the height of the current font in pixels.
   - If the calculated font size is 20 pixels then `1.5em` is `30px` (20 * 1.5). 
 - Compounding: 
-  - Ems compound so you can't go back to the original font size after it compounds. 
+  - `em` units are relative to the font-size of their parent element, so they compound when used in nested elements. The parent element is relative to the font-size of the root element.
+  - Em units compound so you can't go back by specifying the original `em`. 
   - The calculated, compounded font size is also be much larger than Rems.
 
 #### Rems
@@ -1063,7 +1093,7 @@ p {
 
 - Its specific role depends on where you use it, but its most common uses are:
 
-  - As a `width` or `height`, it tells the browser to try to fit the entire element (including its margins) in its container.
+  - Using `auto` for `width` or `height` tells the browser to try to fit the entire element (including its margins) in its container.
 
   - As a left or right `margin` value on a `block` element, it tells the browser to push the element all the way right or left (note the reversal!) inside its container. You can center a block element by setting both left and right margins to `auto`. See below.
 
@@ -1088,7 +1118,7 @@ p {
 ```
 
 ```css
-#auto-width {
+#auto-width { /*container element*/
   background-color: cyan;
   border: 1px solid gray;
   font-family: monospace;
@@ -1096,7 +1126,7 @@ p {
   width: 730px;
 }
 
-#auto-width div {
+#auto-width div { /*applies to all 3 contained elements*/
   background-color: #ffe0e0;
   border: 10px solid red;
   margin: 10px;
@@ -1123,46 +1153,52 @@ p {
 
 ![width: auto vs width: 100%](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_2/measurement-units-02.png)
 
-- In the above code, using `width: auto` is not strictly necessary. By default, not specifying a `width` (or a `height`) is the same as specifying `width: auto` or `height: auto`. So, in most cases, you don't need to provide an `auto` setting for the `width` or `height`.
+##### When is `auto` needed?
+
+- Using `width: auto` is not strictly necessary. By default, not specifying a `width` (or a `height`) is the same as specifying `width: auto` or `height: auto`. So, in most cases, you don't need to provide an `auto` setting for the `width` or `height`.
 
 - However, there are some situations where the `auto` value is needed. In particular, if there's another selector in your CSS that sets the `width` or `height` to some other value, there's a chance that the CSS cascade will cause that value to be used unexpectedly. For this reason, specifying `width: auto` and/or `height: auto` is a good idea (but check your team's coding standards first).
 
-For instance, consider the following code:
+- For instance, consider the following code:
 
-```html
-<html lang="en-US">
-  <head>
-    <style>
-      div {
-        width: 250px;
-        height: 250px;
-        background-color: yellow;
-        border: 1px solid black;
-      }
+  ```html
+  <html lang="en-US">
+    <head>
+      <style>
+        div {
+          width: 250px; /*selector set width to 250*/
+          height: 250px;
+          background-color: yellow;
+          border: 1px solid black;
+        }
+  
+        div.full {
+          width: auto;
+          background-color: lime;
+        }
+  
+        div.should-be-full {
+          background-color: cyan;
+        }
+  
+      </style>
+    </head>
+  
+    <body>
+      <div></div>
+      <div class="full"></div>
+      <div class="should-be-full"></div>
+    </body>
+  </html>
+  ```
 
-      div.full {
-        width: auto;
-        background-color: lime;
-      }
+- If you load this code in your browser, you should see that only the `div` with a class of `full` stretches across the entire window. The one with a class of `should-be-full` does not stretch across the window because it is using the `width` property specified by the `div` selector.
 
-      div.should-be-full {
-        background-color: cyan;
-      }
+##### Using `auto` with `margin`s to align an element
 
-    </style>
-  </head>
-
-  <body>
-    <div></div>
-    <div class="full"></div>
-    <div class="should-be-full"></div>
-  </body>
-</html>
-```
-
-If you load this code in your browser, you should see that only the `div` with a class of `full` stretches across the entire window. The one with a class of `should-be-full` does not stretch across the window because it is using the `width` property specified by the `div` selector.
-
-Let's now look at using `auto` with margins to center and right align a (non-inline) element inside its container without also altering the element's content as `text-align` would:
+- Use `auto` with `margin`s to center and right align a (non-inline) element inside its container without also altering the element's content as `text-align` would. 
+- `margin: XXX auto;` is a common way to center block content.  `XXX` is the size of the top and bottom margins, while `auto` applies to the left and right margins. An XXX value of 0 means no top and bottom margins.
+- Remember: `auto` margins work for `block` elements, but not `inline` or `inline-block`, so you must also set the `display` style when trying to center an `img`.
 
 ```html
 <div id="center-margin-auto">
@@ -1178,18 +1214,18 @@ Let's now look at using `auto` with margins to center and right align a (non-inl
   width: 780px;
 }
 
-#center-margin-auto div {
+#center-margin-auto div { /*descendant selector, the key selector is div, and the prequalifier is center-margin-auto*/
   background-color: #ffe0e0;
   border: 10px solid red;
   padding: 10px;
   width: 50%;
 }
 
-#center-margin-auto-center {
+#center-margin-auto-center { /*center align*/
   margin: 10px auto;
 }
 
-#center-margin-auto-right {
+#center-margin-auto-right { /*right align*/
   margin: 10px 10px 10px auto;
 }
 ```
@@ -1202,44 +1238,11 @@ Let's now look at using `auto` with margins to center and right align a (non-inl
 
 #### container
 
-#### Physical vs. Reference Pixels
-
-- A **CSS reference pixel** (or **CSS pixel** or **reference pixel**) is a theoretical pixel used in CSS visual rendering to define a baseline pixel size for devices with different pixel densities.
-  - One reference pixel corresponds to a visual angle of one pixel with a pixel density of 96 dots per inch (dpi). 
-  - Other pixel densities are then scaled relative to this reference dpi. 
-
-- A **physical pixel** (also **device pixel** or **display pixel**)  is an actual, physical dot on a screen or display that is a fixed, absolute unit of measurement that represents the smallest unit of display on a device. 
-
-  --
-
-Problem: 
-
-- There's a problem with using pixels as an absolute unit: a pixel on a desktop computer and a pixel on a cell phone aren't the same size.
-- Worse yet, the pixel density of displays causes variations in size as well: a pixel on a high-resolution screen (such as Apple's Retina displays) is much smaller than a pixel on a standard- or low-resolution display. That doesn't sound much like an absolute unit, and it isn't.
-- To get around the pixel size problem, CSS distinguishes between a **physical pixel** (also **device pixel** or **display pixel**) and what we call the **CSS reference pixel** (or **CSS pixel** or **reference pixel**). 
-
-Problem: Images that look okay on a low-resolution screen appear much smaller when viewed on a high-resolution display of the same physical size. 
-
-- Solution: The size of a **reference pixel** is increased for higher resolution displays, using more **physical physical** pixels per each CSS pixel. Browsers use CSS pixels so that the image seems to be about the same size on both low and high-resolution screens.
-
-- Details: The size of a reference pixel is the size of a pixel on a display that has 96 pixels per inch. However, if you're working on a high-resolution display, you might have 192 pixels per inch. To account for this, CSS will use a total of four physical pixels on that high-resolution display for each CSS pixel. (Remember that pixels are 2-dimensional, so we need four high-resolution pixels to equal one low-resolution pixel.)
-
-Problem:  If you place a larger display and a small display side by side and view the same 200-pixel by 200-pixel images on both devices, the image will not appear to be the same size. 
-
-- Detail: If you place a 27-inch desktop display and a 5-inch phone side by side and view the same 200-pixel by 200-pixel images on both devices, the images will not appear to be the same size.
-- Solution: To account for this, CSS defines the r**eference pixel** based on the **angular** diameter of a CSS pixel **as viewed from the typical viewing distance (TVD) for the display**. The TVD for a phone (around 14 inches) is less than the TVD for a 27-inch desktop display (about 33 inches), so if we place both screens at the appropriate TVD, that 200x200 pixel image appears to be the same size (or close to it, anyway).
-
-In the end, this means that CSS pixels are as close to an absolute unit as you can get with CSS, provided you take the TVD into account.
-
-The difference between CSS reference pixels and physical pixels can pose a problem when using a design document to build a web page. If you have a high-resolution screen (like Apple's Retina displays) and view an image in Photoshop at 100% of its size, then look at it in your browser, the Photoshop version may appear smaller. If you're aware of this, you can account for the differences.
-
 ## Other topics
 
 #### Zero Lengths
 
-Standard CSS style omits the units when providing a length of 0 units. For example, if you want no margins on `blockquote` elements, you can add the following to your CSS:
-
-Copy Code
+- Standard CSS style omits the units when providing a length of 0 units. For example, if you want no margins on `blockquote` elements, you can add the following to your CSS:
 
 ```css
 blockquote {
@@ -1247,13 +1250,11 @@ blockquote {
 }
 ```
 
-We omit the units here since 0 is the same in all units.
+- We omit the units here since 0 is the same in all units.
 
 #### Mixing Units
 
 You can freely mix units anywhere you want on a page: you can use pixels for some elements, rems for others, `%`, and `auto` even within a single element's styling:
-
-Copy Code
 
 ```css
 p {
@@ -1267,16 +1268,12 @@ p {
 
 Be careful, though: mixing and matching units can lead to problems when you need to determine the "right" length to make something come out correct. Consider:
 
-Copy Code
-
 ```html
 <div class="a">
   <div class="b"></div>
   <div class="c"></div>
 </div>
 ```
-
-Copy Code
 
 ```css
 div {
@@ -1301,9 +1298,16 @@ div {
 }
 ```
 
-What `width` should you provide to the `.c` selector to ensure that the outer box is precisely large enough to contain both the `b` and `c` boxes? The best you can do here is estimate a value, but no size you specify will be precise for all page widths.
+What `width` should you provide to the `.c` selector to ensure that the outer box is precisely large enough to contain both the `b` and `c` boxes? 
 
-Using `box-sizing: border-box` can help in situations like this, provided you aren't also using left or right margins on the inner boxes.
+- The best you can do here is estimate a value, but no size you specify will be precise for all page widths.
+- Because we are using different units (`px` and `rem`) and different margin values for the `b` and `c` boxes, it is difficult to determine an exact `width` value for the `.c` selector that will work for all page widths.
+
+Use `box-sizing` 
+
+- One possible solution to this problem is to use the `box-sizing: border-box` property on all `div` elements. This property includes the border and padding in the `width` and `height` calculations, so it can help to ensure that the inner `div` elements fit within the outer `div` element without causing overflow.
+
+- However using `box-sizing: border-box` can still cause problems if left or right margins are used on the inner boxes. In those cases, it may be necessary to adjust the margin values or use a different approach altogether.
 
 #### When to Use the Different Units
 
@@ -1392,3 +1396,11 @@ Become comfortable with the CSS `display`, `box-sizing`, `width`, `height`, `pad
 - `border`
 
 - and `margin` 
+
+# Other CSS properties
+
+- The **`text-align`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the horizontal alignment of the inline-level content inside a block element or table-cell box.
+  - This property alters an element's content.
+
+- The **`max-width`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the maximum width of an element. It prevents the [used value](https://developer.mozilla.org/en-US/docs/Web/CSS/used_value) of the [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width) property from becoming larger than the value specified by `max-width`.
+  - `max-width` overrides [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width), but [`min-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/min-width) overrides `max-width`.

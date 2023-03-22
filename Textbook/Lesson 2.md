@@ -1071,8 +1071,6 @@ The `auto` specifier also isn't a length value, but you can use it when you want
 
 New developers sometimes assume that `auto` and `100%` are the same, but they are not. For example, if you use `width: auto`, the browser tries to put the entire element, including its margins, border, and padding within the container. If you use `width: 100%` instead, the browser won't consider the margins when it calculates the required element size. Thus, the element may extend beyond the bounds of the container. Furthermore, if you use the `content-box` box-sizing model, the browser won't consider the border and padding when determining the required size. For example:
 
-Copy Code
-
 ```html
 <div id="auto-width">
   <div id="auto-width-auto">width: auto</div>
@@ -1080,8 +1078,6 @@ Copy Code
   <div id="auto-width-100-content">width: 100%; box-sizing: content-box;</div>
 </div>
 ```
-
-Copy Code
 
 ```css
 #auto-width {
@@ -1127,8 +1123,6 @@ However, there are some situations where the `auto` value is needed. In particul
 
 For instance, consider the following code:
 
-Copy Code
-
 ```html
 <html lang="en-US">
   <head>
@@ -1164,16 +1158,12 @@ If you load this code in your browser, you should see that only the `div` with a
 
 Let's now look at using `auto` with margins to center and right align a (non-inline) element inside its container without also altering the element's content as `text-align` would:
 
-Copy Code
-
 ```html
 <div id="center-margin-auto">
   <div id="center-margin-auto-center">centered</div>
   <div id="center-margin-auto-right">right</div>
 </div>
 ```
-
-Copy Code
 
 ```css
 #center-margin-auto {
@@ -1208,8 +1198,6 @@ Copy Code
 
 Standard CSS style omits the units when providing a length of 0 units. For example, if you want no margins on `blockquote` elements, you can add the following to your CSS:
 
-Copy Code
-
 ```css
 blockquote {
   margin: 0;
@@ -1221,8 +1209,6 @@ We omit the units here since 0 is the same in all units.
 ### Mixing Units
 
 You can freely mix units anywhere you want on a page: you can use pixels for some elements, rems for others, `%`, and `auto` even within a single element's styling:
-
-Copy Code
 
 ```css
 p {
@@ -1244,8 +1230,6 @@ Copy Code
   <div class="c"></div>
 </div>
 ```
-
-Copy Code
 
 ```css
 div {

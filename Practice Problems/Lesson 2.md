@@ -300,3 +300,99 @@ Solution
 Because `article` is now an `inline-block` element, the browser sees the spaces between the two `article ` elements will collapse them into one whitespace character and uses the result as content between the two `article` elements. Since the total width of the container is only 900 pixels and now the white space takes a few pixels to account for the single space character, the two `article`s no longer fit in the same line.  
 
 This kind of problem often occurs when one of the elements is an inline-block; the rest of the time, the extra space typically doesn't matter. Aside from placing the two tags up against each other to eliminate the whitespace, there are several other techniques you will see later that let you remove the space or make it invisible.
+
+# Practice Problems: Spacing and Dimensions
+
+In these practice problems, we'll work with heights, widths, padding, margins, and a variety of dimensional units.
+
+Some of these problems use [this image](https://d3jtzah944tvom.cloudfront.net/lesson_2/exercises_dimension_and_spacing/Hôtel_des_Invalides_-_20150801_16h09_(10630).jpg). You may use it in your HTML like this:
+
+```html
+<img src="https://d3jtzah944tvom.cloudfront.net/lesson_2/exercises_dimension_and_spacing/H%C3%B4tel_des_Invalides_-_20150801_16h09_%2810630%29.jpg"
+    alt="Demonstration of image sizing">
+```
+
+We'll discuss images and the `img` tag in a later lesson.
+
+1. Use CSS to set a fixed width on the image of 800 pixels, and center it in the window horizontally.
+
+   Hint
+
+   Solution
+
+2. Using the code from the previous problem, change the `width` property for `img` to `100%`, and set the `max-width` property to `800px`. The image should expand to fit any container width up to 800 pixels. Resize your browser width and watch how that affects the photograph.
+
+   Solution
+
+3. Using the code from the previous problem, set a fixed height on the image of 533 pixels. Resize the browser window and watch how the image dimensions change.
+
+   Solution
+
+4. As you can see, having a variable size for one dimension and fixed for the other makes for a container with strange behavior: this one stretches horizontally but remains fixed vertically. Remove the height and update the CSS to ensure the width does not get smaller than 500 pixels.
+
+   Solution
+
+5. Create a new HTML page with two consecutive `div` elements. Make each a fixed width and height of 300 pixels. Set the background color on the first `div` to `"#fcc"` (red) and the second to `"#ccf"` (blue).
+
+   Solution
+
+6. Add a 5-pixel solid black border to the blue `div`. Compare the widths of the two boxes. Why is the blue box a different size?
+
+   Solution
+
+7. Add 20 pixels padding to all four sides of the red `div`. Notice the different widths again. Add a CSS property to both elements to ensure the total width for each is `300px` rather than `300px` and then some.
+
+   Solution
+
+8. Change both boxes to place them side by side instead of stacked vertically. If necessary, increase the width of your browser window.
+
+   Solution
+
+9. Add 20px of space between the red and blue boxes.
+
+   Solution
+
+10. Create a new HTML file with the following CSS and HTML:
+
+    ```html
+    <body>
+      <ul>
+        <li>Item 1</li><!--
+        --><li>Item 2</li><!--
+        --><li>Item 3</li><!--
+        --><li>Item 4</li>
+      </ul>
+    </body>
+    ```
+
+    ```css
+     body {
+      margin: 50px;
+    }
+    
+    ul {
+      background-color: #a7ceff;
+      border: 10px solid blue;
+      list-style: none;
+      padding: 0;
+    }
+    
+    li {
+      background-color: #ffc;
+      border: 10px solid red;
+      box-sizing: border-box;
+      line-height: 120px;
+      min-height: 120px;
+      text-align: center;
+    }
+    ```
+
+    Don't overlook the oddly-formatted comments between the list items above! They're a necessary part of this problem.
+
+    Add the CSS needed to list all four items side by side in one row. Each list item should use the same amount of space as the other elements, and together they should hide the blue background entirely (but not the blue border).
+
+    Solution
+
+11. Using the code from the previous problem solution, set the left and right margin on each `li` element to 1%, but do not let the inner boxes wrap around - they must all continue to fit on the same line with no change in the outer box's size.
+
+    Solution
