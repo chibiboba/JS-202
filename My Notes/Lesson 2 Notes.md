@@ -195,6 +195,7 @@ The vertical positioning of side-by-side boxes varies. Figures 1 and 2 show them
 - The **padding** is an area that surrounds the content area of the box and separates the content from its border. 
   - It is typically opaque and hides anything that it overlays.
   - Put another way, padding is part of the visible and clickable bounds of an element.
+  - Background-color shows here.
   - Padding does not collapse.
 
 Syntax
@@ -211,6 +212,30 @@ Syntax
 
 - The **border** is a boundary that surrounds the padding.
 
+Syntax
+
+```css
+/* style */
+border: solid;
+
+/* width | style */
+border: 2px dotted;
+
+/* style | color */
+border: outset #f33;
+
+/* width | style | color */
+border: medium dashed green;
+
+/* Global values */
+border: inherit;
+border: initial;
+border: revert;
+border: revert-layer;
+border: unset;
+
+```
+
 Values
 
 - ```
@@ -222,10 +247,52 @@ Values
 ## margins
 
 - The **margin** is a typically transparent area that lies outside the border and supplies spacing between adjacent elements.
-- It is not "clickable".
+
+  It is not "clickable".
 - Margin collapse: In adjacent elements, margin collapses to the larger of the two margins in question.
+- Background color interaction: 
+
+  - Background color of container element shows in the transparent margin of the contained element.
+
+- How to use margins
+
+  - Use margins for spacing between elements, and padding for the visible or clickable area of one. 
+  - Within a container, use padding for horizontal separation between its edges and content, and margins for the vertical distance.
+
+
+Constituent properties
+
+- [`margin-top`](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-top)
+- [`margin-right`](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right)
+- [`margin-bottom`](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom)
+- [`margin-left`](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left)
 
 Syntax
+
+```css
+/* Apply to all four sides */
+margin: 1em;
+margin: -3px;
+
+/* top and bottom | left and right */
+margin: 5% auto;
+
+/* top | left and right | bottom */
+margin: 1em auto 2em;
+
+/* top | right | bottom | left */
+margin: 2px 1em 0 auto;
+
+/* Global values */
+margin: inherit;
+margin: initial;
+margin: revert;
+margin: revert-layer;
+margin: unset;
+
+```
+
+`<length>` Values for `margin`. 
 
 - When **one** value is specified, it applies the same margin to **all four sides**.
 - When **two** values are specified, the first margin applies to the **top and bottom**, the second to the **left and right**.
@@ -425,22 +492,27 @@ As you go through this course, you will see code that doesn't follow the padding
 
 #### Spacing / Flow
 
-- Block-level elements begin on a new line, stacking one on top of the other, and occupy any available width. 
+- Block-level elements always begin on a new line, stacking one on top of the other, and occupy any available width. 
+
 - By default, a `block` element occupies all horizontal space available within its container, with nothing to the left or right of the `block`. 
   - If your page contains 3 `block` elements directly inside the `body` element and nothing else, then all three elements will display one above the other like a stack of blocks. 
   - This behavior makes `block` elements predictable and easy to use.
 
+- Though a `block` element takes up an entire row in a container, this does not alter the width of the element. The browser renders the `block` element on a line by itself, but the element has the specified (or computed) width. 
+
+  - For example, if you have a 500-pixel wide `blockquote` in a 900-pixel wide `section`, the `blockquote` element uses 500 pixels, but the browser will leave the remaining 400 pixels of the `section` empty.
+
+- A block element will always appear on a line by itself within it's container `div` no matter its width. 
+
+  Example
+
+  - If you want an element that is 928 pixels wide, 168 pixels high, with 20 pixels of left and right padding, 10 pixels of padding at the top and bottom, a 1-pixel border, and a 28-pixel bottom margin, all those properties will play a part in the overall dimensions of the element. 
+  - Thus, the overall dimensions will be 970 x 218 pixels. (As we'll see later, it's possible to change the way the browser calculates the dimensions. This example assumes that you're using the browser defaults)
+
 ####  `block` layout properties
 
 - With `block elements` we can compute dimensions directly from CSS properties. 
-
 - `block` elements use the **box properties** (`width`, `height`, `padding`, `border`, `margin`) to determine the size of the element. The browser reserves a box of the right size on the page, and this is where it draws the content. 
-- A block element will always appear on a line by itself within it's container `div` no matter its width. 
-- Though a `block` element takes up an entire row in a container, this does not alter the width of the element. The browser renders the `block` element on a line by itself, but the element has the specified (or computed) width. 
-  - For example, if you have a 500-pixel wide `blockquote` in a 900-pixel wide `section`, the `blockquote` element uses 500 pixels, but the browser will leave the remaining 400 pixels of the `section` empty.
-- Example
-  - If you want an element that is 928 pixels wide, 168 pixels high, with 20 pixels of left and right padding, 10 pixels of padding at the top and bottom, a 1-pixel border, and a 28-pixel bottom margin, all those properties will play a part in the overall dimensions of the element. 
-  - Thus, the overall dimensions will be 970 x 218 pixels. (As we'll see later, it's possible to change the way the browser calculates the dimensions. This example assumes that you're using the browser defaults)
 
 #### Other notes about `block` elements
 
@@ -488,9 +560,14 @@ As you go through this course, you will see code that doesn't follow the padding
 
 #### Flow
 
-- `inline` elements flow from one line to the next, which lets you place `inline`  elements side by side with other `inline` or `inline-block` elements.
-- The main idea is that the left/right factors affect the **flow**, while the top and bottom do not.
-- **Spacing**: Remember that in code, inline elements respect white spaces around the character and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character. 
+- **Flow**: `inline` elements flow from one line to the next, which lets you place `inline`  elements side by side with other `inline` or `inline-block` elements.
+  - The main idea is that the left/right factors affect the **flow**, while the top and bottom do not.
+
+- padding, margins & borders impact on flow
+  - For `inline` elements, if descendant element's padding, border, or margin is bigger than the container's width, then it will simply overlap with the container's content area, rather than the `inline` element going to a new line like `inline-block` elements would. 
+  - **Overlap**: The top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided. 
+
+Demonstration
 
 ![Box layout at 800 pixels width](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_2/everything-a-box-1.png)
 
@@ -499,6 +576,10 @@ As you go through this course, you will see code that doesn't follow the padding
 ![Box layout at 700 pixels width](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_2/everything-a-box-2.png)
 
 *Figure 2*: Element flow at 700 pixels
+
+#### Spacing
+
+- **Spacing**: Remember that in code, inline elements respect white spaces around the character and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character. 
 
 #### `inline` Layout properties
 
@@ -605,11 +686,18 @@ This example demonstrates how browsers handle borders, padding, and margins with
 
 #### Flow
 
-- Inline-block elements can have a set width and height, but they still flow inline, making them useful for creating more complex layouts.
+- **Flow:** Inline-block elements can have a set width and height, but they still flow inline, making them useful for creating more complex layouts.
+  - Similar to `inline` elements : flow in the same way that text and `inline` elements flow from one line to the next (see Figures 1 and 2 on the previous page)
+  - This lets you place `inline-block` elements side by side with other `inline` or `inline-block` elements.
 
-- Similar to `inline` elements : flow in the same way that text and `inline` elements flow from one line to the next (see Figures 1 and 2 on the previous page), which lets you place `inline-block` elements side by side with other `inline` or `inline-block` elements.
+- Padding, margin & borders impact on flow
+  - For `inline-block` elements, if padding, border, or margin is bigger than container's width, then the contained element it will go to a new line, making the container bigger. 
+  - This is assuming the container doesn't have fixed dimensions. If a container element has smaller dimensions than a contained element, the contained element will overflow the container and be partially or completely hidden from view.
 
-- **Spacing**: Remember that in code, inline elements respect white spaces around the character and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character.
+
+#### Spacing
+
+- **Spacing**: Remember that in code, `inline` elements respect white spaces around the character and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character.
 
 #### `inline-block` layout properties
 
@@ -731,18 +819,19 @@ However, the second will fail W3C validation; one pair of open/close tags should
 
 ------
 
-Main Takeaway
+## `box-sizing` property
 
 - The usable `box-sizing` property values are `content-box`, and `border-box`. The CSS standard deprecates the `padding-box` setting; **don't use it**.
 
+- Use the `box-sizing` property to change how the box model treats padding and borders. When set to `border-box`, the browser includes both padding and borders as part of the total dimensions.
+
 ## `content-box`
 
-- The `content-box` setting is the default setting for the `box-sizing` property for all elements in all modern browsers. 
+- By default, the CSS box model uses a value of `content-box` on all elements on modern browsers, which means the browser doesn't include the padding or border in the `width` and `height`. Instead, it adds the padding and border sizes to calculate the dimensions of the element.
 - In this model, the `width` and `height` properties specify the size of the **actual content area**. You need to add padding and borders to get the size of the **visible box**.
   - `width` x `height` = **content area**
   - `width` x `height` + padding + borders = **visible box**. 
   - Margin not included in content-box.
-- `content-box` applies to `inline` elements only.
 
 ![image-20230320185240802](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230320185240802.png)
 
@@ -761,6 +850,7 @@ Top represents content-box, bottom represents border-box.
 - The `border-box` setting is "best" since it simplifies the math a front-end developer must do. 
 - `border-box` is made for responsive design. 
 - For example, if we have a box with a width of 50% and padding of 12px; `border-box` ensures that it's precisely 50% of the container width, not 50% plus 24 pixels. 
+- Use `border-box` if you don't want paddings or borders to exceed a certain dimension. 
 
 <u>Box reset: Universal Box Sizing with Inheritance</u>
 
@@ -1082,10 +1172,12 @@ p {
 #### Percentages
 
 - Ethnically CSS doesn't consider percentages a length value, but you can use **percentages** to define dimensions as a fraction of the container's width or height. 
-
 - If you place a `block` or `inline-block` element in a container and set it to `width: 50%;`, the element's width is 50% of the width of the container. Likewise, if you need a height of one-quarter of the container's height, use `height: 25%`.
-
 - Remember: `width` and `height` have no effect on `inline` elements.
+- Browser window interaction
+  - When you use a percentage width for an image, the image will resize proportionally based on the size of the browser window. 
+  - For example, if you set the width of an image to 50%, the image will take up 50% of the width of its containing element. If the containing element is the entire width of the browser window, then the image will take up 50% of the width of the browser window. As the size of the browser window changes, the image will resize proportionally to always take up 50% of the width of its containing element.
+
 
 #### Auto
 
@@ -1197,7 +1289,14 @@ p {
 ##### Using `auto` with `margin`s to align an element
 
 - Use `auto` with `margin`s to center and right align a (non-inline) element inside its container without also altering the element's content as `text-align` would. 
+
 - `margin: XXX auto;` is a common way to center block content.  `XXX` is the size of the top and bottom margins, while `auto` applies to the left and right margins. An XXX value of 0 means no top and bottom margins.
+
+  - ```cs
+    margin: auto; /* top and bottom: 0 margin*/
+    /* Box is horizontally centered */
+    ```
+
 - Remember: `auto` margins work for `block` elements, but not `inline` or `inline-block`, so you must also set the `display` style when trying to center an `img`.
 
 ```html
@@ -1306,8 +1405,23 @@ What `width` should you provide to the `.c` selector to ensure that the outer bo
 Use `box-sizing` 
 
 - One possible solution to this problem is to use the `box-sizing: border-box` property on all `div` elements. This property includes the border and padding in the `width` and `height` calculations, so it can help to ensure that the inner `div` elements fit within the outer `div` element without causing overflow.
-
 - However using `box-sizing: border-box` can still cause problems if left or right margins are used on the inner boxes. In those cases, it may be necessary to adjust the margin values or use a different approach altogether.
+
+#### Interaction with mixing units
+
+- Using fixed dimension for one side and a relative variable dimension for another side will cause the image to stretch weirdly when browser is resized. 
+
+  - For example, a fixed height and a width of 100% will cause the image to stretch horizontally but remain fixed vertically. 
+
+    ```css
+    img {
+      display: block;
+      height: 533px;
+      margin: 0 auto;
+      max-width: 800px;
+      width: 100%;
+    }
+    ```
 
 #### When to Use the Different Units
 
@@ -1350,7 +1464,7 @@ Q: Calculate the minimum dimensions that a **container element** needs to contai
 - Then use the `box-sizing` property to determine which properties are included in calculating the dimensions. 
 
   -  `content-box`: include `padding`, `border` along with other values to determine dimensions. 
-  - `border-box`: Do not include `padding` and `border` to determine total horizontal or vertical dimensions, because these two properties are already calculated in the content area. 
+  -  `border-box`: Do not include `padding` and `border` to determine total horizontal or vertical dimensions, because these two properties are already calculated in the content area. 
 
 2. Calculate dimension of container element.
 
@@ -1377,6 +1491,154 @@ How does visual display models relate to box sizing models?
 
 - Understanding both visual display models and box-sizing models is important for creating well-designed and responsive web pages. By setting the appropriate display mode and box-sizing value for each HTML element, you can control how it is rendered on the screen and how it interacts with other elements on the page.
 
+## Flow
+
+- For `inline-block` elements, if margin is bigger than container's width, then the descendant element it will go to a new line, making the container bigger. 
+  - This is assuming the container doesn't have fixed dimensions. 
+  - If a container element has smaller dimensions than a contained element, the contained element will overflow the container and be partially or completely hidden from view.
+- For `inline` elements, if descendant element's margin or border is bigger than the container's width, then margin or border will simply intersect with the container's content area. 
+
+## Spacing 
+
+- Use `margin` to create spacing between adjacent elements 
+
+- **Spacing**: Remember that in code, `inline` and `inline-block` elements respect white spaces around the character and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character. 
+
+- Use html comments to remove space between adjacent elements.
+
+  - Assume here that `li` is now an `inline-block` element.
+
+  ```html
+  <body>
+    <ul>
+      <li>Item 1</li><!--
+      --><li>Item 2</li><!--
+      --><li>Item 3</li><!--
+      --><li>Item 4</li>
+    </ul>
+  </body>
+  ```
+
+## Article about spacing
+
+Read [this article](https://css-tricks.com/fighting-the-space-between-inline-block-elements/) for more information on why this problem occurs and to learn some other techniques for dealing with it.
+
+- Problem: a series of `inline-block` elements formatted like you normally format HTML will have spaces in between them.
+
+- In other words:
+
+```html
+<nav>
+  <a href="#">One</a>
+  <a href="#">Two</a>
+  <a href="#">Three</a>
+</nav>
+nav a {
+  display: inline-block;
+  padding: 5px;
+  background: red;
+}
+```
+
+Will result in:
+
+![spaces](https://i0.wp.com/css-tricks.com/wp-content/uploads/2012/04/spaces.png?resize=170%2C67)Often highly undesirable
+
+- We often want the elements to butt up against each other. In the case of navigation, that means it avoids the awkward little unclickable gaps.
+
+- This isn’t a “bug” (I don’t think). It’s just the way setting elements on a line works. You want spaces between words that you type to be spaces right? The spaces between these blocks are just like spaces between words. That’s not to say the spec couldn’t be updated to say that spaces between inline-block elements should be nothing, but I’m fairly certain that is a huge can of worms that is unlikely to ever happen.
+
+- Here’s some ways to fight the gap and get inline-block elements sitting directly next to each other.
+
+#### Remove the spaces
+
+- The reason you get the spaces is because, well, you have spaces between the elements (a line break and a few tabs counts as a space, just to be clear). 
+
+- Minimized HTML will solve this problem, or one of these tricks:
+
+```html
+<ul>
+  <li>
+   one</li><li>
+   two</li><li>
+   three</li>
+</ul>
+```
+
+or
+
+```html
+<ul>
+  <li>one</li
+  ><li>two</li
+  ><li>three</li>
+</ul>
+```
+
+or with comments…
+
+```html
+<ul>
+  <li>one</li><!--
+  --><li>two</li><!--
+  --><li>three</li>
+</ul>
+```
+
+- They’re all pretty funky, but it does the trick.
+
+#### Negative margin
+
+- You can scoot the elements back into place with negative 4px of margin (may need to be adjusted based on font size of parent). 
+- Apparently this is problematic in older IE (6 & 7), but if you don’t care about those browsers at least you can keep the code formatting clean.
+
+```css
+nav a {
+  display: inline-block;
+  margin-right: -4px;
+}
+```
+
+#### Skip the closing tag
+
+- HTML5 doesn’t care anyway. Although you gotta admit, it feels weird.
+
+```html
+<ul>
+  <li>one
+  <li>two
+  <li>three
+</ul>
+```
+
+#### Set the font size to zero
+
+- A space that has zero `font-size` is… zero width.
+
+```css
+nav {
+  font-size: 0;
+}
+nav a {
+  font-size: 16px;
+}
+```
+
+- Matt Stow reports that the font-size: 0; technique has some problems on Android. Quote: Pre-Jellybean does not remove the space at all, and Jellybean has a bug whereby the last element randomly has a tiny bit of space. [See research.](http://codepen.io/stowball/details/LsICH)
+
+- Also note, if [you’re sizing fonts in ems](https://css-tricks.com/why-ems/), this zero font size thing can be an issue, since ems cascade the children would also have zero font size. Rems would be of help here, otherwise any other non-cascading `font-size` to bump it back up.
+
+- Another weirdness! Doug Stewart showed me that if you use @font-face with this technique, the fonts will lose anti-aliasing in Safari 5.0.x. ([test case](http://jsfiddle.net/39GZd/7/)) ([screenshot](https://css-tricks.com/wp-content/uploads/2012/04/Screen-Shot-2013-06-11-at-4.23.03-PM.png)).
+
+#### Just float them instead
+
+- Maybe they don’t need to be inline-block at all, maybe they can just be floated one way or another. That allows you to set their width and height and padding and stuff. 
+- You just can’t center them like you can by `text-align: center;` the parent of `inline-block` elements. Well… you kinda can but [it’s weird](http://codepen.io/chriscoyier/pen/blExo).
+
+#### Just use flexbox instead
+
+- If the [browser support](https://css-tricks.com/using-flexbox/) is acceptable to you and what you need out of inline-block is centering, you could use flexbox. They aren’t exactly interchangeable layout models or anything, but you might get what you need out of it.
+
 # CSS Properties
 
 Become comfortable with the CSS `display`, `box-sizing`, `width`, `height`, `padding`, `border`, and `margin` properties. Memorize this list of properties so you can look up the details when needed.
@@ -1384,18 +1646,16 @@ Become comfortable with the CSS `display`, `box-sizing`, `width`, `height`, `pad
 ------
 
 - `display`
-
 - ``box-sizing`
+- `width`
+  - Fixed width. Image remains this fixed width even when resizing browser window.
 
--  `width`
-
--  `height`
+- `height`
+  - Fixed height. Image remains this fixed height even when resizing browser window. 
 
 - `padding`
-
 - `border`
-
-- and `margin` 
+-  `margin` 
 
 # Other CSS properties
 
@@ -1404,3 +1664,6 @@ Become comfortable with the CSS `display`, `box-sizing`, `width`, `height`, `pad
 
 - The **`max-width`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the maximum width of an element. It prevents the [used value](https://developer.mozilla.org/en-US/docs/Web/CSS/used_value) of the [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width) property from becoming larger than the value specified by `max-width`.
   - `max-width` overrides [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width), but [`min-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/min-width) overrides `max-width`.
+  - It does not include padding, borders, or margins.
+- The **`min-width`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the minimum width of an element. It prevents the [used value](https://developer.mozilla.org/en-US/docs/Web/CSS/used_value) of the [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width) property from becoming smaller than the value specified for `min-width`.
+  - It does not include padding, borders, or margins.
