@@ -197,6 +197,10 @@ The vertical positioning of side-by-side boxes varies. Figures 1 and 2 show them
   - Put another way, padding is part of the visible and clickable bounds of an element.
   - Background-color shows here.
   - Padding does not collapse.
+- Two ways to use padding:
+  - Strategy 1 : Use margins for spacing between elements, and padding for the visible or clickable area of one. Within a container, use padding for horizontal separation between its edges and content, and margins for the vertical distance.
+  - Strategy 2 Use margins everywhere except when you need padding.
+
 
 Syntax
 
@@ -459,6 +463,7 @@ As you go through this course, you will see code that doesn't follow the padding
 
 - How a browser lays out its elements is determined by the `display` property. The `display` property has more than two dozen values, but most CSS uses the values `block`, `inline`, and `inline-block`. We call this property the visual formatting model.
 - Assumption: When we discussed how the browser lays out elements, our stated assumption was that all boxes have a `display` property of `inline-block`. We chose that property value since it's easy to understand, and best demonstrates how page layout works in a browser. 
+- **Flow**: How browser flows elements onto the page. 
 
 ## Block
 
@@ -1333,11 +1338,7 @@ p {
 
 ![width: auto](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_2/measurement-units-03.png)
 
-## Other terms
-
-#### container
-
-## Other topics
+## How to use Units
 
 #### Zero Lengths
 
@@ -1442,6 +1443,10 @@ Trying to decide which dimensional units you should use is sometimes difficult. 
   - Use `auto` with left and right margins to left, center, or right justify a block element within its container.
 
 You can ignore or break any of these rules when appropriate. We violate them often in this course.
+
+## Other terms
+
+#### container
 
 # My notes
 
@@ -1667,3 +1672,15 @@ Become comfortable with the CSS `display`, `box-sizing`, `width`, `height`, `pad
   - It does not include padding, borders, or margins.
 - The **`min-width`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the minimum width of an element. It prevents the [used value](https://developer.mozilla.org/en-US/docs/Web/CSS/used_value) of the [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width) property from becoming smaller than the value specified for `min-width`.
   - It does not include padding, borders, or margins.
+
+# Summary
+
+This lesson discussed the fundamental concepts of CSS: the box model, spacing, and dimensional measurements. All these are crucial to a proper understanding of front-end development.
+
+We learned how browsers treat everything on a page as a box. These boxes have properties including `width`, `height`, `padding`, `border`, and `margin` that control the size and spacing of each box. Our discussion explored how the browser flows elements onto the page. We also covered the top three `display` properties that influence this behavior: `block`, `inline`, and `inline-block`. Lastly, we talked about the `box-sizing` property, specifically the `content-box` and `border-box` sizing models. Together, these topics comprise the concept of the HTML box model.
+
+From there we examined the sometimes confusing concepts of padding and margins in more detail and talked about when you should use margins and when you should use padding.
+
+We ended our lesson with a look at the essential dimensional units used in CSS, including both absolute and relative units, and talked briefly about when to use them.
+
+In the next lesson, we will take a look at one of the most ubiquitous components of web pages: images. They're everywhere, and now they're coming to a web page near you.
