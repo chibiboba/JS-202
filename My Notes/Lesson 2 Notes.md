@@ -97,6 +97,18 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
 
 # The Box Model
 
+## Combining all concepts
+
+- Every element requires a box-shaped segment of the page. Every character of text content also needs a boxed portion of the page. **Box model** is how the the browser calculates the dimensions of that box by using the browser defaults and CSS.
+- **Visual display model** and **Box sizing model** are two concepts that significantly impact the box model. 
+- The visual display model refers to how an element flows and is displayed on a web page and interacts with other elements. 
+  - There are many different display types in CSS, including`block` ,`inline-block` ,`inline`. 
+- The box sizing model determines how an element's total size is calculated which affects the overall layout of the page. 
+  - `content-box` is the default `box-sizing` value which only includes the content of an element in its width and height and does not include padding border, or margin in the width and height of an element. 
+  - `border-box` includes padding and border (not margin) in the width and height of an element.
+
+--
+
 - new line
   - Word processing software ordinarily outputs one character at a time, moving from left-to-right or right-to-left as required by the document's language (we will ignore languages that use vertical text). As each line fills with words, the word processor automatically wraps down to the next line and starts adding characters to the beginning of a new line.
   - Your browser works in much the same way to render HTML pages: it displays "words" one at a time horizontally until it encounters a "word" that doesn't fit. At this point, the browser starts a new **line** -- one or more "words" at the same horizontal level in the current container element.
@@ -113,7 +125,11 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
   - Every character of text content also needs a boxed portion of the page.
   - **Box model**: The browser calculates the dimensions of that box by using the browser defaults and CSS.
 
-------
+# Box Properties
+
+- Every box has a width, height, padding, border, and margins; know the differences.
+- Padding, borders, and margins have separate properties to set the left, right, top, and bottom of each element. You can use shortcut properties to specify all four sides at once.
+- How does the visual display model interact with margins, borders, and padding?
 
 ## Summary
 
@@ -141,12 +157,6 @@ This diagram shows an element that has a content area that:
 - has a 28-pixel bottom margin (the left, right, and top margins are 0).
 
 You can see this diagram, or one like it, in the element inspector for your browser. The width, height, padding, border, and margin attributes can all take values of 0 - the box model allows this and collapses the box around the zeroed item.
-
-# Box Properties
-
-- Every box has a width, height, padding, border, and margins; know the differences.
-- Padding, borders, and margins have separate properties to set the left, right, top, and bottom of each element. You can use shortcut properties to specify all four sides at once.
-- How does the visual display model interact with margins, borders, and padding?
 
 ------
 
@@ -540,6 +550,9 @@ As you go through this course, you will see code that doesn't follow the padding
 
 ## Inline
 
+- What are `inline` elements?
+  - Inline elements can be nested inside other inline elements, as well as block-level elements. However, all content must ultimately be contained within the body element or a block-level element.
+
 - **An `inline` element** only takes up as much width as its content requires and does not start on a new line. 
   - Examples of inline elements include `<span>`, `<a>`, and `<img>`.
 - [Inline elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements) provide a small bit of semantic meaning to content; browsers use this to alter the way they display small sections of text, which, in turn, helps the reader spot specific items with ease. 
@@ -568,9 +581,10 @@ As you go through this course, you will see code that doesn't follow the padding
 - **Flow**: `inline` elements flow from one line to the next, which lets you place `inline`  elements side by side with other `inline` or `inline-block` elements.
   - The main idea is that the left/right factors affect the **flow**, while the top and bottom do not.
 
-- padding, margins & borders impact on flow
-  - For `inline` elements, if descendant element's padding, border, or margin is bigger than the container's width, then it will simply overlap with the container's content area, rather than the `inline` element going to a new line like `inline-block` elements would. 
-  - **Overlap**: The top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided. 
+- padding, margins & borders impact on flow of content within a container
+  - **Left and right overlap with container**: For `inline` elements, if contained element's left or right padding or border is wider than the container's width, then it will simply overlap with the container's content area, rather than the `inline` element going to a new line like `inline-block` elements would. 
+  - **top & bottom overlap with container**: The top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided. 
+  - **Margin causes adjacent `inline`** elements to overlap: If the margin is too big, inline elements would be pushed apart from each other, which may cause adjacent inline elements to overlap.
 
 Demonstration
 
@@ -614,10 +628,6 @@ Demonstration
 - `inline` elements handle the dimension properties (`width`, `height`, `padding`, `border`, and `margin`) differently from the way `block` elements treat them. This difference is where the box model starts to get messy.
 
 - Browsers handle *left* and *right* margins and padding for `inline` elements in the same way as for `block` elements, but they process other box model properties differently. 
-
-#### Convert element to `inline` element
-
-- You can convert any element to an `inline` element with the `display: inline` CSS property. The most common reason to do so is to override a prior declaration.
 
 #### Borders, Padding, Margins, and Inline Elements
 
@@ -667,6 +677,10 @@ This example demonstrates how browsers handle borders, padding, and margins with
 
 - The main idea is that the left/right factors affect the **flow**, while the top and bottom do not.
 
+#### Convert element to `inline` element
+
+- You can convert any element to an `inline` element with the `display: inline` CSS property. The most common reason to do so is to override a prior declaration.
+
 #### `inline` interaction with `border-box`
 
 - Technically, it is possible to apply `border-box` sizing to an inline element using CSS, but it may not always work as expected due to the nature of inline elements. 
@@ -695,9 +709,9 @@ This example demonstrates how browsers handle borders, padding, and margins with
   - Similar to `inline` elements : flow in the same way that text and `inline` elements flow from one line to the next (see Figures 1 and 2 on the previous page)
   - This lets you place `inline-block` elements side by side with other `inline` or `inline-block` elements.
 
-- Padding, margin & borders impact on flow
-  - For `inline-block` elements, if padding, border, or margin is bigger than container's width, then the contained element it will go to a new line, making the container bigger. 
-  - This is assuming the container doesn't have fixed dimensions. If a container element has smaller dimensions than a contained element, the contained element will overflow the container and be partially or completely hidden from view.
+- Padding, margin & borders impact on flow of elements in a container
+  - For `inline-block` elements, if padding, border, or margin is wider than container's width, then the contained element it will go to a new line, making the container bigger. This is assuming the container doesn't have fixed dimensions. 
+  - If a container element has smaller dimensions than a contained element, the contained element will overflow the container and be partially or completely hidden from view.
 
 
 #### Spacing
@@ -1445,9 +1459,9 @@ You can ignore or break any of these rules when appropriate. We violate them oft
 
 # My notes
 
-## container element
+## container element interactions
 
-- In HTML and CSS, a container is an element that is used to hold and organize other elements. In HTML, a container can be any element that has child elements nested within it. 
+- In HTML and CSS, a **container** is an element that is used to hold and organize other elements. In HTML, a container can be any element that has child elements nested within it. 
   - For example, a `<div>` element can be used as a container to group and organize other elements on a web page, such as text, images, forms, and other HTML elements.
 - An element's `display` property and `box-sizing` can both impact the layout and flow of content within a container element. In other words, the layout and flow of content is impacted by the visual display model and box-sizing model. 
 
@@ -1455,10 +1469,11 @@ You can ignore or break any of these rules when appropriate. We violate them oft
 
 - Depending on the element's `display` property / visual display model, the contained element flows differently within a container.
 - `inline`
-  - For `inline` elements, if descendant element's padding, border, or margin is bigger than the container's width, then it will simply overlap with the container's content area, rather than the `inline` element going to a new line like `inline-block` elements would. 
-  - **Overlap**: The top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided. 
+  - **Left and right padding/border overlap with container**: For `inline` elements, if contained element's left or right padding or border is wider than the container's width, then it will simply overlap with the container's content area, rather than the `inline` element going to a new line like `inline-block` elements would. 
+  - **top & bottom padding/border overlap with container**: The top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided. 
+  - **Margin causes adjacent `inline`** elements to overlap: If the margin is too big, inline elements would be pushed apart from each other, which may cause adjacent inline elements to overlap.
 - `inline-block`
-  - For `inline-block` elements, if padding, border, or margin is bigger than container's width, then the contained element it will go to a new line, making the container bigger. This is assuming the container doesn't have fixed dimensions. 
+  - For `inline-block` elements, if padding, border, or margin is wider than container's width, then the contained element it will go to a new line, making the container bigger. This is assuming the container doesn't have fixed dimensions. 
   - If a container element has smaller dimensions than a contained element, the contained element will overflow the container and be partially or completely hidden from view.
 - `block`
   - By default, a `block` element occupies all horizontal space available within its container, with nothing to the left or right of the `block`. 
@@ -1469,9 +1484,17 @@ You can ignore or break any of these rules when appropriate. We violate them oft
 
 #### `box-sizing` interaction with flow
 
-- The `box-sizing` property also controls how an element's total width or height is calculated. 
+- The `box-sizing` property also controls how an element's total width or height is calculated, so it affects the size of an element's box which in turn affects the flow of content within the container. 
 - For `box-sizing: content box`, an element's width and height are calculated based on content within it and any paddings, borders, or margins are added to the total width and height. This can cause the element to expand beyond the size of its container if the padding, borders, or margins are large enough.
 - When `box-sizing: border-box` is used, an element's width and height are calculated based on the content within it, as well as any padding and borders, but margins are still added to the total width and height. This can make it easier to control the layout of elements within a container, as the total width and height of the element will always include its borders and padding.
+
+#### `inline` interaction with `border-box`
+
+- Technically, it is possible to apply `border-box` sizing to an inline element using CSS, but it may not always work as expected due to the nature of inline elements. 
+- When you apply `border-box` sizing to an inline element, the element's total width and height will include its content area, padding, and border. 
+- However, because inline elements are designed to flow with the text and not disrupt the layout, adding padding and border to an inline element can cause the element to "break out" of the text flow, resulting in unexpected, overlapping layout issues.
+  - This means that the element may be wider and taller than its actual content, and any padding or border added to the element will be included in its dimensions.
+  - To avoid this issue, avoid adding padding and border to inline elements. 
 
 ## How to calculate horizontal and vertical dimensions
 
@@ -1520,13 +1543,6 @@ How does visual display models relate to box sizing models?
 - For example, the default box-sizing for the block display mode is content-box, which means that the width and height of a block element exclude any padding, border, or margin. However, the default box-sizing for the flex display mode is border-box, which means that the width and height of a flex item include any padding and border, but not margin.
 
 - Understanding both visual display models and box-sizing models is important for creating well-designed and responsive web pages. By setting the appropriate display mode and box-sizing value for each HTML element, you can control how it is rendered on the screen and how it interacts with other elements on the page.
-
-## Flow
-
-- For `inline-block` elements, if margin is bigger than container's width, then the descendant element it will go to a new line, making the container bigger. 
-  - This is assuming the container doesn't have fixed dimensions. 
-  - If a container element has smaller dimensions than a contained element, the contained element will overflow the container and be partially or completely hidden from view.
-- For `inline` elements, if descendant element's margin or border is bigger than the container's width, then margin or border will simply intersect with the container's content area. 
 
 ## Spacing 
 
