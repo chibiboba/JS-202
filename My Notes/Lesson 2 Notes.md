@@ -913,17 +913,417 @@ html {
 
 ------
 
-## absolute units
+- CSS properties like `width`, `height`, `margin`, `padding`, and `border` specify the characteristics of element boxes and their attributes. We've also seen a few instances of using `font-size` to specify the text size.
+- Each CSS property includes a length specification called **measurements** or **dimensions** such as `12px`, `3rem`, or `50%`. 
+- `px`, `rem`, `em`, `%` are **measurement units** or **units**.
 
-## relative units
+## Absolute Units
+
+- **Absolute units** is based on a standard system of measures that nearly everyone agrees on. It doesn't change depending on circumstances. 
+  - For example a meter in Japan is the same as a meter in the USA. 
+  - Absolute units include inches, feet, meters, millimeters, etc.
+
+#### pixel (`px`)
+
+- CSS has one absolute unit of significance: the **pixel**. 
+
+- The actual meaning of the term pixel implies a lot more meaning than just a single spot of light on a computer's display. Check section on physical vs reference pixels.
+
+- To use pixels in your CSS dimensions, append the letters `px` to the value:
+
+  ```css
+  article {
+    width: 500px;    /* 500 pixels */
+  }
+  ```
+
+#### Other Absolute units
+
+- CSS supports other absolute units, including inches and millimeters, but you won't use these units often. 
+- In theory, a CSS inch should appear to be 1 inch on a screen at the TVD (typical viewing distance) since a CSS inch is 96 CSS pixels. If you measure the length of that inch with a ruler, though, it may be larger or smaller than an actual inch. This difference leads most developers to stay away from inches and millimeters unless they need something that appears close to "life-size."
+
+## Relative Units
+
+- **Relative units** were common in the past. 
+  - For example a modern unit is the *story* or *floor* used to give the height of buildings, even though each floor or story may not be the same height. 
+  - The unit is relative but useful. 
+
+#### Ems 
+
+- **Ems** are proportional to the **calculated** font size. 
+  - The calculated font size is the height of the current font in pixels.
+  - If the calculated font size is 20 pixels then `1.5em` is `30px` (20 * 1.5). 
+- Compounding: 
+  - Ems compound so you can't go back to the original font size after it compounds. 
+  - The calculated, compounded font size is also be much larger than Rems.
+
+#### Rems
+
+- **Rems** are proportional to the **root** font size.
+
+  - The root font size is the height of the base font for the document: the font size designated for the `html` element.
+
+  - If the root font size is 16 pixels, then `1.5rem` is `24px` (16 * 1.5).
+
+- In most cases, you should use pixels to specify the root font size.
+- Compounding: Rems are more consistent and easier to work with because they don't compound.
+- Fallback unit: Some browsers don't recognize rem so use a fallback unit.
+
+#### Ems vs Rems
+
+- In most cases, you should use pixels to specify the root font size.
+
+- Some developers use ems or rems to give the user some control over the font, but this can result in odd behavior as your precisely positioned items start to overflow, overlap each other, or rearrange themselves on the page.
+
+- Bugs in some older browsers make it a good idea to set the root font size in both the `html` and `body` elements. Always use pixels when you do so.
+
+##### Compounding
+
+- Rems are consistent and easier to work with. 
+
+  - Once you've set the root font size for a document, `1.5rem` means the same thing everywhere in that document. This relationship isn't true for ems; they compound. 
+
+- For example:
+
+  ```html
+  <h1>Using `em` Units</h1>
+  <div class="a-em">
+    1em == 1 * 24px == 24px
+    <div class="b-em">
+      1.5em == 1.5 * 24px == 36px
+      <div class="c-em">
+        2em == 2 * 36px == 72px
+        <div class="a-em">
+          1em == 1 * 72px == 72px
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <h1>Using `rem` Units</h1>
+  <div class="a-rem">
+    1rem == 1 * 24px == 24px
+    <div class="b-rem">
+      1.5rem == 1.5 * 24px == 36px
+      <div class="c-rem">
+        2rem == 2 * 24px == 48px
+        <div class="a-rem">
+          1rem == 1 * 24px == 24px
+        </div>
+      </div>
+    </div>
+  </div>
+  ```
+
+  ```css
+  html, body { font-size: 24px; }
+  
+  .a-em { font-size: 1em; }
+  .b-em { font-size: 1.5em; }
+  .c-em { font-size: 2em; }
+  
+  .a-rem { font-size: 1rem; }
+  .b-rem { font-size: 1.5rem; }
+  .c-rem { font-size: 2rem; }
+  ```
+
+  ![Ems and Rems](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_2/measurement-units-01.png)
+
+- Pay attention to the difference between the 1em and 1rem lines at the final level. You can't go back to the original font size by specifying `1em`, but `1rem` takes you back directly to the original font size. 
+
+- You may also notice that the `1.5em` and `1.5rem` items use the same font size in this instance, but the `2em` line is noticeably larger than the `2rem` line since the calculated font size is larger than the root.
+
+##### fallback unit
+
+- This compounding makes ems hard to use and maintain. Some older browsers, though, don't recognize rems; if you must support such browsers, use a **fallback** unit:
+
+```css
+p {
+  font-size: 20px; font-size: 1.25rem;
+}
+```
+
+- This CSS tells the browser to use `1.25rem` as the font size. If the browser doesn't recognize rems, it falls back to `20px`. Placing both values on the same line makes the presence of a fallback easier to see, but it isn't required.
+
+- We chose `20px` as the fallback value since most (not all) browsers default to `16px`, which makes `1.25rem` equivalent to `20px`. If you must use fallbacks, assuming a `16px` default font-size is your best bet.
+
+#### Percentages
+
+- Ethnically CSS doesn't consider percentages a length value, but you can use **percentages** to define dimensions as a fraction of the container's width or height. 
+
+- If you place a `block` or `inline-block` element in a container and set it to `width: 50%;`, the element's width is 50% of the width of the container. Likewise, if you need a height of one-quarter of the container's height, use `height: 25%`.
+
+- Remember: `width` and `height` have no effect on `inline` elements.
+
+#### Auto
+
+- The `auto` specifier also isn't a length value, but you can use it when you want to let the browser determine a width or height for you. 
+
+- Its specific role depends on where you use it, but its most common uses are:
+
+  - As a `width` or `height`, it tells the browser to try to fit the entire element (including its margins) in its container.
+
+  - As a left or right `margin` value on a `block` element, it tells the browser to push the element all the way right or left (note the reversal!) inside its container. You can center a block element by setting both left and right margins to `auto`. See below.
+
+  - As a top or bottom `margin` value, `auto` is equivalent to `0`.
+
+  - Padding does not accept `auto` values.
+
+- `auto` does not mean `100%`. 
+
+  - For example, if you use `width: auto`, the browser tries to put the entire element, including its margins, border, and padding within the container. 
+  - If you use `width: 100%` instead, the browser won't consider the margins when it calculates the required element size. Thus, the element may extend beyond the bounds of the container.
+  - Furthermore, if you use the `content-box` box-sizing model, the browser won't consider the border and padding when determining the required size. 
+
+- For example:
+
+```html
+<div id="auto-width">
+  <div id="auto-width-auto">width: auto</div>
+  <div id="auto-width-100-border">width: 100%; box-sizing: border-box;</div>
+  <div id="auto-width-100-content">width: 100%; box-sizing: content-box;</div>
+</div>
+```
+
+```css
+#auto-width {
+  background-color: cyan;
+  border: 1px solid gray;
+  font-family: monospace;
+  text-align: center;
+  width: 730px;
+}
+
+#auto-width div {
+  background-color: #ffe0e0;
+  border: 10px solid red;
+  margin: 10px;
+  padding: 10px;
+  text-align: left;
+}
+
+#auto-width-auto {
+  width: auto;
+}
+
+#auto-width-100-border {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#auto-width-100-content {
+  box-sizing: content-box;
+  width: 100%;
+}
+```
+
+
+
+![width: auto vs width: 100%](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_2/measurement-units-02.png)
+
+- In the above code, using `width: auto` is not strictly necessary. By default, not specifying a `width` (or a `height`) is the same as specifying `width: auto` or `height: auto`. So, in most cases, you don't need to provide an `auto` setting for the `width` or `height`.
+
+- However, there are some situations where the `auto` value is needed. In particular, if there's another selector in your CSS that sets the `width` or `height` to some other value, there's a chance that the CSS cascade will cause that value to be used unexpectedly. For this reason, specifying `width: auto` and/or `height: auto` is a good idea (but check your team's coding standards first).
+
+For instance, consider the following code:
+
+```html
+<html lang="en-US">
+  <head>
+    <style>
+      div {
+        width: 250px;
+        height: 250px;
+        background-color: yellow;
+        border: 1px solid black;
+      }
+
+      div.full {
+        width: auto;
+        background-color: lime;
+      }
+
+      div.should-be-full {
+        background-color: cyan;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div></div>
+    <div class="full"></div>
+    <div class="should-be-full"></div>
+  </body>
+</html>
+```
+
+If you load this code in your browser, you should see that only the `div` with a class of `full` stretches across the entire window. The one with a class of `should-be-full` does not stretch across the window because it is using the `width` property specified by the `div` selector.
+
+Let's now look at using `auto` with margins to center and right align a (non-inline) element inside its container without also altering the element's content as `text-align` would:
+
+```html
+<div id="center-margin-auto">
+  <div id="center-margin-auto-center">centered</div>
+  <div id="center-margin-auto-right">right</div>
+</div>
+```
+
+```css
+#center-margin-auto {
+  background-color: cyan;
+  border: 1px solid gray;
+  width: 780px;
+}
+
+#center-margin-auto div {
+  background-color: #ffe0e0;
+  border: 10px solid red;
+  padding: 10px;
+  width: 50%;
+}
+
+#center-margin-auto-center {
+  margin: 10px auto;
+}
+
+#center-margin-auto-right {
+  margin: 10px 10px 10px auto;
+}
+```
+
+
+
+![width: auto](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_2/measurement-units-03.png)
 
 ## Other terms
 
 #### container
 
-#### physical pixels
+#### Physical vs. Reference Pixels
 
-#### CSS reference pixels
+- A **CSS reference pixel** (or **CSS pixel** or **reference pixel**) is a theoretical pixel used in CSS visual rendering to define a baseline pixel size for devices with different pixel densities.
+  - One reference pixel corresponds to a visual angle of one pixel with a pixel density of 96 dots per inch (dpi). 
+  - Other pixel densities are then scaled relative to this reference dpi. 
+
+- A **physical pixel** (also **device pixel** or **display pixel**)  is an actual, physical dot on a screen or display that is a fixed, absolute unit of measurement that represents the smallest unit of display on a device. 
+
+  --
+
+Problem: 
+
+- There's a problem with using pixels as an absolute unit: a pixel on a desktop computer and a pixel on a cell phone aren't the same size.
+- Worse yet, the pixel density of displays causes variations in size as well: a pixel on a high-resolution screen (such as Apple's Retina displays) is much smaller than a pixel on a standard- or low-resolution display. That doesn't sound much like an absolute unit, and it isn't.
+- To get around the pixel size problem, CSS distinguishes between a **physical pixel** (also **device pixel** or **display pixel**) and what we call the **CSS reference pixel** (or **CSS pixel** or **reference pixel**). 
+
+Problem: Images that look okay on a low-resolution screen appear much smaller when viewed on a high-resolution display of the same physical size. 
+
+- Solution: The size of a **reference pixel** is increased for higher resolution displays, using more **physical physical** pixels per each CSS pixel. Browsers use CSS pixels so that the image seems to be about the same size on both low and high-resolution screens.
+
+- Details: The size of a reference pixel is the size of a pixel on a display that has 96 pixels per inch. However, if you're working on a high-resolution display, you might have 192 pixels per inch. To account for this, CSS will use a total of four physical pixels on that high-resolution display for each CSS pixel. (Remember that pixels are 2-dimensional, so we need four high-resolution pixels to equal one low-resolution pixel.)
+
+Problem:  If you place a larger display and a small display side by side and view the same 200-pixel by 200-pixel images on both devices, the image will not appear to be the same size. 
+
+- Detail: If you place a 27-inch desktop display and a 5-inch phone side by side and view the same 200-pixel by 200-pixel images on both devices, the images will not appear to be the same size.
+- Solution: To account for this, CSS defines the r**eference pixel** based on the **angular** diameter of a CSS pixel **as viewed from the typical viewing distance (TVD) for the display**. The TVD for a phone (around 14 inches) is less than the TVD for a 27-inch desktop display (about 33 inches), so if we place both screens at the appropriate TVD, that 200x200 pixel image appears to be the same size (or close to it, anyway).
+
+In the end, this means that CSS pixels are as close to an absolute unit as you can get with CSS, provided you take the TVD into account.
+
+The difference between CSS reference pixels and physical pixels can pose a problem when using a design document to build a web page. If you have a high-resolution screen (like Apple's Retina displays) and view an image in Photoshop at 100% of its size, then look at it in your browser, the Photoshop version may appear smaller. If you're aware of this, you can account for the differences.
+
+## Other topics
+
+#### Zero Lengths
+
+Standard CSS style omits the units when providing a length of 0 units. For example, if you want no margins on `blockquote` elements, you can add the following to your CSS:
+
+Copy Code
+
+```css
+blockquote {
+  margin: 0;
+}
+```
+
+We omit the units here since 0 is the same in all units.
+
+#### Mixing Units
+
+You can freely mix units anywhere you want on a page: you can use pixels for some elements, rems for others, `%`, and `auto` even within a single element's styling:
+
+Copy Code
+
+```css
+p {
+  border: 1rem solid red;
+  height: auto;
+  margin: 10px;
+  padding: 0.5em 10vw 0.5in 18pt;
+  width: 80%;
+}
+```
+
+Be careful, though: mixing and matching units can lead to problems when you need to determine the "right" length to make something come out correct. Consider:
+
+Copy Code
+
+```html
+<div class="a">
+  <div class="b"></div>
+  <div class="c"></div>
+</div>
+```
+
+Copy Code
+
+```css
+div {
+  border: 1px solid black;
+  height: 50px;
+}
+
+.a {
+  width: 500px;
+}
+
+.b {
+  display: inline-block;
+  margin: 0 50px;
+  width: 25%;
+}
+
+.c {
+  display: inline-block;
+  margin: 0 1rem;
+  width: ???;
+}
+```
+
+What `width` should you provide to the `.c` selector to ensure that the outer box is precisely large enough to contain both the `b` and `c` boxes? The best you can do here is estimate a value, but no size you specify will be precise for all page widths.
+
+Using `box-sizing: border-box` can help in situations like this, provided you aren't also using left or right margins on the inner boxes.
+
+#### When to Use the Different Units
+
+Trying to decide which dimensional units you should use is sometimes difficult. Here are some general guidelines - none of these are absolute, and you will almost certainly find developers that disagree:
+
+- Use absolute units sparingly, and stick with pixels. Pixels work well for:
+  - the root font size
+  - image widths and heights
+  - top and bottom margins and padding, sometimes useful with left and right margins and padding
+  - width or height of fixed-width/fixed-height containers such as navigation sidebars
+  - border widths
+- Use relative units liberally:
+  - Use rems for fonts, possibly with a fallback to ems or pixels. The root font should use pixels.
+  - If you must use ems instead of rems, try to avoid compounding font sizes.
+  - Use rems, ems, or pixels for left and right margins and padding.
+  - Use `%` for measurements that are proportional to the container element's width or height. Percentages work best for container dimensions and come in handy when you want certain areas of the page to grow and shrink as the width of the browser window changes.
+  - Use `auto` with `width` and `height` to let the browser calculate an appropriate value.
+  - Use `auto` with left and right margins to left, center, or right justify a block element within its container.
+
+You can ignore or break any of these rules when appropriate. We violate them often in this course.
 
 # My notes
 

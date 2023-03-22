@@ -946,8 +946,6 @@ Relative units are scarce in the modern world, but they were common in days-gone
 
 CSS has one absolute unit of significance: the **pixel**. Most people think of the pixel as a single spot of light on your computer's display, and with good reason - we use the term pixel to describe them. In CSS, pixels are similar, but the actual term implies a lot more meaning; we'll discuss that below. To use pixels in your CSS dimensions, append the letters `px` to the value:
 
-Copy Code
-
 ```css
 article {
   width: 500px;    /* 500 pixels */
