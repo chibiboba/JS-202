@@ -1,3 +1,251 @@
+# Practice Problems: The Box Model Template
+
+This problem set will exercise your understanding of how a browser uses the box model to compute how much horizontal and vertical space it needs for each element. It focuses on the `width`, `height`, `padding`, `border`, and `margin` properties, as well as how the visual display model and the box-sizing mode interact with them.
+
+1. Given the code below, what is the minimum width and height (in pixels) that the `div` needs to entirely contain the `img` element (including its margins)?
+
+   Copy Code
+
+   ```html
+   <div>
+     <img src="#" alt="test">
+   </div>
+   ```
+
+   Copy Code
+
+   ```css
+   div {
+     background-color: lightgray;
+     border: 1px solid black;
+     box-sizing: border-box;
+     display: inline-block;
+     margin: 0;
+     padding: 0;
+   }
+   
+   img {
+     border: 4px solid red;
+     box-sizing: content-box;
+     display: inline-block;
+     height: 300px;
+     margin: 20px 19px 10px 11px;
+     padding: 10px 20px;
+     width: 500px;
+   }
+   ```
+
+   Solution
+
+2. Given the code below, what is the minimum width and height (in pixels) that the `div` needs to entirely contain the `section` element (including its margins)? How does this differ from the result of the previous practice problem?
+
+   Copy Code
+
+   ```html
+   <div>
+     <section>content</section>
+   </div>
+   ```
+
+   Copy Code
+
+   ```css
+   div {
+     background-color: lightgray;
+     border: 1px solid black;
+     box-sizing: border-box;
+     display: inline-block;
+     margin: 0;
+     padding: 0;
+   }
+   
+   section {
+     border: 4px solid red;
+     box-sizing: content-box;
+     display: block;
+     height: 300px;
+     margin: 20px 19px 10px 11px;
+     padding: 10px 20px;
+     width: 500px;
+   }
+   ```
+
+   Solution
+
+3. Given the code below, what is the minimum width and height (in pixels) that the `div` needs to entirely contain the `em` element (including its margins)?
+
+   Copy Code
+
+   ```html
+   <div>
+     <em>content</em>
+   </div>
+   ```
+
+   Copy Code
+
+   ```css
+   div {
+     background-color: lightgray;
+     border: 1px solid black;
+     box-sizing: border-box;
+     display: inline-block;
+     margin: 0;
+     padding: 0;
+   }
+   
+   em {
+     border: 4px solid red;
+     box-sizing: content-box;
+     display: inline;
+     height: 300px;
+     margin: 20px 19px 10px 11px;
+     padding: 10px 20px;
+     width: 500px;
+   }
+   ```
+
+   Solution
+
+4. Given the code below, what is the minimum width and height (in pixels) that the `div` needs to be to entirely contain the `article` element (including its margins)?
+
+   Copy Code
+
+   ```html
+   <div>
+     <article>content</article>
+   </div>
+   ```
+
+   Copy Code
+
+   ```css
+   div {
+     background-color: lightgray;
+     border: 1px solid black;
+     box-sizing: border-box;
+     display: inline-block;
+     margin: 0;
+     padding: 0;
+   }
+   
+   article {
+     border: 4px solid red;
+     box-sizing: border-box;
+     display: inline-block;
+     height: 300px;
+     margin: 20px 19px 10px 11px;
+     padding: 10px 20px;
+     width: 500px;
+   }
+   ```
+
+   Solution
+
+5. Given the code below:
+
+   Copy Code
+
+   ```html
+   <div>
+     <tag1>content</tag1><tag2>content</tag2>
+   </div>
+   ```
+
+   Copy Code
+
+   ```css
+   div {
+     background-color: lightgray;
+     border: 1px solid black;
+     box-sizing: content-box;
+     display: inline-block;
+     margin: 0;
+     padding: 0;
+     width: 720px;
+   }
+   
+   tag1, tag2 {
+     box-sizing: border-box;
+     height: 240px;
+     margin: 0;
+     padding: 0;
+     width: 360px;
+   }
+   
+   tag1 {
+     background-color: yellow;
+   }
+   
+   tag2 {
+     background-color: lime;
+   }
+   ```
+
+   Which of the following element pairs will display side by side in the `<div>`? Select all that apply:
+
+   1. Both elements are `block` elements.
+   2. Both elements are `inline` elements.
+   3. Both elements are `inline-block` elements.
+   4. One element is a `block` element, and one is an `inline` element.
+   5. One element is a `block` element, and one is an `inline-block` element.
+   6. One element is an `inline` element, and one is an `inline-block` element.
+
+   You may assume that any `inline` element has a **content width** of no more than 360 pixels. Remember, the `width` property doesn't affect `inline` elements, so this "content width" is the actual width of the content area as determined by your browser.
+
+   Solution
+
+6. Will the following code display the two article boxes side by side? If not, why not? How would you fix it so that it places the boxes side by side?
+
+   Copy Code
+
+   ```html
+   <section>
+     <article>content</article><article>more content</article>
+   </section>
+   ```
+
+   Copy Code
+
+   ```css
+   section {
+     background-color: yellow;
+     border: 1px solid red;
+     box-sizing: content-box;
+     display: inline-block;
+     height: 400px;
+     margin: 0;
+     padding: 20px;
+     width: 900px;
+   }
+   
+   article {
+     background-color: lime;
+     border: 1px solid blue;
+     height: 100%;
+     margin: 0;
+     padding: 10px;
+     width: 50%;
+   }
+   ```
+
+   Show
+
+7. **Challenge.** Given our solution to the previous question, what will happen if we put the `article` tags on separate lines?
+
+   Copy Code
+
+   ```html
+   <section>
+     <article>content</article>
+     <article>more content</article>
+   </section>
+   ```
+
+   Try to figure out the answer without peeking. Why do you think this is?
+
+   Solution
+
 # Practice Problems: The Box Model
 
 1. Given the code below, what is the minimum width and height (in pixels) that the `div` needs to entirely contain the `img` element (including its margins)?
@@ -30,7 +278,7 @@ img {
 
 Answer 
 
-- Since `img` has `display: inline-block` meaning that is an `inline-block` element, we can compute dimensions directly from CSS properties. Since `img` uses `content-box` sizing, we calculate the total dimensions (the visible area) by `width`, `height`, `margin`, `padding`, and `border`. 
+- Since `img` has `display: inline-block` meaning that is an `inline-block` element, we can compute dimensions directly from CSS properties. Since `img` uses `content-box` sizing, we calculate the total dimensions is adding up the `width`, `height`, `margin`, `padding`, and `border`. 
 
 - Since `div` uses `border-box` sizing, we include the dimensions of `img` as well as `div`'s borders, padding, and margin. Though we don't typically count margins in determining an element's width and height, we need to include them here when calculating how much space we need in the `div`. 
 

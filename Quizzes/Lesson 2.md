@@ -108,6 +108,12 @@ Try to answer this question without using your browser.
 
 ![image-20230314192740123](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230314192740123.png)
 
+My Solution
+
+- `body` is uses `border-box` sizing property, so the **content width** is the width subtract padding and borders. 1000 - (50 x 2) - (10 x 2) = 880. 
+- `section` is using the default `boxing-size` property `content-box`, so the content width is the given width property, 75%.  75% of 880 = 660
+- `img`'s width propery is 80% of `section`'s content width 660 = 528. Since `img` is also using default `boxing-size` property `content-box`, any border and padding has to be added into the final calculation. But because `img` has no borders, padding, or margin, 528 is the final width. 
+
 ### Discussion
 
 Percentage widths use the content width of the parent element and must also take into account the `box-sizing` property. In this problem, the content width for the `<body>` element is 880px: 1000px for the `width` property, less 120px for the padding and border on the sides since we have a `border-box` sizing model. The `<section>`'s width is 660px (880px * 0.75), and that leads to a width of 528px (660px * 0.80) for the `<img>`. Thus, choice **A** is correct. Note that the actual width of the image does not factor into the computation.

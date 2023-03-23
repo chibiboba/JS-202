@@ -95,17 +95,18 @@ Sometimes we'll give you a hint, and sometimes we won't. It's up to you to find 
 
 Spend time with the Summary at the end of this lesson. It reviews the topics and terminology you should master before moving on.
 
-# The Box Model
-
-## Combining all concepts
+# The HTML Box Model
 
 - Every element requires a box-shaped segment of the page. Every character of text content also needs a boxed portion of the page. **Box model** is how the the browser calculates the dimensions of that box by using the browser defaults and CSS.
+- Boxes have properties such as including `width`, `height`, `padding`, `border`, and `margin` that control the size and spacing of each box. 
 - **Visual display model** and **Box sizing model** are two concepts that significantly impact the box model. 
 - The visual display model refers to how an element flows and is displayed on a web page and interacts with other elements. 
   - There are many different display types in CSS, including`block` ,`inline-block` ,`inline`. 
+  - The different `display` types have different properties. 
 - The box sizing model determines how an element's total size is calculated which affects the overall layout of the page. 
   - `content-box` is the default `box-sizing` value which only includes the content of an element in its width and height and does not include padding border, or margin in the width and height of an element. 
-  - `border-box` includes padding and border (not margin) in the width and height of an element.
+  - `border-box` model includes padding and border (not margin) in the width and height of an element.
+-  Together, these topics comprise the concept of the HTML box model.
 
 --
 
@@ -479,16 +480,15 @@ As you go through this course, you will see code that doesn't follow the padding
 
 <u>Definition</u>
 
-- A **`block` element** takes up the full width of its container element and starts on a new line, regardless of its actual content width.
-  - Examples of block-level elements include `<div>`, `<p>`, and `<h1>`.
+- A **`block` element** always takes up the entire width of *its container element* and starts on a new line, regardless of its actual content width.
+- Note: Two `block` elements that ***DON'T*** have the same parent element may appear side by side on a page. 
+  - How this happens is if the parent element is `inline-block` or `inline` which lets the browser render them side by side. 
+  - With the proper dimensions, margins, padding, and alignment, it's possible to arrange the child `block` elements side by side as well.
 - [Block elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements) appear on almost all web pages: headings, paragraphs, sections, tables, forms, lists, and more are `block` elements.
 
 - Most `block` elements group one or more elements - some of which may themselves be `block`s - into areas of the page. 
 
   - For instance, `header` elements group together elements into a page header. 
-  - **Containers** are `block` elements such as a `header` that contain one ore more elements. The master container (the outermost) is the `body`; every other element belongs to a container.
-
-  - We sometimes use the term **parent** to refer to a container, and use **child** to describe an element contained within a container. These relationship terms also let us talk about grandparents, ancestors, descendants, siblings, cousins, etc..
 
 <u>Common Block Elements</u>
 
@@ -504,10 +504,20 @@ As you go through this course, you will see code that doesn't follow the padding
 - `form` and `fieldset`
   - See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements#Elements) for a complete list of block elements.
 
+#### containers
+
+- **Containers** are `block` elements such as a `header` that contain one or more elements. The master container (the outermost) is the `body`; every other element belongs to a container.
+
+- We sometimes use the term **parent** to refer to a container, and use **child** to describe an element contained within a container. These relationship terms also let us talk about grandparents, ancestors, descendants, siblings, cousins, etc..
 
 #### Spacing / Flow
 
-- Block-level elements always begin on a new line, stacking one on top of the other, and occupy any available width. 
+- A **`block` element** takes up the full width of *its container element* and starts on a new line, regardless of its actual content width.
+
+- Note: Two `block` elements that ***DON'T*** have the same parent element may appear side by side on a page. 
+
+  - How this happens is if the parent element is `inline-block` or `inline` which lets the browser render them side by side. 
+  - With the proper dimensions, margins, padding, and alignment, it's possible to arrange the child `block` elements side by side as well.
 
 - By default, a `block` element occupies all horizontal space available within its container, with nothing to the left or right of the `block`. 
   - If your page contains 3 `block` elements directly inside the `body` element and nothing else, then all three elements will display one above the other like a stack of blocks. 
@@ -524,7 +534,7 @@ As you go through this course, you will see code that doesn't follow the padding
   - If you want an element that is 928 pixels wide, 168 pixels high, with 20 pixels of left and right padding, 10 pixels of padding at the top and bottom, a 1-pixel border, and a 28-pixel bottom margin, all those properties will play a part in the overall dimensions of the element. 
   - Thus, the overall dimensions will be 970 x 218 pixels. (As we'll see later, it's possible to change the way the browser calculates the dimensions. This example assumes that you're using the browser defaults)
 
-####  `block` layout properties
+####  layout properties
 
 - With `block elements` we can compute dimensions directly from CSS properties. 
 - `block` elements use the **box properties** (`width`, `height`, `padding`, `border`, `margin`) to determine the size of the element. The browser reserves a box of the right size on the page, and this is where it draws the content. 
@@ -553,7 +563,7 @@ As you go through this course, you will see code that doesn't follow the padding
 - What are `inline` elements?
   - Inline elements can be nested inside other inline elements, as well as block-level elements. However, all content must ultimately be contained within the body element or a block-level element.
 
-- **An `inline` element** only takes up as much width as its content requires and does not start on a new line. 
+- **An `inline` element** only takes up as much width as its **content** requires and does not start on a new line. 
   - Examples of inline elements include `<span>`, `<a>`, and `<img>`.
 - [Inline elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements) provide a small bit of semantic meaning to content; browsers use this to alter the way they display small sections of text, which, in turn, helps the reader spot specific items with ease. 
   - For instance, if you want to use bolded text for definitions, you can use the `b` element to render definitions in boldface. The reader can see at a glance where the definitions are in the document. By default, `b` is an `inline` element.
@@ -600,28 +610,27 @@ Demonstration
 
 - **Spacing**: Remember that in code, inline elements respect white spaces around the character and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character. 
 
-#### `inline` Layout properties
-
-<u>Summary of `inline` 's trickiness</u> 
-
-- The `width` and `height` properties is ignored by the browser and does not determine the **actual content area**. The actual content area is determined by the browser.
-- **Properties ignored by the browser** for `inline` elements: `width`, `height`, `margins`. Since browser ignores these CSS properties, we can't calculate the space this contained element would take unless we know the actual width and height of the content. 
-- **Properties not ignored by browser**: left and right `margins`, top and bottom `padding`. Borders. `inline` element. 
-- **Overlap**: Also keep in mind how the top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided.
-
-<u>Which dimension properties not ignored by browser for `inline elements`</u>
-
-- Left and right `margins`
-- `border`s: but the results may look odd (see the next section).
-  - Top and bottom borders may extend beyond the boundaries of the content area. 
-- Top and bottom `padding`:  but you won't notice this unless you have a border or background.
-  - Padding may also extend beyond boundaries of content area. 
+#### Layout properties
 
 <u>dimensions properties ignored by browser</u>
 
-- *ignore* the `width` and `height` properties (except with the `img` element), but instead use values computed from the element content.
+- *ignore* the `width` and `height` properties (except with the `img` element), but instead use values computed from the element content. The **actual content area** is determined by the browser.
+- *ignore* top and bottom `margin`s. 
 
-- *ignore* top and bottom margins. 
+<u>Which dimension properties not ignored by browser for `inline elements`</u>
+
+- *don't ignore* left and right `margins`. 
+- *don't ignore* `borders`, but the top and bottom borders may extend beyond the boundaries of the content area. 
+- *don't ignore* left and right padding, handled in same way as `block` elements. 
+- *don't ignore* top and bottom `padding`, but the top and bottom padding may also extend beyond boundaries of content area. 
+
+<u>Summary of `inline` 's trickiness</u> 
+
+- The `width` and `height` properties is ignored by the browser and does not determine the actual content area. The actual content area is determined by the browser.
+- **Properties ignored by the browser** for `inline` elements: `width` and `height`, top and bottom`margins`. Since browser ignores these CSS properties, we can't calculate the space this contained element would take unless we know the actual width and height of the content. 
+- **Properties not ignored by browser**: left and right `margins`, left and right `padding`, top and bottom `padding`, Borders. 
+- **Overlap**: Also keep in mind how the top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided.
+- Exception: While browsers ignore the `width` property for most `inline` elements and calculate the width based on the content, the `img` element is an exception. 
 
 <u>`inline` elements vs `block` elements</u>
 
@@ -691,9 +700,14 @@ This example demonstrates how browsers handle borders, padding, and margins with
 
 ## Inline-block
 
-- An **`inline-block` element** behaves like an inline element in terms of not starting on a new line, but like block element, it allows you to set a width and height, as well as margins and padding. 
+- `inline-block` elements are a mixture of both previous types. They act like `block` elements by allowing you to set width, height, borders, margins padding. Except for one significant detail: `inline-block` elements do not take up an entire row when the `width` property is less than the available width, and thus flow inline rather than starting on a new line.
   - This makes it useful for creating horizontal lists or for aligning elements next to each other. 
-- Examples of inline-block elements include `<button>`, `<input>`, and `<label>`.
+
+Default `inline-block` elements
+
+-  `<button>`
+-  `<input>`
+-  `<label>`.
 
 > Legacy Model
 >
@@ -701,24 +715,26 @@ This example demonstrates how browsers handle borders, padding, and margins with
 > - However, despite its legacy status, `inline-block` is probably not going to go away anytime soon; there are too many websites that still use it. 
 > - We will use `inline-block` throughout this course; it will probably be several years before `inline flow-root` and other new display models gain traction.
 
-- `inline-block` elements are a mixture of both previous types. They act like `block` elements, except for one significant detail: `inline-block` elements do not take up an entire row when the `width` property is less than the available width. 
-
 #### Flow
 
-- **Flow:** Inline-block elements can have a set width and height, but they still flow inline, making them useful for creating more complex layouts.
-  - Similar to `inline` elements : flow in the same way that text and `inline` elements flow from one line to the next (see Figures 1 and 2 on the previous page)
+- **Flow:** Inline-block elements can have a set width, height, borders, margins padding but they still flow inline, making them useful for creating more complex layouts.
+  - `inline-block` elements do not take up an entire row when the `width` property is less than the available width, and thus flow inline rather than starting on a new line.
   - This lets you place `inline-block` elements side by side with other `inline` or `inline-block` elements.
 
 - Padding, margin & borders impact on flow of elements in a container
-  - For `inline-block` elements, if padding, border, or margin is wider than container's width, then the contained element it will go to a new line, making the container bigger. This is assuming the container doesn't have fixed dimensions. 
-  - If a container element has smaller dimensions than a contained element, the contained element will overflow the container and be partially or completely hidden from view.
+  - **Enlarging container**: For `inline-block` elements, if padding, border, or margin is wider than container's width, then the contained element it will go to a new line, making the container bigger. This is assuming the container doesn't have fixed dimensions. 
+  - **Overflowing container**: If a container element has smaller dimensions than a child element, the child element will overflow the container and appear on top of the container.
 
+- Do `inline-block` elements always appear side by side if their width properties add up to 100%?
+  - Two consecutive `inline-block` elements with a total width of `100%` may render side by side, but not necessarily. 
+  - To render side by side, you must account for any `whitespace` between the two elements, and must also account for their `border`s and `padding`; the left/right `margins` must be 0 in any case.
+  - If `border-box` is used, then just need to account for the left/right `margins`. 
 
 #### Spacing
 
-- **Spacing**: Remember that in code, `inline` elements respect white spaces around the character and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character.
+- **Spacing**: Remember that in code, `inline` elements respect white spaces around characters and in between then. And the white space collapses to a single white space character. So multiple space characters would render as one space character.
 
-#### `inline-block` layout properties
+#### layout properties
 
 - `display: inline-block` meaning that is an `inline-block` element. 
 
@@ -842,14 +858,16 @@ However, the second will fail W3C validation; one pair of open/close tags should
 
 - The usable `box-sizing` property values are `content-box`, and `border-box`. The CSS standard deprecates the `padding-box` setting; **don't use it**.
 
-- The `box-sizing` property controls how an element's total width or height is calculated. 
+- The `box-sizing` property controls how an element's total width or height is calculated. The **content** area is different for the 2 models.
   - Use the `box-sizing` property to change how the box model treats padding and borders. When set to `border-box`, the browser includes both padding and borders as part of the total dimensions.
+- Note that `box-sizing` only plays a part when you specify the width and height of the element. If you don't specify a width and height, then your browser computes the width and height it needs from the elements it contains. This width and height are not affected by the `box-sizing` property of the container element. 
 
 ## `content-box`
 
 - By default, the CSS box model uses a value of `content-box` on all elements on modern browsers, which means the browser doesn't include the padding or border in the `width` and `height`. Instead, it adds the padding and border sizes to calculate the dimensions of the element.
-- In this model, the `width` and `height` properties specify the size of the **actual content area**. You need to add padding and borders to get the size of the **visible box**.
-  - `width` x `height` = **content area**
+- **Actual content area** = space inside element where actual content is displayed. 
+- In this model, the `width` and `height` properties specify the size of the **actual content area**. You need to add padding and borders to get the size of the visible box.
+  - `width` x `height` = **actual content area**, not visible box.
   - `width` x `height` + padding + borders = **visible box**. 
   - Margin not included in content-box.
 
@@ -860,10 +878,11 @@ Top represents content-box, bottom represents border-box.
 ## `border-box`
 
 - The `border-box` setting causes the browser to interpret the `width` and `height` properties as the total width and height of the box excluding the margins. 
-- The width and height include the **content area** as well as the padding and borders.
-  - `width` x `height` = **visible box** 
-  - content area + padding + borders = **actual Width and height**
-  - Margin not included in content-box
+- The width and height include is the actual content area + padding + borders. 
+  - `width` x `height` = **visible box**
+  - **content width** + padding + borders = `width`
+  - **content height** + padding + borders = `height`
+  - Margin not included in border-box
 
 <u>Why border-box is best</u>
 
@@ -1029,7 +1048,7 @@ html {
   - For example a meter in Japan is the same as a meter in the USA. 
   - Absolute units include inches, feet, meters, millimeters, etc.
 
-#### pixel (`px`)
+### pixel (`px`)
 
 - CSS has one absolute unit of significance: the **pixel**. 
 
@@ -1043,7 +1062,7 @@ html {
   }
   ```
 
-#### Physical vs. Reference Pixels
+### Physical vs. Reference Pixels
 
 - A **CSS reference pixel** (or **CSS pixel** or **reference pixel**) is a theoretical pixel used in CSS visual rendering to define a baseline pixel size for devices with different pixel densities.
   - One reference pixel corresponds to a visual angle of one pixel with a pixel density of 96 dots per inch (dpi). 
@@ -1074,7 +1093,7 @@ In the end, this means that CSS pixels are as close to an absolute unit as you c
 
 The difference between CSS reference pixels and physical pixels can pose a problem when using a design document to build a web page. If you have a high-resolution screen (like Apple's Retina displays) and view an image in Photoshop at 100% of its size, then look at it in your browser, the Photoshop version may appear smaller. If you're aware of this, you can account for the differences.
 
-#### Other Absolute units
+### Other Absolute units
 
 - CSS supports other absolute units, including inches and millimeters, but you won't use these units often. 
 - In theory, a CSS inch should appear to be 1 inch on a screen at the TVD (typical viewing distance) since a CSS inch is 96 CSS pixels. If you measure the length of that inch with a ruler, though, it may be larger or smaller than an actual inch. This difference leads most developers to stay away from inches and millimeters unless they need something that appears close to "life-size."
@@ -1085,97 +1104,126 @@ The difference between CSS reference pixels and physical pixels can pose a probl
   - For example a modern unit is the *story* or *floor* used to give the height of buildings, even though each floor or story may not be the same height. 
   - The unit is relative but useful. 
 
-#### Ems 
+### Ems 
 
 - **Ems** are proportional to the **calculated** font size. 
-  - The calculated font size is the height of the current font in pixels.
-  - If the calculated font size is 20 pixels then `1.5em` is `30px` (20 * 1.5). 
-- Compounding: 
-  - `em` units are relative to the font-size of their parent element, so they compound when used in nested elements. The parent element is relative to the font-size of the root element.
-  - Em units compound so you can't go back by specifying the original `em`. 
-  - The calculated, compounded font size is also be much larger than Rems.
+  - The font size of the parent element is used to calculate the nested element size. 
+  - The parent element itself is relative to the font-size of the **root element**. 
+  - Ems **compound** each time it is used. This compounding makes ems hard to use and maintain. 
 
-#### Rems
 
-- **Rems** are proportional to the **root** font size.
+##### Compounding 
 
-  - The root font size is the height of the base font for the document: the font size designated for the `html` element.
+- `em` units are relative to the font-size of their parent element, so they compound each time it is used in nested elements.
 
-  - If the root font size is 16 pixels, then `1.5rem` is `24px` (16 * 1.5).
+- Em units compound so you can't go back by specifying the original `em`. 
+- The calculated, compounded font size is also be much larger than Rems.
 
-- In most cases, you should use pixels to specify the root font size.
-- Compounding: Rems are more consistent and easier to work with because they don't compound.
-- Fallback unit: Some browsers don't recognize rem so use a fallback unit.
+##### Example 1
 
-#### Ems vs Rems
+- `Em` measurements use the font size for the parent element to calculate the desired size.
+- The root font size is 20 px, which is the `html` element size. The parent element is `section` and its size is 1.25rem, so the calculated font size is 1.25 x 20 = 25 px. `ul` is nested in `section` and inherits this size from `section`. `li` is nested in `ul`, so the compounded size for `li` is 1.2em which is 1.2 x 24 = 30px. 
 
-- In most cases, you should use pixels to specify the root font size.
+CSS
 
-- Some developers use ems or rems to give the user some control over the font, but this can result in odd behavior as your precisely positioned items start to overflow, overlap each other, or rearrange themselves on the page.
+```css
+html { font-size: 20px; }
+section { font-size: 1.25rem; }
+li { font-size: 1.2em; }
+```
 
-- Bugs in some older browsers make it a good idea to set the root font size in both the `html` and `body` elements. Always use pixels when you do so.
+HTML
 
-##### Compounding
+```html
+  <body>
+    <section>
+      <ul>
+        <li>Red</li>
+        <li>Green</li>
+        <li>Blue</li>
+      </ul>
+    </section>
+  </body>
+```
 
-- Rems are consistent and easier to work with. 
+##### Example 2
 
-  - Once you've set the root font size for a document, `1.5rem` means the same thing everywhere in that document. This relationship isn't true for ems; they compound. 
-
-- For example:
-
-  ```html
-  <h1>Using `em` Units</h1>
-  <div class="a-em">
-    1em == 1 * 24px == 24px
-    <div class="b-em">
-      1.5em == 1.5 * 24px == 36px
-      <div class="c-em">
-        2em == 2 * 36px == 72px
-        <div class="a-em">
-          1em == 1 * 72px == 72px
-        </div>
+```html
+<h1>Using `em` Units</h1>
+<div class="a-em">
+  1em == 1 * 24px == 24px
+  <div class="b-em">
+    1.5em == 1.5 * 24px == 36px
+    <div class="c-em">
+      2em == 2 * 36px == 72px
+      <div class="a-em">
+        1em == 1 * 72px == 72px
       </div>
     </div>
   </div>
-  
-  <hr>
-  
-  <h1>Using `rem` Units</h1>
-  <div class="a-rem">
-    1rem == 1 * 24px == 24px
-    <div class="b-rem">
-      1.5rem == 1.5 * 24px == 36px
-      <div class="c-rem">
-        2rem == 2 * 24px == 48px
-        <div class="a-rem">
-          1rem == 1 * 24px == 24px
-        </div>
+</div>
+
+<hr>
+
+<h1>Using `rem` Units</h1>
+<div class="a-rem">
+  1rem == 1 * 24px == 24px
+  <div class="b-rem">
+    1.5rem == 1.5 * 24px == 36px
+    <div class="c-rem">
+      2rem == 2 * 24px == 48px
+      <div class="a-rem">
+        1rem == 1 * 24px == 24px
       </div>
     </div>
   </div>
-  ```
+</div>
+```
 
-  ```css
-  html, body { font-size: 24px; }
-  
-  .a-em { font-size: 1em; }
-  .b-em { font-size: 1.5em; }
-  .c-em { font-size: 2em; }
-  
-  .a-rem { font-size: 1rem; }
-  .b-rem { font-size: 1.5rem; }
-  .c-rem { font-size: 2rem; }
-  ```
+```css
+html, body { font-size: 24px; }
 
-  ![Ems and Rems](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_2/measurement-units-01.png)
+.a-em { font-size: 1em; }
+.b-em { font-size: 1.5em; }
+.c-em { font-size: 2em; }
+
+.a-rem { font-size: 1rem; }
+.b-rem { font-size: 1.5rem; }
+.c-rem { font-size: 2rem; }
+```
+
+![Ems and Rems](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_2/measurement-units-01.png)
 
 - Pay attention to the difference between the 1em and 1rem lines at the final level. You can't go back to the original font size by specifying `1em`, but `1rem` takes you back directly to the original font size. 
 
 - You may also notice that the `1.5em` and `1.5rem` items use the same font size in this instance, but the `2em` line is noticeably larger than the `2rem` line since the calculated font size is larger than the root.
 
+### Rems
+
+- **Rems** are always proportional to the **root** font size.
+
+  - The root font size is the height of the base font for the document: it is the font size designated for the `<html>` element.
+
+  - If the root font size is 16 pixels, then `1.5rem` is `24px` (16 * 1.5).
+
+  - ```html
+    <style>
+      html { font-size: 20px; } /*root font-size is 20 px*/
+      li { font-size: 1.2rem; } /*font-size for li is 24 px*/
+    </style>
+    ```
+
+- In most cases, you should use pixels to specify the root font size.
+
+  - Some developers use ems or rems to give the user some control over the font, but this can result in odd behavior as your precisely positioned items start to overflow, overlap each other, or rearrange themselves on the page.
+
+  - Bugs in some older browsers make it a good idea to set the root font size in both the `html` and `body` elements. Always use pixels when you do so.
+
+- Compounding: Rems are more consistent and easier to work with because they don't compound.
+
 ##### fallback unit
 
-- This compounding makes ems hard to use and maintain. Some older browsers, though, don't recognize rems; if you must support such browsers, use a **fallback** unit:
+- Some older browsers, though, don't recognize rems; if you must support such browsers, use a **fallback** unit:
 
 ```css
 p {
@@ -1187,17 +1235,21 @@ p {
 
 - We chose `20px` as the fallback value since most (not all) browsers default to `16px`, which makes `1.25rem` equivalent to `20px`. If you must use fallbacks, assuming a `16px` default font-size is your best bet.
 
-#### Percentages
+### Percentages
 
 - Ethnically CSS doesn't consider percentages a length value, but you can use **percentages** to define dimensions as a fraction of the container's width or height. 
 - If you place a `block` or `inline-block` element in a container and set it to `width: 50%;`, the element's width is 50% of the width of the container. Likewise, if you need a height of one-quarter of the container's height, use `height: 25%`.
+- IMPORTANT NOTE: Percentage widths use the **content width** of the parent element and must also take into account the `box-sizing` property.
+  - If `box-sizing` property is set to `border-box`, then the **content width** is the `width` property subtract left and right padding, then subtract left and right border.  
+  - content width = width - padding - border. (see quiz question 6)
+
 - Remember: `width` and `height` have no effect on `inline` elements.
 - Browser window interaction
   - When you use a percentage width for an image, the image will resize proportionally based on the size of the browser window. 
   - For example, if you set the width of an image to 50%, the image will take up 50% of the width of its containing element. If the containing element is the entire width of the browser window, then the image will take up 50% of the width of the browser window. As the size of the browser window changes, the image will resize proportionally to always take up 50% of the width of its containing element.
 
 
-#### Auto
+### Auto
 
 - The `auto` specifier also isn't a length value, but you can use it when you want to let the browser determine a width or height for you. 
 
@@ -1459,10 +1511,44 @@ You can ignore or break any of these rules when appropriate. We violate them oft
 
 # My notes
 
+## How to calculate minimum dimensions for container
+
+Q: Calculate the minimum width and height that a **container element** needs to contain another element (including the container element's margins). 
+
+1. Calculate the total dimensions of the **child** element.
+
+- First use the `display` property to determine which properties are used by the browser and included in calculating dimensions.
+
+  - `block` element:`width`, `height`, `padding`, `border`, `margin`
+
+  - `inline-block` element: `width`, `height`, `padding`, `border`, `margin`
+
+  - `inline` element: Browser ignores `width`, `height`, top and bottom `margin` specified in CSS, so we can't calculate the space this child element would take unless we know the **actual width and height** of the **content area**. The content area and the actual width and height is determined by the browser. 
+
+    Keep in mind that top and bottom borders and padding may extend beyond the boundaries of the content area, so if there is content above or below the child element, it will overlap.
+
+- Then use the `box-sizing` property to determine which properties are included in calculating the dimensions. 
+
+  -  `content-box`: include `padding`, `border`, `margin` with `width` and `height` to determine dimensions. 
+  -  `border-box`: Do not include `padding` and `border` to determine total horizontal or vertical dimensions, because these two properties are already included in the width and height. The `width` and `height` includes **content**, padding, and border. 
+
+2. Calculate minimum dimension of container element and add it to the child element's dimensions.
+   - ??? Note that `box-sizing` only plays a part when you specify the width and height of the element. If you don't specify a width and height, then your browser computes the width and height it needs from the elements it contains. This width and height are not affected by the `box-sizing` property of the container element. ???
+
+- Use `box-sizing` property of container element.
+
+  - If `border-box` is used, we must add the container padding and border with child element dimensions. This because for `border-box` sizing, the `width` and `height` includes the padding and border.
+
+  - If `content-box` is used, we do not include the *container* element's padding or border, just the *child* element's dimensions. This is because we are calculating for the minimum dimension, so the minimum  `width` and `height` of the container is equal to the child element's width. 
+
 ## container element interactions
 
-- In HTML and CSS, a **container** is an element that is used to hold and organize other elements. In HTML, a container can be any element that has child elements nested within it. 
-  - For example, a `<div>` element can be used as a container to group and organize other elements on a web page, such as text, images, forms, and other HTML elements.
+## What are containers
+
+- **Containers** are `block` elements such as a `header` that contain one ore more elements. The master container (the outermost) is the `body`; every other element belongs to a container.
+- We sometimes use the term **parent** to refer to a container, and use **child** to describe an element contained within a container. These relationship terms also let us talk about grandparents, ancestors, descendants, siblings, cousins, etc..
+- ChatGPT: In HTML, a **container** is a type of **parent** element that has **child** elements nested within it, and is used to used to group related content together. 
+  - Container elements do not have any inherent styling or layout, but are used to create a logical structure for the content and make it easier to apply styling and layout rules to the group of elements as a whole. 
 - An element's `display` property and `box-sizing` can both impact the layout and flow of content within a container element. In other words, the layout and flow of content is impacted by the visual display model and box-sizing model. 
 
 #### `display` interaction with flow 
@@ -1473,8 +1559,13 @@ You can ignore or break any of these rules when appropriate. We violate them oft
   - **top & bottom padding/border overlap with container**: The top & bottom padding and borders may extend beyond the boundaries of the `inline` element's content area. This means that if there is content above or below the `inline` element, it will overlap with the top or bottom border / padding  of that `inline` element. This behavior should be avoided. 
   - **Margin causes adjacent `inline`** elements to overlap: If the margin is too big, inline elements would be pushed apart from each other, which may cause adjacent inline elements to overlap.
 - `inline-block`
-  - For `inline-block` elements, if padding, border, or margin is wider than container's width, then the contained element it will go to a new line, making the container bigger. This is assuming the container doesn't have fixed dimensions. 
-  - If a container element has smaller dimensions than a contained element, the contained element will overflow the container and be partially or completely hidden from view.
+  - Padding, margin & borders impact on flow of elements in a container
+    - Enlarging container: For `inline-block` elements, if padding, border, or margin is wider than container's width, then the contained element it will go to a new line, making the container bigger. This is assuming the container doesn't have fixed dimensions. 
+    - Overflowing container: If a container element has smaller dimensions than a child element, the child element will overflow the container and appear on top of the container.
+  - Do `inline-block` elements always appear side by side if their width properties add up to 100%?
+    - Two consecutive `inline-block` elements with a total width of `100%` may render side by side, but not necessarily. 
+    - To render side by side, you must account for any `whitespace` between the two elements, and must also account for their `border`s and `padding`; the left/right `margins` must be 0 in any case.
+    - If `border-box` is used, then just need to account for the left/right `margins`. 
 - `block`
   - By default, a `block` element occupies all horizontal space available within its container, with nothing to the left or right of the `block`. 
     - If your page contains 3 `block` elements directly inside the `body` element and nothing else, then all three elements will display one above the other like a stack of blocks. 
@@ -1495,39 +1586,6 @@ You can ignore or break any of these rules when appropriate. We violate them oft
 - However, because inline elements are designed to flow with the text and not disrupt the layout, adding padding and border to an inline element can cause the element to "break out" of the text flow, resulting in unexpected, overlapping layout issues.
   - This means that the element may be wider and taller than its actual content, and any padding or border added to the element will be included in its dimensions.
   - To avoid this issue, avoid adding padding and border to inline elements. 
-
-## How to calculate horizontal and vertical dimensions
-
-Note: An element's `display` property and `box-sizing` both impact the layout and flow of content within a container element.  
-
-Q: Calculate the minimum dimensions that a **container element** needs to contain another element (including the container element's margins). 
-
-1. Calculate the total dimensions of the **contained** element.
-
-- First use the `display` property to determine which properties are used by the browser and included in calculating dimensions.
-
-  - `block` element:`width`, `height`, `padding`, `border`, `margin`
-
-  - `inline-block` element: `width`, `height`, `padding`, `border`, `margin`
-
-  - `inline` element: Browser ignores `width`, `height`, top and bottom `margin` specified in CSS, so we can't calculate the space this contained element would take unless we know the **actual width and height** of the **content area**. The content area and the actual width and height is determined by the browser. 
-
-    Keep in mind that top and bottom borders and padding may extend beyond the boundaries of the content area, so if there is content above or below the contained element, it will overlap.
-
-- Then use the `box-sizing` property to determine which properties are included in calculating the dimensions. 
-
-  -  `content-box`: include `padding`, `border` along with other values to determine dimensions. 
-  -  `border-box`: Do not include `padding` and `border` to determine total horizontal or vertical dimensions, because these two properties are already calculated in the content area. 
-
-2. Calculate dimension of container element.
-
-- Use `box-sizing` property of container element.
-
-  - If `border-box` is used, we must include *container* element's the width and height as well as borders, paddings, and margins. 
-
-  - If `content-box` is used, we do not include the *container* element's paddings, borders, or margins, just the *contained* element's dimensions. 
-
-- Use dimensions of contained element as well as container element to determine the total dimensions needed. 
 
 ## Relationship btwn visual display models & box sizing models
 
@@ -1725,3 +1783,43 @@ From there we examined the sometimes confusing concepts of padding and margins i
 We ended our lesson with a look at the essential dimensional units used in CSS, including both absolute and relative units, and talked briefly about when to use them.
 
 In the next lesson, we will take a look at one of the most ubiquitous components of web pages: images. They're everywhere, and now they're coming to a web page near you.
+
+# Quiz Problem 6
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>My Picture</title>
+    <meta charset="utf-8">
+    <style>
+      body {
+        box-sizing: border-box;
+        width: 1000px;
+        padding: 50px;
+        margin: 30px;
+        border: 10px solid blue;
+      }
+
+      section {
+        width: 75%;
+        padding: 25px;
+        margin: 15px;
+      }
+
+      img { width: 80%; }
+    </style>
+  </head>
+  <body>
+    <section>
+      <img src="picture.jpg">
+    </section>
+  </body>
+</html>
+```
+
+Determine the final width of the image, in pixels. Assume that `picture.jpg` is 800px in width.
+
+- `body` is uses `border-box` sizing property, so the **content width** is the width subtract padding and borders. 1000 - (50 x 2) - (10 x 2) = 880. 
+- `section` is using the default `boxing-size` property `content-box`, so the content width is the given width property, 75%.  75% of 880 = 660
+- `img`'s width propery is 80% of `section`'s content width 660 = 528. Since `img` is also using default `boxing-size` property `content-box`, any border and padding has to be added into the final calculation. But because `img` has no borders, padding, or margin, 528px is the final width. 
