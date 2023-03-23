@@ -116,7 +116,15 @@ Note 3) 256 **exapixels**, an incredibly large number: 3 followed by 23 zeros.
 
 ## The Img Element
 
-`<img>` is a self-closing tag that tells the browser to load and display a **foreground image** from a separate resource. It has four attributes of particular interest:
+- `<img>` is a self-closing tag that tells the browser to load and display a **foreground image** from a separate resource. It has four attributes of particular interest.
+
+- Here's a typical image tag:
+
+  ```html
+  <img src="lucrezia.jpg" alt="Da Vinci's Smarter Sister, Lucrezia"
+       width="800" height="600">
+  ```
+
 
 #### The `src` attribute
 
@@ -124,6 +132,9 @@ Note 3) 256 **exapixels**, an incredibly large number: 3 followed by 23 zeros.
 
 - The `src` attribute tells the browser where to find the image. 
   - It uses the same URL format as links in the `<a>` tag and can be relative, root-relative, or absolute.
+  - **Relative paths** are specified relative to the current directory or location of the file being referenced. For example if the current directory is  `/home/user/documents` use "../pictures/image.jpg" to specify the file's location. 
+  - **Root-relative** paths are specified relative to the root directory of the file system. In Unix-based systems, the root directory is denoted by a forward slash (/). "/home/user/pictures/image.jpg".
+  - **Absolute paths** specify the complete path to a file or directory from the root of the file system. "/home/user/documents/pictures/image.jpg"
 
 #### The `alt` attribute
 
@@ -157,13 +168,6 @@ Empty `alt` or omit `alt`
   - In many cases you won't know the specific width and height in advance, especially if the image's size is dependent on the output device. 
   - For instance, mobile devices often render images at a smaller size than in a desktop browser. In such cases, providing the `height` and `width` attributes may lead to worse overall performance. 
 
-Here's a typical image tag:
-
-```html
-<img src="lucrezia.jpg" alt="Da Vinci's Smarter Sister, Lucrezia"
-     width="800" height="600">
-```
-
 ## Figure and Figcaption
 
 Problem: How to semantically add a caption?
@@ -191,7 +195,10 @@ Problem: How to semantically add a caption?
 
 ## Images as Links
 
-You can use any non-interactive HTML element as a link, including images. (The non-interactive requirement excludes form controls and other links). To make an image clickable and have it link to another page, place the `img` tag inside an `a` tag:
+- You can use any non-interactive HTML element as a link, including images. (The non-interactive requirement excludes form controls and other links). 
+- To make an image clickable and have it link to another page, place the `img` tag inside an `a` tag:
+  - `url-of-link` is the destination for the link. 
+  - `url-of-image` is the location of the image. 
 
 ```html
 <a href="url-of-link">
@@ -199,13 +206,14 @@ You can use any non-interactive HTML element as a link, including images. (The n
 </a>
 ```
 
-`url-of-link` is the destination for the link, while `url-of-image` is the location of the image.
-
-The URLs are typically different, but they don't have to be. If they're the same, the link acts as a way to see the image all by itself. Often, this single image is larger than the original. Some browsers let you click the stand-alone picture to toggle between viewing it "actual size" or "fit-to-screen."
+- The URLs are typically different, but they don't have to be. If they're the same, the link acts as a way to see the image all by itself. 
+- Often, this single image is larger than the original. Some browsers let you click the stand-alone picture to toggle between viewing it "actual size" or "fit-to-screen."
 
 ## Background Images
 
-You can also add background images to a page or element by applying the CSS `background` or `background-image` property. Background images appear behind the content for the element that requested the background and its descendants. Most background images apply to an entire page, so we use the `body` selector to specify them. However, you can apply backgrounds to any selector, such as a tag, class, or id selector. For instance:
+- Background images appear behind the content for the element that requested the background and its descendants.
+- You can  add background images to a page or element by applying the CSS `background` or `background-image` property.  
+- Most background images apply to an entire page, so we use the `body` selector to specify them. However, you can apply backgrounds to any selector, such as a tag, class, or id selector. For instance:
 
 ```html
 <section>
@@ -229,7 +237,7 @@ html {
 
 body {
   background-image:
-    url("http://d3jtzah944tvom.cloudfront.net/202/images/lesson_3/gradient-background.png");
+    url("http://d3jtzah944tvom.cloudfront.net/202/images/lesson_3/gradient-			background.png");
 }
 
 section {
@@ -254,8 +262,6 @@ nav {
 
 There are several other background properties you can provide with a background image, including the size of the image, the positioning, and repeat counts. Here, we demonstrate setting the size of the background image to 25% of the container width.
 
-Copy Code
-
 ```css
 body {
   background-size: 25%;
@@ -274,54 +280,46 @@ These practice problems use [this image](https://d3jtzah944tvom.cloudfront.net/2
 
    Solution
 
-   Copy Code
-
    ```html
-   <img src="https://d3jtzah944tvom.cloudfront.net/202/images/lesson_3/cats.jpg"
+<img src="https://d3jtzah944tvom.cloudfront.net/202/images/lesson_3/cats.jpg"
         alt="Two Cats: Butterscotch and Pudding">
    ```
-
+   
    Did you remember to specify the `alt` attribute?
 
 2. Use CSS to set the width of the image to 250 pixels.
 
-   Solution
-
    ```css
-   img {
+img {
      width: 250px;
    }
    ```
-
+   
    Since we specified a width but no height, the height adjusted automatically to maintain the same aspect ratio.
 
 3. Update the CSS width from the previous problem with a height of 350 pixels.
 
    Solution
 
-   Copy Code
-
    ```css
-   img {
+img {
      height: 350px;
    }
    ```
-
+   
    Since we specified a height but no width, the width adjusted automatically to maintain the same [aspect ratio](https://en.wikipedia.org/wiki/Aspect_ratio_(image)).
 
 4. Set the width of the image to 400 pixels, but keep the height at 350px.
 
    Solution
 
-   Copy Code
-
    ```css
-   img {
+img {
      height: 350px;
      width: 400px;
    }
    ```
-
+   
    You should see that the photo is now horizontally stretched since we've taken control of both the height and width. We control the horizontal; we control the vertical. You are about to experience the awe and mystery which reaches from the inner mind to – Launch School.
 
 5. Remove the CSS for the `img` element, and wrap the `<img>` in a `<figure>` tag with a yellow background.
@@ -337,10 +335,8 @@ These practice problems use [this image](https://d3jtzah944tvom.cloudfront.net/2
    </figure>
    ```
 
-   Copy Code
-
    ```css
-   /*
+/*
    img {
      height: 350px;
      width: 400px;
@@ -351,14 +347,12 @@ These practice problems use [this image](https://d3jtzah944tvom.cloudfront.net/2
      background-color: yellow;
    }
    ```
-
+   
    You should see that the background color stretches most of the way across the window since `<figure>` is a `block` element.
 
 6. Add a caption below the image.
 
    Solution
-
-   Copy Code
 
    ```html
    <figure>
@@ -370,12 +364,10 @@ These practice problems use [this image](https://d3jtzah944tvom.cloudfront.net/2
      </figcaption>
    </figure>
    ```
-
+   
 7. Move the caption above the image.
 
    Solution
-
-   Copy Code
 
    ```html
    <figure>
@@ -512,40 +504,34 @@ Now, let's walk through some additional styling to finish the gallery. Our goal 
 
    Solution
 
-   Copy Code
-
    ```css
    figure {
      width: 50%;
    }
    ```
-
+   
 5. At this point, the figures are narrow enough that we should be able to squeeze 2 of them in every row on the page. However, since `figure`s are `block` elements, they always take up an entire row. Instead, you must convert the `figure` elements to `inline-block`. Please do so.
 
    Solution
 
-   Copy Code
-
    ```css
-   figure {
+figure {
      display: inline-block;
    }
    ```
-
+   
    Even though we converted the box model to `inline-block`, the images still don't fit side by side. There's a problem - actually, two problems. Can you see what's wrong? Try to determine what you need to do before continuing. We'll return to this issue after an unrelated question.
 
 6. There's a small cosmetic issue unrelated to squeezing two images per row. Let's center the captions beneath each image:
 
    Solution
 
-   Copy Code
-
    ```css
    figcaption {
      text-align: center;
    }
    ```
-
+   
 7. Returning to the problem of squeezing two images per row, the main issue we have is that we have margins to the left and right of each `figure`. Recall that we used margins here to satisfy our rule of thumb about choosing margins or padding. However, those margins take up space in the browser window, so we can't squeeze two 50%-width elements side by side. Instead, we need to set the left and right margins on the `figure` elements to `0`, and redistribute that space in some other way. Give this a try now.
 
    Hint
@@ -554,16 +540,14 @@ Now, let's walk through some additional styling to finish the gallery. Our goal 
 
    Solution
 
-   Copy Code
-
    ```css
-   figure {
+figure {
      box-sizing: border-box;
      margin: 50px 0;
      padding: 0 50px;
    }
    ```
-
+   
    We need to set the top and bottom margins to 50px and set the left and right padding values to 50px as well. Lastly, we need to set the box-sizing model to `border-box` to ensure the width includes the padding.
 
 8. The other part of the problem of squeezing two images per row is that there is a small amount of whitespace between every pair of `inline-block` elements. It's not much whitespace, but it's enough to prevent two 50% elements from fitting side by side. Go ahead and make the necessary adjustments to get rid of the whitespace.
@@ -573,8 +557,6 @@ Now, let's walk through some additional styling to finish the gallery. Our goal 
    You've seen this issue before, back in the previous lesson. You may want to review [this article](https://css-tricks.com/fighting-the-space-between-inline-block-elements/) if you don't remember how to eliminate the whitespace.
 
    Solution #1
-
-   Copy Code
 
    ```html
    <figure>
@@ -599,7 +581,7 @@ Now, let's walk through some additional styling to finish the gallery. Our goal 
      <figcaption>Kentucky Darleks</figcaption>
    </figure>
    ```
-
+   
    In one of our earlier encounters with this issue, we inserted comments between each of the elements. We use a slightly different technique here: we place the opening tag of each `figure` adjacent to the closing tag of the previous `figure`. It has the same effect.
 
    Hint for Solution #2
@@ -607,8 +589,6 @@ Now, let's walk through some additional styling to finish the gallery. Our goal 
    Another way to get rid of the space between `figure` elements is to reduce the font size of that space to 0.
 
    Solution #2
-
-   Copy Code
 
    ```css
    main {
@@ -619,9 +599,9 @@ Now, let's walk through some additional styling to finish the gallery. Our goal 
      font-size: 1rem;
    }
    ```
-
+   
    By reducing the font size for the `main` element to 0 (we don't have any other text in this element), the space character shrinks into nothingness. However, we must remember to restore the font before we display anything, such as the caption.
-
+   
 9. The images are a bit on the small side. Let's give the user the ability to see them full-sized by clicking on them. When clicked, the browser should load the image directly into a new tab or window. To accomplish this, convert your images into links.
 
    Solution

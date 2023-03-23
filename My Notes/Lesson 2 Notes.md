@@ -1546,6 +1546,8 @@ Q: Calculate the minimum width and height that a **container element** needs to 
 ## What are containers
 
 - **Containers** are `block` elements such as a `header` that contain one ore more elements. The master container (the outermost) is the `body`; every other element belongs to a container.
+  - The container will take up the entire space on a line.
+
 - We sometimes use the term **parent** to refer to a container, and use **child** to describe an element contained within a container. These relationship terms also let us talk about grandparents, ancestors, descendants, siblings, cousins, etc..
 - ChatGPT: In HTML, a **container** is a type of **parent** element that has **child** elements nested within it, and is used to used to group related content together. 
   - Container elements do not have any inherent styling or layout, but are used to create a logical structure for the content and make it easier to apply styling and layout rules to the group of elements as a whole. 
@@ -1752,11 +1754,14 @@ Become comfortable with the CSS `display`, `box-sizing`, `width`, `height`, `pad
 - `display`
 - ``box-sizing`
 - `width`
-  - Fixed width. Image remains this fixed width even when resizing browser window.
-
+  - Specifying width creates a Fixed width. Image remains this fixed width even when resizing browser window.
+  - If you specify height but not width, then the width will adjust automatically to maintain the same aspect ratio. 
+  - Interaction with mixing units: Using fixed dimension for one side and a relative variable dimension for another side will cause the image to stretch weirdly when browser is resized. 
+    - For example, a fixed width and relative height of 100% will cause the image to stretch vertically but remain fixed horizontally.  
 - `height`
-  - Fixed height. Image remains this fixed height even when resizing browser window. 
-
+  - Specifying height creates a fixed height. Image remains this fixed height even when resizing browser window. 
+  - If you specify width but not height, then the height will adjust automatically to maintain the same aspect ratio. 
+  - Interaction with 
 - `padding`
 - `border`
 -  `margin` 
@@ -1771,6 +1776,42 @@ Become comfortable with the CSS `display`, `box-sizing`, `width`, `height`, `pad
   - It does not include padding, borders, or margins.
 - The **`min-width`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the minimum width of an element. It prevents the [used value](https://developer.mozilla.org/en-US/docs/Web/CSS/used_value) of the [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width) property from becoming smaller than the value specified for `min-width`.
   - It does not include padding, borders, or margins.
+
+# Adjusting Image Sizes
+
+- Aspect ratio automatic adjustment
+
+  - If you specify a fixed dimension for one side and don't specify for another side, then the other side will adjust automatically to maintain the same aspect ratio. 
+
+- Interaction with mixing units
+
+  - Using fixed dimension for one side and a relative variable dimension for another side will cause the image to stretch weirdly when browser is resized. 
+
+  - For example, a fixed height and a width of 100% will cause the image to stretch horizontally but remain fixed vertically. 
+
+    ```css
+    img {
+      display: block;
+      height: 533px;
+      margin: 0 auto;
+      max-width: 800px;
+      width: 100%;
+    }
+    ```
+
+
+- Margin/padding zeroing a reset
+
+  - Zero out the margins and paddings for all elements to ensure that the appearance remains similar in different browsers.
+
+  ```css
+  body, main, figure, figcaption, img {
+    margin: 0;
+    padding: 0;
+  }
+  ```
+
+  
 
 # Summary
 
