@@ -38,6 +38,7 @@ When not to use JPG
 
 - In general, jpgs don't work well as CSS background images. Photographs are too intricate visually for use as a background, and most suitable non-photographic graphics show visible results of compression even at the highest quality.
 - There are JPEG artifacts even when a JPG image is not edited, but most people don't notice this. 
+- JPG format does not allow for transparency.
 
 Lossy compression
 
@@ -67,10 +68,11 @@ When not to use PNG
 
 - PNG size is medium-large, too big for photographs. 
 
-Non-lossy
+Non-lossy compression
 
 - Like jpgs, pngs use compression to reduce the size of the file, but png compression is non-lossy. **Non-lossy** means that information and details are not lost during compression. 
 - However, the lack of lossiness means larger file sizes; considerably in some cases.
+- PNG format does not offer as much compression as JPG format, so PNG images are typically much larger than a similar JPG image.
 
 Single color and alpha transparency
 
@@ -83,11 +85,12 @@ Single color and alpha transparency
 When to use Gifs
 
 - Gifs are suitable for small images used as user interface icons in an application. 
-- They have a limited color range (256 colors), but this allows for minuscule file sizes, which makes them perfect for images where size, detail, and a broad color palette aren't significant.
+- They have a limited color range (256 colors), on of which can be transparent. 
+- This allows for minuscule file sizes, which makes them perfect for images where size, detail, and a broad color palette aren't significant.
 
 When not to use Gifs
 
-- Gifs have a limited color range (266 colors). They also lack detail and are not good for larger sizing.
+- Gifs have a limited color range (256 colors). They also lack detail and are not good for larger sizing.
 
 ## Image Type Comparison Table
 
@@ -138,11 +141,11 @@ Note 3) 256 **exapixels**, an incredibly large number: 3 followed by 23 zeros.
 
 #### The `alt` attribute
 
-- The `alt` attribute is optional but you should almost always use it. 
+- The `alt` attribute is optional but you should almost always use it. Existing W3C standards require the `alt` attribute in *almost* all cases. 
 
 - The `alt` attribute describes the content of the image as an aid for users who cannot see it or that have images disabled. 
 
-- Most browsers display the `alt` text when an image is unavailable or when images have been disabled. If you have a picture of Da Vinci's smarter sister, Lucrezia, you should say so in the `alt` attribute value.
+- Most browsers display the `alt` text when an image is unavailable or when images have been disabled. 
 
 Why you shouldn't omit `alt` 
 
@@ -163,8 +166,9 @@ Empty `alt` or omit `alt`
 - The `width` and `height` attributes are also optional. 
 - They provide the width and height of the image in pixels. The CSS `width` and `height` properties override the HTML attributes in the rendered version of the page.
 - When to use `height` and `weight` attributes
+  - These attributes are only recommended in specific cases. For example:
   - If you plan to almost always display images with a specific width and height, then you should use the attributes to specify those values. That lets your browser optimize the rendering speed by allocating room for your image before it finishes downloading.
-- Use the `height` and `width` CSS properties exclusively. 
+- Use the `height` and `width` CSS *properties* exclusively. 
   - In many cases you won't know the specific width and height in advance, especially if the image's size is dependent on the output device. 
   - For instance, mobile devices often render images at a smaller size than in a desktop browser. In such cases, providing the `height` and `width` attributes may lead to worse overall performance. 
 
@@ -177,9 +181,12 @@ Problem: How to semantically add a caption?
 
 `figure` has semantic meaning
 
-- The `figure` element fills this gap in semantic meaning; it designates an item as a representation of information discussed in the content. 
+- You should use the `<figure>` element to wrap images that you refer to in the text.
+  - The `figure` element fills this gap in semantic meaning; it designates an item as a representation of information discussed in the content. 
   - The tag customarily encloses some media, such as an image, video, or audio file, that illustrates the surrounding content. 
-  - The caption can be supplied with an optional `<figcaption>` tag, short for "figure caption." For example:
+
+- Use `<figcaption>` to caption an image, which is short for "figure caption." 
+  - For example:
 
 ```html
 <figure>
@@ -196,16 +203,17 @@ Problem: How to semantically add a caption?
 ## Images as Links
 
 - You can use any non-interactive HTML element as a link, including images. (The non-interactive requirement excludes form controls and other links). 
+- Make images as links to give users the ability to see them full-sized by clicking on them
 - To make an image clickable and have it link to another page, place the `img` tag inside an `a` tag:
-  - `url-of-link` is the destination for the link. 
-  - `url-of-image` is the location of the image. 
 
 ```html
-<a href="url-of-link">
+<a href="url-of-link" target="_blank">
   <img src="url-of-image" alt="alt-text">
 </a>
 ```
 
+- `url-of-link` is the destination for the link. 
+- `url-of-image` is the location of the image. 
 - The URLs are typically different, but they don't have to be. If they're the same, the link acts as a way to see the image all by itself. 
 - Often, this single image is larger than the original. Some browsers let you click the stand-alone picture to toggle between viewing it "actual size" or "fit-to-screen."
 
@@ -213,6 +221,13 @@ Problem: How to semantically add a caption?
 
 - Background images appear behind the content for the element that requested the background and its descendants.
 - You can  add background images to a page or element by applying the CSS `background` or `background-image` property.  
+- The `<image>` data type can be represented with any of the following:
+  - An image denoted by the [`url()`](https://developer.mozilla.org/en-US/docs/Web/CSS/url) data type
+  - `<gradient>` data type
+  - A part of the webpage, defined by the [`element()`](https://developer.mozilla.org/en-US/docs/Web/CSS/element) function
+  - An image, image fragment or solid patch of color, defined by the [`image()`](https://developer.mozilla.org/en-US/docs/Web/CSS/image/image) function
+  - A blending of two or more images defined by the [`cross-fade()`](https://developer.mozilla.org/en-US/docs/Web/CSS/cross-fade) function.
+  - A selection of images chosen based on resolution defined by the [`image-set()`](https://developer.mozilla.org/en-US/docs/Web/CSS/image/image-set) function.
 - Most background images apply to an entire page, so we use the `body` selector to specify them. However, you can apply backgrounds to any selector, such as a tag, class, or id selector. For instance:
 
 ```html
@@ -675,6 +690,82 @@ That should do the trick; you now have a simple image gallery that uses most of 
 The completed project shows an incorrect caption on the photo of the aircraft formation; that is the Blue Angels, not the Thunderbirds.
 
 Use the "View Source" feature in your browser to see the final HTML and CSS.
+
+# How to adjust image 
+
+- Aspect ratio automatic adjustment
+
+  - If you specify a fixed dimension for one side and don't specify for another side, then the other side will adjust automatically to maintain the same aspect ratio. 
+
+- Interaction with mixing units
+
+  - Using fixed dimension for one side and a relative variable dimension for another side will cause the image to stretch weirdly when browser is resized. 
+
+  - For example, a fixed height and a width of 100% will cause the image to stretch horizontally but remain fixed vertically. 
+
+    ```css
+    img {
+      display: block;
+      height: 533px;
+      margin: 0 auto;
+      max-width: 800px;
+      width: 100%;
+    }
+    ```
+
+- **zeroing a reset**
+
+  - Zero out the margins and paddings for all elements to ensure that the appearance remains similar in different browsers.
+
+  ```css
+  body, main, figure, figcaption, img {
+    margin: 0;
+    padding: 0;
+  }
+  ```
+
+- Use`outline` to outline the border of an element. 
+
+  - `outline` is a line outside the element's border. It doesn't interact with the box mode and doesn't take up space, so it doesn't change the page layout.
+  - This makes `outline` useful during development and debugging.
+
+- An image may extend beyond the right side of the outline. (from photo gallery project)
+
+  - If an image doesn't have the `width` property or deprecated `width` attribute, then the web browser will use original width of the image as the default displayed width. That means the image may be wider than the container its placed in, resulting in the image being hidden or overflowing outside the container.
+  - In this case, the container element is a `figure` element. The default width for `figure` is `100%`, which in this case represents 100% of the browser window (minus the margins). If the width exceeds the width of the `figure`, the image will extend beyond the right side of the outline.
+
+- Size of containers & child element
+
+  - The `body` master container is usually 100% of the browser window (minus the margins).
+  - `main` is the master container which inherits from `body`. 
+  - Whatever inherits from `main` may be more wide than `main`, so adjust the `max-width` to 100%. 
+  - If you want the child element to fit fully in container, adjust `width` to 100%. 
+
+- How to make two block elements fit side by side in browser.
+
+  - Convert block element to `inline-block`
+  - Change width of element to 50%. 
+  - Change box-sizing to `border-box`. 
+  - Make left and right margin 0. 
+  - If you want left and right margin then use `padding` instead because `padding` is included in the content for `border-box`. 
+  - Remove Whitespace: Adjust code to remove whitespace by placing closing tag next to next `inline-block`element's opening tag.
+
+  ```css
+  figure {
+  	display: inline-block;
+    box-sizing: border-box;
+    margin: 50px 0;
+    padding: 0 50px;
+    outline: 1px solid red;
+   	width: 50%;
+  }
+  ```
+
+- Use `text-align:center` to center an element's `inline` content within the width the `block` element.
+
+- Add `background-image` and stretch the picture using `background-size: cover`
+
+- Use the "View Source" feature in your browser to see the final HTML and CSS.
 
 # Summary
 

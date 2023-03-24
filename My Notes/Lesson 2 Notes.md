@@ -97,6 +97,8 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
 
 # The HTML Box Model
 
+![What is the CSS Box Model · Front End web development - codinglead](https://codinglead.co/images/box-model.png)
+
 - Every element requires a box-shaped segment of the page. Every character of text content also needs a boxed portion of the page. **Box model** is how the the browser calculates the dimensions of that box by using the browser defaults and CSS.
 - Boxes have properties such as including `width`, `height`, `padding`, `border`, and `margin` that control the size and spacing of each box. 
 - **Visual display model** and **Box sizing model** are two concepts that significantly impact the box model. 
@@ -106,7 +108,7 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
 - The box sizing model determines how an element's total size is calculated which affects the overall layout of the page. 
   - `content-box` is the default `box-sizing` value which only includes the content of an element in its width and height and does not include padding border, or margin in the width and height of an element. 
   - `border-box` model includes padding and border (not margin) in the width and height of an element.
--  Together, these topics comprise the concept of the HTML box model.
+- Together, these topics comprise the concept of the HTML box model.
 
 --
 
@@ -143,6 +145,8 @@ Every element box has the following properties (the browser may ignore some of t
 - The **display** property determines how the browser lays out an element relative to its neighbors.
 
 Pictorially, it looks like this:
+
+![What is the CSS Box Model · Front End web development - codinglead](https://codinglead.co/images/box-model.png)
 
 
 
@@ -264,7 +268,10 @@ Values
 - The **margin** is a typically transparent area that lies outside the border and supplies spacing between adjacent elements.
 
   It is not "clickable".
-- Margin collapse: In adjacent elements, margin collapses to the larger of the two margins in question.
+- **Margin collapse**: Margin collapse is a behavior in CSS where the top and bottom margins of adjacent elements collapse to the larger of the two margins, combining to form a single margin, instead of adding up to create separate margins. 
+
+  - Left and right margins don't collapse.
+
 - Background color interaction: 
 
   - Background color of container element shows in the transparent margin of the contained element.
@@ -405,6 +412,7 @@ If you click anywhere inside the inner (blue) box, the box turns green; click ag
 
 ### Margin Collapse
 
+- Margin collapse is a behavior in CSS where the top and bottom margins of adjacent elements collapse to the larger of the two margins, combining to form a single margin, instead of adding up to create separate margins. Left and right margins don't collapse.
 - An even bigger difference between margins and padding is that top and bottom margins "collapse" between `block` elements. 
 - If you position two adjacent `block`'s one above the other, the margin between them isn't the sum of the bottom margin of the first and the top margin of the second. Instead, the margin collapses to the larger of the two margins in question. For instance, assume that we have the following HTML:
 
@@ -1681,6 +1689,19 @@ or
 </ul>
 ```
 
+or
+
+```html
+/* if you have nested elements then place opening tag adjacent to closing tag */
+<figure>
+  <img src="something.jpg">
+</figure><figure>
+  <img src="something.jpg">
+</figure><figure>
+  <img src="something.jpg">
+</figure>
+```
+
 or with comments…
 
 ```html
@@ -1719,7 +1740,23 @@ nav a {
 
 #### Set the font size to zero
 
+Example 1
+
 - A space that has zero `font-size` is… zero width.
+
+```css
+main {
+  font-size: 0;
+}
+
+figcaption {
+  font-size: 1rem;
+}
+```
+
+- By reducing the font size for the `main` element to 0 (we don't have any other text in this element), the space character shrinks into nothingness. However, we must remember to restore the font before we display anything, such as the caption.
+
+Example 2
 
 ```css
 nav {
@@ -1764,12 +1801,15 @@ Become comfortable with the CSS `display`, `box-sizing`, `width`, `height`, `pad
   - Interaction with 
 - `padding`
 - `border`
--  `margin` 
+  - `outline` is a line outside the element's border. It doesn't interact with the box mode and doesn't take up space, so it doesn't change the page layout.
+    - This makes `outline` useful during development and debugging.
+
+- `margin` 
 
 # Other CSS properties
 
 - The **`text-align`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the horizontal alignment of the inline-level content inside a block element or table-cell box.
-  - This property alters an element's content.
+  - This property alters an element's entire **content** (not necessarily just text!).
 
 - The **`max-width`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the maximum width of an element. It prevents the [used value](https://developer.mozilla.org/en-US/docs/Web/CSS/used_value) of the [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width) property from becoming larger than the value specified by `max-width`.
   - `max-width` overrides [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width), but [`min-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/min-width) overrides `max-width`.
@@ -1777,41 +1817,11 @@ Become comfortable with the CSS `display`, `box-sizing`, `width`, `height`, `pad
 - The **`min-width`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the minimum width of an element. It prevents the [used value](https://developer.mozilla.org/en-US/docs/Web/CSS/used_value) of the [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width) property from becoming smaller than the value specified for `min-width`.
   - It does not include padding, borders, or margins.
 
-# Adjusting Image Sizes
-
-- Aspect ratio automatic adjustment
-
-  - If you specify a fixed dimension for one side and don't specify for another side, then the other side will adjust automatically to maintain the same aspect ratio. 
-
-- Interaction with mixing units
-
-  - Using fixed dimension for one side and a relative variable dimension for another side will cause the image to stretch weirdly when browser is resized. 
-
-  - For example, a fixed height and a width of 100% will cause the image to stretch horizontally but remain fixed vertically. 
-
-    ```css
-    img {
-      display: block;
-      height: 533px;
-      margin: 0 auto;
-      max-width: 800px;
-      width: 100%;
-    }
-    ```
-
-
-- Margin/padding zeroing a reset
-
-  - Zero out the margins and paddings for all elements to ensure that the appearance remains similar in different browsers.
-
-  ```css
-  body, main, figure, figcaption, img {
-    margin: 0;
-    padding: 0;
-  }
-  ```
-
-  
+- Use`outline` to outline the border of an element. 
+  - `outline` is a line outside the element's border. It doesn't interact with the box mode and doesn't take up space, so it doesn't change the page layout.
+  - This makes `outline` useful during development and debugging.
+- `background-image`
+- `background-size: cover`
 
 # Summary
 
