@@ -891,6 +891,7 @@ Top represents content-box, bottom represents border-box.
   - **content width** + padding + borders = `width`
   - **content height** + padding + borders = `height`
   - Margin not included in border-box
+- MDN: *`border-box` tells the browser to account for any border and padding in the values you **explicitly specify** for an element's width and height. If you set an element's width to 100 pixels, that 100 pixels will include any border or padding you added, and the **content box will shrink** to absorb that extra width*. 
 
 <u>Why border-box is best</u>
 
@@ -1541,13 +1542,28 @@ Q: Calculate the minimum width and height that a **container element** needs to 
   -  `border-box`: Do not include `padding` and `border` to determine total horizontal or vertical dimensions, because these two properties are already included in the width and height. The `width` and `height` includes **content**, padding, and border. 
 
 2. Calculate minimum dimension of container element and add it to the child element's dimensions.
-   - ??? Note that `box-sizing` only plays a part when you specify the width and height of the element. If you don't specify a width and height, then your browser computes the width and height it needs from the elements it contains. This width and height are not affected by the `box-sizing` property of the container element. ???
 
-- Use `box-sizing` property of container element.
+   Is there an explicit `height` and `width` set for the container element?
 
-  - If `border-box` is used, we must add the container padding and border with child element dimensions. This because for `border-box` sizing, the `width` and `height` includes the padding and border.
+- First consider the `display` property of the container element
 
-  - If `content-box` is used, we do not include the *container* element's padding or border, just the *child* element's dimensions. This is because we are calculating for the minimum dimension, so the minimum  `width` and `height` of the container is equal to the child element's width. 
+  - `block` element:`width`, `height`, `padding`, `border`, `margin`
+
+  - `inline-block` element: `width`, `height`, `padding`, `border`, `margin`
+
+  - `inline` element: Browser ignores `width`, `height`, top and bottom `margin` specified in CSS, so we can't calculate the space this child element would take unless we know the **actual width and height** of the **content area**. The content area and the actual width and height is determined by the browser. 
+
+    Keep in mind that top and bottom borders and padding may extend beyond the boundaries of the content area, so if there is content above or below the child element, it will overlap. 
+
+- Then consider `box-sizing` of the container element.
+
+- If there is no explicit `width` or `height` set for the container element, then ignore `box-sizing` property for the container element. The container element will expand to accommodate the child element, so simply add up the borders or padding to the child element's dimensions to determine the container's minimum dimensions.
+  - Note that `box-sizing` property for the container element only plays a part when you explicitly specify the width and height of the container element. If you don't specify a width and height, then the browser computes the width and height for the container from the child elements, and this width and height are not affected by the `box-sizing` property of the container element. 
+  - When no explicit height and width are set to `div` there is no difference between `content-box` and `border-box`. It seems that the size of the child element contained within the container element is not treated as an explicit height and width for the container, and is therefore does not alter the container element's total height and width, regardless of whether its set to `border-box` or `content-box`.
+- Is there an explicit `height` and `width` set for the container element? If yes, then use `box-sizing` property of container element.
+  - If `border-box` is used, then total `width` and `height` of the container is exactly the specified width and height, which includes the border or paddings of the container.  The content box shrinks to accommodate for the extra width from the border or padding.
+
+  - If `content-box` If `border-box` is used, then total `width` and `height` of the container includes the explicitly set `width` and `height` as well as any border or paddings. 
 
 ## container element interactions
 
@@ -1561,7 +1577,7 @@ Q: Calculate the minimum width and height that a **container element** needs to 
   - Container elements do not have any inherent styling or layout, but are used to create a logical structure for the content and make it easier to apply styling and layout rules to the group of elements as a whole. 
 - An element's `display` property and `box-sizing` can both impact the layout and flow of content within a container element. In other words, the layout and flow of content is impacted by the visual display model and box-sizing model. 
 
-#### `display` interaction with flow 
+### `display` interaction with flow 
 
 - Depending on the element's `display` property / visual display model, the contained element flows differently within a container.
 - `inline`
@@ -1570,8 +1586,8 @@ Q: Calculate the minimum width and height that a **container element** needs to 
   - **Margin causes adjacent `inline`** elements to overlap: If the margin is too big, inline elements would be pushed apart from each other, which may cause adjacent inline elements to overlap.
 - `inline-block`
   - Padding, margin & borders impact on flow of elements in a container
-    - Enlarging container: For `inline-block` elements, if padding, border, or margin is wider than container's width, then the contained element it will go to a new line, making the container bigger. This is assuming the container doesn't have fixed dimensions. 
-    - Overflowing container: If a container element has smaller dimensions than a child element, the child element will overflow the container and appear on top of the container.
+    - **Expanding container**: For `inline-block` elements, if padding, border, or margin is wider than container's width, then the contained element it will go to a new line, expanding the container element. This is assuming the container doesn't have fixed dimensions. 
+    - **Overflowing container**: If a container element has smaller dimensions than a child element, the child element will overflow the container and appear on top of the container.
   - Do `inline-block` elements always appear side by side if their width properties add up to 100%?
     - Two consecutive `inline-block` elements with a total width of `100%` may render side by side, but not necessarily. 
     - To render side by side, you must account for any `whitespace` between the two elements, and must also account for their `border`s and `padding`; the left/right `margins` must be 0 in any case.
@@ -1583,13 +1599,80 @@ Q: Calculate the minimum width and height that a **container element** needs to 
   - Though a `block` element takes up an entire row in a container, this does not alter the width of the element. The browser renders the `block` element on a line by itself, but the element has the specified (or computed) width. 
     - For example, if you have a 500-pixel wide `blockquote` in a 900-pixel wide `section`, the `blockquote` element uses 500 pixels, but the browser will leave the remaining 400 pixels of the `section` empty.
 
-#### `box-sizing` interaction with flow
+### `box-sizing` interaction with flow
 
-- The `box-sizing` property also controls how an element's total width or height is calculated, so it affects the size of an element's box which in turn affects the flow of content within the container. 
+#### Child element's `box-sizing` 
+
+- #### The `box-sizing` property also controls how an element's total width or height is calculated, so it affects the size of an element's box which in turn affects the flow of content within the container. 
 - For `box-sizing: content box`, an element's width and height are calculated based on content within it and any paddings, borders, or margins are added to the total width and height. This can cause the element to expand beyond the size of its container if the padding, borders, or margins are large enough.
 - When `box-sizing: border-box` is used, an element's width and height are calculated based on the content within it, as well as any padding and borders, but margins are still added to the total width and height. This can make it easier to control the layout of elements within a container, as the total width and height of the element will always include its borders and padding.
 
-#### `inline` interaction with `border-box`
+#### Container element's `box-sizing` 
+
+- The rule of thumb is that regardless of the `box-sizing` property of the container, `content-box` or `border-box`, the child element's dimensions have to be smaller than the dimensions of the container for it not to overflow.
+- The second rule is whether you explicitly set dimensions for the container element.
+
+- If you do not explicitly set a `width` or `height` property for the container, then the `box-sizing` property does not impact dimensions of the container element. The container element simply expands to accommodate its contents, so the child element will always be contained within the container element.
+  - Note that `box-sizing` property for the container element only plays a part when you explicitly specify the width and height of the container element. If you don't specify a width and height, the size of the child element contained within the container element is not treated as an explicit height and width for the container. As a result, the total dimensions of the parent element is not affect by `box-sizing` property.
+  - In this case, the size of the parent element will be determined by the size of its contents (including the child element), as well as any padding or border that may be present. If the content is larger than the available space, then the parent element will expand to accommodate its contents.
+- Is there an explicit `height` and `width` set for the container element? If yes, then the `box-sizing` property affects the dimensions of the container element as well as the layout of the child element within the container. Whether a child element is contained within the container element depends on the child and container element's dimensions.
+  - If the container element uses `box-sizing: content box`, the `border` and `padding` is not included within the explicitly set `width` and `height` of the container element. This means that the width and height of the container element are solely determined by the explicitly set`width` and `height` properties of the container. This means that the child element can fit within those dimensions as long as its own dimensions are smaller than or equal to those of the parent element.
+  - However, if you set the `box-sizing` property of the container to `border-box`, the `border` and `padding` is included in the explicitly set `width` and `height` of the container element. `border-box` tells the browser to account for the padding and borders we explicitly added, and the **content box will shrink to absorb that extra width**. This means that the child element must have dimensions that fit within the container element (aka that fit the "shrinking"). So if the child's element total width and height is greater than the total width and height of the container element, the child element will overflow outside the container element.
+
+##### Demonstration of this 
+
+Hi Christopher!
+
+Thank you for your thorough explanation and reference to the MDN docs. I did not think to experiment on my own and use the inspector to look at the results. I also tested it out by adding `width: 600px` and `height: 400px` to the `div` selector. I also made the the border `100px` instead of `1px`. Here is my code. 
+
+```html
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <title>Practice Problem 1</title>
+  <meta charset="utf-8">
+  <style>
+    div {
+      background-color: lightgray;
+      border: 100px solid black;
+      box-sizing: border-box;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      height: 400px;
+      width: 600px;
+    }
+
+    img {
+      border: 4px solid red;
+      box-sizing: content-box;
+      display: inline-block;
+      height: 300px;
+      margin: 20px 19px 10px 11px;
+      padding: 10px 20px;
+      width: 500px;
+    }
+  </style>
+  
+</head>
+
+<body>
+  <div>
+    <img src="#" alt="test">
+  </div>
+</body>
+
+</html>
+```
+- It seems that since we explicitly specified the `div` container's width and height, and the `box-sizing` property for the container is `border-box`,  the content box shrank to accommodate for the extra width from the border. This means that child `img` element must have dimensions that fit within the container element, that fit the "shrinking", to prevent overflow. But because the child's element total width and height is greater than the total width and height of the container element, the child element overflows outside the container element. 
+
+<img src="C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230324132621033.png" alt="image-20230324132621033" style="zoom:33%;" />
+
+- Whereas if we changed the `box-sizing` property for `div` to `content-box`, the `div` container's content does not shrink to accommodate for the border, so child element is able to fit within the container because its own dimensions is smaller than the `div`. 
+
+<img src="C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230324132604368.png" alt="image-20230324132604368" style="zoom:33%;" />
+
+### `inline` interaction with `border-box`
 
 - Technically, it is possible to apply `border-box` sizing to an inline element using CSS, but it may not always work as expected due to the nature of inline elements. 
 - When you apply `border-box` sizing to an inline element, the element's total width and height will include its content area, padding, and border. 
