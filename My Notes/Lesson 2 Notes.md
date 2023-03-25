@@ -535,8 +535,8 @@ As you go through this course, you will see code that doesn't follow the padding
 
 - [Block elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements) appear on almost all web pages: headings, paragraphs, sections, tables, forms, lists, and more are `block` elements.
 - Most elements are `block` elements by default. Here are some of the most common:
-- `<div>`
-  - `section`, `article`, `aside`, `header`, `footer`
+- `<div>`: generic non-semantic container for block elements.
+- `section`, `article`, `aside`, `header`, `footer` : semantic containers.
 - `p`
   - `h1` through `h6`
 - `blockquote`
@@ -544,12 +544,6 @@ As you go through this course, you will see code that doesn't follow the padding
   - `figure` and `figcaption`
 - `form` and `fieldset`
   - See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements#Elements) for a complete list of block elements.
-
-#### containers
-
-- **Containers** are `block` elements such as a `header` that contain one or more elements. The master container (the outermost) is the `body`; every other element belongs to a container.
-
-- We sometimes use the term **parent** to refer to a container, and use **child** to describe an element contained within a container. These relationship terms also let us talk about grandparents, ancestors, descendants, siblings, cousins, etc..
 
 #### Spacing / Flow
 
@@ -610,7 +604,7 @@ As you go through this course, you will see code that doesn't follow the padding
   - For instance, if you want to use bolded text for definitions, you can use the `b` element to render definitions in boldface. The reader can see at a glance where the definitions are in the document. By default, `b` is an `inline` element.
 
 - The following elements are `inline` by default.
-  - `span`
+  - `span`: generic container for inline elements in HTML.
   
   - `b`, `i`, `u`, `strong`, `em`
   
@@ -1602,13 +1596,16 @@ Q: Calculate the minimum width and height that a **container element** needs to 
 
 ## What are containers
 
-- **Containers** are `block` elements such as a `header` that contain one ore more elements. The master container (the outermost) is the `body`; every other element belongs to a container.
-  - The container will take up the entire space on a line.
-
-- We sometimes use the term **parent** to refer to a container, and use **child** to describe an element contained within a container. These relationship terms also let us talk about grandparents, ancestors, descendants, siblings, cousins, etc..
-- ChatGPT: In HTML, a **container** is a type of **parent** element that has **child** elements nested within it, and is used to used to group related content together. 
+- In HTML, a **container** is a type of **parent** element that has **child** elements nested within it, and is used to used to group related content together. The master container (the outermost) is the `body`; every other element belongs to a container.
   - Container elements do not have any inherent styling or layout, but are used to create a logical structure for the content and make it easier to apply styling and layout rules to the group of elements as a whole. 
-- An element's `display` property and `box-sizing` can both impact the layout and flow of content within a container element. In other words, the layout and flow of content is impacted by the visual display model and box-sizing model. 
+  - We sometimes use the term **parent** to refer to a container, and use **child** to describe an element contained within a container. These relationship terms also let us talk about grandparents, ancestors, descendants, siblings, cousins, etc.
+- **Block-level** containers are used to create distinct sections or blocks of content within a web page, and they typically span the full width of their parent element. 
+  -  `<div>`: generic container used to apply styles to groups of elements.
+  -  `<section>`, `<article>`, and `<header>`:  These semantic containers can be used to organize content into separate sections, create layout structures. 
+- **Inline-level containers**, on the other hand, are used to group together inline-level elements, such as text, links, images, and other inline elements. 
+  - `<span>`: generic `inline` container used for styling.
+  - `<strong>`, `<em>`, and `<a>`: semantic `inline-level` containers for placing importance, adding emphasis or create links within the content.
+- n element's `display` property and `box-sizing` can both impact the layout and flow of content within a container element. In other words, the layout and flow of content is impacted by the visual display model and box-sizing model. 
 
 ### `display` interaction with flow 
 

@@ -86,6 +86,9 @@ All we did here was change the `<ul>...</ul>` tag to `<ol>...</ol>`.
 ## Description Lists
 
 - **Description lists** (called definition lists before HTML5) contain a list of terms and definitions. Each item in the list includes one or more **terms** and one or more **definitions**. 
+  - The `<dt>` Description Term element is a block-level element.
+  - The `<dd>` Description Details element is a block-level element in HTML. This means that it takes up the full width of its parent container and creates a new line after it.
+
 - Each grouping may have more than one term (`dt`) and more than one description (`dd`). The first item above has one term and two definitions, while the final includes two terms and one definition.
 - Examples of description lists include dictionaries, bibliographies, and, that relic of the past, the phone book.
 
@@ -438,6 +441,9 @@ table {
 ## Semantic Table HTML and Heading Scope
 
 - You can use the `thead`, `tfoot`, and `tbody` elements to provide semantic identification of the header, footer, and body rows. 
+  - The **`<thead>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a set of rows defining the head of the columns of the table.
+  - The **`<tfoot>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a set of rows summarizing the columns of the table.
+
 - You can also add the `scope` attribute to identify `th` elements as **row heading** (`scope="row"`) or **column heading** (`scope="col"`). 
 
 In the next example, we add these semantic features to the previous example, then use them as selectors in our CSS.
@@ -548,13 +554,13 @@ CSS properties
 
   - `border-collapse: separate`: Adjacent cells have distinct borders.
 
+- Bottom and top borders are useful for rendering horizontal lines.
+
 - `background-color` : background color of table.
 
 - Change background color of rows.
 
   - Use class attribute, which requires updating both HTML and CSS
-
-  - 
 
   - Use pseudo-class without updating HTML. The entire row in the table header `thead` is not counted.
 
@@ -629,4 +635,63 @@ CSS properties
         </table>
     ```
 
-- Use the `colspan` attribute on the `td` tag for a single cell to span multiple columns.
+- Use the `colspan` attribute on the `td` or `th` tag for a single table cell to span multiple columns.
+
+# Nutrition label Project
+
+## rules
+
+- Font: your font stack can use Franklin Gothic Heavy for the main heading, and Helvetica Black and Helvetica for the remaining fonts. 
+  - Keep in mind that not all systems supply these fonts, so add Arial to the list, and let the browser supply a default font if necessary.
+- [completed example](https://d3jtzah944tvom.cloudfront.net/lesson_5/nutrition_facts_label/label.html)
+- Our CSS uses precisely one class, though the HTML applies it to more than one element. We use no other classes and no IDs at all. 
+  - The challenge of limiting class and id selectors will push you to find other ways to identify the elements you want to select. 
+  - For instance, you may need to specify adjacent siblings, use pseudo-classes (e.g., `:first-of-type`), and use highly specific selectors to override existing styles. 
+  - Read [the MDN pages on CSS Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) before starting, and keep it handy as you work.
+- While coding, be mindful of semantics; avoid the `div` and `span` elements, and supply as much semantic information as you can. Our solution does not use `div` or `span` at all; try to match that.
+
+## hints
+
+- If you load our completed solution in your browser and load yours in another tab, you can toggle back and forth (shift-tab and control-shift-tab in most browsers) to see where the pages differ. This so-called **blink comparison** is useful when trying to replicate a design. We'll talk more about blink comparisons in a later lesson.
+
+- Validate your HTML and CSS and test your code frequently. As your first big project, validation and testing are crucial.
+
+- Use description lists to show nutrient names and quantities, e.g.,
+
+  ```html
+  <dl>
+    <dt>Total Fat</dt>
+    <dd>8g</dd>
+  </dl>
+  ```
+
+- Template for the two columns with nutrient names, quantity, and daily value %
+
+  ```html
+  <tr>
+    <td>
+      <dl>
+    		<dt></dt>
+    		<dd></dd>
+  		</dl>
+    </td>
+    <td></td>
+  </tr>
+  ```
+
+  
+
+- Bottom and top borders are useful for rendering horizontal lines.
+- You can use a table to represent the content that shows nutrition data with the minimum percentages, and another table for the part below the "Percent Daily Values" explanation.
+- Table cells can span multiple columns when you apply the `colspan` attribute to the `<td>` or `<th>` tag.
+- Use a class selector to apply indentation to the indented lines.
+- Use a 28px font as the document's root font; use `rem` units to define other fonts.
+- Remember to use margins for spacing between elements, and padding for spacing within elements.
+- Use the MDN documentation to find properties you didn't know existed.
+- If you must, feel free to peek at our solution, but try to do so as a last resort.
+- This project is a good candidate for a code review. A code review is not mandatory, however. If you're happy with your code and your results, feel free to skip the code review. Otherwise, try to identify areas where you have questions or doubts, and direct our attention there; reviewing HTML and CSS line-by-line isn't feasible, so help us focus on areas where we can help.
+
+# Blink comparison
+
+- If you load our completed solution in your browser and load yours in another tab, you can toggle back and forth (shift-tab and control-shift-tab in most browsers) to see where the pages differ. 
+- This so-called **blink comparison** is useful when trying to replicate a design. We'll talk more about blink comparisons in a later lesson.
