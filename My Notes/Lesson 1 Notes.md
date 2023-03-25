@@ -1437,9 +1437,9 @@ the HTML it selects
   - `[attribute*="value"]`
   - A useful selector if you can identify a common pattern in things like `class`, `href` or `src` attributes.
 
-#### Pseudo-elements
+#### Pseudo-Classes
 
-- A CSS **pseudo-element** is a keyword added to a selector that lets you style a specific part of the selected element(s). 
+- A [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) **pseudo-class** is a keyword added to a selector that specifies a special state of the selected element(s). 
 
 | Example                    | Classification                     | Explanation                                                  |
 | :------------------------- | :--------------------------------- | :----------------------------------------------------------- |
@@ -1462,8 +1462,8 @@ the HTML it selects
 | `img:only-of-type`         | Structural Pseudo-class            | Selects an element that is the only of its type within a parent |
 | `li:nth-child(2n+3)`       | Structural Pseudo-class            | Selects an element that matches the given number or expression, counting all elements from the beginning of the document tree |
 | `li:nth-last-child(3n+2)`  | Structural Pseudo-class            | Selects an element that matches the given number or expression, counting all elements from the end of the document tree |
-| `p:nth-of-type(3n)`        | Structural Pseudo-class            | Selects an element that matches the given number or expression, counting only elements of its type from the beginning of the document tree |
-| `p:nth-last-of-type(2n+1)` | Structural Pseudo-class            | Selects an element that matches the given number or expression, counting only elements of its type from the end of the document tree |
+| `p:nth-of-type(3n)`        | Structural Pseudo-class            | Selects every nth element, counting only elements of its type from the beginning of the document tree |
+| `p:nth-last-of-type(2n+1)` | Structural Pseudo-class            | The nth-of-type formula selects every nth element, starting the count at a specific instance of that element. |
 | `section:target`           | Target Pseudo-class                | Selects an element whose ID attribute value matches that of the URI fragment identifier |
 | `div:empty`                | Empty Pseudo-class                 | Selects an element that does not contain any children or text nodes |
 | `div:not(.awesome)`        | Negation Pseudo-class              | Selects an element not represented by the stated argument    |
@@ -1824,6 +1824,10 @@ p {
 ## CSS Specificity
 
 - The order of the rules is significant but depends upon the **cascade, specificity, and inheritance rules**. 
+  - **Cascade**: Within CSS, all styles cascade from the top of a style sheet to the bottom, allowing different styles to be added or overwritten as the style sheet progresses.
+  - **Selectors**: type- class- id 
+  - **Inheritance rules**: child elements have higher specificity than parent elements.
+
 
 ## Calculating Specificity
 

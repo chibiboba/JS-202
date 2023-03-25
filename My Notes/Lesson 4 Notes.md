@@ -365,6 +365,8 @@ You will see this pattern of creating navigation lists often; learn it well.
 # Tables Overview
 
 - Today, you should use tables for strictly tabular data, not layout.
+  - Using tables to lay out non-tabular data was a frowned-upon workaround and led to the development of CSS and, later, the introduction of flex and grid in CSS.
+
 - Back in earliest days of web before CSS, developers used tables to implement layouts.
   - For instance, sites often used a format that had a banner at the top of the page, a footer at the bottom of the page, and two or three columns of content, navigation items, and ads between the two. Today, we use CSS to do that; back then, the solution required tables, so most developers learned how to use them for layout.
   - However, from the beginning, such code was a hack, and most people knew it. The HTML designers intended tables for use with tabular data - data in which the horizontal and vertical positions of each item were significant. For instance, consider this base-4 multiplication table:
@@ -376,11 +378,9 @@ You will see this pattern of creating navigation lists often; learn it well.
 | **24** |   04   |   24   |  104   |  124   |
 | **34** |   04   |   34   |  124   |  214   |
 
-From this table, we can determine the base-4 product of 24 (2 base 4) times 34 by looking down the left column for 24, and then across to column 34, and read off the result: 124.
+- From this table, we can determine the base-4 product of 24 (2 base 4) times 34 by looking down the left column for 24, and then across to column 34, and read off the result: 124.
 
-Using tables to lay out non-tabular data was a frowned-upon workaround and led to the development of CSS and, later, the introduction of flex and grid in CSS.
-
-A Launch School student found an interesting site that shows how tables were misused back in the early days. See [this forum post](https://launchschool.com/posts/65dbfc4a) for some comments and a link.
+- A Launch School student found an interesting site that shows how tables were misused back in the early days. See [this forum post](https://launchschool.com/posts/65dbfc4a) for some comments and a link.
 
 ## Table Tags
 
@@ -388,13 +388,14 @@ HTML provides a variety of tags to construct tables. The ones you'll see most of
 
 - The `<table>` tag defines a table.
 - The `<tr>` tag defines a single row in a table.
-- The `<td>` tag defines a single cell of content in a table. Each row includes zero or more cells.
+- The `<td>` tag defines a single **cell of content** in a column of a table. Each row includes zero or more cells.
 - The `<th>` tag defines a single heading. The first cell in a row or column is typically a heading, but this is not required.
+  - We use `<th>` to define the column and row headings, and how the browser renders the heading cells differently from the data cells.
+  - For semantics: Use`scope` attribute to identify `th` elements as **row heading** (`scope="row"`) or **column heading** (`scope="col"`).
+
 - `<thead>`, `<tbody>`, and `<tfoot>` each define a set of one or more rows that comprise the header, body, and footer rows of a table.
 
 Here, we define a simple table with no `thead`, `tbody`, or `tfoot` components:
-
-Copy Code
 
 ```html
 <table>
@@ -424,27 +425,22 @@ Copy Code
 </table>
 ```
 
-Copy Code
-
 ```css
 table {
   font-size: 1.5rem;
 }
 ```
 
-
-
 ![Color table](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_4/tables-overview-01.png)
 
 
 
-We use `<th>` to define the column and row headings, and how the browser renders the heading cells differently from the data cells.
-
 ## Semantic Table HTML and Heading Scope
 
-You can use the `thead`, `tfoot`, and `tbody` elements to provide semantic identification of the header, footer, and body rows. You can also add the `scope` attribute to identify `th` elements as row (`scope="row"`) or column (`scope="col"`) headings. In the next example, we add these semantic features to the previous example, then use them as selectors in our CSS.
+- You can use the `thead`, `tfoot`, and `tbody` elements to provide semantic identification of the header, footer, and body rows. 
+- You can also add the `scope` attribute to identify `th` elements as **row heading** (`scope="row"`) or **column heading** (`scope="col"`). 
 
-Copy Code
+In the next example, we add these semantic features to the previous example, then use them as selectors in our CSS.
 
 ```html
 <table>
@@ -540,3 +536,60 @@ td {
 
 
 Note our use of the `:nth-child()` pseudo-class to select the first, second, and third rows of the `tbody`.
+
+## Styling Tables
+
+CSS properties
+
+- Remove border of background color around the data cells. 
+
+  - `border-collapse` css property sets whether cells inside a `table` have shared or separate borders.
+  - `border-collapse: collapse` Adjacent cells have shared borders.
+
+  - `border-collapse: separate`: Adjacent cells have distinct borders.
+
+- `background-color` : background color of table.
+
+- Change background color of rows.
+
+  - Use class attribute, which requires updating both HTML and CSS
+
+  - 
+
+  - Use pseudo-class without updating HTML. The entire row in the table header `thead` is not counted.
+
+  - For example: This code selects every data cell, in every 2nd row starting from the 2nd row. 
+
+    ```css
+    tr:nth-of-type(2n+2) td {
+      background-color: yellow;
+    }
+    ```
+
+    or This code selects the same data cells which are child elements of `tr`. 
+
+    ```css
+    tbody tr:nth-child(2n+1) {
+      background-color: orange;
+    }
+    
+    tbody tr:nth-child(2n+2) {
+      background-color: yellow;
+    }
+    ```
+
+    Error: why doesn't this code work? It's because child elements have more specificity than parent elements, so `td` overrides `tbody tr:nth-child(2n+2)`
+
+    ```css
+    td {
+    	background-color: orange;
+    }
+    
+    tbody tr:nth-child(2n + 2) {
+    	background-color: yellow;
+    }
+    ```
+
+    
+
+  
