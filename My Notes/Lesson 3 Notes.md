@@ -744,7 +744,7 @@ Use the "View Source" feature in your browser to see the final HTML and CSS.
 - How to make two block elements fit side by side in browser.
 
   - Convert block element to `inline-block`
-  - Change width of element to 50%. 
+  - Change width of element to percentage like 50%. 
   - Change box-sizing to `border-box`. 
   - Make left and right margin 0. 
   - If you want left and right margin then use `padding` instead because `padding` is included in the content for `border-box`. 

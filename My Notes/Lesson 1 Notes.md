@@ -300,8 +300,23 @@ Of lesser importance, but still important enough to study, pay attention to the 
 - **Paragraphs** are the primary organizational construct for text on web pages. (identified as the `<p>` element):
   - The `p` element provides the ability to define paragraphs; it wraps a single paragraph and displays it in a separate area below the previous content, along with a bit of vertical spacing above and below it for visual distinctiveness:
 - **Anchors** represent links to other pages. `<a>`
+  - `<a href=""> the text </a>`
+
 - **Headings** occur on most pages. (identified as `<h1>` through `<h6>` elements)
 - The list goes on to include the `<a>`, `<div>`, `<span>`, `<strong>`, and `<em>` elements, and many more. `<a>`
+
+#### Anchor is Hyperlink
+
+- HTML uses the term **anchor** to refer to hyperlinks, and it uses the `a` element to code anchors. The `a` element requires a URL for the link, and some content that the browser can display as a clickable item. The `<a>` tag uses the `href` attribute to designate the link URL, and the link description goes between the open and close tags:
+
+- This is an example of an anchor link.
+  - The anchor element is declared with the opening `<a>` and closing `</a>` tags encompassing the text, and the hyperlink reference attribute and value are declared with `href="http://shayhowe.com"` in the opening tag.
+  - HTML syntax outline including an element, attribute, and tag:
+
+
+![image-20230313153739933](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230313153739933.png)
+
+
 
 #### Other Elements
 
@@ -580,17 +595,6 @@ Since the `for` attribute references an ID (as we'll see later), it's accepted p
   | :------------ | ------------------------------------------------------ |
   | Default value | `_self`                                                |
   | Animatable    | Yes                                                    |
-
-#### Anchor is Hyperlink
-
-- HTML uses the term **anchor** to refer to hyperlinks, and it uses the `a` element to code anchors. The `a` element requires a URL for the link, and some content that the browser can display as a clickable item. The `<a>` tag uses the `href` attribute to designate the link URL, and the link description goes between the open and close tags:
-
-- This is an example of an anchor link.
-  - The anchor element is declared with the opening `<a>` and closing `</a>` tags encompassing the text, and the hyperlink reference attribute and value are declared with `href="http://shayhowe.com"` in the opening tag.
-  - HTML syntax outline including an element, attribute, and tag:
-
-
-![image-20230313153739933](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230313153739933.png)
 
 # Ambiguity
 
@@ -924,6 +928,12 @@ Here’s the HTML code for italicizing:
 
 These text-level elements are quite handy for bringing our content to life. In addition to these, there are structurally based elements. 
 
+# Example of html structure
+
+- [Flowchart](file:///C:/Users/jenny/Downloads/h5d-sectioning-flowchart.pdf)
+
+  
+
 # Structural Elements
 
 - Whereas text-based elements identify headings and paragraphs, structural elements identify groupings of content such as headers, articles, footers, and so forth. Let’s take a look.
@@ -948,10 +958,16 @@ One possible example of HTML5 structural elements giving meaning to the organiza
 
 ### Header
 
-- The `<header>` element, like it sounds, is used to identify the top of a page, article, section, or other segment of a page. In general, the `<header>` element may include a heading, introductory text, and even navigation.
+- The `<header>` element, like it sounds, is used to identify the top of a page, article, section, or other segment of a page. It provides semantic meaning to the elements it contains.
+- In general, the `<header>` element may include a heading, introductory text, and even navigation.
+- You should use `header` consistently with any part of your page that you think of either a page header or a section header.
 
 ```html
-<header>...</header>
+<header>
+  <h1>Heading</h1>
+  <p>Introductory text</p>
+  <nav>Major Navigation</nav>
+</header>
 ```
 
 <u>`<header>` vs. `<head>` vs. `<h1>` through `<h6>` Elements</u>
@@ -990,12 +1006,8 @@ One possible example of HTML5 structural elements giving meaning to the organiza
 
 ### Section
 
-- `<section>` is also a block level element. 
-
+- `<section>` is also a block level element that represents a generic standalone section of document, which doesn't have a more specific semantic element to represent it. Sections should always a heading, with very few exceptions.
 - The `<section>` is part of the main document flow to identify a group of content, but is not a standalone block like an `article`. 
-
-- The `<section>` element is used to identify a thematic grouping of content, which generally, but not always, includes a heading. The grouping of content within the `<section>` element may be generic in nature, but it’s useful to identify all of the content as related.
-
 - The `<section>` element is commonly used to break up and provide hierarchy to a page.
 
 ```html
@@ -1429,30 +1441,32 @@ the HTML it selects
 
 - A CSS **pseudo-element** is a keyword added to a selector that lets you style a specific part of the selected element(s). 
 
-| Example                    | Classification          | Explanation                                                  |
-| :------------------------- | :---------------------- | :----------------------------------------------------------- |
-| `a:link`                   | Link Pseudo-class       | Selects a link that has not been visited by a user           |
-| `a:visited`                | Link Pseudo-class       | Selects a link that has been visited by a user               |
-| `a:hover`                  | Action Pseudo-class     | Selects an element when a user has hovered their cursor over it |
-| `a:active`                 | Action Pseudo-class     | Selects an element when a user has engaged it                |
-| `a:focus`                  | Action Pseudo-class     | Selects an element when a user has made it their focus point |
-| `input:enabled`            | State Pseudo-class      | Selects an element in the default enabled state              |
-| `input:disabled`           | State Pseudo-class      | Selects an element in the disabled state, by way of the disabled attribute |
-| `input:checked`            | State Pseudo-class      | Selects a checkbox or radio button that has been checked     |
-| `input:indeterminate`      | State Pseudo-class      | Selects a checkbox or radio button that neither been checked or unchecked, leaving it in an indeterminate state |
-| `li:first-child`           | Structural Pseudo-class | Selects an element that is the first within a parent         |
-| `li:last-child`            | Structural Pseudo-class | Selects an element that is the last within a parent          |
-| `div:only-child`           | Structural Pseudo-class | Selects an element that is the only element within a parent  |
-| `p:first-of-type`          | Structural Pseudo-class | Selects an element that is the first of its type within a parent |
-| `p:last-of-type`           | Structural Pseudo-class | Selects an element that is the last of its type within a parent |
-| `img:only-of-type`         | Structural Pseudo-class | Selects an element that is the only of its type within a parent |
-| `li:nth-child(2n+3)`       | Structural Pseudo-class | Selects an element that matches the given number or expression, counting all elements from the beginning of the document tree |
-| `li:nth-last-child(3n+2)`  | Structural Pseudo-class | Selects an element that matches the given number or expression, counting all elements from the end of the document tree |
-| `p:nth-of-type(3n)`        | Structural Pseudo-class | Selects an element that matches the given number or expression, counting only elements of its type from the beginning of the document tree |
-| `p:nth-last-of-type(2n+1)` | Structural Pseudo-class | Selects an element that matches the given number or expression, counting only elements of its type from the end of the document tree |
-| `section:target`           | Target Pseudo-class     | Selects an element whose ID attribute value matches that of the URI fragment identifier |
-| `div:empty`                | Empty Pseudo-class      | Selects an element that does not contain any children or text nodes |
-| `div:not(.awesome)`        | Negation Pseudo-class   | Selects an element not represented by the stated argument    |
+| Example                    | Classification                     | Explanation                                                  |
+| :------------------------- | :--------------------------------- | :----------------------------------------------------------- |
+| `a:link`                   | Link Pseudo-class                  | Selects a link that has not been visited by a user           |
+| `a:visited`                | Link Pseudo-class                  | Selects a link that has been visited by a user               |
+| `a:hover`                  | Action Pseudo-class                | Selects an element when a user has hovered their cursor over it |
+| `a:active`                 | Action Pseudo-class                | Selects an element when a user has engaged it                |
+| `a:focus`                  | Action Pseudo-class                | Selects an element when a user has made it their focus point |
+| `:fullscreen`              | Element display state pseudo-class | These pseudo-classes enable the selection of elements based on their display states. |
+| `:fullscreen`              | Element display state pseudo-class | Matches an element that is currently in fullscreen mode.     |
+| `input:enabled`            | State Pseudo-class                 | Selects an element in the default enabled state              |
+| `input:disabled`           | State Pseudo-class                 | Selects an element in the disabled state, by way of the disabled attribute |
+| `input:checked`            | State Pseudo-class                 | Selects a checkbox or radio button that has been checked     |
+| `input:indeterminate`      | State Pseudo-class                 | Selects a checkbox or radio button that neither been checked or unchecked, leaving it in an indeterminate state |
+| `li:first-child`           | Structural Pseudo-class            | Selects an element that is the first within a parent         |
+| `li:last-child`            | Structural Pseudo-class            | Selects an element that is the last within a parent          |
+| `div:only-child`           | Structural Pseudo-class            | Selects an element that is the only element within a parent  |
+| `p:first-of-type`          | Structural Pseudo-class            | Selects an element that is the first of its type within a parent |
+| `p:last-of-type`           | Structural Pseudo-class            | Selects an element that is the last of its type within a parent |
+| `img:only-of-type`         | Structural Pseudo-class            | Selects an element that is the only of its type within a parent |
+| `li:nth-child(2n+3)`       | Structural Pseudo-class            | Selects an element that matches the given number or expression, counting all elements from the beginning of the document tree |
+| `li:nth-last-child(3n+2)`  | Structural Pseudo-class            | Selects an element that matches the given number or expression, counting all elements from the end of the document tree |
+| `p:nth-of-type(3n)`        | Structural Pseudo-class            | Selects an element that matches the given number or expression, counting only elements of its type from the beginning of the document tree |
+| `p:nth-last-of-type(2n+1)` | Structural Pseudo-class            | Selects an element that matches the given number or expression, counting only elements of its type from the end of the document tree |
+| `section:target`           | Target Pseudo-class                | Selects an element whose ID attribute value matches that of the URI fragment identifier |
+| `div:empty`                | Empty Pseudo-class                 | Selects an element that does not contain any children or text nodes |
+| `div:not(.awesome)`        | Negation Pseudo-class              | Selects an element not represented by the stated argument    |
 
 - `:first-child`
 

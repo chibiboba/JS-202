@@ -227,6 +227,37 @@ Syntax
 
 - When **four** values are specified, the paddings apply to the **top**, **right**, **bottom**, and **left** in that order (clockwise).
 
+#### [Constituent properties](https://developer.mozilla.org/en-US/docs/Web/CSS/padding#constituent_properties)
+
+This property is a shorthand for the following CSS properties:
+
+- [`padding-top`](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-top)
+- [`padding-right`](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right)
+- [`padding-bottom`](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom)
+- [`padding-left`](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left)
+
+#### Padding-left 
+
+- The `padding-left` property sets the amount of padding space on the left side of an element's content area. When you set `padding-left: 0` on a parent element, it removes the left padding space from that element. 
+
+- `padding-left` is specified within the parent element, but it affects the child elements.
+
+  - For example, if you have a list of items (`<ul>` or `<ol>`), you can apply left padding to each list item (`<li>`) using the `padding-left` property in CSS. The `padding-left` value will be specified within the CSS rule for the parent `<ul>` or `<ol>` element, and it will be applied to each child `<li>` element.
+  - Here's an example:
+
+  ```css
+  ul {
+    padding-left: 20px; /* parent element */
+  }
+  
+  ul li { /* child element */
+    list-style: disc;
+    margin: 5px 0;
+  }
+  ```
+
+  - In this example, the `padding-left` property is specified within the CSS rule for the `<ul>` element, which is the parent element of the `<li>` elements. The `padding-left` value of 20px is applied to each child `<li>` element, creating a left indent for the list items.
+
 ## borders
 
 - The **border** is a boundary that surrounds the padding.
@@ -262,6 +293,8 @@ Values
   ```
 
   Sets the thickness of the border. Defaults to `medium` if absent. See [`border-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-width).
+
+
 
 ## margins
 
@@ -577,17 +610,17 @@ As you go through this course, you will see code that doesn't follow the padding
   - For instance, if you want to use bolded text for definitions, you can use the `b` element to render definitions in boldface. The reader can see at a glance where the definitions are in the document. By default, `b` is an `inline` element.
 
 - The following elements are `inline` by default.
-
   - `span`
-
+  
   - `b`, `i`, `u`, `strong`, `em`
-
+  
   - `a`
-
+  
   - `sub` and `sup`
-
+  
   - `img`: It's a common misbelief that images (`img`) are `inline-block` elements; in fact, they are `inline` elements.
   - See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements#Elements) for a complete list. Four elements from this list, `button`, `input`, `select`, and `textarea` may, in fact, default to `inline-block` instead of `inline`, but this depends on the browser. See the section on `inline-block` elements below.
+  
 
 
 <u>Vertical Alignment</u>
