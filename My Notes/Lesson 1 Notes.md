@@ -1239,15 +1239,19 @@ Hopefully you’re starting to feel pretty good about HTML. There is still quite
 
 # Common CSS Terms
 
-### Summary
+## Selectors
 
 - In CSS our rule set begins with the **selector**, which is immediately followed by curly brackets. Within these curly brackets are declarations consisting of property and value pairs. Each declaration begins with a **property**, which is followed by a colon, the **property value**, and finally a semicolon.
 - It is a common practice to indent property and value pairs within the curly brackets. As with HTML, these indentations help keep our code organized and legible.
 
 ![CSS Syntax Outline](https://learn.shayhowe.com/assets/images/courses/html-css/building-your-first-web-page/css-syntax-outline.png)
 
-## Selectors
+- Selectors are extremely powerful, and the selectors outlined here are the most common selectors we’ll come across. These selectors are also only the beginning. Many more [advanced selectors](https://learn.shayhowe.com/advanced-html-css/complex-selectors/) exist and are readily available. When you feel comfortable with these selectors, don’t be afraid to look into some of the more advanced selectors.
 
+## Basic Selectors
+
+- MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
+  
 - Practice: https://flukeout.github.io/
   
 - As elements are added to a web page, they may be styled using CSS. A **selector** is used to target one or more HTML elements to apply styles to. (Styles such as color, size, or position). 
@@ -1335,63 +1339,11 @@ the HTML it selects
 <div id="shayhowe">...</div>
 ```
 
-## Additional Selectors
-
-- Selectors are extremely powerful, and the selectors outlined here are the most common selectors we’ll come across. These selectors are also only the beginning. Many more [advanced selectors](https://learn.shayhowe.com/advanced-html-css/complex-selectors/) exist and are readily available. When you feel comfortable with these selectors, don’t be afraid to look into some of the more advanced selectors.
-
-#### Child Selectors
-
-| Example       | Classification        | Explanation                                                  |
-| :------------ | :-------------------- | :----------------------------------------------------------- |
-| `article h2`  | Descendant Selector   | Selects an element that resides anywhere within an identified ancestor element |
-| `article > p` | Direct Child Selector | Selects an element that resides immediately inside an identified parent element |
-
-- **Descendant selector** matches every element that follows an identified ancestor. The descendant element does not have to come directly after the ancestor element inside the document tree but may fall anywhere within the ancestor element. 
-
-  - The `article h2` selector is a descendant selector, only selecting `h2` elements that fall inside of an `article` element. 
-
-- **Child Combinator** / **child selector**(`>`) is placed between two CSS selectors. It matches only those elements matched by the second selector that are **direct children** of elements matched by the first.
-
-  - Every element except the html element is a **direct child** of precisely one other element. For example:
-
-  ```html
-  <main>
-    <p>content 1<p>           <!-- direct child of `main` -->
-    <p>content 2<p>           <!-- direct child of `main` -->
-    <ol>                      <!-- direct child of `main` -->
-      <li>content 3</li>      <!-- direct child of `ol` -->
-      <li>                    <!-- direct child of `ol` -->
-        <ul>                  <!-- direct child of `li` -->
-          <li>content 4</li>  <!-- direct child of `ul` -->
-        </ul>
-      </li>
-    </ol>
-  </main>
-  ```
-
-  - The last li element is not a direct child of the ol.
-  - `ul li` tells the browser to select all `li` elements that are a **descendant** of a `ul`, no matter how deeply nested the `li` elements are. By changing that to `ul > li`, we tell the browser that we want direct children of `ul`; nothing else.
-
-#### Sibling Selectors
-
-| Example  | Classification            | Explanation                                                  |
-| :------- | :------------------------ | :----------------------------------------------------------- |
-| `h2 ~ p` | General Sibling Selector  | Selects an element that follows anywhere after the prior element, in which both elements share the same parent |
-| `h2 + p` | Adjacent Sibling Selector | Selects an element that follows directly after the prior element, in which both elements share the same parent |
-
-- **General Sibling Selector `A ~ B`**
-  - You can select all siblings of an element that follow it. This is like the Adjacent Selector (A + B) except it gets all of the following elements instead of one.
-
-- **Adjacent sibling selector**
-  - Elements that follow one another are called siblings. They're on the same level, or depth. The **adjacent sibling combinator** (`+`) separates two selectors and matches the second element only if it *immediately* follows the first element, and both are children of the same parent [`element`](https://developer.mozilla.org/en-US/docs/Web/API/Element).
+#### Universal Selector
 
 - **Universal Selector**
   - `A *` : all elements in A.
   - `*`
-
-- **Comma Combinator.** 
-  - You can combine any selectors this way, and you can specify more than two.
-  - p, .fun selects all p elements as well as all elements with class="fun"
 
 #### Attribute Selector
 
@@ -1436,6 +1388,64 @@ the HTML it selects
 - **Attribute Wildcard Selector**
   - `[attribute*="value"]`
   - A useful selector if you can identify a common pattern in things like `class`, `href` or `src` attributes.
+
+## Grouping Selectors
+
+#### Selector list
+
+- **Selector list** `,` 
+  - The CSS **selector list** (`,`) selects all the matching nodes. A selector list is a comma-separated list of selectors.
+  - You can combine any selectors this way, and you can specify more than two.
+  - p, .fun selects all p elements as well as all elements with class="fun"
+
+## Combinators
+
+#### Descendant & Child Combinator
+
+| Example       | Classification        | Explanation                                                  |
+| :------------ | :-------------------- | :----------------------------------------------------------- |
+| `article h2`  | Descendant Selector   | Selects an element that resides anywhere within an identified ancestor element |
+| `article > p` | Direct Child Selector | Selects an element that resides immediately inside an identified parent element |
+
+- **Descendant selector** matches every element that follows an identified ancestor. The descendant element does not have to come directly after the ancestor element inside the document tree but may fall anywhere within the ancestor element. 
+
+  - The `article h2` selector is a descendant selector, only selecting `h2` elements that fall inside of an `article` element. 
+
+- **Child Combinator** / **child selector**(`>`) is placed between two CSS selectors. It matches only those elements matched by the second selector that are **direct children** of elements matched by the first.
+
+  - Every element except the html element is a **direct child** of precisely one other element. For example:
+
+  ```html
+  <main>
+    <p>content 1<p>           <!-- direct child of `main` -->
+    <p>content 2<p>           <!-- direct child of `main` -->
+    <ol>                      <!-- direct child of `main` -->
+      <li>content 3</li>      <!-- direct child of `ol` -->
+      <li>                    <!-- direct child of `ol` -->
+        <ul>                  <!-- direct child of `li` -->
+          <li>content 4</li>  <!-- direct child of `ul` -->
+        </ul>
+      </li>
+    </ol>
+  </main>
+  ```
+
+  - The last li element is not a direct child of the ol.
+  - `ul li` tells the browser to select all `li` elements that are a **descendant** of a `ul`, no matter how deeply nested the `li` elements are. By changing that to `ul > li`, we tell the browser that we want direct children of `ul`; nothing else.
+
+#### Sibling Combinator
+
+| Example  | Classification            | Explanation                                                  |
+| :------- | :------------------------ | :----------------------------------------------------------- |
+| `h2 ~ p` | General Sibling Selector  | Selects an element that follows anywhere after the prior element, in which both elements share the same parent |
+| `h2 + p` | Adjacent Sibling Selector | Selects an element that follows directly after the prior element, in which both elements share the same parent |
+
+- **General Sibling Selector `A ~ B`**
+  - You can select all siblings of an element that follow it. This is like the Adjacent Selector (A + B) except it gets all of the following elements instead of one.
+- **Adjacent sibling selector**
+  - Elements that follow one another are called siblings. They're on the same level, or depth. The **adjacent sibling combinator** (`+`) separates two selectors and matches the second element only if it *immediately* follows the first element, and both are children of the same parent [`element`](https://developer.mozilla.org/en-US/docs/Web/API/Element).
+
+## Pseudo-classes and Pseudo-elements
 
 #### Pseudo-Classes
 

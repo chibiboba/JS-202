@@ -590,6 +590,43 @@ CSS properties
     }
     ```
 
-    
+- `rowspan` attribute of `<th>` or `<td>` which indicates for how many rows the cell extends. 
 
-  
+  - It's default value is `1`; if its value is set to `0`, it extends until the end of the t
+
+  - able section (`<thead>`, `<tbody>`, `<tfoot>`, even if implicitly defined), that the cell belongs to. Values higher than 65534 are clipped down to 65534.
+
+  - For example if you want `th` to span 3 rows in the code it will span across the next 3 rows, and the header `th` will be centered among the rows.
+
+    <img src="C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230325105311995.png" alt="image-20230325105311995" style="zoom: 50%;" />
+
+    ```html
+      <table>
+          <thead>
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <td></td>
+            </tr>
+          </thead>
+    
+          <tbody>
+            <tr>
+              <th scope="row" rowspan="3">red</th>
+              <td>Meiomi Pino Noir</td>
+              <td>$17.99</td>
+            </tr>
+            <tr>
+              <td>Radius Cabernet</td>
+              <td>$9.99</td>
+            </tr>
+            <tr>
+              <td>Apothic Red</td>
+              <td>$7.97</td>
+            </tr>
+          </tbody>
+        </table>
+    ```
+
+- Use the `colspan` attribute on the `td` tag for a single cell to span multiple columns.
