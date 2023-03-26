@@ -124,10 +124,15 @@
 
       /* Achieve an indented effect for rows with indent attribute*/
       /* Make the columns with indent attribute 1rem wide*/
-      /* Then remove the border on top of that smaller column */
+      /* Then remove the border on top of that indent column */
       table:first-of-type td.indent {
         width: 1rem;
         border-top: none;
+      }
+
+      /* Make the description term in 1st body of table 1 bold */
+      table:first-of-type tbody:first-of-type td[colspan="2"] dt {
+        font-weight: bold;
       }
 
       /* Adjust tfoot of first table */
