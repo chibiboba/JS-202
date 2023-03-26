@@ -13,8 +13,8 @@
       }
       article {
         box-sizing: border-box;
-        width: 684px;
-        height: 1342px;
+        width: 680px;
+        height: 1166.38px;
         font-size: 1rem;
         border: 2px solid #000000;
         padding: 10px 15px 10px 15px;
@@ -37,21 +37,54 @@
         padding: 10px 0;
         margin: 5px 0;
       }
-      table {
-        font-family: Helvetica, Arial, sans-serif;
-      }
-
-      dl {
-        padding: 0;
+      header dl { 
+        display: inline-block;
+        width: 50%;
         margin: 0;
       }
-
-      dt {
-        display:inline;
+      header dl:last-of-type { /*selecting calories from fat*/
+        text-align: right; 
       }
 
+      header dl:first-of-type dt:first-of-type { /*selects calories*/
+        font-weight: bold;
+      }
+      table {
+        font-family: Helvetica, Arial, sans-serif;
+        border-top: 15px solid black;
+        border-collapse: collapse;
+        padding: 0;
+        margin: 5px 0;
+        width: 100%;
+      }
+      thead th{
+        text-align: bottom;
+        padding: 8px 0;
+      }
+      tr {
+        border-bottom: 1px solid black;
+      }
+      thead th { /*selects % Daily Value* */
+        text-align: right;
+      }
+      th {
+        text-align: left;
+      }
+      tr td:last-of-type {
+        text-align: right;
+      }
+      dl {
+        display: inline-block;
+        margin: 0;
+      }
+      dt {
+        display: inline-block;
+        margin: 0;
+      }
       dd {
-        display:inline
+        display: inline-block;
+        text-align: right;
+        margin: 0;
       }
     </style>
   </head>
@@ -67,9 +100,8 @@
         <dl>
           <dt>Calories</dt>
           <dd>230</dd>
-        </dl>
-        <dl>
-          <dt>Calories From Fat</dt>
+        </dl><dl>
+          <dt>Calories from Fat</dt>
           <dd>40</dd>
         </dl>
       </header>

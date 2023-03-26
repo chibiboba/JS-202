@@ -551,7 +551,7 @@ CSS properties
 
 - Remove border of background color around the data cells. 
 
-  - `border-collapse` css property sets whether cells inside a `table` have shared or separate borders.
+  - `border-collapse` css property sets whether cells inside a `table` have shared or separate borders. This property is necessary to create borders for tables!!
   - `border-collapse: collapse` Adjacent cells have shared borders.
 
   - `border-collapse: separate`: Adjacent cells have distinct borders.
@@ -655,7 +655,18 @@ CSS properties
 ## my hints
 
 - Wrap the entire label in an `article`.
+
 - The width and height of the label has to be fixed, the aspect ratio does not change.
+
+- `border-collapse` is necessary so tables can have borders.
+
+- Use to add borders to bottom of row.
+
+  ```css
+  tr {
+   border-bottom: 1px solid black;
+  }
+  ```
 
 ## hints
 
