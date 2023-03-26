@@ -996,7 +996,8 @@ One possible example of HTML5 structural elements giving meaning to the organiza
 
 - The `<article>` element is used to identify a section of independent, self-contained content that may be independently distributed or reused. 
   - We’ll often use the `<article>` element to mark up blog posts, newspaper articles, user-submitted content, and the like.
-
+  - Wrap the entire label in an `article`. Self contained pieces should use `article`.
+  
 - When deciding whether to use the `<article>` element, we must determine if the content within the element could be replicated elsewhere without any confusion. 
   - If the content within the `<article>` element were removed from the context of the page and placed, for example, within an email or printed work, that content should still make sense.
 

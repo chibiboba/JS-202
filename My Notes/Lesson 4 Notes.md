@@ -663,7 +663,7 @@ CSS properties
 
 ## my hints
 
-- Wrap the entire label in an `article`.
+- Wrap the entire label in an `article`. Self contained pieces should use `article`.
 
 - The width and height of the label has to be fixed, the aspect ratio does not change.
 
