@@ -444,7 +444,8 @@ table {
 - You can use the `thead`, `tfoot`, and `tbody` elements to provide semantic identification of the header, footer, and body rows. 
 - The **`<thead>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a set of rows defining the head of the columns of the table.
   - `td` is not allowed in `thead`,  `thead` should only contain `th` elements to define table header cells. 
-
+  - Keep in mind that to reference the `tr` , need to combine `thead` selector, because generic `tr:nth-of-type` doesn't count towards it. 
+  
 - The **`<tfoot>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a set of rows summarizing the columns of the table.
 - You can also add the `scope` attribute to identify `th` elements as **row heading** (`scope="row"`) or **column heading** (`scope="col"`). 
 
@@ -549,6 +550,10 @@ Note our use of the `:nth-child()` pseudo-class to select the first, second, and
 
 CSS properties
 
+- Create border for table 
+
+  - `border-collapse` css property sets whether cells inside a `table` have shared or separate borders. This property is necessary to create borders for tables!!
+  
 - Remove border of background color around the data cells. 
 
   - `border-collapse` css property sets whether cells inside a `table` have shared or separate borders. This property is necessary to create borders for tables!!

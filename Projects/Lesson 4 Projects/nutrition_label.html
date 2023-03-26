@@ -20,6 +20,11 @@
         padding: 10px 15px 10px 15px;
         margin: 0;
       }
+      /*Add border below header and adjust sizing*/
+      header {
+        border-bottom: 15px solid black;
+        padding-bottom: 5px;
+      }
       header h1 {
         font-family: Helvetica, Arial, sans-serif;
         font-size: 2rem;
@@ -37,79 +42,109 @@
         padding: 10px 0;
         margin: 5px 0;
       }
+      /* Allow dl in header to be side by side */
       header dl { 
         display: inline-block;
         width: 50%;
         margin: 0;
       }
-      /*selecting calories from fat*/
+      /* Selects calories from fat */
       header dl:last-of-type { 
         text-align: right; 
       }
-      /*selects calories*/
+      /* Selects calories */
       header dl:first-of-type dt:first-of-type { 
         font-weight: bold;
       }
-      /*select first table*/
+      /* Select first table */
       table:first-of-type { 
         font-family: Helvetica, Arial, sans-serif;
-        border-top: 15px solid black;
         border-collapse: collapse;
-        margin: 5px 0;
+        margin: 10px 0;
         width: 100%;
       }
-      /*make dl and the elements inside it all inline-block*/
+      /* Make dl and the elements inside it all inline-block */
       dl, dt, dd{
         display: inline-block;
         margin: 0;
       }
-      /*Adding a line to the rows in each table*/
-      tr {
+      /* Adding a line to the rows in first table */
+      table:first-of-type tr {
         border-bottom: 1px solid black;
       }
-      td {
+      /* Add vertical padding around each column of table1 */
+      table:first-of-type td {
         padding: 2px 0;
       }
-      /*selects % Daily Value* */
+      /* Selects % Daily Value* */
       thead th { 
         text-align: right;
-        padding:5px 1px 1px 1px;
+        padding: 1px;
       }
-      /*veritically align the superscript*/
+      /* Veritically align the superscript */
       sup {
         vertical-align: 3px;
       }
-      /*selects all percentages */
+      /* Selects all percentages */
       tr td:last-of-type { 
         text-align: right;
       }
-      /*select only the first group of percentages*/
-      /*select last td in row, then counting from last row, select every row starting from 5th*/
-      tr:nth-last-of-type(1n+5) td:last-of-type { 
+      /* Select only the first group of percentages in first table*/
+      /* Select last td in row, then counting from last row, select every row starting from 5th*/
+      table:first-of-type tr:nth-last-of-type(1n+5) td:last-of-type { 
         font-weight: bold;
       }
-      /*select 10th row for creating a black border*/
-      table tr:nth-of-type(10) { 
-        border-top: 15px solid black;
+      /* Select 10th row for creating a black border*/
+      table:first-of-type tr:nth-of-type(10) { 
+        border-top: 20px solid black;
       }
-      /*select specific nutrition names excluding vitamins in first table*/
-      /*select the dt in the non-indented columns */
+      /* Select specific nutrition names excluding vitamins in first table*/
+      /* Select the dt in the non-indented columns */
       tbody:first-of-type td:not(.indent) dt { 
         font-weight: bold;
       }
-      /*indent columns with the indent attribute*/
-      /*indent borders of columns with indent attribute*/
-      td.indent {
+      /* Indent dt columns with the indent attribute */
+      /* Indent borders of columns with indent attribute */
+      table:first-of-type td.indent dt {
         border-bottom: none;
-        padding: 0 1rem;
+        text-indent: 1rem;
       }
-      /*Adjust tfoot of first table*/
+      /* Italicise Trans*/
+      table:first-of-type tr:nth-of-type(3) dt {
+        font-style: italic;
+      }
+      /* Adjust tfoot of first table */
+      /* Pull first line of text*/
       tfoot td:last-of-type {
         font-weight: normal;
         font-size: 0.9rem;
         padding: 0.5rem 0 0.5rem 0.7rem;
         text-align: left;
         text-indent: -0.7rem;
+      }
+      /* Remove line below tfoot of table 1 */
+      table:first-of-type tfoot tr {
+        border-bottom: none;
+      }
+      /* Adjust table 2 size */
+      table:nth-of-type(2) {
+        font-size: 0.8rem;
+        width: 100%;
+        border-collapse: collapse;
+      }
+      /* Add line below first row of table 2 */
+      table:last-of-type tr td:first-of-type {
+        border-bottom: 1px sold black;
+      }
+      /* Adjust cells in table 2*/
+      table:last-of-type td {
+        padding: 0.1 rem 0.1 rem;
+        text-align:left;
+        margin: 0;
+      }
+      /*indent columns in 2nd table*/
+      table:last-of-type td.indent {
+        text-indent: 1rem;
       }
     </style>
   </head>
@@ -134,7 +169,7 @@
       <table>
         <thead>
           <tr>
-            <th colspan="3">% Daily Value<sup>*</sup></th>
+            <th colspan="2">% Daily Value<sup>*</sup></th>
           </tr>
         </thead>
         <tbody>
@@ -239,7 +274,7 @@
         <!-- Description of Percent Daily Values-->
         <tfoot>
           <tr>
-             <td colspan="3">* Percent Daily Values are based on a 2,000 calorie diet. Your daily value may be higher or lower depending on your calorie needs.</td>
+             <td colspan="2">* Percent Daily Values are based on a 2,000 calorie diet. Your daily value may be higher or lower depending on your calorie needs.</td>
           </tr>
         </tfoot>
       </table>
@@ -260,7 +295,7 @@
             <td>80g</td>
           </tr>
           <tr>
-            <td>Sat Fat</td>
+            <td class="indent">Sat Fat</td>
             <td>Less than</td>
             <td>20g</td>
             <td>25g</td>
@@ -280,7 +315,7 @@
             <td>300g</td>
             <td>375g</td>
           </tr><tr>
-            <td>Dietary Fiber</td>
+            <td class="indent">Dietary Fiber</td>
             <td></td>
             <td>25g</td>
             <td>30g</td>
