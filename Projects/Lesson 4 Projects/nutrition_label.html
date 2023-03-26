@@ -63,9 +63,12 @@
         display: inline-block;
         margin: 0;
       }
-      /*Adding a line to the rows in table*/
+      /*Adding a line to the rows in each table*/
       tr {
         border-bottom: 1px solid black;
+      }
+      tr td {
+        padding: 1px 0;
       }
       /*selects % Daily Value* */
       thead th { 
@@ -93,9 +96,11 @@
       tbody:first-of-type td:not(.indent) dt { 
         font-weight: bold;
       }
-      /*indent columns with the indent class attribute*/
-      .indent {
-        text-indent: 10px;
+      /*indent columns with the indent attribute*/
+      /*indent borders of columns with indent attribute*/
+      td.indent {
+        border-bottom: none;
+        padding: 0 1rem;
       }
     </style>
   </head>
