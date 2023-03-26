@@ -90,13 +90,14 @@
       }
 
       /* Adding a line to the rows in first table */
-      table:first-of-type tr td {
+      table:first-of-type tr td, th {
         border-top: 1px solid black;
       }
 
       /* Selects % Daily Value* */
       thead th { 
         text-align: right;
+        border-top: none;
         border-bottom: 1px solid black;
         padding: 1px;
       }
@@ -121,19 +122,13 @@
         border-top: 20px solid black;
       }
 
-      /* Select specific nutrition names excluding vitamins in first table*/
-      /* Select the dt in the non-indented columns */
-      tbody:first-of-type td:not(.indent) dt { 
-        font-weight: bold;
+      /* Achieve an indented effect for rows with indent attribute*/
+      /* Make the columns with indent attribute 1rem wide*/
+      /* Then remove the border on top of that smaller column */
+      table:first-of-type td.indent {
+        width: 1rem;
+        border-top: none;
       }
-
-
-      /* Indent dt columns with the indent attribute */
-      /* Indent borders of columns with indent attribute */
-        td.indent dt {
-          text-indent: 1rem;
-          border-top: none;
-        }
 
       /* Adjust tfoot of first table */
       /* Pull first line of text*/
@@ -214,7 +209,8 @@
             <td>12%</td>
           </tr>
           <tr>
-            <td class="indent">
+            <td class="indent"></td>
+            <td>
               <dl>
                 <dt>Saturated Fat</dt>
                 <dd>1g</dd>
@@ -223,7 +219,8 @@
             <td>5%</td>
           </tr>
           <tr>
-            <td class="indent">
+            <td class="indent"></td>
+            <td>
               <dl>
                 <dt><em>Trans</em> Fat</dt>
                 <dd>0g</dd>
@@ -259,7 +256,8 @@
             <td>12%</td>
           </tr>
           <tr>
-            <td class="indent">
+            <td class="indent"></td>
+            <td>
               <dl>
                 <dt>Dietary Fiber</dt>
                 <dd>4g</dd>
@@ -268,7 +266,8 @@
             <td>16%</td>
           </tr>
           <tr>
-            <td class="indent">
+            <td class="indent"></td>
+            <td>
               <dl>
                 <dt>Sugars</dt>
                 <dd>1g</dd>
