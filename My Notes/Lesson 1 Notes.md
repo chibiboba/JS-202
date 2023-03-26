@@ -1450,6 +1450,7 @@ the HTML it selects
 #### Pseudo-Classes
 
 - A [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) **pseudo-class** is a keyword added to a selector that specifies a special state of the selected element(s). 
+- `An+B` means every nth element, starting from B.
 
 | Example                    | Classification                     | Explanation                                                  |
 | :------------------------- | :--------------------------------- | :----------------------------------------------------------- |
@@ -1550,6 +1551,8 @@ the HTML it selects
 - `only-of-type` Selects the only element of its type within another element.
 
 - `last-of-type` Selects each last element of that type within another element. Remember type refers the kind of tag, so p and span are different types.
+
+- `nth-last-of-type(An+B)`: counting from the end, every nth element, starting from B.
 
 - `empty` selector: Selects elements that don't have any other elements inside of them.
 

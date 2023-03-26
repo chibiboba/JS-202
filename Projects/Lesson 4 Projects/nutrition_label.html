@@ -42,14 +42,16 @@
         width: 50%;
         margin: 0;
       }
-      header dl:last-of-type { /*selecting calories from fat*/
+      /*selecting calories from fat*/
+      header dl:last-of-type { 
         text-align: right; 
       }
-
-      header dl:first-of-type dt:first-of-type { /*selects calories*/
+      /*selects calories*/
+      header dl:first-of-type dt:first-of-type { 
         font-weight: bold;
       }
-      table {
+      /*select first table*/
+      table:first-of-type { 
         font-family: Helvetica, Arial, sans-serif;
         border-top: 15px solid black;
         border-collapse: collapse;
@@ -64,14 +66,27 @@
       tr {
         border-bottom: 1px solid black;
       }
-      thead th { /*selects % Daily Value* */
+      /*selects % Daily Value* */
+      thead th { 
         text-align: right;
+        padding:1px;
+        margin:10px;
       }
       th {
         text-align: left;
       }
-      tr td:last-of-type {
+      /*selects all percentages */
+      tr td:last-of-type { 
         text-align: right;
+      }
+      /*select only the first group of percentages*/
+      /*select last td in row, then counting from last row, select every row starting from 5th*/
+      tr:nth-last-of-type(1n+5) td:last-of-type { 
+        font-weight: bold;
+      }
+      /*select specific row for creating a border*/
+      table tr:nth-of-type(11) { 
+        border-top: 15px solid black;
       }
       dl {
         display: inline-block;
