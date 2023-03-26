@@ -84,21 +84,17 @@
       tr:nth-last-of-type(1n+5) td:last-of-type { 
         font-weight: bold;
       }
-      /*select specific row for creating a border*/
-      table tr:nth-of-type(11) { 
+      /*select 10th row for creating a black border*/
+      table tr:nth-of-type(10) { 
         border-top: 15px solid black;
       }
-      dl {
-        display: inline-block;
-        margin: 0;
+      /*select nutrition names in first table*/
+      tbody:first-of-type dl:first-of-type dt:first-of-type { 
+        font-weight: bold;
       }
-      dt {
+      /*make dl and the elements inside it all inline-block*/
+      dl, dt, dd{
         display: inline-block;
-        margin: 0;
-      }
-      dd {
-        display: inline-block;
-        text-align: right;
         margin: 0;
       }
     </style>
@@ -129,84 +125,84 @@
         </thead>
         <tbody>
           <tr>
-            <th>
+            <td>
               <dl>
                 <dt>Total Fat</dt>
                 <dd>8g</dd>
               </dl>
-            </th>
+            </td>
             <td>12%</td>
           </tr>
           <tr>
-            <th>
+            <td>
               <dl>
                 <dt>Saturated Fat</dt>
                 <dd>1g</dd>
               </dl>
-            </th>
+            </td>
             <td>5%</td>
           </tr>
           <tr>
-            <th>
+            <td>
               <dl>
                 <dt>Trans Fat</dt>
                 <dd>0g</dd>
               </dl>
-            </th>
+            </td>
             <td></td>
           </tr>
           <tr>
-            <th>
+            <td>
               <dl>
                 <dt>Cholesterol</dt>
                 <dd>0mg</dd>
               </dl>
-            </th>
+            </td>
             <td>0%</td>
           </tr>
           <tr>
-            <th>
+            <td>
               <dl>
                 <dt>Sodium</dt>
                 <dd>160mg</dd>
               </dl>
-            </th>
+            </td>
             <td>7%</td>
           </tr>
           <tr>
-            <th>
+            <td>
               <dl>
                 <dt>Total Carbohydrate</dt>
                 <dd>37g</dd>
               </dl>
-            </th>
+            </td>
             <td>12%</td>
           </tr>
           <tr>
-            <th>
+            <td>
               <dl>
                 <dt>Dietary Fiber</dt>
                 <dd>4g</dd>
               </dl>
-            </th>
+            </td>
             <td>16%</td>
           </tr>
           <tr>
-            <th>
+            <td>
               <dl>
                 <dt>Sugars</dt>
                 <dd>1g</dd>
               </dl>
-            </th>
+            </td>
             <td></td>
           </tr>
           <tr>
-            <th>
+            <td>
               <dl>
                 <dt>Protein</dt>
                 <dd>3g</dd>
               </dl>
-            </th>
+            </td>
             <td></td>
           </tr>
           <tr>
