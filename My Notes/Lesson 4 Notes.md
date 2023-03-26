@@ -683,6 +683,10 @@ CSS properties
 - `text-indent`
   - the **`text-indent`** CSS property sets the length of empty space (indentation) that is put before lines of text in a block.
   - When the value is negative, such as `-0.7rem`, it causes the first line of the text to be pulled outside the left edge of the containing element. This can be useful in certain situations, such as when you want to hide the text off-screen while still making it accessible for screen readers and other assistive technologies.
+  
+- Use emphasis `em` element instead of `font-style` css when necessary.
+
+- `colspan` applies to the next two columns
 
 ## hints
 

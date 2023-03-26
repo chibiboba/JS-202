@@ -1444,6 +1444,7 @@ the HTML it selects
   - You can select all siblings of an element that follow it. This is like the Adjacent Selector (A + B) except it gets all of the following elements instead of one.
 - **Adjacent sibling selector**
   - Elements that follow one another are called siblings. They're on the same level, or depth. The **adjacent sibling combinator** (`+`) separates two selectors and matches the second element only if it *immediately* follows the first element, and both are children of the same parent [`element`](https://developer.mozilla.org/en-US/docs/Web/API/Element).
+  - For example `th+th` means "select any `th` element that immediately follows another `th` element". So it selects the 2nd `th` and any other ones after it that immediately follow it.
 
 ## Pseudo-classes and Pseudo-elements
 
@@ -1569,6 +1570,8 @@ the HTML it selects
 | `div:before`          | Generated Content       | Creates a pseudo-element inside the selected element at the beginning |
 | `a:after`             | Generated Content       | Creates a pseudo-element inside the selected element at the end |
 | `::selection`         | Fragment Pseudo-element | Selects the part of a document which has been selected, or highlighted, by a users’ actions |
+
+- The **`::first-letter`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) applies styles to the first letter of the first line of a [block-level element](https://developer.mozilla.org/en-US/docs/Web/CSS/Visual_formatting_model#block-level_elements_and_block_boxes), but only when not preceded by other content (such as images or inline tables).
 
 ## Properties
 
