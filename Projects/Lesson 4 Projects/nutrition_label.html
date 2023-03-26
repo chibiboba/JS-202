@@ -55,22 +55,22 @@
         font-family: Helvetica, Arial, sans-serif;
         border-top: 15px solid black;
         border-collapse: collapse;
-        padding: 0;
         margin: 5px 0;
         width: 100%;
       }
-      thead th{
-        text-align: bottom;
-        padding: 8px 0;
+      /*make dl and the elements inside it all inline-block*/
+      dl, dt, dd{
+        display: inline-block;
+        margin: 0;
       }
+      /*Adding a line to the rows in table*/
       tr {
         border-bottom: 1px solid black;
       }
       /*selects % Daily Value* */
       thead th { 
         text-align: right;
-        padding:1px;
-        margin:10px;
+        padding:10px 1px 1px 1px;
       }
       th {
         text-align: left;
@@ -88,14 +88,14 @@
       table tr:nth-of-type(10) { 
         border-top: 15px solid black;
       }
-      /*select nutrition names in first table*/
-      tbody:first-of-type dl:first-of-type dt:first-of-type { 
+      /*select specific nutrition names excluding vitamins in first table*/
+      /*select the dt in the non-indented columns */
+      tbody:first-of-type td:not(.indent) dt { 
         font-weight: bold;
       }
-      /*make dl and the elements inside it all inline-block*/
-      dl, dt, dd{
-        display: inline-block;
-        margin: 0;
+      /*indent columns with the indent class attribute*/
+      .indent {
+        text-indent: 10px;
       }
     </style>
   </head>
@@ -134,7 +134,7 @@
             <td>12%</td>
           </tr>
           <tr>
-            <td>
+            <td class="indent">
               <dl>
                 <dt>Saturated Fat</dt>
                 <dd>1g</dd>
@@ -143,7 +143,7 @@
             <td>5%</td>
           </tr>
           <tr>
-            <td>
+            <td class="indent">
               <dl>
                 <dt>Trans Fat</dt>
                 <dd>0g</dd>
@@ -179,7 +179,7 @@
             <td>12%</td>
           </tr>
           <tr>
-            <td>
+            <td class="indent">
               <dl>
                 <dt>Dietary Fiber</dt>
                 <dd>4g</dd>
@@ -188,7 +188,7 @@
             <td>16%</td>
           </tr>
           <tr>
-            <td>
+            <td class="indent">
               <dl>
                 <dt>Sugars</dt>
                 <dd>1g</dd>

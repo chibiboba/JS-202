@@ -641,6 +641,10 @@ CSS properties
 
 # Nutrition label Project
 
+# Questions
+
+- Why is it when my browser render's html, the pixels or sizing is a little off?
+
 ## rules
 
 - Font: your font stack can use Franklin Gothic Heavy for the main heading, and Helvetica Black and Helvetica for the remaining fonts. 
