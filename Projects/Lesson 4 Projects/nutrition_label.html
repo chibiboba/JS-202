@@ -67,16 +67,17 @@
       tr {
         border-bottom: 1px solid black;
       }
-      tr td {
-        padding: 1px 0;
+      td {
+        padding: 2px 0;
       }
       /*selects % Daily Value* */
       thead th { 
         text-align: right;
-        padding:10px 1px 1px 1px;
+        padding:5px 1px 1px 1px;
       }
-      th {
-        text-align: left;
+      /*veritically align the superscript*/
+      sup {
+        vertical-align: 3px;
       }
       /*selects all percentages */
       tr td:last-of-type { 
@@ -102,6 +103,14 @@
         border-bottom: none;
         padding: 0 1rem;
       }
+      /*Adjust tfoot of first table*/
+      tfoot td:last-of-type {
+        font-weight: normal;
+        font-size: 0.9rem;
+        padding: 0.5rem 0 0.5rem 0.7rem;
+        text-align: left;
+        text-indent: -0.7rem;
+      }
     </style>
   </head>
   <body>
@@ -125,7 +134,7 @@
       <table>
         <thead>
           <tr>
-            <th scope="col" colspan="2">% Daily Value*</th>
+            <th colspan="3">% Daily Value<sup>*</sup></th>
           </tr>
         </thead>
         <tbody>
@@ -227,12 +236,13 @@
             <td>45%</td>
           </tr>
         </tbody>
+        <!-- Description of Percent Daily Values-->
+        <tfoot>
+          <tr>
+             <td colspan="3">* Percent Daily Values are based on a 2,000 calorie diet. Your daily value may be higher or lower depending on your calorie needs.</td>
+          </tr>
+        </tfoot>
       </table>
-
-      <!-- Description of Percent Daily Values-->
-      <p>* Percent Daily Values are based on a 2,000 calorie diet.</p>
-      <p>Your daily value may be higher or lower depending on</p>
-      <p>your calorie needs.</p>
 
       <!--Table for 2000 Calorie diet-->
       <table>

@@ -672,6 +672,13 @@ CSS properties
   }
   ```
 
+- superscript tag `<sup>`
+  - `<sup>*</sup>`
+  - Vertically align the superscript using vertical-align
+- `text-indent`
+  - the **`text-indent`** CSS property sets the length of empty space (indentation) that is put before lines of text in a block.
+  - When the value is negative, such as `-0.7rem`, it causes the first line of the text to be pulled outside the left edge of the containing element. This can be useful in certain situations, such as when you want to hide the text off-screen while still making it accessible for screen readers and other assistive technologies.
+
 ## hints
 
 - If you load our completed solution in your browser and load yours in another tab, you can toggle back and forth (control-tab in most browsers) to see where the pages differ. This so-called **blink comparison** is useful when trying to replicate a design. We'll talk more about blink comparisons in a later lesson.
