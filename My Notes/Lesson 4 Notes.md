@@ -679,14 +679,48 @@ CSS properties
 
 - superscript tag `<sup>`
   - `<sup>*</sup>`
-  - Vertically align the superscript using vertical-align
+  - Vertically align the superscript using `vertical-align`
+  - Only `inline` and `inline-block` can be used with `vertical-align`
+  
 - `text-indent`
+  
   - the **`text-indent`** CSS property sets the length of empty space (indentation) that is put before lines of text in a block.
   - When the value is negative, such as `-0.7rem`, it causes the first line of the text to be pulled outside the left edge of the containing element. This can be useful in certain situations, such as when you want to hide the text off-screen while still making it accessible for screen readers and other assistive technologies.
   
 - Use emphasis `em` element instead of `font-style` css when necessary.
 
 - `colspan` applies to the next two columns
+
+- How to achieve an indented effect ![image-20230326153234633](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230326153234633.png)
+
+  - Create 3 columns
+  - Make first column an empty `<td><td>` with an `indent` attribute
+  - In CSS style, make that Coolum with the `indent` attribute a smaller width of for example `1rem`. Then remove the border above the indented column.
+
+  ```css
+  table:first-of-type td.indent {
+     width: 1rem;
+     border-top: none;
+  }
+  ```
+
+- Make columns smaller 
+
+  ```css
+  /* Add line below the thead of table 2 */
+  /*Adjust width of thead th elements*/
+  	table:last-of-type thead th {
+  		width: 37%;
+      font-weight: normal;
+      text-align: left;
+      border-bottom: 1px solid black;
+   }
+  
+  /* Make the elements starting from 2nd th element narrower*/
+  	table:last-of-type thead th:nth-of-type(n+2) {
+    width: 21%;
+  }
+  ```
 
 ## hints
 
