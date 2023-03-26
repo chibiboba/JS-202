@@ -114,6 +114,7 @@ All we did here was change the `<ul>...</ul>` tag to `<ol>...</ol>`.
 ## Nested Lists
 
 - You can nest any list within another list, regardless of types. You can even mix and match them - put an unordered list inside a description list, for instance. 
+- Lists can be nested in `div`, `section`, `article`, and `main`, but not `p`, `span`, `em`, `strong`, and others
 - In the following example, we'll add an example of each type of list to the description items:
 
 ```html
@@ -392,7 +393,7 @@ HTML provides a variety of tags to construct tables. The ones you'll see most of
 - The `<table>` tag defines a table.
 - The `<tr>` tag defines a single row in a table.
 - The `<td>` tag defines a single **cell of content** in a column of a table. Each row includes zero or more cells.
-- The `<th>` tag defines a single heading. The first cell in a row or column is typically a heading, but this is not required.
+- The `<th>` tag defines a single heading cell. The first cell in a row or column is typically a heading, but this is not required.
   - We use `<th>` to define the column and row headings, and how the browser renders the heading cells differently from the data cells.
   - For semantics: Use`scope` attribute to identify `th` elements as **row heading** (`scope="row"`) or **column heading** (`scope="col"`).
 
@@ -441,9 +442,10 @@ table {
 ## Semantic Table HTML and Heading Scope
 
 - You can use the `thead`, `tfoot`, and `tbody` elements to provide semantic identification of the header, footer, and body rows. 
-  - The **`<thead>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a set of rows defining the head of the columns of the table.
-  - The **`<tfoot>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a set of rows summarizing the columns of the table.
+- The **`<thead>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a set of rows defining the head of the columns of the table.
+  - `td` is not allowed in `thead`,  `thead` should only contain `th` elements to define table header cells. 
 
+- The **`<tfoot>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a set of rows summarizing the columns of the table.
 - You can also add the `scope` attribute to identify `th` elements as **row heading** (`scope="row"`) or **column heading** (`scope="col"`). 
 
 In the next example, we add these semantic features to the previous example, then use them as selectors in our CSS.
@@ -650,9 +652,14 @@ CSS properties
   - Read [the MDN pages on CSS Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) before starting, and keep it handy as you work.
 - While coding, be mindful of semantics; avoid the `div` and `span` elements, and supply as much semantic information as you can. Our solution does not use `div` or `span` at all; try to match that.
 
+## my hints
+
+- Wrap the entire label in an `article`.
+- The width and height of the label has to be fixed, the aspect ratio does not change.
+
 ## hints
 
-- If you load our completed solution in your browser and load yours in another tab, you can toggle back and forth (shift-tab and control-shift-tab in most browsers) to see where the pages differ. This so-called **blink comparison** is useful when trying to replicate a design. We'll talk more about blink comparisons in a later lesson.
+- If you load our completed solution in your browser and load yours in another tab, you can toggle back and forth (control-tab in most browsers) to see where the pages differ. This so-called **blink comparison** is useful when trying to replicate a design. We'll talk more about blink comparisons in a later lesson.
 
 - Validate your HTML and CSS and test your code frequently. As your first big project, validation and testing are crucial.
 

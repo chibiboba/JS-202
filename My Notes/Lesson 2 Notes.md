@@ -211,7 +211,15 @@ The vertical positioning of side-by-side boxes varies. Figures 1 and 2 show them
   - It is typically opaque and hides anything that it overlays.
   - Put another way, padding is part of the visible and clickable bounds of an element.
   - Background-color shows here.
-  - Padding does not collapse.
+
+- Padding does not collapse!! That's why we do not use padding to create space between two different elements. For example the red part symbolizes the padding area. 
+
+  <img src="C:\Users\jenny\Downloads\download (13).png" alt="download (13)" style="zoom:33%;" />
+
+   Use margins instead
+
+  <img src="C:\Users\jenny\Downloads\download (12).png" style="zoom:33%;" />
+
 - Two ways to use padding:
   - Strategy 1 : Use margins for spacing between elements, and padding for the visible or clickable area of one. Within a container, use padding for horizontal separation between its edges and content, and margins for the vertical distance.
   - Strategy 2 Use margins everywhere except when you need padding.
@@ -301,9 +309,14 @@ Values
 - The **margin** is a typically transparent area that lies outside the border and supplies spacing between adjacent elements.
 
   It is not "clickable".
+  
 - **Margin collapse**: Margin collapse is a behavior in CSS where the top and bottom margins of adjacent elements collapse to the larger of the two margins, combining to form a single margin, instead of adding up to create separate margins. 
 
   - Left and right margins don't collapse.
+
+  - This is useful for creating space between elements.
+
+    <img src="C:\Users\jenny\Downloads\download (12).png" style="zoom:33%;" />
 
 - Background color interaction: 
 
