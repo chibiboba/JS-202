@@ -484,6 +484,8 @@ Here you can see that each row has a background color: `lime` for most rows, and
 
 - The `id` attribute applies a unique identification string to a single element, such as a headline. 
 - `id` attributes **must be unique on the page**: no two elements can have an `id` attribute with the same value.
+  - You can only use any given ID once on a page!
+
 
 ```html
 <h1>This is a plain h1 heading</h1>

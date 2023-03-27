@@ -40,6 +40,10 @@ Given the variety of lists on the Web, you may find it surprising to learn that 
 - The content itself may have an implicit ordering, perhaps alphabetical, but the browser displays a **bullet** -- a glyph that looks like a small dot, disc, circle, or square -- instead of a number or letter before each item. 
   - The bullets change at different levels. Most browsers will cycle through several different bullets as you nest unordered lists more deeply. 
 - By default, browsers render unordered lists vertically, each preceded by a bullet. However, you can choose a horizontal display and hide the bullets. You can even use custom bullets.
+- Example of what works good with unordered list
+  - An unordered list would work best for a candidate list. In most cases, a candidate list should show the candidates in an arbitrary sequence, so you don't want to number them in any way. 
+  - navigation lists
+
 
 HTML uses the `<ul>` and `<li>` tags to construct unordered lists. Here's a simple example:
 
@@ -90,7 +94,14 @@ All we did here was change the `<ul>...</ul>` tag to `<ol>...</ol>`.
   - The `<dd>` Description Details element is a block-level element in HTML. This means that it takes up the full width of its parent container and creates a new line after it.
 
 - Each grouping may have more than one term (`dt`) and more than one description (`dd`). The first item above has one term and two definitions, while the final includes two terms and one definition.
-- Examples of description lists include dictionaries, bibliographies, and, that relic of the past, the phone book.
+- Examples of description lists include 
+  - dictionaries
+
+  - bibliographies
+
+  - phone book
+
+  - writers and books list.
 
 - HTML uses the `<dl>`, `<dt>` and `<dd>` tags to construct description lists. Here's a simple example:
 
@@ -368,7 +379,7 @@ You will see this pattern of creating navigation lists often; learn it well.
 
 # Tables Overview
 
-- Today, you should use tables for strictly tabular data, not layout.
+- **Today, you should use tables for strictly tabular data, not layout.**
   - Using tables to lay out non-tabular data was a frowned-upon workaround and led to the development of CSS and, later, the introduction of flex and grid in CSS.
 
 - Back in earliest days of web before CSS, developers used tables to implement layouts.
@@ -685,8 +696,15 @@ CSS properties
 - `text-indent`
   
   - the **`text-indent`** CSS property sets the length of empty space (indentation) that is put before lines of text in a block.
-  - When the value is negative, such as `-0.7rem`, it causes the first line of the text to be pulled outside the left edge of the containing element. This can be useful in certain situations, such as when you want to hide the text off-screen while still making it accessible for screen readers and other assistive technologies.
-  
+
+- negative value for `text-indent`
+
+  - When the value is negative, it causes the first line of the text to be pulled outside the left edge of the containing element. This can be useful in certain situations, such as when you want to hide the text off-screen while still making it accessible for screen readers and other assistive technologies.
+
+  - Example: the first line is pulled to the left a little bit. Value is `-0.7rem`
+
+    <img src="C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230326165907611.png" alt="image-20230326165907611" style="zoom:50%;" />
+
 - Use emphasis `em` element instead of `font-style` css when necessary.
 
 - `colspan` applies to the next two columns
@@ -695,7 +713,7 @@ CSS properties
 
   - Create 3 columns
   - Make first column an empty `<td><td>` with an `indent` attribute
-  - In CSS style, make that Coolum with the `indent` attribute a smaller width of for example `1rem`. Then remove the border above the indented column.
+  - In CSS style, make that Column with the `indent` attribute a smaller width of for example `1rem`. Then remove the border above the indented column.
 
   ```css
   table:first-of-type td.indent {
