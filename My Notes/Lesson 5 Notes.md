@@ -50,7 +50,7 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
 - The `form` element is the parent for all form-related elements. It tells the browser where and how to send the data. The most important attributes are `action` and `method`.
 
 - A form should contain at least one `input`, `textarea`, or `select` element; without one, the form is useless. 
-  - We use the terms **control**, **widget**, and **input** informally to refer to any of these elements as a group. 
+- We use the terms **control**, **widget**, and **input** informally to refer to any of those elements as a group. 
   - If we need to be more specific, we'll talk about an input tag or input element or use `input` with inline-code styling.
   - In the real world, there is no single term like **control** or **input** that has the same connotation -- **widget** probably comes closest.
 
@@ -221,8 +221,9 @@ fieldset {
 
 <img src="C:\Users\jenny\Downloads\download (16).png" alt="download (16)" style="zoom: 50%;" />
 
-# Input Types
+# Input Element
 
+- The **`<input>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to create interactive controls for web-based forms in order to accept data from the user; a wide variety of types of input data and control widgets are available, depending on the device and [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent). The `<input>` element is one of the most powerful and complex in all of HTML due to the sheer number of combinations of input types and attributes.
 - The most versatile and widely used form widget is the `input` element. 
   - Most controls are `input` elements. 
   - Some look identical in most browsers, such as the `text`, `email`, and `tel` types, but some look radically different: a `text` input looks nothing like a `submit` button or a `checkbox`.
@@ -231,9 +232,13 @@ fieldset {
 
 ## `Type` attribute
 
+- How an `<input>` works varies considerably depending on the value of its [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type) attribute, hence the different types are covered in their own separate reference pages. If this attribute is not specified, the default type adopted is `text`.
+
 - Start with the `type` attribute when creating an `input` element. With the development of HTML5, the number of types available almost tripled. Not all see widespread use, but they all serve a purpose.
 
 - The most common input types are as follows:
+
+- [MDN Documentation on Input types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
 
 ### Type `text`
 
@@ -312,8 +317,8 @@ fieldset {
 - The `checkbox` type lets the user choose one or more items from a series of yes/no-type options. 
 - Use the `value` attribute to give the value the form sends to the server when the user selects that checkbox. 
   - `value="search"`
-- Use the boolean `checked` attribute to pre-select checkboxes. 
-  - The boolean `checked` attribute marks a checkbox as selected when supplied in the `input` tag. 
+- Use the Boolean `checked` attribute to pre-select checkboxes. 
+  - The Boolean `checked` attribute marks a checkbox as selected when supplied in the `input` tag. 
   - In the above below, we've selected the 2nd and 3rd elements.
   - You can select checked elements in CSS with the `:checked` pseudo-class, which lets you change the appearance of checked radio buttons and checkboxes. Note that this pseudo-class doesn't look for the actual `checked` attribute; instead, it selects based on the current state of the checkbox.
 - Use the `name` attribute to name a set of related checkboxes. The user can select zero or more items in each set of checkboxes. 
@@ -445,7 +450,7 @@ fieldset {
 - There are other form controls, some of which we may ask you to use later in this lesson. 
 - To see the complete list, see the [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) for the `<input>` tag. Study the list, but don't try to memorize them all - you can look them up as needed.
 
-# Input's other Attributes
+## Input's other Attributes
 
 The `input` tag supports a variety of attributes -- some work with most input types, and some with just one. We describe the features worth memorizing in this assignment.
 
@@ -476,6 +481,9 @@ Most input controls can use the `value` attribute, but the meaning varies with t
 
 - `checkbox` and `radio` types use the `value` attribute to set the value that the form submits for the indicated checkbox or radio group element.
 
+  - The `<br>` HTML element produces a line break in text (carriage-return). 
+
+
   ```html
   <form action="#" method="post">
     <fieldset>
@@ -483,7 +491,7 @@ Most input controls can use the `value` attribute, but the meaning varies with t
         <input type="radio" name="color" value="red">
         Red
       </label>
-      <br>
+      <br> /*line break element*/
   
       <label>
         <input type="radio" name="color" value="blue" checked>
@@ -505,11 +513,13 @@ Most input controls can use the `value` attribute, but the meaning varies with t
 
   
 
-  Technically, `radio` input types don't require the `value` attribute. If you omit the `value` attribute, the browser will send `NAME=on` to the server, where `NAME` is the value of the `name` property. We recommend always using the `value` attribute and use `name` to group related radio buttons together. If several radio buttons belong together, they should all have the same `name` attribute value.
+  - Technically, `radio` input types don't require the `value` attribute. If you omit the `value` attribute, the browser will send `NAME=on` to the server, where `NAME` is the value of the `name` property. We recommend always using the `value` attribute and use `name` to group related radio buttons together. If several radio buttons belong together, they should all have the same `name` attribute value.
 
-  Note that we added a `checked` attribute to the blue button to make that button the initial selection. If we want to leave all of the radio buttons unselected, but still require a selection, we can add a `required` attribute to each button.
+  - Note that we added a `checked` attribute to the blue button to make that button the initial selection. If we want to leave all of the radio buttons unselected, but still require a selection, we can add a `required` attribute to each button.
 
 - Button types, such as `submit`, `reset`, and the `button` type use the `value` attribute for the label that appears on the button:
+
+  - Note that `type="button"` is out of favor; consider using the `<button>` element instead.
 
   ```html
   <form action="#" method="post">
@@ -525,15 +535,17 @@ Most input controls can use the `value` attribute, but the meaning varies with t
 
   
 
-  Note that `type="button"` is out of favor; consider using the `<button>` element instead.
 
 ### The `size` and `maxlength` Attributes
 
-These attributes apply to most text-based input types.
+- These attributes apply to most text-based input types.
 
-The `size` attribute lets you control the size of an `input` element in characters. You can also specify the width with the CSS `width` property, but it does not support character measurements. `maxlength` is similar, but it limits the maximum length of input values; this value can be more or less than the `size` value.
-
-Copy Code
+- The `size` attribute lets you control the size of an `input` element in characters. 
+  - `size` is an *approximation* for the width of the input box. The HTML5 standard requires that "the user agent should ensure that at least that many characters are visible"; in practice, you may see both more and fewer characters displayed.
+- You can also specify the width with the CSS `width` property, but it does not support character measurements. 
+  - The CSS `width` overrides the `size` attribute in CSS-enabled browsers.
+  - `maxlength` is similar, but it limits the maximum length of input values; this value can be more or less than the `size` value.
+  - HTML5 also supports a `minlength` attribute, but support for this attribute is inadequate at the time of this writing.
 
 ```html
 <form action="#" method="post">
@@ -555,17 +567,10 @@ Copy Code
 
 ![size and maxlength attributes](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_5/input-attributes-04.png)
 
-
-
-`size` is an *approximation* for the width of the input box. The HTML5 standard requires that "the user agent should ensure that at least that many characters are visible"; in practice, you may see both more and fewer characters displayed. The CSS `width` overrides the `size` attribute in CSS-enabled browsers.
-
-HTML5 also supports a `minlength` attribute, but support for this attribute is inadequate at the time of this writing.
-
 ### The `placeholder` Attribute
 
-The `placeholder` attribute lets you display some text when a field is empty to help describe the expected input; it applies to most of the text-based `input` types. Most browsers display `placeholder` text using a grayed-out format, and they erase the placeholder text as soon as you start typing:
-
-Copy Code
+- The `placeholder` attribute lets you display some text when a field is empty to help describe the expected input; it applies to most of the text-based `input` types. 
+- Most browsers display `placeholder` text using a grayed-out format, and they erase the placeholder text as soon as you start typing:
 
 ```html
 <form action="#" method="post">
@@ -584,15 +589,16 @@ Copy Code
 
 
 
-You may see sites that use placeholders as a substitute for labels. Don't do this yourself, though, since it breaks screen readers. Labels and placeholders have different purposes, so use them appropriately. If you're forced to use placeholders, include the labels too, but hide them using CSS. This hack works well since most screen readers can read the hidden text.
+- Don't use placeholders as substitute for labels.
+  - You may see sites that use placeholders as a substitute for labels. Don't do this yourself, though, since it breaks screen readers. Labels and placeholders have different purposes, so use them appropriately. 
+  - If you're forced to use placeholders, include the labels too, but hide them using CSS. This hack works well since most screen readers can read the hidden text.
 
 ### The `disabled` Attribute
 
-The `disabled` attribute lets you disable `input` elements; the browser renders disabled elements but won't let the user interact with them. The rendering looks different from enabled attributes, often by using a gray or lighter color. `disabled` also turns on the `:disabled` CSS pseudo-class. (Non-disabled elements set the `:enabled` pseudo-class.)
+- The `disabled` attribute lets you disable `input` elements; the browser renders disabled elements but won't let the user interact with them. The rendering looks different from enabled attributes, often by using a gray or lighter color. 
+- `disabled` also turns on the `:disabled` CSS pseudo-class. (Non-disabled elements set the `:enabled` pseudo-class.)
 
-Most web applications handle the `disabled` attribute programmatically, either at the time the application generates the HTML or dynamically with JavaScript. You still need to know that `disabled` exists, though; you may have to write some HTML for a program that expects disabled inputs on the original form.
-
-Copy Code
+- Most web applications handle the `disabled` attribute programmatically, either at the time the application generates the HTML or dynamically with JavaScript. You still need to know that `disabled` exists, though; you may have to write some HTML for a program that expects disabled inputs on the original form.
 
 ```html
 <form action="#" method="post">
@@ -615,9 +621,8 @@ Copy Code
 
 ### The `required` Attribute
 
-The `required` attribute marks an `input` as required; the browser won't let you submit the form until the user completes all required fields. `required` also turns on the `:required` CSS pseudo-class.
-
-Copy Code
+- The `required` attribute marks an `input` as required; the browser won't let you submit the form until the user completes all required fields. 
+- `required` also turns on the `:required` CSS pseudo-class.
 
 ```html
 <form action="#" method="post">
@@ -637,10 +642,8 @@ Copy Code
 </form>
 ```
 
-Copy Code
-
 ```css
-input:required {
+input:required { /*selecting the required pseudoclass */
   background-color: yellow;
 }
 ```
@@ -653,47 +656,48 @@ input:required {
 
 ### The `autocomplete` Attribute
 
-You can use `autocomplete` on most `input` text-box elements. This attribute prevents the browser from storing data for later reuse by the browser's `autocomplete` features. Autocomplete is common on smartphones and tablets but can be a nuisance. You can use the values `on` and `off` to explicitly turn `autocomplete` on or off on any given field.
-
-Copy Code
+- You can use `autocomplete` on most `input` text-box elements. 
+- The HTML attribute `autocomplete` is used to control whether a browser should automatically complete a form field with previously entered values. When the autocomplete attribute is used, the browser will suggest possible values that match the characters entered in the input field.
+- Setting the attribute to `off` prevents the browser from storing data for later reuse by the browser's `autocomplete` features. 
+- Autocomplete is common on smartphones and tablets but can be a nuisance. You can use the values `on` and `off` to explicitly turn `autocomplete` on or off on any given field.
 
 ```html
 <input type="tel" value="123-456-7890" name="phone" autocomplete="off">
 ```
 
-The `autocomplete` option does not affect the `password` input type.
+- The `autocomplete` option does not affect the `password` input type.
 
 ### The `autocapitalize` Attribute
 
-Some browsers recognize an `autocapitalize` attribute to turn autocapitalization on and off for the first letter of words or sentences. Browsers that recognize this attribute default to `sentences`. Use `autocapitalize="none"` when expecting input that you don't want to capitalize. You can also specify `autocapitalize="words"` or `autocapitalize="characters"`.
-
-Copy Code
+- The `autocapitalize` attribute is used to control autocapitalization for the first letter of words or sentences. 
+- Browsers that recognize this attribute default to the `sentences` value if not otherwise specified. 
+- Use `autocapitalize="none"` when expecting input that you don't want to capitalize. You can also specify `autocapitalize="words"` or `autocapitalize="characters"`.
 
 ```html
 <input type="text" name="full-name" autocapitalize="words">
 ```
 
-`autocapitalize` is not part of the HTML standard, but an attribute provided by some *mobile* browsers, such as iOS Safari and Google Chrome. It does not affect desktop and laptop systems. The W3C HTML validator presently complains about `autocapitalize` since it is non-standard. If you want to use this attribute, you'll have to suffer that complaint.
+- `autocapitalize` is not part of the HTML standard, but an attribute provided by some *mobile* browsers, such as iOS Safari and Google Chrome. It does not affect desktop and laptop systems. 
+- The W3C HTML validator presently complains about `autocapitalize` since it is non-standard. If you want to use this attribute, you'll have to suffer that complaint.
 
 ### The `autocorrect` Attribute
 
-Some browsers support an `autocorrect` attribute that turns automatic spelling correction on and off. You can disable this feature with `autocorrect="off"`; you should usually disable it with names, addresses, and other information where autocorrection would be a bother.
+- Some browsers support an `autocorrect` attribute that turns automatic spelling correction on and off. 
+- You can disable this feature with `autocorrect="off"`; you should usually disable it with names, addresses, and other information where autocorrection would be a bother.
 
 ```html
 <input type="text" name="full-name" autocorrect="off">
 ```
 
-`autocorrect` is non-standard HTML, but an attribute presently provided by iOS Mobile Safari. Since it is non-standard, the W3C HTML validator will complain about the `autocorrect` attribute. If you want to use this attribute, you'll need to get used to this complaint.
+- `autocorrect` is non-standard HTML, but an attribute presently provided by iOS Mobile Safari. Since it is non-standard, the W3C HTML validator will complain about the `autocorrect` attribute. If you want to use this attribute, you'll need to get used to this complaint.
 
-# Select and Textarea
+# Select and Textarea elements
 
-Now that you've got some input controls in your toolkit, the remaining inputs, `select` and `textarea`, will be quick to learn.
+- Now that you've got some input controls in your toolkit, the remaining inputs, `select` and `textarea`, will be quick to learn.
 
 ## The `textarea` Element
 
 `textarea` lets the user input multiple lines of text. Unlike `text`-type inputs, which ignore carriage returns, newlines, and other whitespace characters, `textarea` elements retain them and use them to format the text into lines and paragraphs. Unlike other controls, though, the value of the `textarea` doesn't use the `value` attribute to provide a value for the element. Instead, you need to contain the text between the opening and closing tags.
-
-Copy Code
 
 ```html
 <form action="#" method="post">
@@ -706,7 +710,7 @@ Copy Code
 </form>
 ```
 
-Comment
+![image-20230327112945221](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327112945221.png)
 
 Since `textarea` preserves whitespace, its common practice to code the open and close tags on the same line unless the initial text content contains newlines.
 
@@ -715,8 +719,6 @@ Since `textarea` preserves whitespace, its common practice to code the open and 
 `textarea` uses the `rows` and `cols` attributes to control the height and width of the text box; `rows` is the height in lines, while `cols` is the width in characters. As with the `size` attribute on some `input` tags, neither measurement is precise - the browser may choose to display more or fewer lines or columns than requested. The CSS `height` and `width` properties will also override these attributes. Furthermore, the `rows` value is not a maximum for the number of lines of input allowed; instead, it's the number of visible lines. The text box enables vertical scrolling when the content exceeds the `rows` count.
 
 Most browsers today let the user resize the `textarea` box by dragging and dropping a small triangle that appears in the lower-right corner of the text box.
-
-Copy Code
 
 ```html
 <form action="#" method="post">
@@ -729,7 +731,7 @@ Copy Code
 </form>
 ```
 
-Comment
+![image-20230327113000816](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113000816.png)
 
 You can disable this feature with the CSS `resize` property.
 
@@ -742,8 +744,6 @@ You can disable this feature with the CSS `resize` property.
 An `option` defines one of the choices a user can make in a `select` tag. A `select` element is useless without its `option` elements. Each `option` represents a possible value for the select, and they use the `value` attribute as the value sent to the server with the `select` element's name. If an `option` does not have a `value` attribute, the browser uses the text contained by the `option` element instead.
 
 `select` elements often have a placeholder `option` that says something like `Choose one` and has a `value` of an empty string, as well as a `disabled` and `selected` attribute. This option works something like the placeholder attribute on text boxes: the user can see some helpful text, but she cannot select that text.
-
-Copy Code
 
 ```html
 <form action="#" method="post">
@@ -761,11 +761,9 @@ Copy Code
 </form>
 ```
 
-Colors       Choose one      Red      Green      Blue     
+![image-20230327113026532](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113026532.png)    
 
 By default, `select` lets the user choose precisely one option or leave the option unselected if it contains a `disabled selected` option as shown above. If you add the `multiple` attribute, the user can select more than one option. On most browsers, a `select` with `multiple` appears as a (possibly scrolling) rectangle that displays several options. The user then Ctrl-clicks (Windows) or Cmd-clicks (Mac) to select the options she wants. You can also supply the size attribute to control the height of the selection box.
-
-Copy Code
 
 ```html
 <form action="#" method="post">
@@ -788,4 +786,389 @@ Copy Code
 </form>
 ```
 
-Choose Your Favorite Movies       Select One or More      2001: A Space Odyssey      Arrival      Close Encounters of the Third Kind      District 9      Guardians of the Galaxy      Interstellar      Serenity      Silent Running     
+![image-20230327113053866](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113053866.png)
+
+# Form Layouts
+
+Nearly all websites or applications use forms in some capacity to collect information from the user. Knowing some of the standard styling techniques will help you create attractive and usable apps. You will see numerous different forms, but nearly all combine label and input control pairs that are horizontally or vertically oriented.
+
+The following video walkthrough shows you how to work with both orientations, with emphasis on the easier-to-style top-to-bottom arrangement. It also demonstrates a practical use of the description list approach for form layout.
+
+There are some minor discrepancies between the video and the rest of this page, but they are not significant. The most obvious change is that we use `fieldset` to draw a gray box around each example below, but the CSS also differs a bit.
+
+<video id="video_9c8825bd2f97_html5_api" class="vjs-tech" poster="https://launchschool.com/assets/tealeaf_markup/video_poster.jpg" preload="none" src="https://d3jtzah944tvom.cloudfront.net/videos/output/form_layout_47a8d7_s1712/form_layout_47a8d7_s1712.mp4" style="box-sizing: inherit; display: inline-block; top: 0px; left: 0px; width: 818.944px; height: 460.647px;"></video>
+
+Play Video
+
+Download: [HD](https://d3jtzah944tvom.cloudfront.net/videos/output/form_layout_47a8d7_s1712/form_layout_47a8d7_s1712.mp4)|[Transcript](https://d3jtzah944tvom.cloudfront.net/videos/transcripts/form_layout_47a8d7_s1712/form_layout_47a8d7_s1712.sbv)
+
+Duration: **28:32**
+
+We'll start with a two-field form using the default side-by-side positioning for the label and input. Our purpose here isn't to show you how to position these items side by side, but to show the overall styling we'll use throughout this walkthrough. Starting from this CSS, we can focus first on the general styling, then worry about how to position the label and inputs.
+
+```html
+<form action="#" class="styled-form">
+  <fieldset>
+    <label for="text_field">Input Field</label>
+    <input type="text" name="text_field" id="text_field"
+           placeholder="this is the input area">
+
+    <br>
+
+    <label for="select_field">Select Field</label>
+    <select name="select_field" id="select_field">
+      <option>Choice 1</option>
+      <option>Choice 2</option>
+      <option>Choice 3</option>
+    </select>
+  </fieldset>
+</form>
+```
+
+```css
+/* Eliminate margins and padding on everything */
+.styled-form * {
+  margin: 0;
+  padding: 0;
+}
+
+/* Grey box and default font for fieldsets */
+.styled-form fieldset {
+  background-color: #ececec;
+  border: 2px solid #999;
+  box-sizing: border-box;
+  color: #4d4d4d;
+  font-family:
+    myriad-pro, "Helvetica Neue", Helvetica, Roboto,
+    Arial, sans-serif;
+  padding: 1rem;
+}
+
+/* Custom appearance for labels */
+.styled-form label {
+  font-weight: bold;
+  line-height: 1.5rem;
+}
+
+/* Custom appearance for input and select fields */
+.styled-form input[type="text"],
+.styled-form select {
+  border: 1px solid #06c;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font: normal 1rem Helvetica, Arial, sans-serif;
+  height: 40px;
+  padding: 5px 8px;
+}
+
+/* More customization for select lists */
+.styled-form select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image:
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+");
+  background-position: 100% center;
+  background-repeat: no-repeat;
+  padding-right: 1.5rem;
+}
+```
+
+![image-20230327113220356](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113220356.png)
+
+Take a few minutes to study these initial settings, comparing them against the example output. Most of this CSS should be familiar. However, there's some new material here:
+
+- The three `background-*` properties combine to provide the custom look for the `select` control.
+- The `url("data:rest-of-url")` value on `background-image` loads an "inline image" that shows the tiny drop-down arrow in the select box rather than downloading it separately. You don't need to know how to make these inline images, but you should know how to use them; you will typically be given the `data:` URL that you can plug directly into the `url()` value.
+- The `border-radius` property lets you apply rounded corners to any element with a border. You should be aware of this property; you'll need it again.
+- The `appearance` property lets you turn off the browser-specific default appearance of a widget (the `select` in this case). You should know how to remove browser-specific styling from input controls; you'll need it again.
+
+If you want, you can take a few minutes to look these up at MDN.
+
+At the time of this writing at the start of 2018, `appearance` is **experimental**. However, most browsers in current use support it with the `none` value provided that you use the vendor-specific names `-webkit-appearance` and `-moz-appearance`, e.g.:
+
+```css
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+```
+
+[Can I Use](https://caniuse.com/#feat=css-appearance) shows acceptance of the `none` value by around 95% of browsers now in use. Given the acceptance rate, this feature is unlikely to go away, but it remains experimental, so use it with caution.
+
+Now that we've got the basic styling out of the way let's move on to styles that specifically apply to top-and-bottom and side-by-side positioning of the labels and inputs.
+
+Of the two orientations, top-and-bottom is easier to work with and typically more flexible. Our first example shows how to use top-and-bottom label/input pairs:
+
+```html
+<form action="#" class="styled-form top-to-bottom">
+  <fieldset>
+    <label for="text_field">Input Field</label>
+    <input type="text" name="text_field" id="text_field"
+           placeholder="this is the input area">
+  <!--
+    Delete this code
+    <br>
+    <label for="select_field">Select Field</label>
+    <select name="select_field" id="select_field">
+      <option>Choice 1</option>
+      <option>Choice 2</option>
+      <option>Choice 3</option>
+    </select>
+  -->
+  </fieldset>
+</form>
+```
+
+```css
+/* Add to end of file */
+.top-to-bottom label,
+.top-to-bottom input[type="text"] {
+  display: block;
+  width: 100%;
+}
+```
+
+![image-20230327113250830](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113250830.png)
+
+That was easy; all we had to do was convert the label and input items to block elements. The `width` property makes them both take up all available room, though the label field doesn't show this visibly.
+
+In the next example, we'll place the labels and controls side by side:
+
+```html
+<form action="#" class="styled-form side-by-side">
+  <fieldset>
+    <label for="text_field">Input Field</label>
+    <input type="text" name="text_field" id="text_field"
+           placeholder="this is the input area">
+  </fieldset>
+</form>
+```
+
+```css
+/* Add to end of file */
+.side-by-side label,
+.side-by-side input[type="text"] {
+  display: inline-block;
+}
+
+.side-by-side label {
+  margin-right: 1rem;
+  vertical-align: middle;
+}
+
+.side-by-side input[type="text"] {
+  vertical-align: middle;
+  width: 35%;
+}
+```
+
+![image-20230327113311600](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113311600.png)
+
+Putting the label and input side by side is slightly harder, but not too hard. First, convert each element to `inline-block` to allow a side-by-side arrangement while providing widths and heights. If you use the default `inline` setting, the browser will ignore those dimensions. Next, set the `width` of the `input` element, and vertically align the label/input pair.
+
+What happens when we add another label/input pair to the form with this layout? Since types are `inline-block`, we may end up with multiple labels all in one row.
+
+```html
+<form action="#" class="styled-form side-by-side">
+  <fieldset>
+    <label for="text_field">Input Field</label>
+    <input type="text" name="text_field" id="text_field"
+           placeholder="this is the input area">
+
+    <label for="another_field">Another Field</label>
+    <input type="text" name="another_field" id="another_field"
+            placeholder="this is another input area">
+  </fieldset>
+</form>
+```
+
+![image-20230327113329697](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113329697.png)
+
+If your browser window is too narrow, the elements may wrap, leaving the label on the right side of one line and the input on the left side of the next. To see this behavior in action, expand your browser window so that everything fits on one line, then gradually reduce the width as far as it will go.
+
+The resulting arrangement is ugly, and often leads developers to wrap the label and input pairs in a `block` element, such as a new `div`. The new element ensures that each pair remains together.
+
+```html
+<form action="#" class="styled-form side-by-side">
+  <fieldset>
+    <div class="keep-together">
+      <label for="text_field">Input Field</label>
+      <input type="text" name="text_field" id="text_field"
+             placeholder="this is the input area">
+    </div>
+
+    <div class="keep-together">
+      <label for="another_field">Another Field</label>
+      <input type="text" name="another_field" id="another_field"
+             placeholder="this is another input area">
+    </div>
+  </fieldset>
+</form>
+```
+
+![image-20230327113348321](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113348321.png)
+
+We could style the `div`s to provide some spacing between them, but we already see another issue: the labels have different widths, so the inputs don't align vertically. We could rearrange the HTML to put the `label` elements in one column and the controls in another, but that leads to other problems with readability, maintainability, and alignment.
+
+What we can do instead is use a description list to mark up our forms, which may seem strange. However, think about the semantic meaning behind a description list: the terms are your labels, and they, in turn, identify controls for the user. Thus, you can wrap form controls in description list elements. They also provide additional tags that you can style without changing your HTML:
+
+Copy Code
+
+```html
+<form action="#" class="styled-form side-by-side">
+  <fieldset>
+    <dl>
+      <dt><label for="text_field">Input Field</label></dt>
+      <dd><input type="text" id="text_field" name="text_field"></dd>
+
+      <dt><label for="another_field">Another Field</label></dt>
+      <dd><input type="text" id="another_field" name="another_field"></dd>
+    </dl>
+  </fieldset>
+</form>
+```
+
+Copy Code
+
+```css
+.side-by-side input[type="text"] {
+  width: 100%; /* Replaces 35% */
+}
+
+/* Add to end of file */
+.side-by-side dl {
+  font-size: 0;
+}
+
+.side-by-side dt,
+.side-by-side dd {
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+.side-by-side dt {
+  padding-right: 1rem;
+  width: 25%;
+}
+
+.side-by-side dd {
+  width: 75%;
+}
+```
+
+![image-20230327113403548](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113403548.png)
+
+You get even more flexibility if you divide the label/input pairs into separate lists so that each belongs to a different container. You can also style several related pairs together on one horizontal line, such as a city, state, and Zip Code. All you have to do is add appropriate classes to the `dl` elements and then style them.
+
+Copy Code
+
+```html
+<form action="#" class="styled-form top-to-bottom">
+  <fieldset>
+    <dl>
+      <dt><label for="name">Name</label></dt>
+      <dd><input type="text" id="name"></dd>
+    </dl>
+
+    <dl class="address">
+      <dt><label for="address1">Address</label></dt>
+      <dd>
+        <input type="text" id="address1">
+        <input type="text" id="address2">
+      </dd>
+    </dl>
+
+    <dl class="city partial">
+      <dt><label for="city">City</label></dt>
+      <dd><input type="text" id="city"></dd>
+    </dl>
+
+    <dl class="state partial">
+      <dt><label for="state">State</label></dt>
+      <dd>
+        <select id="state">
+          <option>AK</option>
+          <option>AL</option>
+          <!-- You can download the complete list of states at -->
+          <!-- https://launchschool.com/gists/2424a869 -->
+        </select>
+      </dd>
+    </dl>
+
+    <dl class="zipcode partial">
+      <dt><label for="zipcode">Zip</label></dt>
+      <dd><input type="text" id="zipcode"></dd>
+    </dl>
+
+  </fieldset>
+</form>
+```
+
+Copy Code
+
+```css
+/* Add to end of file */
+.styled-form label {
+  padding-top: 0.3333rem;
+}
+
+.top-to-bottom dl.partial {
+  box-sizing: border-box;
+  display: inline-block;
+  padding-right: 1rem;
+  vertical-align: top;
+}
+
+.top-to-bottom dl.address {
+  width: 100%;
+}
+
+.top-to-bottom dl.city {
+  width: 50%;
+}
+
+.top-to-bottom dl.state {
+  width: 25%;
+}
+
+.top-to-bottom dl.zipcode {
+  padding-right: 0;
+  width: 25%;
+}
+
+.top-to-bottom dl dd {
+  width: auto;
+}
+
+.top-to-bottom fieldset,
+.top-to-bottom dl,
+.top-to-bottom dl dd,
+.top-to-bottom dl dt {
+  font-size: 0;
+}
+
+.top-to-bottom dl label,
+.top-to-bottom dl input[type="text"] {
+  font-size: 1rem;
+}
+
+.top-to-bottom select {
+  width: 100%;
+}
+```
+
+![image-20230327113426271](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113426271.png)
+
+Our code here uses one `dl` per label/input pair. This simple change lets us treat each `dl` separately. However, this variation makes it harder to produce a horizontal layout where each label is the same size.
+
+The `partial` class provides our `dl` with the basic `inline-block` styles, and the class name for each input type provides the width and any other overriding properties like the padding on the zip code `dl`.
+
+One last note on this code: typing that list of states would be tedious. Instead, you can search the Web for someone else's HTML and copy it (be sure it is complete and correct, though), or you can use [ours](https://launchschool.com/gists/2424a869). Feel free to download it and add it to your code.
+
+Keeping track of bits of code that you will probably reuse, such as the list of states, is a good habit. Good developers are lazy developers. Doing the work once and then reusing your work will pay off in speed and efficiency.
+
+Now that you understand how to create form layouts, it's time to put them into practice.

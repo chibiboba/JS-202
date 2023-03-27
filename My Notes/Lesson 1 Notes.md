@@ -1863,6 +1863,7 @@ In Lesson 1, “[Building Your First Web Page](https://learn.shayhowe.com/html-c
   - **The class selector** has a medium specificity weight and holds a point value of `0-1-0`. 
 
   - Lastly, the **ID selector** has a high specificity weight and holds a point value of `1-0-0`. 
+- *Pseudo-classes and classes are equal to each other in specificity*, and both of them rank higher than pseudo-elements and elements 
 
 As we can see, specificity points are calculated using three columns. The first column counts ID selectors, the second column counts class selectors, and the third column counts type selectors.
 

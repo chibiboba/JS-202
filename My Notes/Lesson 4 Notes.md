@@ -326,6 +326,41 @@ nav li {
 
 You will see this pattern of creating navigation lists often; learn it well.
 
+```css
+nav ul {
+ background-color: powderblue;
+ list-style-type: none;
+ padding-left: 0; /* removes padding on left side of list container */
+ font-size: 0;
+ width: 100%;
+}
+
+nav li {
+  display: inline-block;
+  font-size: 1.25rem;
+  text-align: center;
+  width: 25%;
+}
+
+nav a {
+ box-sizing: border-box;
+ color: blue;
+ display: inline-block;
+ line-height: 2.5;
+ padding: 0 10px;
+ text-decoration: none;
+ width: 100%;
+}
+
+nav a:hover,
+nav a:focus {
+ background-color: blue;
+ color: white;
+}
+```
+
+
+
 ## Styling Lists
 
 - https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_text/Styling_lists

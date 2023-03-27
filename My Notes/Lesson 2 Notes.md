@@ -1936,7 +1936,9 @@ Become comfortable with the CSS `display`, `box-sizing`, `width`, `height`, `pad
 
 - The **`text-align`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the horizontal alignment of the inline-level content inside a block element or table-cell box.
   - This property alters an element's entire **content** (not necessarily just text!).
-
+  - Can only be used with **inline elements**
+  - use margin-left auto and margin-right auto, for block elements!
+  
 - The **`max-width`** [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) property sets the maximum width of an element. It prevents the [used value](https://developer.mozilla.org/en-US/docs/Web/CSS/used_value) of the [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width) property from becoming larger than the value specified by `max-width`.
   - `max-width` overrides [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width), but [`min-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/min-width) overrides `max-width`.
   - It does not include padding, borders, or margins.
