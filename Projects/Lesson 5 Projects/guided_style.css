@@ -1,0 +1,47 @@
+body {
+  font: normal 16px Helvetica, Arial, sans-serif;
+}
+
+fieldset {
+  width: 600px;
+  margin: 0 auto;
+  /*centers fieldset in container*/
+  padding: 0;
+  border: 0;
+}
+
+dt {
+  margin-bottom: 5px;
+}
+
+dd {
+  margin: 0 0 25px 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+  width: 100%;
+  height: 30px;
+  padding: 3 10px;
+  font: normal 14px Helvetica, Arial, sans-serif;
+  border: 1px solid #cecece;
+  box-sizing: border-box;
+  /*fit inputs into fieldset*/
+}
+
+textarea {
+  width: auto;
+  /* set width back to the number of rows dictating height */
+  height: auto;
+  /* set height back to auto so number of columns
+  dictate starting height*/
+  resize: vertical;
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+  font-size: 14px;
+}

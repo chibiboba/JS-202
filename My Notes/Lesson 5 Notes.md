@@ -3,6 +3,12 @@
 - [MDN HTML Forms Guide](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms).
 - [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) for the `<input>` tag.
 
+# new terms
+
+- `padding-start` means left padding
+- `margin-before` top margin
+- `margin-after` bottom margin
+
 # Introduction
 
 Forms are the principal way that users interact with Web applications. HTML5 provides more than a dozen different form-related tags and more than two dozen different input types. That's a lot of material to cover, but you don't need to memorize it all -- you can use forms effectively with about a half dozen tags and around a dozen data types. We'll briefly discuss (and use) the most common in this lesson; you can learn more by reading the [MDN HTML Forms Guide](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms).
@@ -280,6 +286,16 @@ fieldset {
 ```
 
 ![image-20230326191750036](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230326191750036.png)
+
+- Zip code
+
+  - Exactly five digit requirement using a regular expression with `pattern` attribute: 
+
+    ```html
+    <input type="text" name="zip" id="zip" pattern="[0-9]{5}">
+    ```
+
+  - The `pattern` attribute doesn't work with `type="number"`, so we use `type="text"` instead. Most modern browsers support `pattern`, but older browsers have spotty support.
 
 ### Type `password`
 
@@ -780,6 +796,7 @@ Unlike other input controls
 
 - Most browsers today let the user resize the `textarea` box by dragging and dropping a small triangle that appears in the lower-right corner of the text box.
   - You can disable this feature with the CSS `resize` property.
+  - `resize: vertical` for only vertical resizing.
 
 ```html
 <form action="#" method="post">
@@ -804,8 +821,8 @@ Unlike other input controls
 
 - An `option` defines one of the choices a user can make in a `select` tag. A `select` element is useless without its `option` elements. 
   - The text contained inside the `<option>` element is what the user sees in the dropdown list.
-  - Each `option` represents a possible value for the select, and they use the `value` attribute as the value sent to the server with the `select` element's name. 
-  - If an `option` does not have a `value` attribute, the browser uses the text contained by the `option` element instead.
+  - Value: Each `option` represents a possible value for the select, and they use the `value` attribute as the value sent to the server with the `select` element's name. 
+  - No value: If an `option` does not have a `value` attribute, the browser uses the text contained by the `option` element instead.
 
 - `<select>` elements often have a placeholder `option` that says something like "Choose One" and has a `value` of an empty string, as well as a `disabled` and `selected` attribute. 
   - In HTML, the `disabled` and `selected` attributes are used with the `<select>` element to specify whether a particular option within a dropdown list should be disabled or preselected.
@@ -1770,3 +1787,243 @@ The videos that accompany this problem set show the `action` attribute defined w
 13. Provide the user with a way to reset the filter form.
 
     Solution
+
+# Contact Form
+
+#### CSS
+
+```css
+body {
+  font: normal 16px Helvetica, Arial, sans-serif;
+}
+
+fieldset {
+  width: 600px;
+  margin: 0 auto; /*centers fieldset in container*/
+  padding: 0;
+  border: 0;
+}
+
+dt {
+  margin-bottom: 5px;
+}
+dd {
+  margin: 0 0 25px 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea{
+  width: 100%;
+  height: 30px;
+  padding: 3 10px;
+  font: normal 14px Helvetica, Arial, sans-serif;
+  border: 1px solid #cecece;
+  box-sizing: border-box; /*fit inputs into fieldset*/
+}
+
+textarea {
+  width: auto; /* set width back to the number of rows dictating height */
+  height: auto; /* set height back to auto so number of columns
+  dictate starting height*/
+  resize: vertical;
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+  font-size: 14px;
+}
+```
+
+#### HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <form action="#" method="post">
+    <fieldset>
+      <dl>
+        <dt><label for="firstname">First Name</label></dt>
+        <dd>
+          <input type="text" id="firstname" required>
+        </dd>
+        <dt><label for="lastname ">Last Name</label></dt>
+        <dd>
+          <input type="text" id="lastname" required>
+        </dd>
+        <dt><label for="email">Email Address</label></dt>
+        <dd>
+          <input type="email" id="email" name="email" 
+            placeholder="username@domain" required>
+        </dd>
+        <dt><label for="city">City</label></dt>
+        <dd>
+          <input type="text" id="city" required>
+        </dd>
+          <dt><label for="state">State</label></dt>
+          <dd>
+            <select name="state" required>
+              <option>AK</option>
+              <option>AL</option>
+              <option>AR</option>
+              <option>AZ</option>
+              <option>CA</option>
+              <option>CO</option>
+              <option>CT</option>
+              <option>DC</option>
+              <option>DE</option>
+              <option>FL</option>
+              <option>GA</option>
+              <option>HI</option>
+              <option>IA</option>
+              <option>ID</option>
+              <option>IL</option>
+              <option>IN</option>
+              <option>KS</option>
+              <option>KY</option>
+              <option>LA</option>
+              <option>MA</option>
+              <option>MD</option>
+              <option>ME</option>
+              <option>MI</option>
+              <option>MN</option>
+              <option>MO</option>
+              <option>MS</option>
+              <option>MT</option>
+              <option>NC</option>
+              <option>ND</option>
+              <option>NE</option>
+              <option>NH</option>
+              <option>NJ</option>
+              <option>NM</option>
+              <option>NV</option>
+              <option>NY</option>
+              <option>OH</option>
+              <option>OK</option>
+              <option>OR</option>
+              <option>PA</option>
+              <option>RI</option>
+              <option>SC</option>
+              <option>SD</option>
+              <option>TN</option>
+              <option>TX</option>
+              <option>UT</option>
+              <option>VA</option>
+              <option>VT</option>
+              <option>WA</option>
+              <option>WI</option>
+              <option>WV</option>
+              <option>WY</option>
+            </select>
+          </dd>
+        <dt><label for="zip" required>Zip</label></dt>
+        <dd>
+          <input type="text" name="zip" id="zip" pattern="[0-9]{5}">
+        </dd>
+      </dl>
+
+      <p>Which of these colors do you like the best?</p>
+      <ul>
+        <li>
+          <label>
+            <input type="radio" name="color" value="red" checked>
+            Red
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="color" value="orange">
+            Orange
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="color" value="yellow">
+            Yellow
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="color" value="green">
+            Green
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="color" value="blue">
+            Blue
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="color" value="indigo">
+            Indigo
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="color" value="violet">
+            Violet
+          </label>
+        </li>
+      </ul>
+
+      <p>Which web technologies do you want to learn?</p>
+      <ul>
+        <li>
+          <label>
+            <input type="checkbox" name="technology" value="HTML">
+            HTML
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="technology" value="CSS">
+            CSS
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="technology" value="JavaScript">
+            JavaScript
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="technology" value="Ruby">
+            Ruby
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="technology" value="Rails">
+            Rails
+          </label>
+        </li>
+      </ul>
+
+      <dl>
+        <dt><label for="comments">Comments</label></dt>
+        <dd><textarea name="comments" rows="6" cols="80"></textarea></dd>
+      </dl>
+      <div>
+        <input type="submit" value="Send">
+        <input type="hidden" value="2023-03-23">
+        <input type="reset" value="Reset">
+      </div>
+    </fieldset>
+  </form>
+</body>
+</html>
+```
+
+# Guided Project: Tweaking the Contact Form
+
