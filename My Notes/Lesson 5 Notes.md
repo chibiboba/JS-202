@@ -120,6 +120,12 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
 
 For now, we won't go into much detail about the `input` tag. We'll study it in the next assignment.
 
+#### `id` attribute
+
+- The `for` attribute of a `label` element must be equal to the `id` attribute of the related label/input element pair  to be associated together.
+
+![download (15)](C:\Users\jenny\Downloads\download (15).png)
+
 ## The `label` element
 
 - The `label` tag provides a way to associate some identifying text with an input field. 
@@ -133,7 +139,7 @@ For now, we won't go into much detail about the `input` tag. We'll study it in t
 <input type="text" id="phone" name="phone_number">
 ```
 
-- The `for` attribute of a `label` element must be equal to the `id` attribute of the related element to be associated together.
+- The `for` attribute of a `label` element must be equal to the `id` attribute of the related label/input element pair  to be associated together.
 
 ![download (15)](C:\Users\jenny\Downloads\download (15).png)
 

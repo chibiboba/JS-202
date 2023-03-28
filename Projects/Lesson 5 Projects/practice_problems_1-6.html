@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Practice Problem 1-6</title>
+</head>
+<body>
+  <form action="#" method="post">
+    <fieldset>
+      <dl>
+        <!--user's first name-->
+        <dt><label for="firstname">First Name</label></dt>
+        <dd>
+          <input type="text" id="firstname" name="firstname" required>
+        </dd>
+
+        <!--user's last name-->
+        <dt><label for="lastname">Last Name</label></dt>
+        <dd><input type="text" id="lastname" name="lastname" required></dd>
+
+        <!--email address-->
+        <dt><label for="email">Email Address</label></dt>
+        <dd><input type="text" id="email" name="email" autocomplete="off" 
+          autocorrect="off" autocapitalize="none" required>
+        </dd>
+        
+        <!-- user's phone number-->
+        <dt><label for="phone"> Phone Number</label></dt>
+        <dd><input type="tel" id="phone" name="phone" 
+          placeholder="###=###-####" required>
+        </dd>
+
+        <!--Select box for phone type-->
+        <dt><label for="phonetype">Phone Type</label></dt>
+        <dd>
+          <select name="phonetype" id="phonetype">
+            <option value="phonetype" disabled>Choose one</option>
+            <option value="home" selected>Home</option>
+            <option value="business">Business</option>
+            <option value="mobile">Mobile</option>
+          </select>
+        </dd>
+
+        <!-- message box-->
+        <dt><label for="messagebox">Message</label></dt>
+        <dd><textarea name="messagebox" rows="6" cols="80"
+          placeholder="Type your message here"></textarea>
+        </dd>
+      </dl>
+      <input type="submit" value="send">
+    </fieldset>
+  </form>
+</body>
+</html>
