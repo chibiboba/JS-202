@@ -145,16 +145,31 @@ For now, we won't go into much detail about the `input` tag. We'll study it in t
 
 - One advantage of this association is that the user can click on the label to make the cursor jump to the desired field.
 
+#### Container syntax
+
 - You can also use `label` tags as containers:
+
   - The "container" syntax eliminates the need for the `for` and `id` attributes, so it's easier to use. 
+
   - However, styling can be more difficult with the container syntax, and there are times when you must use a `for` attribute, so learn both variants.
 
-```html
-<label>
-  Phone
-  <input type="text" name="phone">
-</label>
-```
+    ```html
+    <label>
+      Phone
+      <input type="text" name="phone">
+    </label>
+    ```
+
+  - This syntax allows for the label to be on the right side of the input. For example
+
+  ```html
+  <label>
+    <input type="checkbox" name="favorite" id="toggle" value="toggle">
+     Add to my favorites
+  </label>
+  ```
+
+  ![image-20230328130735726](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230328130735726.png)
 
 ## A Complete form Example
 
@@ -323,7 +338,7 @@ fieldset {
 ### Type `checkbox`
 
 - The `checkbox` type lets the user choose one or more items from a series of yes/no-type options. 
-- Use the `value` attribute to give the value the form sends to the server when the user selects that checkbox. 
+- Use the `value` attribute to give the value the form sends to the server when the user selects that checkbox. (optional)
   - `value="search"`
 - Use the Boolean `checked` attribute to pre-select checkboxes. 
   - The Boolean `checked` attribute marks a checkbox as selected when supplied in the `input` tag. 
@@ -452,6 +467,35 @@ fieldset {
 ```
 
 ![image-20230326192004456](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230326192004456.png)
+
+### Type `search`
+
+- Notice the method is `get` because searches customarily don't update the server, so a GET request is more appropriate than a POST request.
+
+```html
+<form action="#" method="get">
+  <fieldset>
+    <label>
+      Search for
+      <input type="search" name="query" id="query">
+    </label>
+  </fieldset>
+</form>
+```
+
+### Type `number`
+
+- `input` elements of type `number` are used to let the user enter a number. They include build-in validation to reject non-numerical entries.
+- offer suggested values in a list
+  - You can provide a list of default options from which the user can select by specifying the [`list`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#list) attribute, which contains as its value the [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#id) of a `datalist` which in turn contains one `option` element per suggested value. Each `option`'s `value` is the corresponding suggested value for the number entry box.
+- You can use the [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#min) and [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#max) attributes to constrain valid values to lower and upper bounds.
+
+![image-20230328132447337](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230328132447337.png)
+
+### Type `range` (slider)
+
+- To create a slider in HTML, you can use the `<input>` element with the `type="range"` attribute. 
+- The video uses an `<input type="range">` tag to implement the rating as a slider. However, browser support for sliders is feeble as of early 2018. Only Chrome supports ticks, and no widely-used browsers support labels. If you want these features, you must implement them some other way, probably with JavaScript or some messy HTML and CSS.
 
 ### Other Input Types
 
@@ -759,13 +803,16 @@ Unlike other input controls
 ### The `option` Element
 
 - An `option` defines one of the choices a user can make in a `select` tag. A `select` element is useless without its `option` elements. 
-- The text contained inside the `<option>` element is what the user sees in the dropdown list.
-- Each `option` represents a possible value for the select, and they use the `value` attribute as the value sent to the server with the `select` element's name. 
+  - The text contained inside the `<option>` element is what the user sees in the dropdown list.
+  - Each `option` represents a possible value for the select, and they use the `value` attribute as the value sent to the server with the `select` element's name. 
   - If an `option` does not have a `value` attribute, the browser uses the text contained by the `option` element instead.
 
 - `<select>` elements often have a placeholder `option` that says something like "Choose One" and has a `value` of an empty string, as well as a `disabled` and `selected` attribute. 
   - In HTML, the `disabled` and `selected` attributes are used with the `<select>` element to specify whether a particular option within a dropdown list should be disabled or preselected.
+- By default, `select` lets the user choose precisely one option or leave the option unselected if it contains a `disabled selected` option as shown below.
 - This option works something like the placeholder attribute on text boxes: the user can see some helpful text, but she cannot select that text.
+
+![image-20230327113026532](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113026532.png)
 
 ```html
 <form action="#" method="post">
@@ -780,20 +827,22 @@ Unlike other input controls
       </select>
     </label>
   </fieldset>
-</form>
+</form>    
 ```
 
-![image-20230327113026532](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113026532.png)    
+- Show multiple options at once
 
-- By default, `select` lets the user choose precisely one option or leave the option unselected if it contains a `disabled selected` option as shown above. 
-- If you add the `multiple` attribute, the user can select more than one option. On most browsers, a `select` with `multiple` appears as a (possibly scrolling) rectangle that displays several options. The user then Ctrl-clicks (Windows) or Cmd-clicks (Mac) to select the options she wants. You can also supply the size attribute to control the height of the selection box.
+  - If you add the `multiple` attribute, the user can select more than one option. On most browsers, a `select` with `multiple` appears as a (possibly scrolling) rectangle that displays several options. 
+  - The user then Ctrl-clicks (Windows) or Cmd-clicks (Mac) to select the options she wants. You can also supply the size attribute to control the height of the selection box.
+
+  ![image-20230327113053866](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113053866.png)
 
 ```html
 <form action="#" method="post">
   <fieldset>
     <label>
       Choose Your Favorite Movies
-      <select name="favorites" multiple size="4">
+      <select name="favorites" size="4" multiple >
         <option value="" disabled selected>Select One or More</option>
         <option>2001: A Space Odyssey</option>
         <option>Arrival</option>
@@ -809,7 +858,15 @@ Unlike other input controls
 </form>
 ```
 
-![image-20230327113053866](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113053866.png)
+# Other elements
+
+## `button` tag
+
+- `name` attribute: The name of the button, submitted as a pair with the button's `value` as part of the form data, when that button is used to submit the form.
+
+```html
+<button name="search">Search</button>
+```
 
 # Form Layouts
 
@@ -1036,7 +1093,7 @@ We'll start with a two-field form using the default side-by-side positioning for
 
 Take a few minutes to study these initial settings, comparing them against the example output. Most of this CSS should be familiar. However, there's some new material here:
 
-#### Basic css for forms
+## Basic css for forms
 
 - The three `background-*` properties combine to provide the custom look for the `select` control.
 - The `url("data:rest-of-url")` value on `background-image` loads an "**inline image**" that shows the tiny drop-down arrow in the select box rather than downloading it separately. 
@@ -1066,11 +1123,11 @@ select {
 
 Now that we've got the basic styling out of the way let's move on to styles that specifically apply to top-and-bottom and side-by-side positioning of the labels and inputs.
 
-#### top-and-bottom label/input
+## top-and-bottom label/input
 
 - Of the two orientations, top-and-bottom is easier to work with and typically more flexible. 
 - Our first example shows how to use top-and-bottom label/input pairs:
-  - All we have to do is convert the label and input items to block elements. The `width` property makes them both take up all available room, though the label field doesn't show this visibly.
+- All we have to do is convert the label and input items to block elements. The `width` property makes them both take up all available room, though the label field doesn't show this visibly.
 
 ```html
 <form action="#" class="styled-form top-to-bottom">
@@ -1105,7 +1162,7 @@ CSS for top-to-bottom
 
 ![image-20230327113250830](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113250830.png)
 
-#### side-by-side label/input
+## side-by-side label/input
 
 - In the next example, we'll place the labels and controls side by side:
 
@@ -1162,11 +1219,13 @@ What happens when we add another label/input pair to the form with this layout? 
 
 ![image-20230327113329697](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113329697.png)
 
-##### Issue: element wrapping
+#### Issue: element wrapping
 
 - If your browser window is too narrow, the elements may wrap, leaving the label on the right side of one line and the input on the left side of the next. To see this behavior in action, expand your browser window so that everything fits on one line, then gradually reduce the width as far as it will go. The resulting arrangement is ugly. 
 
-- Solution: Developers wrap the label and input pairs in a `block` element, such as a new `div`. The new element ensures that each pair remains together. However it introductes a new problem. 
+#### Use `div` for blocks and vertical alignment
+
+- Solution: Developers wrap the label and input pairs in a `block` element, such as a new `div`. The new element ensures that each pair remains together. However it introduces a new problem. 
 
 ```html
 <form action="#" class="styled-form side-by-side">
@@ -1188,9 +1247,11 @@ What happens when we add another label/input pair to the form with this layout? 
 
 ![image-20230327113348321](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113348321.png)
 
-##### Issue: inputs don't align veritically
+#### Issue: inputs don't align veritically
 
 - We could style the `div`s to provide some spacing between them, but we already see another issue: the labels have different widths, so the inputs don't align vertically. We could rearrange the HTML to put the `label` elements in one column and the controls in another, but that leads to other problems with readability, maintainability, and alignment.
+
+#### Description list for vertical alignment
 
 - Solution: What we can do instead is use a description list to mark up our forms, which may seem strange. 
   - However, think about the semantic meaning behind a description list: the terms are your labels, and they, in turn, identify controls for the user. Thus, you can wrap form controls in description list elements. 
@@ -1240,7 +1301,7 @@ What happens when we add another label/input pair to the form with this layout? 
 
 ![image-20230327113403548](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113403548.png)
 
-#### Divide lable/input pairs into separate lists
+## Divide label/input pairs into separate lists
 
 You get even more flexibility if you divide the label/input pairs into separate lists so that each belongs to a different container. You can also style several related pairs together on one horizontal line, such as a city, state, and Zip Code. All you have to do is add appropriate classes to the `dl` elements and then style them.
 
@@ -1406,6 +1467,214 @@ You get even more flexibility if you divide the label/input pairs into separate 
 - Keeping track of bits of code that you will probably reuse, such as the list of states, is a good habit. Good developers are lazy developers. Doing the work once and then reusing your work will pay off in speed and efficiency.
 
 - Now that you understand how to create form layouts, it's time to put them into practice.
+
+# practice problem examples
+
+## 1-6
+
+![image-20230328134051414](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230328134051414.png)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Practice Problem 1-6</title>
+</head>
+<body>
+  <form action="#" method="post">
+    <fieldset>
+      <dl>
+        <!--user's first name-->
+        <dt><label for="firstname">First Name</label></dt>
+        <dd>
+          <input type="text" id="firstname" name="firstname" required>
+        </dd>
+
+        <!--user's last name-->
+        <dt><label for="lastname">Last Name</label></dt>
+        <dd><input type="text" id="lastname" name="lastname" required></dd>
+
+        <!--email address-->
+        <dt><label for="email">Email Address</label></dt>
+        <dd><input type="text" id="email" name="email" autocomplete="off" 
+          autocorrect="off" autocapitalize="none" required>
+        </dd>
+        
+        <!-- user's phone number-->
+        <dt><label for="phone"> Phone Number</label></dt>
+        <dd><input type="tel" id="phone" name="phone" 
+          placeholder="###=###-####" required>
+        </dd>
+
+        <!--Select box for phone type-->
+        <dt><label for="phonetype">Phone Type</label></dt>
+        <dd>
+          <select name="phonetype" id="phonetype">
+            <option value="phonetype" disabled>Choose one</option>
+            <option value="home" selected>Home</option>
+            <option value="business">Business</option>
+            <option value="mobile">Mobile</option>
+          </select>
+        </dd>
+
+        <!-- message box-->
+        <dt><label for="messagebox">Message</label></dt>
+        <dd><textarea name="messagebox" rows="6" cols="80"
+          placeholder="Type your message here"></textarea>
+        </dd>
+      </dl>
+      <input type="submit" value="send">
+    </fieldset>
+  </form>
+</body>
+</html>
+```
+
+## 7
+
+![image-20230328134227350](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230328134227350.png)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Practice Problems 7</title>
+  <style>
+    fieldset {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <form action="#" method="get">
+    <fieldset>
+      <label for="search">Search for</label>
+      <input type="search" name="query" id="query">
+
+      <input type="radio" name="filter" value="TV" required>
+      <label for="TV">TV</label>
+
+      <input type="radio" name="filter" value="movies" required>
+      <label for="movies">Movies</label>
+
+      <input type="radio" name="filter" value="music" required>
+      <label for="Music">Music</label>
+
+      <input type="submit" value="Rate movie">
+    </fieldset>
+  </form>
+</body>
+</html>
+```
+
+
+
+## 8
+
+<img src="C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230328134130055.png" alt="image-20230328134130055" style="zoom:50%;" />
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Practice Problem 8</title>
+</head>
+<body>
+  <form action="#" method="post">
+    <fieldset>
+      <dl>
+        <dt><label for="movie">Movie</label></dt>
+        <dd>
+          <select name="movie" multiple size="4">
+            <option value="Looper">Looper</option>
+            <option value="Frozen">Frozen</option>
+            <option value="Tommy Boy">Tommy Boy</option>
+            <option value="Alien" selected>Alien</option>
+          </select>
+        </dd>
+        <dt><label for="rating">Rating</label></dt>
+        <dd>
+          <input type="number" name="rating" id="rating" min="1" max="5">
+        </dd>
+      </dl>
+      <div>
+        <label>
+          <input type="checkbox" name="favorite" checked>
+          Add to my favorites
+        </label>
+      </div>
+      <button name="submit">Rate movie</button>
+    </fieldset>
+  </form>
+</body>
+</html>
+```
+
+# 12
+
+![image-20230328142407258](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230328142407258.png)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>11</title>
+  <style>
+    ul {
+      list-style: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!--form that filters news articles by a single category and any number of selected tag words-->
+  <form action="#" method="get"> <!--get method allows user to save and share filtered URL-->
+    <h1>Categories</h1>
+    <fieldset>
+      <!--radio buttons for news category-->
+      <!--Categories: Core, Plugins and Libraries, Conventions, Reviews, Opinion, People-->
+      <dl>
+        <dt><label for="category">News Category</label></dt>
+        <dd>
+          <select name="category" id="category">
+            <option value="core">Core</option>
+            <option value="plugs-libraries">Plugs and Libraries</option>
+            <option value="conventions">Conventions</option>
+            <option value="reviews">Reviews</option>
+            <option value="opinion">Opinion</option>
+            <option value="people">People</option>
+          </select>
+        </dd>
+      </dl>
+
+      <h1>Tags</h1>
+      <dl>
+        <dt><label for="tags">Tags</label></dt>
+        <dd>
+          <select name="tags" id="tags" size="7" multiple>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+            <option value="Javascript">Javascript</option>
+            <option value="Ruby">Ruby</option>
+            <option value="Rails">Rails</option>
+            <option value="Python">Python</option>
+            <option value="Django">Django</option>
+          </select>
+        </dd>
+      </dl>
+  
+      <input type="submit" value="Filter">
+      <input type="reset">
+    </fieldset>
+  </form>
+</body>
+</html>
+```
 
 # Practice Problems: Forms
 

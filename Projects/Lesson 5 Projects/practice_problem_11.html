@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>11</title>
+  <style>
+    ul {
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+  <!--form that filters news articles by a single category and any number of selected tag words-->
+  <form action="#" method="get"> <!--get method allows user to save and share filtered URL-->
+    <h1>Categories</h1>
+    <fieldset>
+      <!--radio buttons for news category-->
+      <!--Categories: Core, Plugins and Libraries, Conventions, Reviews, Opinion, People-->
+      <ul>
+        <li>
+          <label>
+            <input type="radio" name="news-category" value="core">
+            Core
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="news-category" value="plugs-libraries">
+            Plugins and Libraries
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="news-category" value="conventions">
+            Conventions
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="news-category" value="reviews">
+            Reviews
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="news-category" value="opinion">
+            Opinion
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="news-category" value="people">
+            people
+          </label>
+        </li>
+      </ul>
+
+      <h1>Tags</h1>
+      <!--checkboxes for the selected tag words-->
+      <!--Tags: HTML, CSS, Javascript, Ruby, Rails, Python, Django-->
+      <!--For this problem, use the container-style label tag (without the for attribute). 
+        Use an unordered list instead of a description list for both the categories and tags.-->
+      <ul>
+        <li>
+          <label>
+            <input type="checkbox" name="tag" value="HTML">
+            HTML
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="tag" value="CSS">
+            CSS
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="tag" value="Javascript">
+            Javascript
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="tag" value="Ruby">
+            Ruby
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="tag" value="Rails">
+            Rails
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="tag" value="Python">
+            Python
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="tag" value="Django">
+            Django
+          </label>
+        </li>
+      </ul>
+
+      <input type="submit" value="Filter">
+    </fieldset>
+  </form>
+</body>
+</html>

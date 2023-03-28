@@ -3,8 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Practice Problems 7</title>
+  <style>
+    fieldset {
+      display: inline-block;
+    }
+  </style>
 </head>
 <body>
-  <form 
+  <form action="#" method="get">
+    <fieldset>
+      <label for="search">Search for</label>
+      <input type="search" name="query" id="query">
+
+      <input type="radio" name="filter" value="TV" required>
+      <label for="TV">TV</label>
+
+      <input type="radio" name="filter" value="movies" required>
+      <label for="movies">Movies</label>
+
+      <input type="radio" name="filter" value="music" required>
+      <label for="Music">Music</label>
+
+      <input type="submit" value="Rate movie">
+    </fieldset>
+  </form>
 </body>
 </html>
