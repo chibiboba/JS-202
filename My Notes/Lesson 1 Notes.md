@@ -279,6 +279,8 @@ Of lesser importance, but still important enough to study, pay attention to the 
 
 # Tutorial 1
 
+[Building Your First Web Page](https://learn.shayhowe.com/html-css/building-your-first-web-page/) introduces the vocabulary of HTML and CSS and demonstrates a few of the most common tags and rules.
+
 # Difference between HTML and CSS
 
 - *HTML*, HyperText Markup Language, gives content structure and meaning by defining that content as, for example, headings, paragraphs, or images. *CSS*, or Cascading Style Sheets, is a presentation language created to style the appearance of content—using, for example, fonts or colors.

@@ -65,6 +65,7 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
 ### The `action` and `formaction` Attributes
 
 - `action` provides the URL to which the browser sends requests.
+- You can use `action="#"` instead of `action=""`if you want your code to pass W3C validation.
 - Individual action items (`button` and `input type="submit"` elements) in a form can override the form's `action` value by using the `formaction` attribute.
   - The `formaction` lets us use the same form to perform different actions. 
   - If you click either button containing `formaction` instead of the `Log In` button, the browser sends the form information to the address given by `formaction`. Otherwise, it sends it to the address given by `action` in the `form` tag.
@@ -243,6 +244,7 @@ fieldset {
 ### Type `text`
 
 - The `text` type creates a simple text entry field. The user can enter any text desired in this control, though the developer should almost always validate the data. 
+- `text`-type inputs ignore carriage returns, newlines, and other whitespace characters.
 - Use the `maxlength` attribute to specify the input's maximum length.
 
 ```html
@@ -541,7 +543,7 @@ Most input controls can use the `value` attribute, but the meaning varies with t
 - These attributes apply to most text-based input types.
 
 - The `size` attribute lets you control the size of an `input` element in characters. 
-  - `size` is an *approximation* for the width of the input box. The HTML5 standard requires that "the user agent should ensure that at least that many characters are visible"; in practice, you may see both more and fewer characters displayed.
+- `size` is an *approximation* for the width of the input box. The HTML5 standard requires that "the user agent should ensure that at least that many characters are visible"; in practice, you may see both more and fewer characters displayed.
 - You can also specify the width with the CSS `width` property, but it does not support character measurements. 
   - The CSS `width` overrides the `size` attribute in CSS-enabled browsers.
   - `maxlength` is similar, but it limits the maximum length of input values; this value can be more or less than the `size` value.
@@ -697,7 +699,14 @@ input:required { /*selecting the required pseudoclass */
 
 ## The `textarea` Element
 
-`textarea` lets the user input multiple lines of text. Unlike `text`-type inputs, which ignore carriage returns, newlines, and other whitespace characters, `textarea` elements retain them and use them to format the text into lines and paragraphs. Unlike other controls, though, the value of the `textarea` doesn't use the `value` attribute to provide a value for the element. Instead, you need to contain the text between the opening and closing tags.
+- `textarea` lets the user input multiple lines of text. 
+- The **`<textarea>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a multi-line plain-text editing **control**, useful when you want to allow users to enter a sizeable amount of free-form text, for example a comment on a review or feedback form.
+
+Unlike other input controls
+
+- `textarea` elements retain carriage returns, newlines, and other whitespace characters, and use them to format the text into lines and paragraphs. 
+- Since `textarea` preserves whitespace, its common practice to code the open and close tags on the same line unless the initial text content contains newlines.
+- The value of the `textarea` doesn't use the `value` attribute to provide a value for the element. Instead, you need to contain the text between the opening and closing tags.
 
 ```html
 <form action="#" method="post">
@@ -712,13 +721,15 @@ input:required { /*selecting the required pseudoclass */
 
 ![image-20230327112945221](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327112945221.png)
 
-Since `textarea` preserves whitespace, its common practice to code the open and close tags on the same line unless the initial text content contains newlines.
+### Rows and Cols attributes
 
-### Rows and Cols
+- `textarea` uses the `rows` and `cols` attributes to control the height and width of the text box; `rows` is the height in lines, while `cols` is the width in characters. 
+- As with the `size` attribute on some `input` tags, neither measurement is precise - the browser may choose to display more or fewer lines or columns than requested. 
+  - The CSS `height` and `width` properties will also override these attributes. 
+  - Furthermore, the `rows` value is not a maximum for the number of lines of input allowed; instead, it's the number of visible lines. The text box enables vertical scrolling when the content exceeds the `rows` count.
 
-`textarea` uses the `rows` and `cols` attributes to control the height and width of the text box; `rows` is the height in lines, while `cols` is the width in characters. As with the `size` attribute on some `input` tags, neither measurement is precise - the browser may choose to display more or fewer lines or columns than requested. The CSS `height` and `width` properties will also override these attributes. Furthermore, the `rows` value is not a maximum for the number of lines of input allowed; instead, it's the number of visible lines. The text box enables vertical scrolling when the content exceeds the `rows` count.
-
-Most browsers today let the user resize the `textarea` box by dragging and dropping a small triangle that appears in the lower-right corner of the text box.
+- Most browsers today let the user resize the `textarea` box by dragging and dropping a small triangle that appears in the lower-right corner of the text box.
+  - You can disable this feature with the CSS `resize` property.
 
 ```html
 <form action="#" method="post">
@@ -733,17 +744,22 @@ Most browsers today let the user resize the `textarea` box by dragging and dropp
 
 ![image-20230327113000816](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113000816.png)
 
-You can disable this feature with the CSS `resize` property.
-
 ## The `select` Element
 
-`select` creates a drop-down list of options from which the user can select zero or more options. It has two possible child elements, the `option` and `optgroup` elements (we won't discuss `optgroup` in this course). `select` uses the `name` attribute like other form elements, but it uses the `option` elements within it to describe the values shown to the user and sent to the server (which may be different).
+- The **`<select>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a **control** that provides a menu of options.
+- `select` creates a drop-down list of options from which the user can select zero or more options. It has two possible child elements, the `option` and `optgroup` elements (we won't discuss `optgroup` in this course). 
+- `select` uses the `name` attribute like other form elements, but it uses the `option` elements within it to describe the values shown to the user and sent to the server (which may be different).
 
 ### The `option` Element
 
-An `option` defines one of the choices a user can make in a `select` tag. A `select` element is useless without its `option` elements. Each `option` represents a possible value for the select, and they use the `value` attribute as the value sent to the server with the `select` element's name. If an `option` does not have a `value` attribute, the browser uses the text contained by the `option` element instead.
+- An `option` defines one of the choices a user can make in a `select` tag. A `select` element is useless without its `option` elements. 
+- The text contained inside the `<option>` element is what the user sees in the dropdown list.
+- Each `option` represents a possible value for the select, and they use the `value` attribute as the value sent to the server with the `select` element's name. 
+  - If an `option` does not have a `value` attribute, the browser uses the text contained by the `option` element instead.
 
-`select` elements often have a placeholder `option` that says something like `Choose one` and has a `value` of an empty string, as well as a `disabled` and `selected` attribute. This option works something like the placeholder attribute on text boxes: the user can see some helpful text, but she cannot select that text.
+- `<select>` elements often have a placeholder `option` that says something like "Choose One" and has a `value` of an empty string, as well as a `disabled` and `selected` attribute. 
+  - In HTML, the `disabled` and `selected` attributes are used with the `<select>` element to specify whether a particular option within a dropdown list should be disabled or preselected.
+- This option works something like the placeholder attribute on text boxes: the user can see some helpful text, but she cannot select that text.
 
 ```html
 <form action="#" method="post">
@@ -763,7 +779,8 @@ An `option` defines one of the choices a user can make in a `select` tag. A `sel
 
 ![image-20230327113026532](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113026532.png)    
 
-By default, `select` lets the user choose precisely one option or leave the option unselected if it contains a `disabled selected` option as shown above. If you add the `multiple` attribute, the user can select more than one option. On most browsers, a `select` with `multiple` appears as a (possibly scrolling) rectangle that displays several options. The user then Ctrl-clicks (Windows) or Cmd-clicks (Mac) to select the options she wants. You can also supply the size attribute to control the height of the selection box.
+- By default, `select` lets the user choose precisely one option or leave the option unselected if it contains a `disabled selected` option as shown above. 
+- If you add the `multiple` attribute, the user can select more than one option. On most browsers, a `select` with `multiple` appears as a (possibly scrolling) rectangle that displays several options. The user then Ctrl-clicks (Windows) or Cmd-clicks (Mac) to select the options she wants. You can also supply the size attribute to control the height of the selection box.
 
 ```html
 <form action="#" method="post">
@@ -796,13 +813,148 @@ The following video walkthrough shows you how to work with both orientations, wi
 
 There are some minor discrepancies between the video and the rest of this page, but they are not significant. The most obvious change is that we use `fieldset` to draw a gray box around each example below, but the CSS also differs a bit.
 
+## Video Notes
+
 <video id="video_9c8825bd2f97_html5_api" class="vjs-tech" poster="https://launchschool.com/assets/tealeaf_markup/video_poster.jpg" preload="none" src="https://d3jtzah944tvom.cloudfront.net/videos/output/form_layout_47a8d7_s1712/form_layout_47a8d7_s1712.mp4" style="box-sizing: inherit; display: inline-block; top: 0px; left: 0px; width: 818.944px; height: 460.647px;"></video>
 
-Play Video
+Play Video.
 
 Download: [HD](https://d3jtzah944tvom.cloudfront.net/videos/output/form_layout_47a8d7_s1712/form_layout_47a8d7_s1712.mp4)|[Transcript](https://d3jtzah944tvom.cloudfront.net/videos/transcripts/form_layout_47a8d7_s1712/form_layout_47a8d7_s1712.sbv)
 
 Duration: **28:32**
+
+- `border-radius` for round edges.
+- Whenever you modify border, you get a different style than browser default style.
+- Designs usually make labels a fixed  take up the remaining width.
+- Use definition list instead of div. 
+  - As we get into more complicated form layouts such as form that captures form, name,address, inputs are styled to be different widths than rest of inputs. 
+  - For example address, city state zip code side by side in one row.
+- You can declare multiple classes for one element.
+- [which browsers supports vender prefix](https://caniuse.com/)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Layouts</title>
+  <style>
+    body {
+      font: normal 14 px Helvetica, Arial, Sans-serif;
+    }
+    dl {
+      margin: 0;
+      padding-bottom: 20px;
+    }
+    dt {
+      display: inline-block;
+      width: 10%;
+      padding-right: 20px;
+      vertical-align: middle;
+      box-sizing: border-box;
+    }
+    dd {
+      display: inline-block;
+      width: 90%;
+      margin: 0;
+      padding-bottom: 20px;
+    }
+    input[type="text"]{
+      width: 100%;
+      height: 40px;
+      padding: 0 8px;
+      font: normal 14px Helvetica, Arial, sans-serif;
+      border: 1px solid #cecece;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="text"] + input[type="text"] { /*adjacent sibling selector*/
+      margin-top: 10px;
+    }
+    /* style select box */
+    /* Make it look like the rest of the text input boxes */
+    select {
+      box-sizing: border-box;
+      width: 100%;
+      height: 40px;
+      padding: 0 8px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none; /* css default*/
+      background: white;
+      border: 1px solid #cecece;
+
+    }
+    dl.partial {
+      display: inline-block;
+      padding-right: 20px;
+      box-sizing: border-box;
+    }
+    dl.city {
+      width: 50%;
+    }
+    dl.state {
+      width: 25%;
+    }
+    dl.zipcode {
+      width: 25%;
+      padding-right: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <form action="" method="post">
+    <dl>
+      <dt>
+        <label for="name">Your Name</label>
+      </dt><!--
+      --><dd>
+        <input type="text" name="name" id="name"/>
+      </dd>
+    </dl><!--
+    --><dl>
+      <dt>
+        <label for="address">Address</label>
+      </dt>
+      <dd>
+        <input type="text" name="address1" id="address1"/>
+        <input type="text" name="address2" id="address2"/>
+      </dd>
+    </dl><!--
+    --><dl class="city partial">
+      <dt>
+        <label for="city">City</label>
+      </dt>
+      <dd>
+        <input type="text" name="city" id="city"/>
+      </dd>
+    </dl><!--
+    --><dl class="state partial">
+      <dt>
+        <label for="state">State</label>
+      </dt>
+      <dd>
+        <select id="state partial" name="state">
+          <option>AK</option>
+          <option>AL</option>
+        </select>
+      </dd>
+    </dl><!--
+    --><dl class="zip partial">
+      <dt>
+        <label for="zipcode">Zipcode</label>
+      </dt>
+      <dd>
+        <input type="text" name="zipcode" id="zipcode" />
+      </dd>
+    </dl>
+  </form>
+</body>
+</html>
+```
+
+## start with 2 field form
 
 We'll start with a two-field form using the default side-by-side positioning for the label and input. Our purpose here isn't to show you how to position these items side by side, but to show the overall styling we'll use throughout this walkthrough. Starting from this CSS, we can focus first on the general styling, then worry about how to position the label and inputs.
 
@@ -813,7 +965,7 @@ We'll start with a two-field form using the default side-by-side positioning for
     <input type="text" name="text_field" id="text_field"
            placeholder="this is the input area">
 
-    <br>
+    <br> /*creates a line break */
 
     <label for="select_field">Select Field</label>
     <select name="select_field" id="select_field">
@@ -865,7 +1017,7 @@ We'll start with a two-field form using the default side-by-side positioning for
 .styled-form select {
   -moz-appearance: none;
   -webkit-appearance: none;
-  appearance: none;
+  appearance: none; /*turn off browser specific default apperance*/
   background-image:
     url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+");
   background-position: 100% center;
@@ -878,14 +1030,23 @@ We'll start with a two-field form using the default side-by-side positioning for
 
 Take a few minutes to study these initial settings, comparing them against the example output. Most of this CSS should be familiar. However, there's some new material here:
 
+#### Basic css for forms
+
 - The three `background-*` properties combine to provide the custom look for the `select` control.
-- The `url("data:rest-of-url")` value on `background-image` loads an "inline image" that shows the tiny drop-down arrow in the select box rather than downloading it separately. You don't need to know how to make these inline images, but you should know how to use them; you will typically be given the `data:` URL that you can plug directly into the `url()` value.
-- The `border-radius` property lets you apply rounded corners to any element with a border. You should be aware of this property; you'll need it again.
-- The `appearance` property lets you turn off the browser-specific default appearance of a widget (the `select` in this case). You should know how to remove browser-specific styling from input controls; you'll need it again.
+- The `url("data:rest-of-url")` value on `background-image` loads an "**inline image**" that shows the tiny drop-down arrow in the select box rather than downloading it separately. 
+  - You don't need to know how to make these inline images, but you should know how to use them. 
+  - you will typically be given the `data:` URL that you can plug directly into the `url()` value.
+
+- The `border-radius` property lets you apply rounded corners to any element with a border. 
+  - You should be aware of this property; you'll need it again.
+
+- The `appearance` property lets you turn off the browser-specific default appearance of a widget (the `select` in this case). 
+  - You should know how to remove browser-specific styling from input controls; you'll need it again.
+
 
 If you want, you can take a few minutes to look these up at MDN.
 
-At the time of this writing at the start of 2018, `appearance` is **experimental**. However, most browsers in current use support it with the `none` value provided that you use the vendor-specific names `-webkit-appearance` and `-moz-appearance`, e.g.:
+- At the time of this writing at the start of 2018, `appearance` is **experimental**. However, most browsers in current use support it with the `none` value provided that you use the vendor-specific names `-webkit-appearance` and `-moz-appearance`, e.g.:
 
 ```css
 select {
@@ -895,11 +1056,15 @@ select {
 }
 ```
 
-[Can I Use](https://caniuse.com/#feat=css-appearance) shows acceptance of the `none` value by around 95% of browsers now in use. Given the acceptance rate, this feature is unlikely to go away, but it remains experimental, so use it with caution.
+- [Can I Use](https://caniuse.com/#feat=css-appearance) shows acceptance of the `none` value by around 95% of browsers now in use. Given the acceptance rate, this feature is unlikely to go away, but it remains experimental, so use it with caution.
 
 Now that we've got the basic styling out of the way let's move on to styles that specifically apply to top-and-bottom and side-by-side positioning of the labels and inputs.
 
-Of the two orientations, top-and-bottom is easier to work with and typically more flexible. Our first example shows how to use top-and-bottom label/input pairs:
+#### top-and-bottom label/input
+
+- Of the two orientations, top-and-bottom is easier to work with and typically more flexible. 
+- Our first example shows how to use top-and-bottom label/input pairs:
+  - All we have to do is convert the label and input items to block elements. The `width` property makes them both take up all available room, though the label field doesn't show this visibly.
 
 ```html
 <form action="#" class="styled-form top-to-bottom">
@@ -921,6 +1086,8 @@ Of the two orientations, top-and-bottom is easier to work with and typically mor
 </form>
 ```
 
+CSS for top-to-bottom 
+
 ```css
 /* Add to end of file */
 .top-to-bottom label,
@@ -932,9 +1099,9 @@ Of the two orientations, top-and-bottom is easier to work with and typically mor
 
 ![image-20230327113250830](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113250830.png)
 
-That was easy; all we had to do was convert the label and input items to block elements. The `width` property makes them both take up all available room, though the label field doesn't show this visibly.
+#### side-by-side label/input
 
-In the next example, we'll place the labels and controls side by side:
+- In the next example, we'll place the labels and controls side by side:
 
 ```html
 <form action="#" class="styled-form side-by-side">
@@ -945,6 +1112,8 @@ In the next example, we'll place the labels and controls side by side:
   </fieldset>
 </form>
 ```
+
+Css for side-by-side
 
 ```css
 /* Add to end of file */
@@ -966,7 +1135,8 @@ In the next example, we'll place the labels and controls side by side:
 
 ![image-20230327113311600](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113311600.png)
 
-Putting the label and input side by side is slightly harder, but not too hard. First, convert each element to `inline-block` to allow a side-by-side arrangement while providing widths and heights. If you use the default `inline` setting, the browser will ignore those dimensions. Next, set the `width` of the `input` element, and vertically align the label/input pair.
+- Putting the label and input side by side is slightly harder, but not too hard. First, convert each element to `inline-block` to allow a side-by-side arrangement while providing widths and heights. If you use the default `inline` setting, the browser will ignore those dimensions. 
+- Next, set the `width` of the `input` element, and vertically align the label/input pair.
 
 What happens when we add another label/input pair to the form with this layout? Since types are `inline-block`, we may end up with multiple labels all in one row.
 
@@ -986,9 +1156,11 @@ What happens when we add another label/input pair to the form with this layout? 
 
 ![image-20230327113329697](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113329697.png)
 
-If your browser window is too narrow, the elements may wrap, leaving the label on the right side of one line and the input on the left side of the next. To see this behavior in action, expand your browser window so that everything fits on one line, then gradually reduce the width as far as it will go.
+##### Issue: element wrapping
 
-The resulting arrangement is ugly, and often leads developers to wrap the label and input pairs in a `block` element, such as a new `div`. The new element ensures that each pair remains together.
+- If your browser window is too narrow, the elements may wrap, leaving the label on the right side of one line and the input on the left side of the next. To see this behavior in action, expand your browser window so that everything fits on one line, then gradually reduce the width as far as it will go. The resulting arrangement is ugly. 
+
+- Solution: Developers wrap the label and input pairs in a `block` element, such as a new `div`. The new element ensures that each pair remains together. However it introductes a new problem. 
 
 ```html
 <form action="#" class="styled-form side-by-side">
@@ -1010,11 +1182,13 @@ The resulting arrangement is ugly, and often leads developers to wrap the label 
 
 ![image-20230327113348321](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113348321.png)
 
-We could style the `div`s to provide some spacing between them, but we already see another issue: the labels have different widths, so the inputs don't align vertically. We could rearrange the HTML to put the `label` elements in one column and the controls in another, but that leads to other problems with readability, maintainability, and alignment.
+##### Issue: inputs don't align veritically
 
-What we can do instead is use a description list to mark up our forms, which may seem strange. However, think about the semantic meaning behind a description list: the terms are your labels, and they, in turn, identify controls for the user. Thus, you can wrap form controls in description list elements. They also provide additional tags that you can style without changing your HTML:
+- We could style the `div`s to provide some spacing between them, but we already see another issue: the labels have different widths, so the inputs don't align vertically. We could rearrange the HTML to put the `label` elements in one column and the controls in another, but that leads to other problems with readability, maintainability, and alignment.
 
-Copy Code
+- Solution: What we can do instead is use a description list to mark up our forms, which may seem strange. 
+  - However, think about the semantic meaning behind a description list: the terms are your labels, and they, in turn, identify controls for the user. Thus, you can wrap form controls in description list elements. 
+  - They also provide additional tags that you can style without changing your HTML:
 
 ```html
 <form action="#" class="styled-form side-by-side">
@@ -1029,8 +1203,6 @@ Copy Code
   </fieldset>
 </form>
 ```
-
-Copy Code
 
 ```css
 .side-by-side input[type="text"] {
@@ -1062,9 +1234,9 @@ Copy Code
 
 ![image-20230327113403548](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113403548.png)
 
-You get even more flexibility if you divide the label/input pairs into separate lists so that each belongs to a different container. You can also style several related pairs together on one horizontal line, such as a city, state, and Zip Code. All you have to do is add appropriate classes to the `dl` elements and then style them.
+#### Divide lable/input pairs into separate lists
 
-Copy Code
+You get even more flexibility if you divide the label/input pairs into separate lists so that each belongs to a different container. You can also style several related pairs together on one horizontal line, such as a city, state, and Zip Code. All you have to do is add appropriate classes to the `dl` elements and then style them.
 
 ```html
 <form action="#" class="styled-form top-to-bottom">
@@ -1107,8 +1279,6 @@ Copy Code
   </fieldset>
 </form>
 ```
-
-Copy Code
 
 ```css
 /* Add to end of file */
@@ -1163,12 +1333,165 @@ Copy Code
 
 ![image-20230327113426271](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113426271.png)
 
-Our code here uses one `dl` per label/input pair. This simple change lets us treat each `dl` separately. However, this variation makes it harder to produce a horizontal layout where each label is the same size.
+- Our code here uses one `dl` per label/input pair. This simple change lets us treat each `dl` separately. However, this variation makes it harder to produce a horizontal layout where each label is the same size.
 
-The `partial` class provides our `dl` with the basic `inline-block` styles, and the class name for each input type provides the width and any other overriding properties like the padding on the zip code `dl`.
+- The `partial` class provides our `dl` with the basic `inline-block` styles, and the class name for each input type provides the width and any other overriding properties like the padding on the zip code `dl`.
 
-One last note on this code: typing that list of states would be tedious. Instead, you can search the Web for someone else's HTML and copy it (be sure it is complete and correct, though), or you can use [ours](https://launchschool.com/gists/2424a869). Feel free to download it and add it to your code.
+- One last note on this code: typing that list of states would be tedious. Instead, you can search the Web for someone else's HTML and copy it (be sure it is complete and correct, though), or you can use [ours](https://launchschool.com/gists/2424a869). Feel free to download it and add it to your code.
 
-Keeping track of bits of code that you will probably reuse, such as the list of states, is a good habit. Good developers are lazy developers. Doing the work once and then reusing your work will pay off in speed and efficiency.
+- State abbreviations
 
-Now that you understand how to create form layouts, it's time to put them into practice.
+```html
+<select name="state">
+  <option>AK</option>
+  <option>AL</option>
+  <option>AR</option>
+  <option>AZ</option>
+  <option>CA</option>
+  <option>CO</option>
+  <option>CT</option>
+  <option>DC</option>
+  <option>DE</option>
+  <option>FL</option>
+  <option>GA</option>
+  <option>HI</option>
+  <option>IA</option>
+  <option>ID</option>
+  <option>IL</option>
+  <option>IN</option>
+  <option>KS</option>
+  <option>KY</option>
+  <option>LA</option>
+  <option>MA</option>
+  <option>MD</option>
+  <option>ME</option>
+  <option>MI</option>
+  <option>MN</option>
+  <option>MO</option>
+  <option>MS</option>
+  <option>MT</option>
+  <option>NC</option>
+  <option>ND</option>
+  <option>NE</option>
+  <option>NH</option>
+  <option>NJ</option>
+  <option>NM</option>
+  <option>NV</option>
+  <option>NY</option>
+  <option>OH</option>
+  <option>OK</option>
+  <option>OR</option>
+  <option>PA</option>
+  <option>RI</option>
+  <option>SC</option>
+  <option>SD</option>
+  <option>TN</option>
+  <option>TX</option>
+  <option>UT</option>
+  <option>VA</option>
+  <option>VT</option>
+  <option>WA</option>
+  <option>WI</option>
+  <option>WV</option>
+  <option>WY</option>
+</select>
+```
+
+- Keeping track of bits of code that you will probably reuse, such as the list of states, is a good habit. Good developers are lazy developers. Doing the work once and then reusing your work will pay off in speed and efficiency.
+
+- Now that you understand how to create form layouts, it's time to put them into practice.
+
+# Practice Problems: Forms
+
+Remember: the videos may differ from the written instructions and the completed example. The written instructions take precedence.
+
+The videos that accompany this problem set show the `action` attribute defined with an empty string, e.g., `action=""`. You can use `action="#"` instead if you want your code to pass W3C validation.
+
+1. Create a contact form that collects the user's first name, last name, email address, and phone number. Be sure to require all inputs and to use appropriate input types and labels. Prevent Chrome and iOS Safari from doing any auto-actions (e.g., autocomplete and autocorrect) on the email input.
+
+   For this problem, don't use a definition list to organize your form. We'll do that in the next question.
+
+   Solution
+
+2. Convert the HTML from the previous problem to use a single description list to pair each label and input control.
+
+   Solution
+
+   Walkthrough
+
+3. Add a `select` box to your solution from the previous problem that lets the user select a phone type given the options "home," "business," and "mobile." Make sure you pre-select the "home" option.
+
+   Solution
+
+   Walkthrough
+
+4. Add a message box to your solution from the previous problem that lets the user enter an optional multi-line message. The message box should allow around six lines of text of up to about 80-characters each.
+
+   Solution
+
+5. Add some placeholder text to the phone number input that shows the format you expect to see. (For instance, `###-###-####`.)
+
+   Solution
+
+6. Add some placeholder text to the message box, e.g., `Type your message here.`.
+
+   Solution
+
+7. Create a search form with three items:
+
+   - a field for the search term,
+   - a group of three controls to select precisely one from the list "TV," "Movies," and "Music,"
+   - a Search button (use the `button` tag, not the obsolete `<input type="button">` tag).
+
+   The form doesn't have to do anything when submitted. Don't use a description list for this problem.
+
+   
+
+   ![Search form](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_5/f2.jpg)
+
+   
+
+   Solution
+
+   Walkthrough
+
+8. Create a review form with a single control that lets the user select from the movies "Looper," "Frozen," and "Tommy Boy," then add a numeric rating field that the user can set to any integer from 1-5. Next, add a toggle control to add the movie to your favorites list. Enable the toggle control by default. Lastly, add a submit button.
+
+   
+
+   ![Movie review form](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_5/form-range-01.png)
+
+   
+
+   Solution
+
+   Walkthrough
+
+9. Add the movie "Alien" to the end of the drop-down list and make it the initial selection when displaying the form.
+
+   Solution
+
+10. Update your solution to show all four possible choices at once.
+
+    Solution
+
+11. Create a form that filters news articles by a single category and any number of selected tag words. Use radio buttons for the news category and checkboxes for the tags. Make sure you use the `get` method to allow the user to save and share the filtered URL.
+
+    - **Categories**: Core, Plugins and Libraries, Conventions, Reviews, Opinion, People
+    - **Tags**: HTML, CSS, Javascript, Ruby, Rails, Python, Django
+
+    For this problem, use the container-style `label` tag (without the `for` attribute). Use an unordered list instead of a description list for both the categories and tags.
+
+    Solution
+
+    Walkthrough
+
+12. Convert the radios and checkboxes in the filter form to `select` lists. Let the user select any number of tags, and ensure the selection box is large enough that she can see several choices at once. Use description lists to organize the form elements.
+
+    Solution
+
+    Walkthrough
+
+13. Provide the user with a way to reset the filter form.
+
+    Solution
