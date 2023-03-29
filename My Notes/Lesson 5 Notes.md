@@ -63,8 +63,11 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
 ### The `method` Attribute
 
 - The `method` attribute tells the browser whether it should use the HTTP GET or HTTP POST method when sending the data to the server. 
-  - Use `method="get"` when requesting information from the server.
-  - Use `method="post"` when updating data on the server.
+
+- Use `method="get"` when requesting information from the server.
+- Use `method="post"` when updating data on the server. 
+  - You should use the `POST` method for any request that updates the server-side database in any **significant** way. 
+  - Searches seldom update the database, and most log entries are insignificant. 
 
 - HTTP supports several other methods, but HTML limits you to `GET` and `POST`. You must use JavaScript or a backend application to use the other methods.
 
@@ -72,9 +75,12 @@ Spend time with the Summary at the end of this lesson. It reviews the topics and
 
 - `action` provides the URL to which the browser sends requests.
 - You can use `action="#"` instead of `action=""`if you want your code to pass W3C validation.
-- Individual action items (`button` and `input type="submit"` elements) in a form can override the form's `action` value by using the `formaction` attribute.
+- Individual input widgets / action items (such as `button` and `input type="submit"` elements) in a form can override the form's `action` value by using the `formaction` attribute.
+  - Note: `formaction` is not valid for the `<form>` tag, but action items inside the form. 
   - The `formaction` lets us use the same form to perform different actions. 
   - If you click either button containing `formaction` instead of the `Log In` button, the browser sends the form information to the address given by `formaction`. Otherwise, it sends it to the address given by `action` in the `form` tag.
+  
+- From quiz: Most forms need an `action` and `method` attribute. Note, though, that the HTML5 standards require neither: you can also provide the action and method with the `formaction` and `formmethod` attributes on one or more of the input widgets (typically, a button).
 
 ## The `fieldset` element
 
@@ -130,8 +136,6 @@ For now, we won't go into much detail about the `input` tag. We'll study it in t
 
 - The `for` attribute of a `label` element must be equal to the `id` attribute of the related label/input element pair  to be associated together.
 
-![download (15)](C:\Users\jenny\Downloads\download (15).png)
-
 ## The `label` element
 
 - The `label` tag provides a way to associate some identifying text with an input field. 
@@ -176,6 +180,15 @@ For now, we won't go into much detail about the `input` tag. We'll study it in t
   ```
 
   ![image-20230328130735726](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230328130735726.png)
+
+## Associating label with input
+
+- The `for` attribute of a `label` element must be equal to the `id` attribute of the related label/input element pair  to be associated together.
+- This means that label/input must be associated together to send the data including user's selection to the server. 
+
+![download (15)](C:\Users\jenny\Downloads\download (15).png)
+
+
 
 ## A Complete form Example
 
@@ -300,8 +313,11 @@ fieldset {
 ### Type `password`
 
 - The `password` type creates a single-line text field with an obscured value, often used for passwords and other sensitive information. 
+- The password input control typically masks the input with a series of `*` characters, thus hiding it from the view of shoulder surfers and screen sharers.
 - Use the `maxlength` attribute to specify the input's maximum length.
 - The `value` attribute in this example is illustrative. In most cases, you should not set a value for the `password` input type.
+
+![image-20230328173700424](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230328173700424.png)
 
 ```html
 <form action="#" method="post">
@@ -312,8 +328,6 @@ fieldset {
   </fieldset>
 </form>
 ```
-
-![image-20230326191759433](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230326191759433.png)
 
 ### Type `email`
 
@@ -353,7 +367,7 @@ fieldset {
 
 ### Type `checkbox`
 
-- The `checkbox` type lets the user choose one or more items from a series of yes/no-type options. 
+- The `checkbox` type lets the user choose **one or more items** from a series of yes/no-type options. 
 - Use the `value` attribute to give the value the form sends to the server when the user selects that checkbox. (optional)
   - `value="search"`
 - Use the Boolean `checked` attribute to pre-select checkboxes. 
@@ -456,7 +470,9 @@ fieldset {
 
 ### Type `submit`
 
-- The `submit` type creates a button that the user can click to submit the contents of a form to the server. 
+- The `submit` type creates a button that the user can click to submit the **contents of a form** to the server. 
+  - Note: `type=button` displays a button but doesn't submit a form by default. You must attach an "event handler" (which we'll discuss in a later course) to the button that tells the browser what should happen when the user clicks it.
+
 - The `action` attribute on the `form` tag specifies the URL of the server that will receive the form data when the user submits it, but you can override that by using the `formaction` attribute. 
 
 ```html
@@ -512,6 +528,18 @@ fieldset {
 
 - To create a slider in HTML, you can use the `<input>` element with the `type="range"` attribute. 
 - The video uses an `<input type="range">` tag to implement the rating as a slider. However, browser support for sliders is feeble as of early 2018. Only Chrome supports ticks, and no widely-used browsers support labels. If you want these features, you must implement them some other way, probably with JavaScript or some messy HTML and CSS.
+
+### Type `hidden`
+
+```html
+<input type="hidden" name="secret_word">
+```
+
+```html
+<input type="text" name="secret_word" hidden>
+```
+
+- Hide the control from view which prevents the user from doing anything with it.
 
 ### Other Input Types
 
@@ -579,9 +607,11 @@ Most input controls can use the `value` attribute, but the meaning varies with t
 
   ![value attribute with type=radio and type=checkbox](https://d3jtzah944tvom.cloudfront.net/202/images/lesson_5/input-attributes-02.png)
 
-  
+  ##### Omitting `value` results in `NAME=on`
 
-  - Technically, `radio` input types don't require the `value` attribute. If you omit the `value` attribute, the browser will send `NAME=on` to the server, where `NAME` is the value of the `name` property. We recommend always using the `value` attribute and use `name` to group related radio buttons together. If several radio buttons belong together, they should all have the same `name` attribute value.
+  - Technically, `radio` input types don't require the `value` attribute. If you omit the `value` attribute, the browser will send `NAME=on` to the server, where `NAME` is the value of the `name` property. 
+
+    - We recommend always using the `value` attribute and use `name` to group related radio buttons together. If several radio buttons belong together, they should all have the same `name` attribute value.
 
   - Note that we added a `checked` attribute to the blue button to make that button the initial selection. If we want to leave all of the radio buttons unselected, but still require a selection, we can add a `required` attribute to each button.
 
@@ -811,7 +841,7 @@ Unlike other input controls
 
 ![image-20230327113000816](C:\Users\jenny\AppData\Roaming\Typora\typora-user-images\image-20230327113000816.png)
 
-## The `select` Element
+## The `select` Element (drop down list)
 
 - The **`<select>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a **control** that provides a menu of options.
 - `select` creates a drop-down list of options from which the user can select zero or more options. It has two possible child elements, the `option` and `optgroup` elements (we won't discuss `optgroup` in this course). 
@@ -892,6 +922,46 @@ Nearly all websites or applications use forms in some capacity to collect inform
 The following video walkthrough shows you how to work with both orientations, with emphasis on the easier-to-style top-to-bottom arrangement. It also demonstrates a practical use of the description list approach for form layout.
 
 There are some minor discrepancies between the video and the rest of this page, but they are not significant. The most obvious change is that we use `fieldset` to draw a gray box around each example below, but the CSS also differs a bit.
+
+## Layout notes
+
+- Use description lists to lay out labels and their controls.
+
+  - An unordered list limits the amount of positioning and alignment you can do. Instead, use definition lists for optimum flexibility.
+
+- Use `<fieldset>` elements to group related form controls together.
+
+- Most browsers don't do a good job laying out forms. Most browsers use an `inline` or `inline-block` visual display model for the labels and most controls which means that the elements flow like text. Typically, that's not what you want.
+
+- How to make label/inputs side by side
+
+  - Use class attribute to label the parts as `partial`
+
+  - CSS for `partial`
+
+    ```css
+    box-sizing: border-box;
+    display: inline-block;
+    ```
+
+  - Adjust `one_half` attribute to width of `50%`. 
+
+  - Fix padding for `right` and `left`. 
+
+```html
+      <dl class="partial one_half left">
+        <dt><label for="firstname">First Name</label></dt>
+        <dd>
+          <input type="text" id="firstname" required>
+        </dd>
+      </dl><!--
+      --><dl class="partial one_half right">
+        <dt><label for="lastname ">Last Name</label></dt>
+        <dd>
+          <input type="text" id="lastname" required>
+        </dd>
+      </dl>
+```
 
 ## Video Notes
 
@@ -2027,3 +2097,329 @@ ul {
 
 # Guided Project: Tweaking the Contact Form
 
+#### html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="guided_style.css">
+</head>
+
+<body>
+  <form action="#" method="post">
+    <fieldset>
+      <dl class="partial one_half left">
+        <dt><label for="firstname">First Name</label></dt>
+        <dd>
+          <input type="text" id="firstname" required>
+        </dd>
+      </dl><!--
+      --><dl class="partial one_half right">
+        <dt><label for="lastname ">Last Name</label></dt>
+        <dd>
+          <input type="text" id="lastname" required>
+        </dd>
+      </dl>
+      <dl class>
+        <dt><label for="email">Email Address</label></dt>
+        <dd>
+          <input type="email" id="email" name="email" placeholder="username@domain" required>
+        </dd>
+      </dl>
+      <dl class="partial one_half left">
+        <dt><label for="city">City</label></dt>
+        <dd>
+          <input type="text" id="city" required>
+        </dd>
+      </dl><!--
+      --><dl class="partial one_tenth both">
+        <dt><label for="state">State</label></dt>
+        <dd>
+          <select name="state" required>
+            <option>AK</option>
+            <option>AL</option>
+            <option>AR</option>
+            <option>AZ</option>
+            <option>CA</option>
+            <option>CO</option>
+            <option>CT</option>
+            <option>DC</option>
+            <option>DE</option>
+            <option>FL</option>
+            <option>GA</option>
+            <option>HI</option>
+            <option>IA</option>
+            <option>ID</option>
+            <option>IL</option>
+            <option>IN</option>
+            <option>KS</option>
+            <option>KY</option>
+            <option>LA</option>
+            <option>MA</option>
+            <option>MD</option>
+            <option>ME</option>
+            <option>MI</option>
+            <option>MN</option>
+            <option>MO</option>
+            <option>MS</option>
+            <option>MT</option>
+            <option>NC</option>
+            <option>ND</option>
+            <option>NE</option>
+            <option>NH</option>
+            <option>NJ</option>
+            <option>NM</option>
+            <option>NV</option>
+            <option>NY</option>
+            <option>OH</option>
+            <option>OK</option>
+            <option>OR</option>
+            <option>PA</option>
+            <option>RI</option>
+            <option>SC</option>
+            <option>SD</option>
+            <option>TN</option>
+            <option>TX</option>
+            <option>UT</option>
+            <option>VA</option>
+            <option>VT</option>
+            <option>WA</option>
+            <option>WI</option>
+            <option>WV</option>
+            <option>WY</option>
+          </select>
+        </dd>
+      </dl><!--
+      --><dl class="partial four_tenths right">
+        <dt><label for="zip" required>Zip</label></dt>
+        <dd>
+          <input type="text" name="zip" id="zip" pattern="[0-9]{5}">
+        </dd>
+      </dl>
+
+      <p>Which of these colors do you like the best?</p>
+      <ul>
+        <li>
+          <label>
+            <input type="radio" name="color" value="red" checked>
+            Red
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="color" value="orange">
+            Orange
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="color" value="yellow">
+            Yellow
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="color" value="green">
+            Green
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="color" value="blue">
+            Blue
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="color" value="indigo">
+            Indigo
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="color" value="violet">
+            Violet
+          </label>
+        </li>
+      </ul>
+
+      <p>Which web technologies do you want to learn?</p>
+      <ul>
+        <li>
+          <label>
+            <input type="checkbox" name="technology" value="HTML">
+            HTML
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="technology" value="CSS">
+            CSS
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="technology" value="JavaScript">
+            JavaScript
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="technology" value="Ruby">
+            Ruby
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="technology" value="Rails">
+            Rails
+          </label>
+        </li>
+      </ul>
+
+      <dl>
+        <dt><label for="comments">Comments</label></dt>
+        <dd><textarea name="comments" rows="6" cols="80"></textarea></dd>
+      </dl>
+      <div>
+        <input type="submit" value="Send">
+        <input type="hidden" value="2023-03-23">
+        <input type="reset" value="Reset">
+      </div>
+    </fieldset>
+  </form>
+</body>
+
+</html>
+```
+
+#### CSS
+
+```css
+body {
+  font: normal 16px Helvetica, Arial, sans-serif;
+}
+
+fieldset {
+  width: 600px;
+  margin: 0 auto;
+  /*centers fieldset in container*/
+  padding: 0;
+  border: 0;
+}
+
+.partial {
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+.one_half {
+  width: 50%;
+}
+
+.left {
+  padding-right: 5px;
+}
+
+.right {
+  padding-left: 5px;
+}
+
+.both {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.one_tenth {
+  width: 10%;
+}
+
+.four_tenths {
+  width: 40%
+}
+
+dl {
+  margin-bottom: 0;
+} 
+
+dl + dl {
+  margin-top: 0;
+}
+
+dd {
+  margin: 0 0 25px 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+  width: 100%;
+  height: 30px;
+  padding: 3 10px;
+  font: normal 14px Helvetica, Arial, sans-serif;
+  border: 1px solid #cecece;
+  box-sizing: border-box;
+  /*fit inputs into fieldset*/
+}
+
+textarea {
+  width: auto;
+  /* set width back to the number of rows dictating height */
+  height: auto;
+  /* set height back to auto so number of columns
+  dictate starting height*/
+  resize: vertical;
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+  font-size: 14px;
+}
+```
+
+# How to make label/inputs side by side
+
+```html
+      <dl class="partial one_half left">
+        <dt><label for="firstname">First Name</label></dt>
+        <dd>
+          <input type="text" id="firstname" required>
+        </dd>
+      </dl><!--
+      --><dl class="partial one_half right">
+        <dt><label for="lastname ">Last Name</label></dt>
+        <dd>
+          <input type="text" id="lastname" required>
+        </dd>
+      </dl>
+```
+
+- Use class attribute to label the parts as `partial`
+
+  - CSS for `partial`
+
+    ```css
+    box-sizing: border-box;
+    display: inline-block;
+    ```
+
+- Adjust `one_half` attribute to width of `50%`. 
+- Fix padding for `right` and `left`. 
+
+# Summary
+
+HTML forms are a big topic: you could write a book about them -- there's at least one on the market. This lesson reflects the scope of this subject: even though we worked hard to keep it as brief as possible, it's an information-rich lesson. Even simple forms require a lot of work to build compared to images, lists, and tables. No one expects you to be expert on all features, though. In fact, with what you've learned here, plus the handy MDN documentation and Google, you have all that you need to create and display attractive and useful forms.
+
+There's still a lot to learn, though. In particular, you need to learn how to validate data with JavaScript, and how to use the back-end software to process the form data. Those are both topics for another time.
+
+In this lesson, we learned how to build and style forms. In particular, we looked at about half of the different controls and the tags you'll use most often. We learned how to change the appearance of the standard input controls, and how to use description lists and CSS to lay them out in a variety of styles.
+
+You probably also learned a bit more about pseudo-classes, in particular, `:required`, `:checked`, `:disabled`, and `:enabled`.
+
+In the next lesson, we'll look at some advanced topics, namely positioning and working with design files.

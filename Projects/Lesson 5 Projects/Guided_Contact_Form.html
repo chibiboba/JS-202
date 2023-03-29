@@ -4,29 +4,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Contact Form</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="guided_style.css">
 </head>
 
 <body>
   <form action="#" method="post">
     <fieldset>
-      <dl>
+      <dl class="partial one_half left">
         <dt><label for="firstname">First Name</label></dt>
         <dd>
           <input type="text" id="firstname" required>
         </dd>
+      </dl><!--
+      --><dl class="partial one_half right">
         <dt><label for="lastname ">Last Name</label></dt>
         <dd>
           <input type="text" id="lastname" required>
         </dd>
+      </dl>
+      <dl class>
         <dt><label for="email">Email Address</label></dt>
         <dd>
           <input type="email" id="email" name="email" placeholder="username@domain" required>
         </dd>
+      </dl>
+      <dl class="partial one_half left">
         <dt><label for="city">City</label></dt>
         <dd>
           <input type="text" id="city" required>
         </dd>
+      </dl><!--
+      --><dl class="partial one_tenth both">
         <dt><label for="state">State</label></dt>
         <dd>
           <select name="state" required>
@@ -83,6 +91,8 @@
             <option>WY</option>
           </select>
         </dd>
+      </dl><!--
+      --><dl class="partial four_tenths right">
         <dt><label for="zip" required>Zip</label></dt>
         <dd>
           <input type="text" name="zip" id="zip" pattern="[0-9]{5}">

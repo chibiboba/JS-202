@@ -94,7 +94,7 @@ body, main, figure, figcaption, img {
 - Change box-sizing to `border-box`. 
 - Make left and right margin 0. 
 - If you want left and right margin then use `padding` instead because `padding` is included in the content for `border-box`. 
-- Remove Whitespace: Adjust code to remove whitespace by placing closing tag next to next `inline-block`element's opening tag.
+- **Remove Whitespace**: Adjust code to remove whitespace by placing closing tag next to next `inline-block`element's opening tag.
 
 ```css
 figure {
@@ -120,3 +120,36 @@ figure {
 ### `0 auto`
 
 - centers something within its container.
+
+### `padding-start`
+
+- means left margin
+
+## How to make label/inputs side by side
+
+```html
+      <dl class="partial one_half left">
+        <dt><label for="firstname">First Name</label></dt>
+        <dd>
+          <input type="text" id="firstname" required>
+        </dd>
+      </dl><!--
+      --><dl class="partial one_half right">
+        <dt><label for="lastname ">Last Name</label></dt>
+        <dd>
+          <input type="text" id="lastname" required>
+        </dd>
+      </dl>
+```
+
+- Use class attribute to label the parts as `partial`
+
+  - CSS for `partial`
+
+    ```css
+    box-sizing: border-box;
+    display: inline-block;
+    ```
+
+- Adjust `one_half` attribute to width of `50%`. 
+- Fix padding for `right` and `left`. 
