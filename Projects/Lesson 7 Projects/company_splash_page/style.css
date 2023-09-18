@@ -1,0 +1,109 @@
+@import url("whitespace-reset.css");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  font: 400 20px "Nunito", Helvetica, Arial, sans-serif; /* 400 is the font weight*/
+}
+
+body {
+  background-image: url(bg_body.gif);
+  padding: 75px 0 50px; 
+  margin: 8px;
+}
+
+header, main, footer {
+  margin: 0 auto;
+  min-width: 500px;
+  max-width: 1000px;
+}
+
+h1 {
+  margin: 76px 0 0 1px;
+  padding: 0 0 50px;
+  text-align: center;
+}
+
+main {
+  background-color:#ffffff;
+  color: #45494d;
+  margin-top: 44px;
+  padding: 70px 0;
+  text-align: center;
+}
+
+article{
+  font-size: 1rem;
+  letter-spacing: 0.01rem;
+  margin-bottom: 158px;
+  padding: 0 90px 0px;
+}
+
+article + article {
+  margin-bottom: -5px;
+}
+
+h2 {
+  color: #2f2840;
+  font-size: 36px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+h2::before,
+h2::after {
+  content: "\2022";
+  font-size: 1.4rem;
+  padding: 0 26px 0 24px;
+  vertical-align: 5px;
+}
+
+p {
+  margin-top: 22px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 24px;
+  color: #3e98b2;
+  text-align: center;
+  margin: 20px;
+}
+
+footer {
+  background-color:#e7e7e7;
+  color: inherit;
+  padding: 33px 0;
+  margin-bottom: 85px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+li {
+  display: inline;
+  padding: 0 58px;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+/* @media screen and (max-width: 1000px) {
+  header, main, footer {
+      max-width: 1000px;
+      min-width: 500px;
+    }
+
+} */

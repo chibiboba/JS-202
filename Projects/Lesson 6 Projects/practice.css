@@ -1,0 +1,39 @@
+body, section, article, aside {
+  margin: 0; 
+  padding: 0;
+}
+
+body {
+  background-color: #e6e6e6;
+}
+
+section {
+  background-color: white;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+article, aside {
+  box-sizing: border-box;
+  float: left;
+  padding: 1rem;
+}
+
+article {
+  width: 70%;
+  background-color: #ffc;
+}
+
+aside {
+  background-color: #cfc;
+  float: none; /* allow this element to take up remaining space of row */
+  overflow: hidden; /* reposition element */
+}
+
+/* we dont add box sizing property because we dont need to adjust its width */
+footer {
+  background-color: #ebecff;
+  padding: 1rem;
+  clear: both;
+}
+

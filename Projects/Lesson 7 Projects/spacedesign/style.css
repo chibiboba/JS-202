@@ -1,0 +1,166 @@
+@import url("whitespace-reset.css");
+
+@font-face {
+  font-family: "Avenir";
+  src: url('fonts/AVENIR\ REGULAR.TTF');
+  format: ('truetype');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: normal 20px "Avenir", "Nunito", Helvetica, Arial, sans-serif;
+  background: #2f2840 url("images/bg_body.gif"); 
+  text-align: center;
+  color: #45494d;
+  padding: 135px 0 0 0;
+}
+
+/* header, main, footer {
+  max-width: 1200px;
+  min-width: 500px;
+  margin: 0 auto;
+} */
+
+header {
+}
+
+header h1 {
+  margin: 0 0 115px 0;
+}
+
+header nav {
+  padding: 0 0 45px 0;
+  font-size: 26px;
+  text-transform: uppercase;
+}
+
+nav li {
+  display: inline;
+  list-style: none;
+  padding: 0 42px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #cacaca;
+}
+
+nav .active {
+  font-weight: bold;
+  color: #6bd9ff;
+}
+
+main {
+  background-color: white;
+  padding: 100px 0 0 0;
+}
+
+h2 {
+  color: #2f2840;
+  font-size: 36px;
+  font-weight: 600;
+  padding: 0 0 40px 0;
+}
+
+h2::before,
+h2::after {
+  display: inline-block;
+  content: "\2022";
+  font-size: 22px;
+  padding: 0 24px;
+  vertical-align: 5px;
+}
+
+h3 {
+  padding: 0 0 20px 0;
+  font-size: 24px;
+  color: #3e59b2;
+}
+
+.column {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+article {
+  padding: 0 0 100px 0;
+}
+
+article p {
+  padding: 0 110px;
+}
+
+footer {
+  padding: 80px 0 75px 0;
+  background-color: #e7e7e7;
+  color: #b2b2b2;
+}
+
+footer p {
+  padding: 0 0 35px 0;
+}
+
+footer li {
+  display: inline-block;
+  padding: 0 62px;
+}
+
+footer li a {
+  background: transparent url("images/icons_social-media.png") 0 0 no-repeat;
+  display: block;
+  height: 46px;
+  width: 46px;
+  overflow: hidden;
+  text-indent: -9999px;
+}
+
+footer li a.twitter {
+  background-position: 0 0 ;
+}
+
+footer li a.facebook { 
+  background-position: 0 -46px;
+}
+
+footer li a.email {
+  background-position: 0 -92px;
+}
+
+footer li a.instagram {
+  background-position: 0 -138px;
+}
+
+#project figure {
+  padding: 0 0 55px 0;
+}
+
+#project figure img {
+  display: block; /* this gets rid of some spacing*/
+}
+
+#team p {
+  padding: 0 120px 120px 120px;
+}
+
+#team ul {
+  padding: 0 0 230px 0;
+}
+
+#team li {
+  display: inline-block;
+  padding: 0 30px;
+  font-size: 24px;
+}
+
+#team li img {
+  display: block;
+  margin: 0 0 25px 0;
+}
+
+#team li a {
+  text-decoration: none;
+  color: #3e59b2;
+}

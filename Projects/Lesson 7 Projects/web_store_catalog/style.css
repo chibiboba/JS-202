@@ -1,0 +1,103 @@
+@import url("whitespace-reset.css");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: normal 16px Helvetica, Arial, sans-serif;
+  background-color: #ffd505;
+  color: #222;
+}
+
+header, main {
+  width: 900px;
+  margin: 0 auto 30px auto; /*margin on header bottom*/
+}
+
+header {
+  padding: 30px 0;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  background-color: #0570c1;
+}
+
+header h1 {
+  color: white;
+  padding: 0 25px;
+  font-size: 2.4em;
+}
+
+main {
+  padding: 25px;
+  background-color: #ECECEC;
+}
+
+main h2 {
+  font-size: 2em;
+  padding: 0 0 25px 0;
+
+}
+
+main::after { /* clearfix for main*/
+  clear:both;
+  content: "";
+  display: block;
+}
+
+li {
+  float: left;
+  width: 23.5%; /* We had in total 2% leftover space from when we made margin-left:0 on every 4th element*/
+  margin: 0 0 2% 2%; /* bottom and left gutter*/
+  background-color: white;
+  padding: 15px; 
+}
+
+li:nth-of-type(4n+1) { /* An+B means every nth element, starting from B.*/
+  margin-left: 0; 
+}
+
+h3 {
+  padding: 0 0 5px 0;
+  font-size: 1.2em;
+}
+
+figure {
+  width: 100%;
+  height: 160px;
+}
+
+img { 
+  display: block; /* remove random whitespace*/
+  width: auto; /*make image fit inside container block element*/
+  height: 140px;
+  margin: 0 auto;
+}
+
+input[type="checkbox"] { display: none } /*hide checkbox*/
+/* use adjacent sibling combinator because they are siblings!*/
+input:checked + figure img { /* adjacent sibling combinator matches the second element only if it immediately follows the first element, and both are children of the same parent element. */
+  position: absolute;
+  top: 100px;
+  left: 50%; /*positoned at 50% of the page*/
+  width: 400px;
+  height: auto;
+  margin: 0 0 0 -200px; /*shifted left by half the width of the image*/
+  z-index: 2;
+}
+
+/* ::before pseudo element to dim the rest of the page when displaying enlarged image*/
+input:checked + figure::before {
+  position: fixed;
+  top: 0;
+  right: 0; 
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+  background: rgba(0, 0, 0, .4); /*rgb alpha with opacity to create transparency*/
+}
+
+
+
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    section {
+      border: 8px solid #e6e6e6;
+    }
+
+    #fixed {
+      background-color: rgba(0, 0, 0, .6);
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      z-index: 1;
+    }
+
+    #positioned {
+      position: absolute;
+      top: 20px;
+      padding: 30px 15px;
+      box-sizing: border-box;
+      width: 400px;
+      left: 50%;
+      margin-left: -200px;
+      background-color: #ffc;
+      z-index: 2;
+    }
+
+    #positioned span {
+      background-color: pink;
+      height: 20px;
+      width: 20px;
+      position: absolute;
+      top: -10px;
+      left: -10px;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non massa et leo ultricies molestie. Aliquam et
+    pulvinar augue, vel tempus libero. Integer posuere felis at dolor convallis, ut dignissim nibh sollicitudin. Curabitur
+    cursus velit ac sem tincidunt sagittis. Ut ac hendrerit metus. Curabitur vitae interdum elit. Suspendisse a sollicitudin
+    nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam faucibus metus eu condimentum mollis. Etiam
+    varius, massa quis feugiat porta, enim nulla iaculis turpis, quis elementum mi elit non arcu. In porttitor posuere nibh,
+    eu tempor lacus accumsan sit amet. Fusce sit amet consectetur sem, ut viverra tortor. Mauris gravida magna nec purus
+    maximus elementum. Ut scelerisque, enim at hendrerit blandit, quam nibh aliquam tortor, in pharetra velit lacus porta
+    lorem. Integer venenatis feugiat arcu, id iaculis erat fermentum a. Vivamus nisi turpis, euismod vehicula leo et,
+    rhoncus interdum sem.
+    
+    Morbi nec diam sed urna imperdiet pellentesque. Vivamus tempor, ex vitae viverra tempus, massa risus tincidunt est, nec
+    vestibulum arcu sem at diam. Integer commodo sed mauris porta porta. Ut lacus elit, rutrum vel ante sit amet, elementum
+    sagittis justo. Proin lobortis, nulla at mollis faucibus, mi ipsum consequat ipsum, sed rutrum tortor mauris at nisl.
+    Proin id eleifend odio. Integer convallis metus et nulla semper accumsan. Proin commodo sapien vel est placerat, ut
+    ultrices urna tincidunt. Vestibulum egestas lectus at purus porta, at semper lectus sagittis. Praesent velit enim,
+    tincidunt at fringilla sit amet, interdum sed tortor. Nullam dictum, arcu ac accumsan sodales, magna sapien gravida sem,
+    vitae condimentum nibh lectus at ligula. Donec ullamcorper pretium leo et faucibus.
+    
+    Cras gravida, nibh ac facilisis euismod, arcu augue dignissim felis, id rhoncus tellus ligula nec diam. Nulla vestibulum
+    ac mauris ac blandit. In magna justo, blandit et nisl id, viverra finibus ligula. Donec a consectetur massa. Suspendisse
+    quis libero turpis. Aenean vehicula dignissim erat, in bibendum erat semper ut. Suspendisse potenti. Donec vestibulum ex
+    ac luctus tempor. Mauris ut enim finibus, laoreet nibh vitae, tempor dolor. Praesent nunc sem, tempor nec placerat in,
+    volutpat varius erat. Curabitur cursus elementum imperdiet.
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non massa et leo ultricies molestie. Aliquam et
+    pulvinar augue, vel tempus libero. Integer posuere felis at dolor convallis, ut dignissim nibh sollicitudin. Curabitur
+    cursus velit ac sem tincidunt sagittis. Ut ac hendrerit metus. Curabitur vitae interdum elit. Suspendisse a sollicitudin
+    nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam faucibus metus eu condimentum mollis. Etiam
+    varius, massa quis feugiat porta, enim nulla iaculis turpis, quis elementum mi elit non arcu. In porttitor posuere nibh,
+    eu tempor lacus accumsan sit amet. Fusce sit amet consectetur sem, ut viverra tortor. Mauris gravida magna nec purus
+    maximus elementum. Ut scelerisque, enim at hendrerit blandit, quam nibh aliquam tortor, in pharetra velit lacus porta
+    lorem. Integer venenatis feugiat arcu, id iaculis erat fermentum a. Vivamus nisi turpis, euismod vehicula leo et,
+    rhoncus interdum sem.
+    
+    Morbi nec diam sed urna imperdiet pellentesque. Vivamus tempor, ex vitae viverra tempus, massa risus tincidunt est, nec
+    vestibulum arcu sem at diam. Integer commodo sed mauris porta porta. Ut lacus elit, rutrum vel ante sit amet, elementum
+    sagittis justo. Proin lobortis, nulla at mollis faucibus, mi ipsum consequat ipsum, sed rutrum tortor mauris at nisl.
+    Proin id eleifend odio. Integer convallis metus et nulla semper accumsan. Proin commodo sapien vel est placerat, ut
+    ultrices urna tincidunt. Vestibulum egestas lectus at purus porta, at semper lectus sagittis. Praesent velit enim,
+    tincidunt at fringilla sit amet, interdum sed tortor. Nullam dictum, arcu ac accumsan sodales, magna sapien gravida sem,
+    vitae condimentum nibh lectus at ligula. Donec ullamcorper pretium leo et faucibus.
+    
+    Cras gravida, nibh ac facilisis euismod, arcu augue dignissim felis, id rhoncus tellus ligula nec diam. Nulla vestibulum
+    ac mauris ac blandit. In magna justo, blandit et nisl id, viverra finibus ligula. Donec a consectetur massa. Suspendisse
+    quis libero turpis. Aenean vehicula dignissim erat, in bibendum erat semper ut. Suspendisse potenti. Donec vestibulum ex
+    ac luctus tempor. Mauris ut enim finibus, laoreet nibh vitae, tempor dolor. Praesent nunc sem, tempor nec placerat in,
+    volutpat varius erat. Curabitur cursus elementum imperdiet.
+  </section>
+
+  <div id="fixed"></div>
+
+  <div id="positioned">
+    <span></span>
+    I'm positioned!
+  </div>
+
+</body>
+</html>
